@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     GameObject SpriteObject;
     Rigidbody2D rb;
     Vector2 moveInput;
+    Vector3 originalSize;
     Coroutine moveCoroutine;
     bool isGrounded = false;
 
@@ -51,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (isGrounded)
             {
-                yield return new WaitForSeconds(0.1f);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
+                yield return new WaitForSeconds(0.2f);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.9f, rb.linearVelocity.y);
             }
             if (rb.linearVelocityX != 0 && moveInput.x == 0 && isGrounded)
             {
@@ -61,11 +62,11 @@ public class PlayerMovement : MonoBehaviour
 
             if (moveInput.x < 0)
             {
-                SpriteObject.transform.localScale = new Vector2(-1, 1);
+                SpriteObject.transform.localScale = new Vector2(-originalSize.x, 1);
             }
             if (moveInput.x > 0)
             {
-                SpriteObject.transform.localScale = new Vector2(1, 1);
+                SpriteObject.transform.localScale = new Vector2(originalSize.x, 1);
             }
         }
     }
