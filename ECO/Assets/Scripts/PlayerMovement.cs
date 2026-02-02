@@ -52,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (isGrounded)
             {
-                yield return new WaitForSeconds(0.2f);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.9f, rb.linearVelocity.y);
+                yield return new WaitForSeconds(0.1f);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.83f, rb.linearVelocity.y);
             }
             if (rb.linearVelocityX != 0 && moveInput.x == 0 && isGrounded)
             {
