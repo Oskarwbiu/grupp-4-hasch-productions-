@@ -6,11 +6,12 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float jumpCooldown = 0.04f;
     [SerializeField] ContactFilter2D groundFilter;
     Rigidbody2D rb;
-    bool isGrounded;
+    public bool isGrounded;
     bool hasJumped;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
     }
     void OnJump()
     {
@@ -26,6 +27,10 @@ public class PlayerJump : MonoBehaviour
        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
          
     }
+    public bool IsGrounded()
+    {
+        return isGrounded;
+    }
     private void FixedUpdate()
     {
         if (isGrounded && hasJumped)
@@ -33,7 +38,7 @@ public class PlayerJump : MonoBehaviour
         Jump();
             hasJumped = false;
         }
-        isGrounded = rb.IsTouching(groundFilter);
+       isGrounded = rb.IsTouching(groundFilter);
     }
 
 }
