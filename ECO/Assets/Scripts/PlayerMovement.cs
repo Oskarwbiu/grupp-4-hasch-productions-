@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         SpriteObject = rb.transform.GetChild(0).gameObject;
         StartCoroutine(MovePlayer());
+        originalSize = SpriteObject.transform.localScale;
     }
 
     
