@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     Vector3 originalSize;
     Coroutine moveCoroutine;
     bool isGrounded = false;
+    bool dashed = false;
+    [SerializeField] float dashForce = 10f;
+    [SerializeField]float dashCooldown = 1f;
 
     void Start()
     {
@@ -22,13 +25,6 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(MovePlayer());
         originalSize = SpriteObject.transform.localScale;
     }
-
-    
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         isGrounded = rb.IsTouching(groundFilter);
@@ -40,7 +36,19 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
 
     }
-    
+    void OnDash()
+    {
+        if (!dashed)
+        {
+            dashed = true;
+            rb.AddForce(new Vector2(moveInput.x * dashForce, 0), ForceMode2D.Impulse);
+            Invoke("ResetDash", dashCooldown);
+        }
+    }
+    void ResetDash()
+    {
+        dashed = false;
+    }
     IEnumerator MovePlayer()
     {
         while (true)
