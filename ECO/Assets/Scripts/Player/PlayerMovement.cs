@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -61,11 +62,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (isGrounded)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.05f);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
             }
-            if (rb.linearVelocityX != 0 && moveInput.x == 0 && isGrounded)
+            if (isGrounded && moveInput.x == 0)
             {
+                yield return new WaitForSeconds(0.05f);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
             }
 
