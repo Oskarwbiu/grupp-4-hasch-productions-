@@ -8,12 +8,15 @@ public class enemyAI : MonoBehaviour
     [SerializeField] int lookaroundDuration = 2;
     [SerializeField] float lookaroundInterval = 0.5f;
     [SerializeField] float runSpeedMultiplier = 1.5f;
+    [SerializeField] float detectionRange = 5f;
     Rigidbody2D rb;
     float moveSpeed;
     RaycastHit2D hit;
     GameObject player;
     bool chasePlayer = false;
     Vector2 dir;
+    bool isLookingForPlayer = false;
+    bool isPatrolling = false;
 
     void Start()
     {
@@ -36,13 +39,18 @@ public class enemyAI : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!chasePlayer)
+        
+        if (!chasePlayer && !isLookingForPlayer)
         {
-            for (int i = 0; i < 180; i++)
+            isLookingForPlayer = true;
+            Debug.Log("Looking for player");
+
+            for (int i = 0; i < 20; i++)
             {
-                dir = Quaternion.Euler(0, 0, i) * Vector2.right * Mathf.Sign(moveSpeed/Mathf.Abs(moveSpeed));
-                hit = Physics2D.Raycast(transform.position, dir, 0.1f);
-                
+                dir = Quaternion.Euler(0, 0, (i * 3) - 40) * new Vector2(Mathf.Sign(moveSpeed/Mathf.Abs(moveSpeed)), 0);
+                hit = Physics2D.Raycast(transform.position, dir, detectionRange);
+                Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
+
                 if (hit.collider == CompareTag("Player"))
                 {
                     if (hit.collider != null)
@@ -52,8 +60,9 @@ public class enemyAI : MonoBehaviour
                     }
                 }
             }
+            isLookingForPlayer = false;
         }
-        else
+        else if (chasePlayer)
         {
             Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
             if (player != null && Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(runSpeedMultiplier * rb.linearVelocity.x + directionToPlayer.x) < Mathf.Abs(runSpeedMultiplier * rb.linearVelocity.x))
@@ -94,19 +103,25 @@ public class enemyAI : MonoBehaviour
 
     IEnumerator Lookaround()
     {
-        origMoveSpeed = moveSpeed;
-        moveSpeed = 0;
-        for (int i = 0; i < lookaroundDuration; i++)
+        
+        if (!isPatrolling && !chasePlayer)
         {
-            yield return new WaitForSeconds(lookaroundInterval);
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-            Debug.Log($"Lookaround {i}");
-            yield return new WaitForSeconds(lookaroundInterval);
-            transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-            Debug.Log($"Lookaround {i}");
+            isPatrolling = true;
+            origMoveSpeed = moveSpeed;
+            moveSpeed = 0;
+            for (int i = 0; i < lookaroundDuration; i++)
+            {
+                yield return new WaitForSeconds(lookaroundInterval);
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                Debug.Log($"Lookaround {i}");
+                yield return new WaitForSeconds(lookaroundInterval);
+                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                Debug.Log($"Lookaround {i}");
+            }
+            moveSpeed = origMoveSpeed;
+            FlipHorizontalMovement();
+            isPatrolling = false;
         }
-        moveSpeed = origMoveSpeed;
-        FlipHorizontalMovement();
     }
 
     private void OnDrawGizmos()
