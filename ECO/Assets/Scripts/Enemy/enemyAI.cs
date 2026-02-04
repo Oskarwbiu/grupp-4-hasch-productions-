@@ -25,23 +25,26 @@ public class enemyAI : MonoBehaviour
         moveSpeed = origMoveSpeed;
     }
 
-    
-    void Update()
-    {
-        Move();
-    }
-
     private void OnBecameInvisible()
     {
         if (chasePlayer)
         {
             chasePlayer = false;
+            player = null;
         }
     }
     private void FixedUpdate()
     {
+        Move();
         Vision();
-
+        if (rb.linearVelocityX < 0)
+        {
+            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+        }
+        else if (rb.linearVelocityX > 0)
+        {
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+        }
     }
 
     void Vision()
@@ -54,7 +57,6 @@ public class enemyAI : MonoBehaviour
 
             for (int i = 0; i < 20; i++)
             {
-                Debug.Log("Looking for player: " + dir);
                 dir = Quaternion.Euler(0, 0, (i * 3) - 30) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
                 hit = Physics2D.Raycast(transform.position, dir, detectionRange, playerLayerMask);
                 Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
@@ -63,6 +65,7 @@ public class enemyAI : MonoBehaviour
 
                 if (hit.collider.CompareTag("Player"))
                 {
+                    rb.linearVelocityX = 0;
                     player = hit.collider.gameObject;
                     chasePlayer = true;
                     Debug.Log("Player Spotted: " + player);
@@ -72,32 +75,38 @@ public class enemyAI : MonoBehaviour
         }
         else if (chasePlayer)
         {
-            Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
-            if (player != null && Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(runSpeedMultiplier * rb.linearVelocity.x + directionToPlayer.x) < Mathf.Abs(runSpeedMultiplier * rb.linearVelocity.x))
-            {
-                directionToPlayer = (player.transform.position - transform.position).normalized;
-                rb.AddForceX(directionToPlayer.x * moveSpeed);
-            }
+            Chase();
+        }
+    }
 
+    void Chase()
+    {
+        
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed * runSpeedMultiplier || Mathf.Abs(rb.linearVelocity.x) < maxSpeed * runSpeedMultiplier && !chasePlayer && player != null)
+        {
+            Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
+            directionToPlayer = (player.transform.position - transform.position).normalized;
+            rb.AddForceX(directionToPlayer.x/Mathf.Abs(directionToPlayer.x) * moveSpeed * runSpeedMultiplier);
         }
     }
     void Move()
     {
-        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed && !chasePlayer || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
         {
             rb.AddForceX(moveSpeed);
         }
     }
+        
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag("Player") && !isPatrolling && !chasePlayer)
         {
             FlipHorizontalMovement();
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("End Point"))
+        if (collision.gameObject.CompareTag("End Point") && !isPatrolling && !chasePlayer)
         {
 
           StartCoroutine(Lookaround());
@@ -106,7 +115,6 @@ public class enemyAI : MonoBehaviour
     private void FlipHorizontalMovement()
     {
         moveSpeed = -moveSpeed;
-        transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
         Debug.Log(moveSpeed);
     }
 
@@ -121,13 +129,13 @@ public class enemyAI : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             for (int i = 0; i < lookaroundDuration; i++)
             {
+                if (chasePlayer)
+                    break;
                 yield return new WaitForSeconds(lookaroundInterval);
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-
                 yield return new WaitForSeconds(lookaroundInterval);
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-
-
+                
             }
             moveSpeed = origMoveSpeed;
             FlipHorizontalMovement();
