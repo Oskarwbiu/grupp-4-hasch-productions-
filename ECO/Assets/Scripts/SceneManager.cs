@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SceneManager : MonoBehaviour
 {
-    enum Level
+    public enum Level
     {
         Intro,
         End
