@@ -93,7 +93,7 @@ public class enemyAI : MonoBehaviour
     {
         if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed && !chasePlayer || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
         {
-            rb.AddForceX(moveSpeed);
+            rb.AddForceX(moveSpeed * 2);
         }
     }
         
