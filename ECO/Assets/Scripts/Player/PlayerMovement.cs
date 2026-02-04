@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     bool dashed = false;
     [SerializeField] float dashForce = 10f;
     [SerializeField]float dashCooldown = 1f;
+    Animator ani;
 
     void Start()
     {
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         SpriteObject = rb.transform.GetChild(0).gameObject;
         StartCoroutine(MovePlayer());
         originalSize = SpriteObject.transform.localScale;
+        ani = SpriteObject.GetComponent<Animator>();
     }
     private void FixedUpdate()
     {
@@ -78,6 +80,14 @@ public class PlayerMovement : MonoBehaviour
             if (moveInput.x > 0)
             {
                 SpriteObject.transform.localScale = new Vector2(originalSize.x, 1);
+            }
+            if (moveInput.x != 0 && isGrounded)
+            {
+                ani.SetBool("isWalking", true);
+            }
+            else if (isGrounded)
+            {
+               ani.SetBool("isWalking", false);
             }
         }
     }
