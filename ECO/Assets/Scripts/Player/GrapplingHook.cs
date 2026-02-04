@@ -60,7 +60,7 @@ public class GrapplingHook : MonoBehaviour
                 if (objectHit != null)
                 {
                     currentVisualIndicator.SetActive(true);
-                    if (objectHit.gameObject.layer == 3)
+                    if (objectHit.gameObject.layer == 8)
                     {
                         currentVisualIndicator.transform.position = point.transform.position;
                     }
@@ -81,7 +81,7 @@ public class GrapplingHook : MonoBehaviour
     {
         if (objectHit != null)
         {
-            if (objectHit.gameObject.layer == 3)
+            if (objectHit.gameObject.layer == 8)
             {
                 currentVisualIndicator.transform.position = point.transform.position;
             }
@@ -97,7 +97,7 @@ public class GrapplingHook : MonoBehaviour
                 }
 
                 Vector2 pullDirection = transform.position - objectHit.transform.position;
-                if (objectHit.gameObject.layer == 3 && canPull)
+                if (objectHit.gameObject.layer == 8 && canPull)
                 {
 
                     lr.enabled = true;
