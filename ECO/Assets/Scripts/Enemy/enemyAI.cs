@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class enemyAI : MonoBehaviour
 {
-    [SerializeField] float origMoveSpeed = 5f;
+    [SerializeField] float origMoveSpeed = 3f;
+    [SerializeField] float maxSpeed = 3f;
     [SerializeField] int lookaroundDuration = 2;
     [SerializeField] float lookaroundInterval = 0.5f;
     [SerializeField] float runSpeedMultiplier = 1.5f;
@@ -39,7 +40,13 @@ public class enemyAI : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
+        Vision();
+
+    }
+
+    void Vision()
+    {
+        int playerLayerMask = 1 << 3;
         if (!chasePlayer && !isLookingForPlayer)
         {
             isLookingForPlayer = true;
@@ -47,11 +54,14 @@ public class enemyAI : MonoBehaviour
 
             for (int i = 0; i < 20; i++)
             {
+                Debug.Log("Looking for player: " + dir);
                 dir = Quaternion.Euler(0, 0, (i * 3) - 30) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
-                hit = Physics2D.Raycast(transform.position, dir, detectionRange, 3);
+                hit = Physics2D.Raycast(transform.position, dir, detectionRange, playerLayerMask);
                 Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
+                if (hit.collider == null)
+                    continue;
 
-                if (hit.collider.gameObject == CompareTag("Player"))
+                if (hit.collider.CompareTag("Player"))
                 {
                     player = hit.collider.gameObject;
                     chasePlayer = true;
@@ -68,12 +78,12 @@ public class enemyAI : MonoBehaviour
                 directionToPlayer = (player.transform.position - transform.position).normalized;
                 rb.AddForceX(directionToPlayer.x * moveSpeed);
             }
-            
+
         }
     }
     void Move()
     {
-        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveSpeed) < Mathf.Abs(rb.linearVelocity.x) && !chasePlayer)
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
         {
             rb.AddForceX(moveSpeed);
         }
@@ -108,6 +118,7 @@ public class enemyAI : MonoBehaviour
             isPatrolling = true;
             origMoveSpeed = moveSpeed;
             moveSpeed = 0;
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             for (int i = 0; i < lookaroundDuration; i++)
             {
                 yield return new WaitForSeconds(lookaroundInterval);
