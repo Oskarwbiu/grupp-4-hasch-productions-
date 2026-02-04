@@ -2242,6 +2242,7 @@ MonoBehaviour:
   lookaroundDuration: 6
   lookaroundInterval: 1
   runSpeedMultiplier: 1.5
+  detectionRange: 5
 --- !u!50 &1709056975
 Rigidbody2D:
   serializedVersion: 5
@@ -2258,7 +2259,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2c40d8616dadc4e44aca6ec7f9df953a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
