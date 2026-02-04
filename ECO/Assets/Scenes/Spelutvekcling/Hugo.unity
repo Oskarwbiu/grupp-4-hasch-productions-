@@ -1497,7 +1497,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626181579}
   - component: {fileID: 626181580}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1648,7 +1648,7 @@ GameObject:
   - component: {fileID: 1023521662}
   - component: {fileID: 1023521655}
   - component: {fileID: 1023521661}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2259,7 +2259,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 2c40d8616dadc4e44aca6ec7f9df953a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -43,21 +43,19 @@ public class enemyAI : MonoBehaviour
         if (!chasePlayer && !isLookingForPlayer)
         {
             isLookingForPlayer = true;
-            Debug.Log("Looking for player");
+
 
             for (int i = 0; i < 20; i++)
             {
-                dir = Quaternion.Euler(0, 0, (i * 3) - 40) * new Vector2(Mathf.Sign(moveSpeed/Mathf.Abs(moveSpeed)), 0);
-                hit = Physics2D.Raycast(transform.position, dir, detectionRange);
+                dir = Quaternion.Euler(0, 0, (i * 3) - 30) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
+                hit = Physics2D.Raycast(transform.position, dir, detectionRange, 3);
                 Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
 
-                if (hit.collider == CompareTag("Player"))
+                if (hit.collider.gameObject == CompareTag("Player"))
                 {
-                    if (hit.collider != null)
-                    {
-                        player = hit.collider.gameObject;
-                        chasePlayer = true;
-                    }
+                    player = hit.collider.gameObject;
+                    chasePlayer = true;
+                    Debug.Log("Player Spotted: " + player);
                 }
             }
             isLookingForPlayer = false;
@@ -99,6 +97,7 @@ public class enemyAI : MonoBehaviour
     {
         moveSpeed = -moveSpeed;
         transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+        Debug.Log(moveSpeed);
     }
 
     IEnumerator Lookaround()
@@ -113,10 +112,11 @@ public class enemyAI : MonoBehaviour
             {
                 yield return new WaitForSeconds(lookaroundInterval);
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                Debug.Log($"Lookaround {i}");
+
                 yield return new WaitForSeconds(lookaroundInterval);
                 transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                Debug.Log($"Lookaround {i}");
+
+
             }
             moveSpeed = origMoveSpeed;
             FlipHorizontalMovement();
@@ -124,10 +124,5 @@ public class enemyAI : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, dir);
-    }
 }
 
