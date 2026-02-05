@@ -337,7 +337,7 @@ MonoBehaviour:
   pullForce: 1.43
   pullCooldown: 0
   minDistance: 3.42
-  visualIndicator: {fileID: 0}
+  visualIndicator: {fileID: 4076288105232069867, guid: 0c71913c25b40d948a94d9babfee4fc4, type: 3}
 --- !u!231 &7589148077253437790
 SpringJoint2D:
   m_ObjectHideFlags: 0
