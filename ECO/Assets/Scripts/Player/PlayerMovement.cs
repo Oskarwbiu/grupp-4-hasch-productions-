@@ -1,12 +1,13 @@
 using System;
 using System.Collections;
+using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float originalMoveSpeed = 5f;
     [SerializeField] ContactFilter2D groundFilter;
 
     GameObject SpriteObject;
@@ -18,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     bool dashed = false;
     [SerializeField] float dashForce = 10f;
     [SerializeField] float dashCooldown = 1f;
+    [SerializeField] float dashSpeedMultiplier = 2f;
+    float dashValue;
+    float moveSpeed;
     Animator ani;
 
     void Start()
@@ -27,6 +31,8 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(MovePlayer());
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
+        moveSpeed = originalMoveSpeed;
+        Debug.Log(moveSpeed);
     }
     private void FixedUpdate()
     {
@@ -39,15 +45,15 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
 
     }
-    void OnDash()
-    {
-        if (!dashed)
-        {
+    void OnDash(InputValue value)
+    { 
+            dashValue = value.Get<float>();
+            if (!dashed)
+            {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             Invoke("ResetDash", dashCooldown);
-        }
-    }
+            }}
     void ResetDash()
     {
         dashed = false;
@@ -56,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         while (true)
         {
+            moveSpeed = Mathf.Sign(transform.localScale.x) * (originalMoveSpeed + originalMoveSpeed * (dashSpeedMultiplier-1) * dashValue);
             yield return null;
 
             if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x) && moveInput.x != 0)
@@ -82,7 +89,6 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.80f, rb.linearVelocity.y);
                 if (Mathf.Abs(rb.linearVelocityX) >= 0.1 && isGrounded && moveInput.x == 0)
                 {
-
                     ani.SetBool("isStopping", true);
                     yield return new WaitForSeconds(0.05f);
                 }

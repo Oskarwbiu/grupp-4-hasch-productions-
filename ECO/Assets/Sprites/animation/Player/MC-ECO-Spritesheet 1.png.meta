@@ -173,463 +173,463 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_0
+      name: MC-ECO-Spritesheet 1_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 31
-        width: 11
-        height: 24
+        x: 0
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 061e7c8d715b752f0800000000000000
-      internalID: -984118879531310752
+      spriteID: 944b1788d89df884a874c80d1fd1939d
+      internalID: 1263924827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_1
+      name: MC-ECO-Spritesheet 1_1
       rect:
         serializedVersion: 2
-        x: 42
-        y: 31
-        width: 11
-        height: 25
+        x: 32
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 006bee3a4676ee380800000000000000
-      internalID: -8940094528339134976
+      spriteID: af26a9eea9cff834c84ba27ffe8859c0
+      internalID: -1625311397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_2
+      name: MC-ECO-Spritesheet 1_2
       rect:
         serializedVersion: 2
-        x: 74
-        y: 34
-        width: 13
-        height: 23
+        x: 64
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 253a83ebf326c2390800000000000000
-      internalID: -7841784825245031598
+      spriteID: f760ac8a66f387f4e9bbaaf6f62674ef
+      internalID: 1175883436
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_3
+      name: MC-ECO-Spritesheet 1_3
       rect:
         serializedVersion: 2
-        x: 105
-        y: 33
-        width: 13
-        height: 23
+        x: 96
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8536672f3973937e0800000000000000
-      internalID: -1785334668708125864
+      spriteID: bd4a8c47d7e632240bb28172485dc4b2
+      internalID: 1334166726
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_4
+      name: MC-ECO-Spritesheet 1_4
       rect:
         serializedVersion: 2
-        x: 137
-        y: 33
-        width: 12
-        height: 23
+        x: 128
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 683c09f22f5562f10800000000000000
-      internalID: 2244575962959233926
+      spriteID: 842455037d3fc8b4fb070fda683be98a
+      internalID: 936783962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_5
+      name: MC-ECO-Spritesheet 1_5
       rect:
         serializedVersion: 2
-        x: 168
-        y: 31
-        width: 13
-        height: 19
+        x: 160
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8916a12403aa23020800000000000000
-      internalID: 2320103882293404056
+      spriteID: c180b745adb3473478f21d186bf69771
+      internalID: -498489261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_6
+      name: MC-ECO-Spritesheet 1_6
       rect:
         serializedVersion: 2
-        x: 202
-        y: 31
-        width: 11
-        height: 21
+        x: 192
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 24f7e5943a430e320800000000000000
-      internalID: 2585124062025908034
+      spriteID: 8840c2cfd6e83414d92a767ee5f96b1c
+      internalID: -1997355406
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_7
+      name: MC-ECO-Spritesheet 1_7
       rect:
         serializedVersion: 2
-        x: 234
-        y: 31
-        width: 12
-        height: 23
+        x: 224
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 11b8004b1b2559d30800000000000000
-      internalID: 4437543931026115345
+      spriteID: 1c317b05ff75a9942a5d55d867623031
+      internalID: 2052305662
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_8
+      name: MC-ECO-Spritesheet 1_8
       rect:
         serializedVersion: 2
-        x: 265
-        y: 31
-        width: 13
-        height: 23
+        x: 256
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2d8fcb70dfb9834a0800000000000000
-      internalID: -6613364541734717230
+      spriteID: 6127587ea8a282743b721da165470a69
+      internalID: 1270770973
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_9
+      name: MC-ECO-Spritesheet 1_9
       rect:
         serializedVersion: 2
-        x: 296
-        y: 31
-        width: 14
-        height: 23
+        x: 288
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0f5479749e7bb3e80800000000000000
-      internalID: -8197756484141496848
+      spriteID: 8bacfb6dfe40cf8479f371c62b919ba7
+      internalID: 1391285790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_10
+      name: MC-ECO-Spritesheet 1_10
       rect:
         serializedVersion: 2
-        x: 328
-        y: 31
-        width: 14
-        height: 24
+        x: 320
+        y: 32
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 51575fe8a03d5de40800000000000000
-      internalID: 5680678547299333397
+      spriteID: aed310279651db9408fdd231d9dd097e
+      internalID: 382002398
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_11
+      name: MC-ECO-Spritesheet 1_11
       rect:
         serializedVersion: 2
-        x: 2
-        y: 1
-        width: 23
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 71772ace89da006d0800000000000000
-      internalID: -3026228077276268777
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC-ECO-Spritesheet_12
-      rect:
-        serializedVersion: 2
-        x: 34
+        x: 0
         y: 0
-        width: 25
-        height: 18
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 148456ec41991c740800000000000000
-      internalID: 5170582161839179841
+      spriteID: 196a8fe60b8ed8948917a92062cea068
+      internalID: -1679760645
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_13
+      name: MC-ECO-Spritesheet 1_12
       rect:
         serializedVersion: 2
-        x: 69
+        x: 32
         y: 0
-        width: 22
-        height: 17
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b54add356701e5b30800000000000000
-      internalID: 4277874796447769691
+      spriteID: 421b5dbb32e1078488ddc1e7a2f30b5f
+      internalID: 1958979597
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_14
+      name: MC-ECO-Spritesheet 1_13
       rect:
         serializedVersion: 2
-        x: 101
+        x: 64
         y: 0
-        width: 22
-        height: 17
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 63d20394f940f3100800000000000000
-      internalID: 89795599744904502
+      spriteID: 5ff19ed2135318e49829cf2d682c5fbb
+      internalID: -19979853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_15
+      name: MC-ECO-Spritesheet 1_14
       rect:
         serializedVersion: 2
-        x: 134
-        y: 2
-        width: 20
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dea9c93c29b81a980800000000000000
-      internalID: -8529382756799702291
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC-ECO-Spritesheet_16
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 1
-        width: 23
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7a480bd30fd23e50800000000000000
-      internalID: 6787732796053408379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC-ECO-Spritesheet_17
-      rect:
-        serializedVersion: 2
-        x: 195
-        y: 1
-        width: 24
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b2fee9ed7154fd4b0800000000000000
-      internalID: -5413532258254524629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: MC-ECO-Spritesheet_18
-      rect:
-        serializedVersion: 2
-        x: 232
+        x: 96
         y: 0
-        width: 14
-        height: 23
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 67c5500f39b7ed1c0800000000000000
-      internalID: -4477005104242402186
+      spriteID: 02463d2467b61ba4fb44116608bf7da5
+      internalID: -1250013971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_19
+      name: MC-ECO-Spritesheet 1_15
       rect:
         serializedVersion: 2
-        x: 263
+        x: 128
         y: 0
-        width: 12
-        height: 23
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 5e8203f8310f3b630800000000000000
-      internalID: 3941758065676658917
+      spriteID: 96879ceb37d8c3d499289c94f745a794
+      internalID: 1733206388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MC-ECO-Spritesheet_20
+      name: MC-ECO-Spritesheet 1_16
       rect:
         serializedVersion: 2
-        x: 297
+        x: 160
         y: 0
-        width: 12
-        height: 23
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 28d38f218a4daa6e0800000000000000
-      internalID: -1825412880607462014
+      spriteID: 3be2b912445671540a8b9ca7f99ca545
+      internalID: 1278485172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC-ECO-Spritesheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adea5eade4fa9604dacc798621e2816b
+      internalID: -1289859937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC-ECO-Spritesheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d69588af4d22e9e44892d097a429c9f0
+      internalID: -944705581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC-ECO-Spritesheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09030167156a2ad4093996a61b8c8a0f
+      internalID: -989567672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MC-ECO-Spritesheet 1_20
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d62489c36d455254e8dcbda8f8dd461a
+      internalID: -1092167498
       vertices: []
       indices: 
       edges: []
@@ -638,7 +638,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1502e4e504f11394f818afe8e51aa09b
     internalID: 0
     vertices: []
     indices: 
@@ -646,29 +646,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      MC-ECO-Spritesheet_0: -984118879531310752
-      MC-ECO-Spritesheet_1: -8940094528339134976
-      MC-ECO-Spritesheet_10: 5680678547299333397
-      MC-ECO-Spritesheet_11: -3026228077276268777
-      MC-ECO-Spritesheet_12: 5170582161839179841
-      MC-ECO-Spritesheet_13: 4277874796447769691
-      MC-ECO-Spritesheet_14: 89795599744904502
-      MC-ECO-Spritesheet_15: -8529382756799702291
-      MC-ECO-Spritesheet_16: 6787732796053408379
-      MC-ECO-Spritesheet_17: -5413532258254524629
-      MC-ECO-Spritesheet_18: -4477005104242402186
-      MC-ECO-Spritesheet_19: 3941758065676658917
-      MC-ECO-Spritesheet_2: -7841784825245031598
-      MC-ECO-Spritesheet_20: -1825412880607462014
-      MC-ECO-Spritesheet_3: -1785334668708125864
-      MC-ECO-Spritesheet_4: 2244575962959233926
-      MC-ECO-Spritesheet_5: 2320103882293404056
-      MC-ECO-Spritesheet_6: 2585124062025908034
-      MC-ECO-Spritesheet_7: 4437543931026115345
-      MC-ECO-Spritesheet_8: -6613364541734717230
-      MC-ECO-Spritesheet_9: -8197756484141496848
+      MC-ECO-Spritesheet 1_0: 1263924827
+      MC-ECO-Spritesheet 1_1: -1625311397
+      MC-ECO-Spritesheet 1_10: 382002398
+      MC-ECO-Spritesheet 1_11: -1679760645
+      MC-ECO-Spritesheet 1_12: 1958979597
+      MC-ECO-Spritesheet 1_13: -19979853
+      MC-ECO-Spritesheet 1_14: -1250013971
+      MC-ECO-Spritesheet 1_15: 1733206388
+      MC-ECO-Spritesheet 1_16: 1278485172
+      MC-ECO-Spritesheet 1_17: -1289859937
+      MC-ECO-Spritesheet 1_18: -944705581
+      MC-ECO-Spritesheet 1_19: -989567672
+      MC-ECO-Spritesheet 1_2: 1175883436
+      MC-ECO-Spritesheet 1_20: -1092167498
+      MC-ECO-Spritesheet 1_3: 1334166726
+      MC-ECO-Spritesheet 1_4: 936783962
+      MC-ECO-Spritesheet 1_5: -498489261
+      MC-ECO-Spritesheet 1_6: -1997355406
+      MC-ECO-Spritesheet 1_7: 2052305662
+      MC-ECO-Spritesheet 1_8: 1270770973
+      MC-ECO-Spritesheet 1_9: 1391285790
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

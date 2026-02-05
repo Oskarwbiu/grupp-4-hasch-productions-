@@ -98,12 +98,12 @@
                 },
                 {
                     "name": "Dash",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "85592c55-9129-42f9-b8ce-ce10fa69129c",
-                    "expectedControlType": "",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
