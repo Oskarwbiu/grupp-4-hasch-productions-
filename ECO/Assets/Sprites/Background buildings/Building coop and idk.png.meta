@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ff942f2c3613b3b439812f5f8d85fb48
+guid: e89feb0af5f968540b8c498e9100fb1c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7671316520238938574
-    second: Skyline background_0
+      213: 1137675034643621262
+    second: Building coop and idk_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skyline background_0
+      name: Building coop and idk_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 26
-        width: 320
-        height: 154
+        x: 2
+        y: 0
+        width: 263
+        height: 288
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ec97d641bbdf57a60800000000000000
-      internalID: 7671316520238938574
+      spriteID: e8563c59a65d9cf00800000000000000
+      internalID: 1137675034643621262
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Skyline background_0: 7671316520238938574
+      Building coop and idk_0: 1137675034643621262
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
