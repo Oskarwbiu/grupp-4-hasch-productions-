@@ -7,10 +7,11 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
     [SerializeField] float jumpForce = 10f;
     [SerializeField] LayerMask groundLayer;
-
+    [SerializeField] ContactFilter2D groundFilter;
 
     Vector2 footPosition;
     RaycastHit2D jumpCast;
+    RaycastHit2D jumpCast2;
     Collider2D crouchHit;
     new BoxCollider2D collider;
     Bounds colliderSize;
@@ -20,7 +21,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
     Coroutine jumpCoroutine;
 
-
+    bool isGrounded = false;
     bool isCrouching = false;
     bool isJumping = false;
     bool hasjumped = false;
@@ -38,6 +39,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        isGrounded = rb.IsTouching(groundFilter);
         bool isChasing = GetComponent<enemyAI>().IsChasing();
         Transform playerPos = GetComponent<enemyAI>().PlayerPos();
 
@@ -45,16 +47,21 @@ public class enemyAIJumpCrouch : MonoBehaviour
         Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 0.5f + originalColliderSize.y - collider.size.y);
         Vector2 areaMax = areaMin + new Vector2(originalColliderSize.x * 2, 0.5f + originalColliderSize.y - collider.size.y);
 
+ 
 
         jumpCast = Physics2D.Raycast(footPosition, Vector2.right * transform.localScale.x, 1f, groundLayer);
-        Debug.DrawRay(footPosition, transform.right * transform.localScale.x * 1f, Color.green, 0.1f);
-        if (jumpCast.collider != null && jumpCast.collider != this.collider && isChasing)
+        Vector2 dir = Quaternion.Euler(0, 0, -90 + (Mathf.Sign(transform.localScale.x) * 55)) * Vector2.right;
+        jumpCast2 = Physics2D.Raycast(transform.position, dir, 2f, groundLayer);
+
+        Debug.DrawRay(transform.position, dir * 2f, Color.darkGreen, 0.1f);
+        Debug.DrawRay(footPosition, transform.right * Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.1f);
+        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null) && isChasing)
         {
 
             if (!isJumping && !(playerPos.position.y < transform.position.y && transform.position.x - playerPos.position.x < 2))
             {
                 StartCoroutine(Jump(true));
-                Debug.Log("Jump");
+               
             }
         }
         else
@@ -72,7 +79,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
         if (crouchHit != null && crouchHit != this.collider && isChasing)
         {
             Crouch(true);
-            Debug.Log("Crouch");
+            
 
         }
         else
@@ -84,7 +91,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
     void Crouch(bool shouldCrouch)
     {
 
-
+        rb.GetComponent<enemyAI>().SetCrouchSpeedMultiplier(shouldCrouch);
         if (shouldCrouch && !isCrouching && !isJumping)
         {
             isCrouching = true;
@@ -107,7 +114,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
             {
             isJumping = true;
             hasjumped = true;
-            if (shouldJump)
+            if (shouldJump && isGrounded)
             {
                 rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
                 yield return new WaitForSeconds(0.5f);

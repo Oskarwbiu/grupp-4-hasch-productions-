@@ -54,10 +54,10 @@ public class GrapplingHook : MonoBehaviour
 
                 grappleDirection = (mousePos - transform.position).normalized;
 
-                point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance, grappleLayer);
+                point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance);
                 objectHit = point.collider;
 
-                if (objectHit != null)
+                if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
                 {
                     currentVisualIndicator.SetActive(true);
                     if (objectHit.gameObject.layer == 8)

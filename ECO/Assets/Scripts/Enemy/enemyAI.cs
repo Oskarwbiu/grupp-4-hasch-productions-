@@ -11,6 +11,9 @@ public class enemyAI : MonoBehaviour
     [SerializeField] float runSpeedMultiplier = 1.5f;
     [SerializeField] float crouchSpeedMultiplier = 0.5f;
     [SerializeField] float detectionRange = 5f;
+    [SerializeField] LayerMask detectionLayer;
+
+
     Rigidbody2D rb;
     float moveSpeed;
     RaycastHit2D hit;
@@ -50,16 +53,19 @@ public class enemyAI : MonoBehaviour
 
     void Vision()
     {
-        
+        if (player == null && chasePlayer)
+        {
+            chasePlayer = false;
+        }
         if (!chasePlayer && !isLookingForPlayer)
         {
             isLookingForPlayer = true;
 
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 12; i++)
             {
-                dir = Quaternion.Euler(0, 0, (i * 3) - 30) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
-                hit = Physics2D.Raycast(transform.position, dir, detectionRange);
+                dir = Quaternion.Euler(0, 0, (i * 3) -19f) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
+                hit = Physics2D.Raycast(transform.position, dir, detectionRange, detectionLayer);
                 Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
                 if (hit.collider == null)
                     continue;
