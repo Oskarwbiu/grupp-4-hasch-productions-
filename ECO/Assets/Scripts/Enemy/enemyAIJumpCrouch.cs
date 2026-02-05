@@ -38,20 +38,23 @@ public class enemyAIJumpCrouch : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        
+        bool isChasing = GetComponent<enemyAI>().IsChasing();
+        Transform playerPos = GetComponent<enemyAI>().PlayerPos();
 
         footPosition = transform.position - new Vector3(0, originalColliderSize.y/2.4f, 0);
-        Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 0.5f);
-        Vector2 areaMax = areaMin + new Vector2(originalColliderSize.x * 2, 0.5f);
+        Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 0.5f + originalColliderSize.y - collider.size.y);
+        Vector2 areaMax = areaMin + new Vector2(originalColliderSize.x * 2, 0.5f + originalColliderSize.y - collider.size.y);
 
 
         jumpCast = Physics2D.Raycast(footPosition, Vector2.right * transform.localScale.x, 1f, groundLayer);
-        Debug.DrawRay(footPosition, transform.right * 1f, Color.green, 0.1f);
-        if (jumpCast.collider != null && jumpCast.collider != this.collider)
+        Debug.DrawRay(footPosition, transform.right * transform.localScale.x * 1f, Color.green, 0.1f);
+        if (jumpCast.collider != null && jumpCast.collider != this.collider && isChasing)
         {
-            if (!isJumping)
+
+            if (!isJumping && !(playerPos.position.y < transform.position.y && transform.position.x - playerPos.position.x < 2))
             {
                 StartCoroutine(Jump(true));
+                Debug.Log("Jump");
             }
         }
         else
@@ -66,9 +69,11 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
         crouchHit = Physics2D.OverlapArea(areaMin, areaMax, groundLayer);
         Debug.DrawLine(areaMin, areaMax, Color.blue);
-        if (crouchHit != null && crouchHit != this.collider)
+        if (crouchHit != null && crouchHit != this.collider && isChasing)
         {
             Crouch(true);
+            Debug.Log("Crouch");
+
         }
         else
         {
@@ -78,15 +83,15 @@ public class enemyAIJumpCrouch : MonoBehaviour
     }
     void Crouch(bool shouldCrouch)
     {
-        if (isJumping && !isCrouching) { return; }
 
-        if (shouldCrouch && !isCrouching)
+
+        if (shouldCrouch && !isCrouching && !isJumping)
         {
             isCrouching = true;
             collider.size = new Vector2(originalColliderSize.x, originalColliderSize.y * 0.5f);
             collider.offset = new Vector2(originalColliderOffset.x, originalColliderOffset.y - originalColliderSize.y * 0.25f);
         }
-        else if (!shouldCrouch && isCrouching)
+        else if (!shouldCrouch && isCrouching && !isJumping)
         {
             isCrouching = false;
             collider.size = originalColliderSize;
@@ -94,11 +99,10 @@ public class enemyAIJumpCrouch : MonoBehaviour
         }
 
 
-        Debug.Log("Crouch: " + shouldCrouch);
     }
     IEnumerator Jump(bool shouldJump)
     {
-        if (isCrouching) { yield break; }
+        
         if (!hasjumped)
             {
             isJumping = true;
@@ -112,7 +116,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
             hasjumped = false;
         }
 
-        Debug.Log("Jump: " + shouldJump);
+       
     }
 }
 

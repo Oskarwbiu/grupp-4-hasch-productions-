@@ -9,6 +9,7 @@ public class enemyAI : MonoBehaviour
     [SerializeField] int lookaroundDuration = 2;
     [SerializeField] float lookaroundInterval = 0.5f;
     [SerializeField] float runSpeedMultiplier = 1.5f;
+    [SerializeField] float crouchSpeedMultiplier = 0.5f;
     [SerializeField] float detectionRange = 5f;
     Rigidbody2D rb;
     float moveSpeed;
@@ -25,17 +26,17 @@ public class enemyAI : MonoBehaviour
         moveSpeed = origMoveSpeed;
     }
 
-    private void OnBecameInvisible()
-    {
-        if (chasePlayer)
-        {
-            chasePlayer = false;
-            player = null;
-        }
-    }
+    
     private void FixedUpdate()
     {
-        Move();
+        if (!chasePlayer)
+        {
+            Move();
+        }
+        else if (chasePlayer)
+        {
+            Chase();
+        }
         Vision();
         if (rb.linearVelocityX < 0)
         {
@@ -73,10 +74,7 @@ public class enemyAI : MonoBehaviour
             }
             isLookingForPlayer = false;
         }
-        else if (chasePlayer)
-        {
-            Chase();
-        }
+        
     }
 
     void Chase()
@@ -88,12 +86,35 @@ public class enemyAI : MonoBehaviour
             directionToPlayer = (player.transform.position - transform.position).normalized;
             rb.AddForceX(directionToPlayer.x/Mathf.Abs(directionToPlayer.x) * moveSpeed * runSpeedMultiplier);
         }
+        else
+        {
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y);
+        }
+    }
+
+    private void OnBecameInvisible()
+    {
+        if (chasePlayer)
+        {
+            StopChasing();
+        }
+    }
+    void StopChasing()
+    {
+        chasePlayer = false;
+        player = null;
     }
     void Move()
     {
         if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed && !chasePlayer || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
         {
             rb.AddForceX(moveSpeed * 2);
+        }
+        else if (!chasePlayer)
+        {
+
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
         }
     }
         
@@ -130,11 +151,16 @@ public class enemyAI : MonoBehaviour
             for (int i = 0; i < lookaroundDuration; i++)
             {
                 if (chasePlayer)
-                    break;
-                yield return new WaitForSeconds(lookaroundInterval);
-                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
-                yield return new WaitForSeconds(lookaroundInterval);
-                transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                { 
+                    moveSpeed = origMoveSpeed;
+                    isPatrolling = false;
+                    StopCoroutine(Lookaround());
+                }
+                    yield return new WaitForSeconds(lookaroundInterval);
+                    transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                    yield return new WaitForSeconds(lookaroundInterval);
+                    transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+                
                 
             }
             moveSpeed = origMoveSpeed;
@@ -142,6 +168,34 @@ public class enemyAI : MonoBehaviour
             isPatrolling = false;
         }
     }
+    public bool IsChasing()
+    {
+        return chasePlayer;
+    }
+
+    public Transform PlayerPos()
+    {         
+        if (player != null)
+        {
+            return player.transform;
+        }
+        else
+        {
+            return null;
+        }
+    }
+    public void SetCrouchSpeedMultiplier(bool isCrouching)
+    {
+        if (!isCrouching)
+        {
+            moveSpeed = origMoveSpeed;
+        }
+        else
+        {
+            moveSpeed = origMoveSpeed * crouchSpeedMultiplier;
+        }
+    }
+
 
 }
 
