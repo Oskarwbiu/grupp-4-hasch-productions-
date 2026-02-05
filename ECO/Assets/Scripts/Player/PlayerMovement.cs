@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded = false;
     bool dashed = false;
     [SerializeField] float dashForce = 10f;
-    [SerializeField]float dashCooldown = 1f;
+    [SerializeField] float dashCooldown = 1f;
     Animator ani;
 
     void Start()
@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (!dashed)
         {
             dashed = true;
-            rb.AddForce(new Vector2(moveInput.x * dashForce, 0), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             Invoke("ResetDash", dashCooldown);
         }
     }
@@ -58,21 +58,10 @@ public class PlayerMovement : MonoBehaviour
         {
             yield return null;
 
-            if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x))
+            if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x) && moveInput.x != 0)
             {
                 rb.AddForceX(moveInput.x * moveSpeed);
             }
-            else if (isGrounded)
-            {
-                yield return new WaitForSeconds(0.05f);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
-            }
-            if (isGrounded && moveInput.x == 0)
-            {
-                yield return new WaitForSeconds(0.05f);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.75f, rb.linearVelocity.y);
-            }
-
             if (moveInput.x < 0)
             {
                 SpriteObject.transform.localScale = new Vector2(-originalSize.x, 1);
@@ -84,10 +73,28 @@ public class PlayerMovement : MonoBehaviour
             if (moveInput.x != 0 && isGrounded)
             {
                 ani.SetBool("isWalking", true);
+                ani.SetBool("isStopping", false);
             }
-            else if (isGrounded)
+            else if (isGrounded && moveInput.x == 0)
             {
-               ani.SetBool("isWalking", false);
+                Debug.Log(MathF.Abs(rb.linearVelocityX));
+                ani.SetBool("isWalking", false);
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.80f, rb.linearVelocity.y);
+                if (Mathf.Abs(rb.linearVelocityX) >= 0.1 && isGrounded && moveInput.x == 0)
+                {
+                    Debug.Log("Stopping");
+                    ani.SetBool("isStopping", true);
+                    yield return new WaitForSeconds(0.05f);
+                }
+                if (Mathf.Abs(rb.linearVelocityX) < 0.7f)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.4f, rb.linearVelocity.y);
+                    ani.SetBool("isStopping", false);
+                }
+                if (Mathf.Abs(rb.linearVelocityX) < 0.2f)
+                {
+                    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+                }
             }
         }
     }
