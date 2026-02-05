@@ -77,12 +77,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if (isGrounded && moveInput.x == 0)
             {
-                Debug.Log(MathF.Abs(rb.linearVelocityX));
+
                 ani.SetBool("isWalking", false);
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.80f, rb.linearVelocity.y);
                 if (Mathf.Abs(rb.linearVelocityX) >= 0.1 && isGrounded && moveInput.x == 0)
                 {
-                    Debug.Log("Stopping");
+
                     ani.SetBool("isStopping", true);
                     yield return new WaitForSeconds(0.05f);
                 }

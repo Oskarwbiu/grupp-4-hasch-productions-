@@ -50,7 +50,7 @@ public class enemyAI : MonoBehaviour
 
     void Vision()
     {
-        int playerLayerMask = 1 << 3;
+        
         if (!chasePlayer && !isLookingForPlayer)
         {
             isLookingForPlayer = true;
@@ -59,7 +59,7 @@ public class enemyAI : MonoBehaviour
             for (int i = 0; i < 20; i++)
             {
                 dir = Quaternion.Euler(0, 0, (i * 3) - 30) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
-                hit = Physics2D.Raycast(transform.position, dir, detectionRange, playerLayerMask);
+                hit = Physics2D.Raycast(transform.position, dir, detectionRange);
                 Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
                 if (hit.collider == null)
                     continue;
