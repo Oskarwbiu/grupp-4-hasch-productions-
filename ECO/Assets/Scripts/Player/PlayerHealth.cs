@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float InvincibleTime = 1.0f;
-    [SerializeField] int currentHealth = 3;
-    [SerializeField] int maxHealth;
+    [SerializeField] float currentHealth = 3f;
+    [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
     public void GetDamaged(float damage)
     {
