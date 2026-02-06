@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public int CurrentHealth()
+    public float CurrentHealth()
     {
         return currentHealth;
     }

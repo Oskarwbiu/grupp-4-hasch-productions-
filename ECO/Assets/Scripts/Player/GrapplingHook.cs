@@ -60,7 +60,7 @@ public class GrapplingHook : MonoBehaviour
                     worldPos = ray.GetPoint(distance);
                     worldPos.z = 0f;
                 }
-                Debug.Log(worldPos);
+                
 
 
                 grappleDirection = (worldPos - transform.position).normalized;
@@ -70,8 +70,9 @@ public class GrapplingHook : MonoBehaviour
 
                 if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
                 {
+
                     currentVisualIndicator.SetActive(true);
-                    if (objectHit.gameObject.layer == 8)
+                    if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         currentVisualIndicator.transform.position = point.transform.position;
                     }
@@ -83,6 +84,7 @@ public class GrapplingHook : MonoBehaviour
                 else
                 {
                     currentVisualIndicator.SetActive(false);
+                    
                 }
             }
         }
@@ -92,14 +94,14 @@ public class GrapplingHook : MonoBehaviour
     {
         if (objectHit != null)
         {
-            if (objectHit.gameObject.layer == 8)
+            if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
             {
                 currentVisualIndicator.transform.position = point.transform.position;
             }
         }
         if (moveInput == 1)
         {
-            if (objectHit != null)
+            if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
             {
                 if (lr.enabled)
                 {
@@ -108,7 +110,7 @@ public class GrapplingHook : MonoBehaviour
                 }
 
                 Vector2 pullDirection = transform.position - objectHit.transform.position;
-                if (objectHit.gameObject.layer == 8 && canPull)
+                if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy") && canPull)
                 {
 
                     lr.enabled = true;
