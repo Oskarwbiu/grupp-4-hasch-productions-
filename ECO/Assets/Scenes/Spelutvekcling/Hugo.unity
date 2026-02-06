@@ -2016,6 +2016,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4373190432289433430, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: hitLayer.m_Bits
+      value: 448
+      objectReference: {fileID: 0}
+    - target: {fileID: 4373190432289433430, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: visualIndicator
       value: 
       objectReference: {fileID: 4076288105232069867, guid: 0c71913c25b40d948a94d9babfee4fc4, type: 3}

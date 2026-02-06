@@ -10,6 +10,7 @@ public class GrapplingHook : MonoBehaviour
     LineRenderer lr;
     SpringJoint2D dj;
     public LayerMask grappleLayer;
+    public LayerMask hitLayer;
     [SerializeField] float reelSpeed = 0.5f;
     [SerializeField] float maxDistance = 80f;
     [SerializeField] float pullForce = 0.5f;
@@ -50,11 +51,11 @@ public class GrapplingHook : MonoBehaviour
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-
+                Debug.Log("Mouse Position: " + mousePos);
 
                 grappleDirection = (mousePos - transform.position).normalized;
 
-                point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance);
+                point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance, hitLayer);
                 objectHit = point.collider;
 
                 if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
