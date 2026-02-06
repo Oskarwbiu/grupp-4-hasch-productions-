@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashForce = 10f;
     [SerializeField] float dashCooldown = 1f;
     [SerializeField] float dashSpeedMultiplier = 2f;
-    float dashValue;
     float moveSpeed;
     Animator ani;
 
@@ -45,13 +44,15 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
 
     }
-    void OnDash(InputValue value)
+    void OnDash()
     { 
-            dashValue = value.Get<float>();
             if (!dashed)
             {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
+            ani.SetTrigger("Dash");
+            ani.SetBool("isWalking", false);
+            ani.SetBool("isStopping", false);
             Invoke("ResetDash", dashCooldown);
             }}
     void ResetDash()
@@ -62,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
         while (true)
         {
-            moveSpeed = Mathf.Sign(transform.localScale.x) * (originalMoveSpeed + originalMoveSpeed * (dashSpeedMultiplier-1) * dashValue);
+            moveSpeed = Mathf.Sign(transform.localScale.x) * (originalMoveSpeed + originalMoveSpeed * (dashSpeedMultiplier-1));
             yield return null;
 
             if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x) && moveInput.x != 0)

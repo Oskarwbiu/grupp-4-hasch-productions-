@@ -39,6 +39,11 @@ public class enemyAI : MonoBehaviour
         else if (chasePlayer)
         {
             Chase();
+            
+             moveSpeed = origMoveSpeed;
+             isPatrolling = false;
+             StopCoroutine(Lookaround());
+            
         }
         Vision();
         if (rb.linearVelocityX < 0)
@@ -156,12 +161,7 @@ public class enemyAI : MonoBehaviour
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             for (int i = 0; i < lookaroundDuration; i++)
             {
-                if (chasePlayer)
-                { 
-                    moveSpeed = origMoveSpeed;
-                    isPatrolling = false;
-                    StopCoroutine(Lookaround());
-                }
+                
                     yield return new WaitForSeconds(lookaroundInterval);
                     transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
                     yield return new WaitForSeconds(lookaroundInterval);
