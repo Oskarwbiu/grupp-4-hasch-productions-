@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Label.uss?fileID=7433441132597879392&amp;guid=883f3f893382dce4e9e921cc2935ced5&amp;type=3#Label" />
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="ECO&#10;" name="Eco" class="Label" />
+        <ui:Button text="Start&#10;" name="StartButton" class="Button" />
+        <ui:Button text="Settings" name="SettingsButton" class="Button" />
+        <ui:Button text="Exit" name="ExitButton" class="Button" />
+    </ui:VisualElement>
+</ui:UXML>

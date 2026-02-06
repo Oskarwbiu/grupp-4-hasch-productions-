@@ -35,7 +35,7 @@ public class PlayerJump : MonoBehaviour
     {
         return isGrounded;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (isGrounded && hasJumped)
         { 
