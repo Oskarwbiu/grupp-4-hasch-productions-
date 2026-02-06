@@ -22,6 +22,7 @@ public class enemyAI : MonoBehaviour
     Vector2 dir;
     bool isLookingForPlayer = false;
     bool isPatrolling = false;
+    bool isStunned = false;
 
     void Start()
     {
@@ -32,6 +33,7 @@ public class enemyAI : MonoBehaviour
     
     private void FixedUpdate()
     {
+
         if (!chasePlayer)
         {
             Move();
@@ -91,17 +93,13 @@ public class enemyAI : MonoBehaviour
     void Chase()
     {
         
-        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed * runSpeedMultiplier || Mathf.Abs(rb.linearVelocity.x) < maxSpeed * runSpeedMultiplier && !chasePlayer && player != null)
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed * runSpeedMultiplier || Mathf.Abs(rb.linearVelocity.x) < maxSpeed * runSpeedMultiplier && !chasePlayer && player != null && !isStunned)
         {
             Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
             directionToPlayer = (player.transform.position - transform.position).normalized;
             rb.AddForceX(directionToPlayer.x/Mathf.Abs(directionToPlayer.x) * moveSpeed * runSpeedMultiplier);
         }
-        else
-        {
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.5f, rb.linearVelocity.y);
-        }
+        
     }
 
     private void OnBecameInvisible()
@@ -118,15 +116,11 @@ public class enemyAI : MonoBehaviour
     }
     void Move()
     {
-        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed && !chasePlayer || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer)
+        if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed && !chasePlayer || Mathf.Abs(rb.linearVelocity.x) < maxSpeed && !chasePlayer && !isStunned)
         {
-            rb.AddForceX(moveSpeed * 2);
+            rb.AddForceX(moveSpeed * 4);
         }
-        else if (!chasePlayer)
-        {
-
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.85f, rb.linearVelocity.y);
-        }
+        
     }
         
     private void OnCollisionEnter2D(Collision2D collision)
