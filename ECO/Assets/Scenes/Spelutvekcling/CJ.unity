@@ -5650,7 +5650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6be83ebd62441044ae614c0db1351c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fan
-  blowForce: 13
+  blowForce: 37
   blowDirection: {x: -1, y: 0}
 --- !u!1 &449044132
 GameObject:
