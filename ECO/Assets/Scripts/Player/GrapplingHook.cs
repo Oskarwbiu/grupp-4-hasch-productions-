@@ -49,11 +49,21 @@ public class GrapplingHook : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             if (moveInput != 1 || !canPull)
             {
-                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Plane plane = new Plane(Vector3.forward, Vector3.zero);
+                Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+                Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
 
-                Debug.Log("Mouse Position: " + mousePos);
+                Vector3 worldPos = Vector3.zero;
 
-                grappleDirection = (mousePos - transform.position).normalized;
+                if (plane.Raycast(ray, out float distance))
+                {
+                    worldPos = ray.GetPoint(distance);
+                    worldPos.z = 0f;
+                }
+                Debug.Log(worldPos);
+
+
+                grappleDirection = (worldPos - transform.position).normalized;
 
                 point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance, hitLayer);
                 objectHit = point.collider;
