@@ -15,6 +15,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] float maxDistance = 80f;
     [SerializeField] float pullForce = 0.5f;
     [SerializeField] float pullCooldown = 0.2f;
+    [SerializeField] float stunDuration = 2f;
     [SerializeField] float minDistance = 2f;
     [SerializeField] GameObject visualIndicator;
 
@@ -29,6 +30,7 @@ public class GrapplingHook : MonoBehaviour
     Coroutine slowUpdate;
     Collider2D objectHit;
     bool canPull = true;
+    enemyAI hitAI;
 
     void Start()
     {
@@ -116,7 +118,10 @@ public class GrapplingHook : MonoBehaviour
                     lr.enabled = true;
                     canPull = false;
                     objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, pullDirection.x + 300 + ((pullDirection.y + 3) * pullForce * 5 + rb.linearVelocityY)));
+                    hitAI = objectHit.gameObject.GetComponent<enemyAI>();
+                    hitAI.enabled = false;
                     Invoke("disableGrapple", 0.23f);
+                    Invoke("UnStun", stunDuration);
                 }
                 else if (canPull)
                 {
@@ -144,6 +149,13 @@ public class GrapplingHook : MonoBehaviour
 
     }
 
+    void UnStun()
+    {
+        if (objectHit != null)
+        {
+            hitAI.enabled = true;
+        }
+    }
     void disableGrapple()
     {
         objectHit = null;
