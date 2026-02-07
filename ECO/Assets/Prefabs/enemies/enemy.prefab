@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 3559116381811996326}
   - component: {fileID: 2716211308049666877}
   - component: {fileID: 8269682326316189126}
-  - component: {fileID: 6492419716624853916}
   m_Layer: 8
   m_Name: enemy
   m_TagString: Enemy
@@ -301,7 +300,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 4
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2c40d8616dadc4e44aca6ec7f9df953a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -324,9 +323,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d75359f3a7a57b4183cac76b4c5461b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  origMoveSpeed: 5
-  maxSpeed: 3
-  lookaroundDuration: 2
+  origMoveSpeed: 4
+  acceleration: 10
+  decceleration: 10
+  lookaroundDuration: 4
   lookaroundInterval: 1
   runSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.5
@@ -365,20 +365,6 @@ MonoBehaviour:
     minNormalAngle: 15
     maxNormalAngle: 155
 --- !u!114 &8269682326316189126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8404812536963644932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0c0f24328bb284894526e6c120bcd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  damage: 1
-  attackCooldown: 1
---- !u!114 &6492419716624853916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

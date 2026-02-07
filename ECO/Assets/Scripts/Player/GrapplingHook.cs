@@ -117,11 +117,9 @@ public class GrapplingHook : MonoBehaviour
 
                     lr.enabled = true;
                     canPull = false;
-                    objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, pullDirection.x + 300 + ((pullDirection.y + 3) * pullForce * 5 + rb.linearVelocityY)));
-                    hitAI = objectHit.gameObject.GetComponent<enemyAI>();
-                    hitAI.enabled = false;
+                    objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x) + ((pullDirection.y * 3) * pullForce * 5 + rb.linearVelocityY)));
+                    objectHit.gameObject.GetComponent<enemyAI>().StunEnemy(stunDuration);
                     Invoke("disableGrapple", 0.23f);
-                    Invoke("UnStun", stunDuration);
                 }
                 else if (canPull)
                 {
@@ -149,13 +147,6 @@ public class GrapplingHook : MonoBehaviour
 
     }
 
-    void UnStun()
-    {
-        if (objectHit != null)
-        {
-            hitAI.enabled = true;
-        }
-    }
     void disableGrapple()
     {
         objectHit = null;

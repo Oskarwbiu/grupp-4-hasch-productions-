@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - End Point
   - Platform
+  - End Point Wall
   layers:
   - Default
   - TransparentFX

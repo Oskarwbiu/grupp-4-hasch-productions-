@@ -20,89 +20,139 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashForce = 10f;
     [SerializeField] float dashCooldown = 1f;
     [SerializeField] float dashSpeedMultiplier = 2f;
+    [SerializeField] float acceleration = 10f;
+    [SerializeField] float decceleration = 10f;
+    [SerializeField] float frictionAmount = 0.2f;
     float moveSpeed;
     Animator ani;
+    float multiplier = 1f;
+    float absMoveSpeed;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteObject = rb.transform.GetChild(0).gameObject;
-        StartCoroutine(MovePlayer());
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
-        Debug.Log(moveSpeed);
+
     }
     private void FixedUpdate()
     {
+        absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
         isGrounded = rb.IsTouching(groundFilter);
+        MovePlayer();
+       
+        if (absMoveSpeed <= moveSpeed)
+        {
+            multiplier = 1f;
+        }
+
     }
 
+    void Update()
+    {
+        SetAnimation();
+        FlipSprite();
+    }
 
+    
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
 
     }
     void OnDash()
-    { 
-            if (!dashed)
-            {
+    {
+        if (!dashed)
+        {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             ani.SetTrigger("Dash");
             ani.SetBool("isWalking", false);
             ani.SetBool("isStopping", false);
             Invoke("ResetDash", dashCooldown);
-            }}
+            multiplier = dashSpeedMultiplier;
+        }
+    }
     void ResetDash()
     {
         dashed = false;
     }
-    IEnumerator MovePlayer()
+    void MovePlayer()
     {
-        while (true)
+        float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
+
+        float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
+
+        float accelerationRate = (Mathf.Abs(targetMoveSpeed) > 0.01f) ? acceleration : decceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
+
+        rb.AddForce(movement * Vector2.right);
+        
+
+        if (isGrounded && moveInput.x == 0)
         {
-            moveSpeed = Mathf.Sign(transform.localScale.x) * (originalMoveSpeed + originalMoveSpeed * (dashSpeedMultiplier-1));
-            yield return null;
+            float stoppingSpeed = Mathf.Min(absMoveSpeed, Mathf.Abs(frictionAmount));
 
-            if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x) && moveInput.x != 0)
-            {
-                rb.AddForceX(moveInput.x * moveSpeed);
-            }
-            if (moveInput.x < 0)
-            {
-                SpriteObject.transform.localScale = new Vector2(-originalSize.x, 1);
-            }
-            if (moveInput.x > 0)
-            {
-                SpriteObject.transform.localScale = new Vector2(originalSize.x, 1);
-            }
-            if (moveInput.x != 0 && isGrounded)
-            {
-                ani.SetBool("isWalking", true);
-                ani.SetBool("isStopping", false);
-            }
-            else if (isGrounded && moveInput.x == 0)
-            {
+            stoppingSpeed *= Mathf.Sign(rb.linearVelocity.x);
 
-                ani.SetBool("isWalking", false);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.80f, rb.linearVelocity.y);
-                if (Mathf.Abs(rb.linearVelocityX) >= 0.1 && isGrounded && moveInput.x == 0)
-                {
-                    ani.SetBool("isStopping", true);
-                    yield return new WaitForSeconds(0.05f);
-                }
-                if (Mathf.Abs(rb.linearVelocityX) < 0.7f)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.4f, rb.linearVelocity.y);
-                    ani.SetBool("isStopping", false);
-                }
-                if (Mathf.Abs(rb.linearVelocityX) < 0.2f)
-                {
-                    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-                }
+            rb.AddForce(-stoppingSpeed * Vector2.right, ForceMode2D.Impulse);
+
+            if (absMoveSpeed < 0.1f)
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
+        }
+
+    }
+
+    void FlipSprite()
+    {
+        if (moveInput.x > 0)
+        {
+            SpriteObject.transform.localScale = new Vector3(Mathf.Abs(originalSize.x), originalSize.y, originalSize.z);
+        }
+        else if (moveInput.x < 0)
+        {
+            SpriteObject.transform.localScale = new Vector3(-Mathf.Abs(originalSize.x), originalSize.y, originalSize.z);
+        }
+    }
+
+
+
+    void SetAnimation()
+    {
+        if (absMoveSpeed > moveSpeed && moveInput.x != 0 && isGrounded)
+        {
+            ani.SetBool("isRunning", true);
+            ani.SetBool("isWalking", false);
+            ani.SetBool("isStopping", false);
+            ani.SetBool("isFalling", false);
+        }
+        else if (moveInput.x != 0 && isGrounded)
+        {
+            ani.SetBool("isWalking", true);
+            ani.SetBool("isStopping", false);
+            ani.SetBool("isRunning", false);
+            ani.SetBool("isFalling", false);
+
+        }
+        else if (moveInput.x == 0  && isGrounded && absMoveSpeed > 0.2f)
+        {
+            ani.SetBool("isWalking", false);
+            ani.SetBool("isStopping", true);
+            ani.SetBool("isRunning", false);
+            ani.SetBool("isFalling", false);
+
+        }
+        else if (moveInput.x == 0 && isGrounded && absMoveSpeed < 0.2f)
+        {
+            ani.SetBool("isWalking", false);
+            ani.SetBool("isStopping", false);
+            ani.SetBool("isRunning", false);
+            ani.SetBool("isFalling", false);
         }
     }
 }

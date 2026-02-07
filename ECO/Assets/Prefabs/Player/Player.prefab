@@ -124,13 +124,13 @@ GameObject:
   - component: {fileID: 1365888614618348986}
   - component: {fileID: 6255845181201000195}
   - component: {fileID: 1545297797251371345}
-  - component: {fileID: 1874292031666492880}
-  - component: {fileID: 2676724372438415694}
-  - component: {fileID: 633121656109802774}
-  - component: {fileID: 4373190432289433430}
   - component: {fileID: 7589148077253437790}
   - component: {fileID: 2666711250747103521}
   - component: {fileID: 753775787044857436}
+  - component: {fileID: 2676724372438415694}
+  - component: {fileID: 1874292031666492880}
+  - component: {fileID: 633121656109802774}
+  - component: {fileID: 4373190432289433430}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -227,117 +227,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.2937532, y: 0.72439146}
   m_EdgeRadius: 0
---- !u!114 &1874292031666492880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2677336941660362917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac96ef040fa61e042aab33ba114ad727, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  jumpForce: 10
-  jumpCooldown: 0.5
-  jumpLength: 2
-  fallGravityScale: 4
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 1
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 64
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 15
-    maxNormalAngle: 155
-  isGrounded: 0
---- !u!114 &2676724372438415694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2677336941660362917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
-  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: 
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
---- !u!114 &633121656109802774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2677336941660362917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ed98d2fc1e000246897a1a5558c6a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 5
-  groundFilter:
-    useTriggers: 0
-    useLayerMask: 1
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 64
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 15
-    maxNormalAngle: 155
-  dashForce: 14.3
-  dashCooldown: 0
---- !u!114 &4373190432289433430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2677336941660362917}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5938268d8a0ffba45b909563be53e004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  grappleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  reelSpeed: 0.21
-  maxDistance: 60.8
-  pullForce: 1.43
-  pullCooldown: 0
-  minDistance: 3.42
-  visualIndicator: {fileID: 4076288105232069867, guid: 0c71913c25b40d948a94d9babfee4fc4, type: 3}
 --- !u!231 &7589148077253437790
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -491,3 +380,122 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2676724372438415694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
+  m_Actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: 
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1874292031666492880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac96ef040fa61e042aab33ba114ad727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  jumpForce: 10
+  jumpCooldown: 0.5
+  jumpLength: 2
+  fallGravityScale: 4
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 1
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 15
+    maxNormalAngle: 155
+  isGrounded: 0
+--- !u!114 &633121656109802774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed98d2fc1e000246897a1a5558c6a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  originalMoveSpeed: 5
+  groundFilter:
+    useTriggers: 0
+    useLayerMask: 1
+    useDepth: 0
+    useOutsideDepth: 0
+    useNormalAngle: 0
+    useOutsideNormalAngle: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 64
+    minDepth: 0
+    maxDepth: 0
+    minNormalAngle: 15
+    maxNormalAngle: 155
+  dashForce: 14.3
+  dashCooldown: 0
+  dashSpeedMultiplier: 2
+  acceleration: 10
+  decceleration: 10
+  frictionAmount: 0.2
+--- !u!114 &4373190432289433430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5938268d8a0ffba45b909563be53e004, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  grappleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  reelSpeed: 0.21
+  maxDistance: 60.8
+  pullForce: 1.43
+  pullCooldown: 0
+  stunDuration: 2
+  minDistance: 3.42
+  visualIndicator: {fileID: 4076288105232069867, guid: 0c71913c25b40d948a94d9babfee4fc4, type: 3}
