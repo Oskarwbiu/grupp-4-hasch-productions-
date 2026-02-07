@@ -69,8 +69,12 @@ public class PlayerMovement : MonoBehaviour
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             ani.SetTrigger("Dash");
+            ani.SetBool("isRunning", false);
+            ani.SetBool("isFalling", false);
             ani.SetBool("isWalking", false);
             ani.SetBool("isStopping", false);
+            ani.SetBool("isTop", false);
+            ani.SetBool("isJumping", false);
             Invoke("ResetDash", dashCooldown);
             multiplier = dashSpeedMultiplier;
         }
@@ -124,14 +128,14 @@ public class PlayerMovement : MonoBehaviour
 
     void SetAnimation()
     {
-        if (absMoveSpeed > moveSpeed && moveInput.x != 0 && isGrounded)
+        if (absMoveSpeed > moveSpeed && moveInput.x != 0 && isGrounded && !ani.GetBool("Dash"))
         {
             ani.SetBool("isRunning", true);
             ani.SetBool("isWalking", false);
             ani.SetBool("isStopping", false);
             ani.SetBool("isFalling", false);
         }
-        else if (moveInput.x != 0 && isGrounded)
+        else if (moveInput.x != 0 && isGrounded && !ani.GetBool("Dash"))
         {
             ani.SetBool("isWalking", true);
             ani.SetBool("isStopping", false);
@@ -139,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             ani.SetBool("isFalling", false);
 
         }
-        else if (moveInput.x == 0  && isGrounded && absMoveSpeed > 0.2f)
+        else if (moveInput.x == 0  && isGrounded && absMoveSpeed > 0.2f && !ani.GetBool("Dash"))
         {
             ani.SetBool("isWalking", false);
             ani.SetBool("isStopping", true);
@@ -147,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
             ani.SetBool("isFalling", false);
 
         }
-        else if (moveInput.x == 0 && isGrounded && absMoveSpeed < 0.2f)
+        else if (moveInput.x == 0 && isGrounded && absMoveSpeed < 0.2f && !ani.GetBool("Dash"))
         {
             ani.SetBool("isWalking", false);
             ani.SetBool("isStopping", false);

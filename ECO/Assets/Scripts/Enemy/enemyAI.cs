@@ -38,7 +38,6 @@ public class enemyAI : MonoBehaviour
         moveSpeed = 0;
         rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         isPatrolling = false;
-        chasePlayer = false;
         Invoke("UnStun", stunDuration);
     }
 

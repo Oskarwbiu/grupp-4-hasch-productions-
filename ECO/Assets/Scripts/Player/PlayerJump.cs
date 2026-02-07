@@ -77,20 +77,20 @@ public class PlayerJump : MonoBehaviour
 
         if (!isGrounded)
         {
-            if (rb.linearVelocityY > -0.1 && rb.linearVelocityY < 0.5)
+            if (rb.linearVelocityY > -0.1 && rb.linearVelocityY < 0.5 && !ani.GetBool("Dash"))
             {
                 rb.gravityScale = jumpLength;
                 ani.SetBool("isJumping", false);
                 ani.SetBool("isTop", true);
             }
-            else if (rb.linearVelocityY < -0.1)
+            else if (rb.linearVelocityY < -0.1 && !ani.GetBool("Dash"))
             {
                 rb.gravityScale = fallGravityScale;
                 ani.SetBool("isFalling", true);
                 ani.SetBool("isTop", false);
 
             }
-            else if (rb.linearVelocityY > 0.5)
+            else if (rb.linearVelocityY > 0.5 && !ani.GetBool("Dash"))
             {
                 ani.SetBool("isJumping", true);
                 ani.SetBool("isTop", false);
