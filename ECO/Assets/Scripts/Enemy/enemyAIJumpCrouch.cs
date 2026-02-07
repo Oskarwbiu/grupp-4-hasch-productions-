@@ -53,8 +53,8 @@ public class enemyAIJumpCrouch : MonoBehaviour
         Vector2 dir = Quaternion.Euler(0, 0, -90 + (Mathf.Sign(transform.localScale.x) * 55)) * Vector2.right;
         jumpCast2 = Physics2D.Raycast(transform.position, dir, 2f, groundLayer);
 
-        Debug.DrawRay(transform.position, dir * 2f, Color.darkGreen, 0.1f);
-        Debug.DrawRay(footPosition, transform.right * Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.1f);
+        Debug.DrawRay(transform.position, dir * 2f, Color.darkGreen, 0.05f);
+        Debug.DrawRay(footPosition, transform.right * Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.05f);
         if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null) && isChasing)
         {
 

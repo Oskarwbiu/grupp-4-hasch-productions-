@@ -89,7 +89,7 @@ public class enemyAI : MonoBehaviour
             {
                 dir = Quaternion.Euler(0, 0, (i * 3) -19f) * new Vector2(Mathf.Sign(transform.localScale.x/Mathf.Abs(transform.localScale.x)), 0);
                 hit = Physics2D.Raycast(transform.position, dir, detectionRange, detectionLayer);
-                Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.1f);
+                Debug.DrawRay(transform.position, dir * detectionRange, Color.red, 0.05f);
                 if (hit.collider == null)
                 { 
                     
@@ -107,8 +107,8 @@ public class enemyAI : MonoBehaviour
             }
             RaycastHit2D wallCheck = Physics2D.Raycast(new Vector2(transform.position.x + 0.5f, transform.position.y), Vector2.right * Mathf.Sign(transform.localScale.x), 1f, LayerMask.GetMask("Ground"));
             RaycastHit2D wallCheck2 = Physics2D.Raycast(new Vector2(transform.position.x - 0.5f, transform.position.y), Vector2.right * Mathf.Sign(transform.localScale.x), 1f, LayerMask.GetMask("Ground"));
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Mathf.Sign(transform.localScale.x) * 1f, Color.violet, 0.1f);
-            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Mathf.Sign(transform.localScale.x) * 1f, Color.violet, 0.1f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y + 0.5f), Vector2.right * Mathf.Sign(transform.localScale.x) * 1f, Color.violet, 0.05f);
+            Debug.DrawRay(new Vector2(transform.position.x, transform.position.y - 0.5f), Vector2.right * Mathf.Sign(transform.localScale.x) * 1f, Color.violet, 0.05f);
             wallCheckTimer += Time.fixedDeltaTime;
             
             if ((wallCheck.collider != null || wallCheck2.collider != null) && wallCheckTimer > 1)

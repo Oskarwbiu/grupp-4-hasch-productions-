@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
-
+        ResetAnimation();
     }
     private void FixedUpdate()
     {
@@ -158,5 +158,15 @@ public class PlayerMovement : MonoBehaviour
             ani.SetBool("isRunning", false);
             ani.SetBool("isFalling", false);
         }
+    }
+
+    void ResetAnimation()
+    {
+        ani.SetBool("isRunning", false);
+        ani.SetBool("isWalking", false);
+        ani.SetBool("isStopping", false);
+        ani.SetBool("isFalling", false);
+        ani.SetBool("isTop", false);
+        ani.SetBool("isJumping", false);
     }
 }
