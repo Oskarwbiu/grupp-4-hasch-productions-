@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     Animator ani;
     float multiplier = 1f;
     float absMoveSpeed;
+    bool wasGrounded;
 
     void Start()
     {
@@ -40,9 +41,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
+
+        wasGrounded = isGrounded;
         isGrounded = rb.IsTouching(groundFilter);
         MovePlayer();
-       
+
         if (absMoveSpeed <= moveSpeed)
         {
             multiplier = 1f;
@@ -56,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
     }
 
-    
+
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
@@ -69,12 +72,7 @@ public class PlayerMovement : MonoBehaviour
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             ani.SetTrigger("Dash");
-            ani.SetBool("isRunning", false);
-            ani.SetBool("isFalling", false);
-            ani.SetBool("isWalking", false);
-            ani.SetBool("isStopping", false);
-            ani.SetBool("isTop", false);
-            ani.SetBool("isJumping", false);
+            ResetAnimation();
             Invoke("ResetDash", dashCooldown);
             multiplier = dashSpeedMultiplier;
         }
@@ -94,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
 
         rb.AddForce(movement * Vector2.right);
-        
+
 
         if (isGrounded && moveInput.x == 0)
         {
@@ -128,38 +126,75 @@ public class PlayerMovement : MonoBehaviour
 
     void SetAnimation()
     {
-        if (absMoveSpeed > moveSpeed && moveInput.x != 0 && isGrounded && !ani.GetBool("Dash"))
-        {
-            ani.SetBool("isRunning", true);
-            ani.SetBool("isWalking", false);
-            ani.SetBool("isStopping", false);
-            ani.SetBool("isFalling", false);
-        }
-        else if (moveInput.x != 0 && isGrounded && !ani.GetBool("Dash"))
-        {
-            ani.SetBool("isWalking", true);
-            ani.SetBool("isStopping", false);
-            ani.SetBool("isRunning", false);
-            ani.SetBool("isFalling", false);
+        float verticalVelocity = rb.linearVelocity.y;
+        bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f;
 
-        }
-        else if (moveInput.x == 0  && isGrounded && absMoveSpeed > 0.2f && !ani.GetBool("Dash"))
+
+        // -- DASH --
+        if (ani.GetBool("Dash"))
         {
-            ani.SetBool("isWalking", false);
+            return;
+        }
+
+        // -- LAND --
+        if (isGrounded && !wasGrounded)
+        {
+            ResetAnimation();
+            ani.ResetTrigger("JumpLand");
+            ani.SetTrigger("JumpLand");
+        }
+
+        // -- AIRBORNE --
+        if (!isGrounded)
+        {
+            // -- RISING --
+            if (verticalVelocity > 0.1f)
+            {
+                ResetAnimation();
+                ani.SetBool("isJumping", true);
+            }
+
+            // -- FALLING --
+            else if (verticalVelocity < -0.1f)
+            {
+                ResetAnimation();
+                ani.SetBool("isFalling", true);
+            }
+
+            // -- AT APEX --
+            else
+            {
+                ResetAnimation();
+                ani.SetBool("isTop", true);
+            }
+
+            return;
+        }
+
+        ResetAnimation();
+
+        if (movingHorizontally)
+        {
+            // -- RUNNING --
+            if (absMoveSpeed >= moveSpeed * dashSpeedMultiplier - 0.1f && moveInput.x != 0)
+            {
+                ani.SetBool("isRunning", true);
+            }
+            // -- WALKING --
+            else if (moveInput.x != 0)
+            {
+                ani.SetBool("isWalking", true);
+            }
+        }
+        else if (absMoveSpeed > 0.1f)
+        {
+            // -- STOP --
             ani.SetBool("isStopping", true);
-            ani.SetBool("isRunning", false);
-            ani.SetBool("isFalling", false);
-
         }
-        else if (moveInput.x == 0 && isGrounded && absMoveSpeed < 0.2f && !ani.GetBool("Dash"))
-        {
-            ani.SetBool("isWalking", false);
-            ani.SetBool("isStopping", false);
-            ani.SetBool("isRunning", false);
-            ani.SetBool("isFalling", false);
-        }
+        
+        // -- IDLE --
+        // No movement, idle animation will play by default
     }
-
     void ResetAnimation()
     {
         ani.SetBool("isRunning", false);

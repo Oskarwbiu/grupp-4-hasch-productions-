@@ -8,6 +8,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float fallGravityScale = 4f;
     [SerializeField] float jumpBufferTime = 0.5f;
     [SerializeField] float coyoteTime = 0.1f;
+    [SerializeField] float maxFallSpeed = -20f;
     [SerializeField] ContactFilter2D groundFilter;
 
     Animator ani;
@@ -48,6 +49,7 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
+        CheckFallSpeed();
         lastGrounded -= Time.fixedDeltaTime;
         if (startJumpTimer)
             {
@@ -77,41 +79,31 @@ public class PlayerJump : MonoBehaviour
 
         if (!isGrounded)
         {
-            if (rb.linearVelocityY > -0.1 && rb.linearVelocityY < 0.5 && !ani.GetBool("Dash"))
+            if (rb.linearVelocityY > -0.1 && rb.linearVelocityY < 0.5)
             {
                 rb.gravityScale = jumpLength;
-                ani.SetBool("isJumping", false);
-                ani.SetBool("isTop", true);
+                
             }
-            else if (rb.linearVelocityY < -0.1 && !ani.GetBool("Dash"))
+            else if (rb.linearVelocityY < -0.1)
             {
                 rb.gravityScale = fallGravityScale;
-                ani.SetBool("isFalling", true);
-                ani.SetBool("isTop", false);
 
             }
-            else if (rb.linearVelocityY > 0.5 && !ani.GetBool("Dash"))
-            {
-                ani.SetBool("isJumping", true);
-                ani.SetBool("isTop", false);
-            }
+            
 
         }
         else
         {
-            if (ani.GetBool("isFalling"))
-            {
-                
-                ani.SetTrigger("JumpLand");
-                
-            }
-
-            ani.SetBool("isJumping", false);
-            ani.SetBool("isFalling", false);
-            ani.SetBool("isTop", false);
             rb.gravityScale = gravityScaleAtStart;
         }
 
+    }
+
+    void CheckFallSpeed()
+    {
+         Vector2 clampedVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxFallSpeed);
+
+        rb.linearVelocityY = clampedVelocity.y;
     }
 
 }

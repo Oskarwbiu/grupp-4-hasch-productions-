@@ -17,9 +17,9 @@ public class SpiritFollow : MonoBehaviour
     }
     private void Update()
     {
-        playerPos = new Vector3(player.position.x, player.position.y + 1, 0);
+        playerPos = new Vector3(player.position.x, player.position.y + 0.2f, 0);
         Vector2 direction = (rb.transform.position - playerPos);
-        if (transform.position.x - playerPos.x > 2 || transform.position.x - playerPos.x < -2)
+        if (transform.position.x - playerPos.x > 1 || transform.position.x - playerPos.x < -1)
         {
             rb.linearVelocityX = -direction.x * moveSpeed;
         }
