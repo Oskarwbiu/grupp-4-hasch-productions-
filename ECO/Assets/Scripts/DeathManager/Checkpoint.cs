@@ -9,7 +9,6 @@ public class Checkpoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             lastCheckpointPosition = transform.position;
-            Debug.Log("Checkpoint reached at: " + lastCheckpointPosition);
         }
     }
 }
