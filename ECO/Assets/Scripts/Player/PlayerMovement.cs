@@ -71,8 +71,9 @@ public class PlayerMovement : MonoBehaviour
         {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
-            ani.SetTrigger("Dash");
             ResetAnimation();
+            ani.ResetTrigger("Dash");
+            ani.SetTrigger("Dash");
             Invoke("ResetDash", dashCooldown);
             multiplier = dashSpeedMultiplier;
         }
@@ -173,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
 
         ResetAnimation();
 
-        if (movingHorizontally)
+        if (movingHorizontally && isGrounded)
         {
             // -- RUNNING --
             if (absMoveSpeed >= moveSpeed * dashSpeedMultiplier - 0.1f && moveInput.x != 0)
@@ -186,7 +187,7 @@ public class PlayerMovement : MonoBehaviour
                 ani.SetBool("isWalking", true);
             }
         }
-        else if (absMoveSpeed > 0.1f)
+        else if (absMoveSpeed > 0.1f && isGrounded)
         {
             // -- STOP --
             ani.SetBool("isStopping", true);

@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 3559116381811996326}
   - component: {fileID: 2716211308049666877}
   - component: {fileID: 8269682326316189126}
+  - component: {fileID: 673488112334048814}
   m_Layer: 8
   m_Name: enemy
   m_TagString: Enemy
@@ -323,13 +324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d75359f3a7a57b4183cac76b4c5461b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  origMoveSpeed: 4
+  origMoveSpeed: 3
   acceleration: 10
   decceleration: 10
   lookaroundDuration: 4
   lookaroundInterval: 1
-  runSpeedMultiplier: 1.5
-  crouchSpeedMultiplier: 0.5
+  runSpeedMultiplier: 1.2
+  crouchSpeedMultiplier: 0.6
   detectionRange: 5
   detectionLayer:
     serializedVersion: 2
@@ -378,3 +379,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   damage: 1
   attackCooldown: 1
+--- !u!114 &673488112334048814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8404812536963644932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9bf6a984042094ea44118c55879ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 100
+  currentHealth: 0
+  invincibilityDuration: 0.5
