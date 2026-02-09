@@ -1,3 +1,4 @@
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float coyoteTime = 0.1f;
     [SerializeField] float maxFallSpeed = 10f;
     [SerializeField] ContactFilter2D groundFilter;
+    [SerializeField] LayerMask groundLayer;
 
     Animator ani;
     Rigidbody2D rb;
@@ -22,12 +24,15 @@ public class PlayerJump : MonoBehaviour
     bool jumpHeld;
     bool startJumpTimer;
     bool isJumping;
+    bool hasWallJumped;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         GameObject  SpriteObject = rb.transform.GetChild(0).gameObject;
         ani = SpriteObject.GetComponent<Animator>();
         gravityScaleAtStart = rb.gravityScale;
+        
     }
     void OnJump(InputValue value)
     {
@@ -35,7 +40,7 @@ public class PlayerJump : MonoBehaviour
         hasJumped = true;
         isJumping = true;
 
-        Debug.Log(jumpHeld);
+
 
         Invoke("JumpCutReset", 0.1f);
         Invoke("JumpTimer", jumpBufferTime);
@@ -100,6 +105,49 @@ public class PlayerJump : MonoBehaviour
 
         
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (rb.IsTouchingLayers(groundLayer) && !isGrounded)
+        {
+            
+            if (hasJumped && jumpHeld)
+            {
+                rb.linearVelocityY = 0;
+                WallJump();
+                
+            }
+            
+
+        }
+    }
+
+    void WallJump()
+    {
+        Ray ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.67f), Vector2.right);
+        RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, groundLayer);
+        Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
+
+        if (hit.collider != null)
+        {
+            rb.AddForce(new Vector2(-jumpForce, jumpForce * 1.3f), ForceMode2D.Impulse);
+            hasJumped = false;
+        }
+        else
+        {
+            ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.67f), Vector2.left);
+            hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, groundLayer);
+            Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
+            if (hit.collider != null)
+            {
+                rb.AddForce(new Vector2(jumpForce, jumpForce * 1.3f), ForceMode2D.Impulse);
+
+                hasJumped = false;
+            }
+        }
+    }
+
+
     private void Update()
     {
         

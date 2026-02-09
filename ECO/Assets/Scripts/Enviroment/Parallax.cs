@@ -16,6 +16,8 @@ public class Parallax : MonoBehaviour
     {
         startPos = transform.position;
         startZ = transform.position.z;
+        subject = GameObject.FindGameObjectWithTag("Player").transform;
+        cam = Camera.main;
     }
 
     public void Update()
