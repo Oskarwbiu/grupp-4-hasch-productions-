@@ -1,45 +1,56 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class ElevatorPlatform : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;       
-    [SerializeField] private float activationDuration = 3f; 
-    
-    private float elapsedTime = 0f;
-    private bool isMoving = false;
-    private bool hasBeenActivated = false;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float peakHeight = 4.1f;
+    [SerializeField] private float exitDelay = 0.75f;
+
+    private Vector3 originalPosition;
+    private Vector3 peakPosition;
+    private Rigidbody2D playerRb;
+    private bool playerOnElevator = false;
+    private float timePlayerLeft = 0f;
+
+    void Start()
+    {
+        originalPosition = transform.position;
+        peakPosition = originalPosition + Vector3.up * peakHeight;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Player") && !hasBeenActivated)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            StartElevator();
+            if (collision.gameObject.transform.position.y > transform.position.y)
+            {
+                playerRb = collision.gameObject.GetComponent<Rigidbody2D>();
+                playerOnElevator = true;
+            }
         }
     }
 
-    private void StartElevator()
+    void OnCollisionExit2D(Collision2D collision)
     {
-        isMoving = true;
-        elapsedTime = 0f;
-        hasBeenActivated = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            playerOnElevator = false;
+            timePlayerLeft = Time.time;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (isMoving)
+        bool shouldGoUp = playerOnElevator || (Time.time - timePlayerLeft < exitDelay);
+
+        if (shouldGoUp)
         {
-            elapsedTime += Time.fixedDeltaTime;
-
-          
-            transform.Translate(Vector3.up * moveSpeed * Time.fixedDeltaTime);
-
-          
-            if (elapsedTime >= activationDuration)
-            {
-                isMoving = false;
-
-            }
+            transform.position = Vector3.MoveTowards(transform.position, peakPosition, moveSpeed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, originalPosition, moveSpeed * Time.deltaTime);
         }
     }
 }
