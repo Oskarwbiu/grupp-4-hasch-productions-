@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
     void SetAnimation()
     {
         float verticalVelocity = rb.linearVelocity.y;
-        bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f;
+        bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f && moveInput.x != 0;
 
 
         // -- DASH --
