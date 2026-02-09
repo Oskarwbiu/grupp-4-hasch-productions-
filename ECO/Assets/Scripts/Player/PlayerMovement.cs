@@ -20,23 +20,43 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashForce = 10f;
     [SerializeField] float dashCooldown = 1f;
     [SerializeField] float dashSpeedMultiplier = 2f;
-    float dashValue;
+    [SerializeField] float acceleration = 10f;
+    [SerializeField] float decceleration = 10f;
+    [SerializeField] float frictionAmount = 0.2f;
     float moveSpeed;
     Animator ani;
+    float multiplier = 1f;
+    float absMoveSpeed;
+    bool wasGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         SpriteObject = rb.transform.GetChild(0).gameObject;
-        StartCoroutine(MovePlayer());
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
-        Debug.Log(moveSpeed);
+        ResetAnimation();
     }
     private void FixedUpdate()
     {
+        absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
+
+        wasGrounded = isGrounded;
         isGrounded = rb.IsTouching(groundFilter);
+        MovePlayer();
+
+        if (absMoveSpeed <= moveSpeed)
+        {
+            multiplier = 1f;
+        }
+
+    }
+
+    void Update()
+    {
+        SetAnimation();
+        FlipSprite();
     }
 
 
@@ -45,63 +65,144 @@ public class PlayerMovement : MonoBehaviour
         moveInput = value.Get<Vector2>();
 
     }
-    void OnDash(InputValue value)
-    { 
-            dashValue = value.Get<float>();
-            if (!dashed)
-            {
+    void OnDash()
+    {
+        if (!dashed)
+        {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
+            ResetAnimation();
+            ani.ResetTrigger("Dash");
+            ani.SetTrigger("Dash");
             Invoke("ResetDash", dashCooldown);
-            }}
+            multiplier = dashSpeedMultiplier;
+        }
+    }
     void ResetDash()
     {
         dashed = false;
     }
-    IEnumerator MovePlayer()
+    void MovePlayer()
     {
-        while (true)
+        float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
+
+        float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
+
+        float accelerationRate = (Mathf.Abs(targetMoveSpeed) > 0.01f) ? acceleration : decceleration;
+
+        float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
+
+        rb.AddForce(movement * Vector2.right);
+
+
+        if (isGrounded && moveInput.x == 0)
         {
-            moveSpeed = Mathf.Sign(transform.localScale.x) * (originalMoveSpeed + originalMoveSpeed * (dashSpeedMultiplier-1) * dashValue);
-            yield return null;
+            float stoppingSpeed = Mathf.Min(absMoveSpeed, Mathf.Abs(frictionAmount));
 
-            if (Mathf.Abs(rb.linearVelocity.x) < moveSpeed || Mathf.Abs(rb.linearVelocity.x + moveInput.x) < Mathf.Abs(rb.linearVelocity.x) && moveInput.x != 0)
-            {
-                rb.AddForceX(moveInput.x * moveSpeed);
-            }
-            if (moveInput.x < 0)
-            {
-                SpriteObject.transform.localScale = new Vector2(-originalSize.x, 1);
-            }
-            if (moveInput.x > 0)
-            {
-                SpriteObject.transform.localScale = new Vector2(originalSize.x, 1);
-            }
-            if (moveInput.x != 0 && isGrounded)
-            {
-                ani.SetBool("isWalking", true);
-                ani.SetBool("isStopping", false);
-            }
-            else if (isGrounded && moveInput.x == 0)
-            {
+            stoppingSpeed *= Mathf.Sign(rb.linearVelocity.x);
 
-                ani.SetBool("isWalking", false);
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.80f, rb.linearVelocity.y);
-                if (Mathf.Abs(rb.linearVelocityX) >= 0.1 && isGrounded && moveInput.x == 0)
-                {
-                    ani.SetBool("isStopping", true);
-                    yield return new WaitForSeconds(0.05f);
-                }
-                if (Mathf.Abs(rb.linearVelocityX) < 0.7f)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.4f, rb.linearVelocity.y);
-                    ani.SetBool("isStopping", false);
-                }
-                if (Mathf.Abs(rb.linearVelocityX) < 0.2f)
-                {
-                    rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-                }
+            rb.AddForce(-stoppingSpeed * Vector2.right, ForceMode2D.Impulse);
+
+            if (absMoveSpeed < 0.1f)
+            {
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
         }
+
+    }
+
+    void FlipSprite()
+    {
+        if (moveInput.x > 0)
+        {
+            SpriteObject.transform.localScale = new Vector3(Mathf.Abs(originalSize.x), originalSize.y, originalSize.z);
+        }
+        else if (moveInput.x < 0)
+        {
+            SpriteObject.transform.localScale = new Vector3(-Mathf.Abs(originalSize.x), originalSize.y, originalSize.z);
+        }
+    }
+
+
+
+    void SetAnimation()
+    {
+        float verticalVelocity = rb.linearVelocity.y;
+        bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f;
+
+
+        // -- DASH --
+        if (ani.GetBool("Dash"))
+        {
+            return;
+        }
+
+        // -- LAND --
+        if (isGrounded && !wasGrounded)
+        {
+            ResetAnimation();
+            ani.ResetTrigger("JumpLand");
+            ani.SetTrigger("JumpLand");
+        }
+
+        // -- AIRBORNE --
+        if (!isGrounded)
+        {
+            // -- RISING --
+            if (verticalVelocity > 0.1f)
+            {
+                ResetAnimation();
+                ani.SetBool("isJumping", true);
+            }
+
+            // -- FALLING --
+            else if (verticalVelocity < -0.1f)
+            {
+                ResetAnimation();
+                ani.SetBool("isFalling", true);
+            }
+
+            // -- AT APEX --
+            else
+            {
+                ResetAnimation();
+                ani.SetBool("isTop", true);
+            }
+
+            return;
+        }
+
+        ResetAnimation();
+
+        if (movingHorizontally && isGrounded)
+        {
+            // -- RUNNING --
+            if (absMoveSpeed >= moveSpeed * dashSpeedMultiplier - 0.1f && moveInput.x != 0)
+            {
+                ani.SetBool("isRunning", true);
+            }
+            // -- WALKING --
+            else if (moveInput.x != 0)
+            {
+                ani.SetBool("isWalking", true);
+            }
+        }
+        else if (absMoveSpeed > 0.1f && isGrounded)
+        {
+            // -- STOP --
+            ani.SetBool("isStopping", true);
+        }
+        
+        // -- IDLE --
+        // No movement, idle animation will play by default
+    }
+    void ResetAnimation()
+    {
+        ani.SetBool("isRunning", false);
+        ani.SetBool("isWalking", false);
+        ani.SetBool("isStopping", false);
+        ani.SetBool("isFalling", false);
+        ani.SetBool("isTop", false);
+        ani.SetBool("isJumping", false);
     }
 }

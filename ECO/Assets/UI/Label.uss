@@ -1,0 +1,21 @@
+:root {
+}
+
+.Label {
+    align-self: center;
+    width: auto;
+    height: auto;
+    margin-top: 47px;
+    -unity-font-definition: url("project://database/Packages/com.unity.render-pipelines.core/Runtime/Debugging/Prefabs/Fonts/PerfectDOSVGA437.ttf?fileID=12800000&guid=74a5091d8707f334b9a5c31ef71a64ba&type=3#PerfectDOSVGA437");
+    font-size: 114px;
+    -unity-font-style: bold;
+}
+
+.Button {
+    width: 400px;
+    align-self: center;
+    height: 150px;
+}
+
+.Button:hover {
+}

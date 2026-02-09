@@ -4,15 +4,15 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] float InvincibleTime = 1.0f;
-    [SerializeField] int currentHealth;
-    [SerializeField] int maxHealth;
+    [SerializeField] float currentHealth = 3f;
+    [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
-    public void GetDamaged()
+    public void GetDamaged(float damage)
     {
         if (!isInvincible)
         {
             isInvincible = true;
-            currentHealth--;
+            currentHealth -= damage;
             Debug.Log("ouch         " + currentHealth);
             if (currentHealth < 1)
             {
@@ -35,7 +35,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
-        FindFirstObjectByType<SceneManager>().Restart();
+        GameObject player = GameObject.Find("Player");
+        player.transform.position = Checkpoint.lastCheckpointPosition;
+        ResetHealth();
     }
 
     public void ResetHealth()
@@ -43,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public int CurrentHealth()
+    public float CurrentHealth()
     {
         return currentHealth;
     }
