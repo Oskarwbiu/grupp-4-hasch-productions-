@@ -7,12 +7,17 @@ public class enemyAttack : MonoBehaviour
     bool hasAttacked = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !hasAttacked)
         {
-            other.GetComponent<PlayerHealth>().GetDamaged(damage);
-            Invoke("ResetAttack", attackCooldown);
+            PlayerHealth health = FindFirstObjectByType<PlayerHealth>();
+            if (health != null)
+            {
+                health.GetDamaged(damage);
+                hasAttacked = true;
+                Invoke("ResetAttack", attackCooldown);
+            }
         }
     }
     void ResetAttack()

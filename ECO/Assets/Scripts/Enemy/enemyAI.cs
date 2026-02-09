@@ -58,7 +58,6 @@ public class enemyAI : MonoBehaviour
         {
             Chase();
             
-             moveSpeed = Mathf.Abs(origMoveSpeed);
              isPatrolling = false;
              StopCoroutine(Lookaround());
             
@@ -126,7 +125,7 @@ public class enemyAI : MonoBehaviour
     {
         Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
 
-        float targetSpeed = origMoveSpeed * runSpeedMultiplier * moveSpeedMultiplier * Mathf.Sign(directionToPlayer.x);
+        float targetSpeed = Mathf.Abs(origMoveSpeed) * runSpeedMultiplier * moveSpeedMultiplier * Mathf.Sign(directionToPlayer.x);
 
         float speedDifference = targetSpeed - rb.linearVelocity.x;
 

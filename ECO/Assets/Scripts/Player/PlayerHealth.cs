@@ -35,7 +35,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void Death()
     {
-        FindFirstObjectByType<SceneManager>().Restart();
+        GameObject player = GameObject.Find("Player");
+        player.transform.position = Checkpoint.lastCheckpointPosition;
+        ResetHealth();
     }
 
     public void ResetHealth()

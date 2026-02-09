@@ -20,7 +20,7 @@ public class GrapplingHook : MonoBehaviour
     [SerializeField] GameObject visualIndicator;
 
     GameObject currentVisualIndicator;
-    GameObject rope;
+    GameObject spriteObject;
     bool isGrappling;
     RaycastHit2D point;
     float moveInput;
@@ -30,11 +30,13 @@ public class GrapplingHook : MonoBehaviour
     Coroutine slowUpdate;
     Collider2D objectHit;
     bool canPull = true;
-    enemyAI hitAI;
+    bool isPulling;
+    EnemyHealth hitAI;
 
     void Start()
     {
         currentVisualIndicator = Instantiate(visualIndicator);
+        spriteObject = transform.GetChild(0).gameObject;
         rb = GetComponent<Rigidbody2D>();
         lr = GetComponent<LineRenderer>();
         dj = GetComponent<SpringJoint2D>();
@@ -51,21 +53,12 @@ public class GrapplingHook : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
             if (moveInput != 1 || !canPull)
             {
-                Plane plane = new Plane(Vector3.forward, Vector3.zero);
-                Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
-                Ray ray = Camera.main.ScreenPointToRay(mouseScreenPos);
 
-                Vector3 worldPos = Vector3.zero;
-
-                if (plane.Raycast(ray, out float distance))
-                {
-                    worldPos = ray.GetPoint(distance);
-                    worldPos.z = 0f;
-                }
-                
+               Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
 
-                grappleDirection = (worldPos - transform.position).normalized;
+
+                grappleDirection = (mousePos - (Vector2)transform.position).normalized;
 
                 point = Physics2D.Raycast(transform.position, grappleDirection, maxDistance, hitLayer);
                 objectHit = point.collider;
@@ -105,8 +98,10 @@ public class GrapplingHook : MonoBehaviour
         {
             if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
             {
+                
                 if (lr.enabled)
                 {
+                    
                     lr.SetPosition(0, transform.position);
                     lr.SetPosition(1, point.point);
                 }
@@ -114,15 +109,18 @@ public class GrapplingHook : MonoBehaviour
                 Vector2 pullDirection = transform.position - objectHit.transform.position;
                 if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy") && canPull)
                 {
-
+                    isPulling = true;
                     lr.enabled = true;
                     canPull = false;
+                    isGrappling = false;
                     objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x) + ((pullDirection.y * 3) * pullForce * 5 + rb.linearVelocityY)));
                     objectHit.gameObject.GetComponent<enemyAI>().StunEnemy(stunDuration);
-                    Invoke("disableGrapple", 0.23f);
+                    Invoke("disableGrapple", 0.5f);
                 }
                 else if (canPull)
                 {
+                    isPulling = false;
+                    isGrappling = true;
                     lr.enabled = true;
                     dj.enabled = true;
                     dj.connectedAnchor = point.point;
@@ -144,6 +142,7 @@ public class GrapplingHook : MonoBehaviour
         {
             dj.distance = dj.distance - reelSpeed;
         }
+        RotatePlayer();
 
     }
 
@@ -151,20 +150,37 @@ public class GrapplingHook : MonoBehaviour
     {
         objectHit = null;
         lr.enabled = false;
+        currentVisualIndicator.SetActive(false);
         Invoke("EnablePull", pullCooldown);
     }
     void EnablePull()
     {
         canPull = true;
     }
-    void OnAttack(InputValue value)
+
+    void RotatePlayer()
+    {
+        if (isGrappling && point.collider != null && !isPulling)
+        {
+            Vector2 direction = point.point - (Vector2)transform.position;
+
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            spriteObject.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+        }
+        else
+        {
+            spriteObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        }
+    }
+
+    void OnGrapple(InputValue value)
     {
         isGrounded = GetComponent<PlayerJump>().IsGrounded();
         moveInput = value.Get<float>();
         if (moveInput == 1)
         {
-            isGrappling = true;
-
             dj.distance = point.distance;
         }
         else if (moveInput == 0)
