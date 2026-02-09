@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2149325005683593521}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.38, y: -3.49, z: 0}
   m_LocalScale: {x: 2.6284416, y: 0.19732128, z: 1}
   m_ConstrainProportionsScale: 0
@@ -106,7 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorPlatform
   moveSpeed: 5
-  activationDuration: 0.8
+  peakHeight: 4.1
+  exitDelay: 0.75
 --- !u!61 &1022726705843132700
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -141,7 +142,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.31117642}
+  m_Offset: {x: -0.00057405233, y: 0.31117642}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -151,7 +152,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 0.37764716}
+  m_Size: {x: 0.9896661, y: 0.37764716}
   m_EdgeRadius: 0
 --- !u!50 &35186513498683897
 Rigidbody2D:
@@ -179,4 +180,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
