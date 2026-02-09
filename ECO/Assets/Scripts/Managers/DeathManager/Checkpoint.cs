@@ -1,23 +1,42 @@
 using UnityEngine;
+using System.Collections;
 
 public class Checkpoint : MonoBehaviour
 {
-    public static Vector3 lastCheckpointPosition = Vector3.zero;
-    private bool hasBeenActivated = false;
-    private SpriteRenderer spriteRenderer;
+    private Animator animator;
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !hasBeenActivated)
+        if (collision.CompareTag("Player"))
         {
-            lastCheckpointPosition = transform.position;
-            hasBeenActivated = true;
-            spriteRenderer.color = Color.red;
+          
+            PlayerDeath playerDeath = collision.GetComponent<PlayerDeath>();
+            if (playerDeath != null)
+            {
+                playerDeath.SetCheckpoint(transform.position);
+                animator.SetTrigger("Activate");
+                
+            }
         }
+    }
+
+    public void TriggerRespawn()
+    {
+       
+        animator.SetTrigger("Respawn");
+       
+        StartCoroutine(TriggerAfterRespawn());
+    }
+
+    private IEnumerator TriggerAfterRespawn()
+    {
+        yield return new WaitForSeconds(1.5f);
+  
+        animator.SetTrigger("AfterRespawn");
     }
 }

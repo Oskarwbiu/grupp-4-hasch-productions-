@@ -7,6 +7,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
+
     public void GetDamaged(float damage)
     {
         if (!isInvincible)
@@ -16,11 +17,16 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("ouch         " + currentHealth);
             if (currentHealth < 1)
             {
-                Death();
+                PlayerDeath playerDeath = FindFirstObjectByType<PlayerDeath>();
+                if (playerDeath != null)
+                {
+                    playerDeath.Die();
+                }
             }
             Invoke("Invincibility", InvincibleTime);
         }
     }
+
     public void Heal()
     {
         if (currentHealth < maxHealth)
@@ -28,16 +34,10 @@ public class PlayerHealth : MonoBehaviour
             currentHealth++;
         }
     }
+
     public void Invincibility()
     {
         isInvincible = false;
-    }
-
-    public void Death()
-    {
-        GameObject player = GameObject.Find("Player");
-        player.transform.position = Checkpoint.lastCheckpointPosition;
-        ResetHealth();
     }
 
     public void ResetHealth()

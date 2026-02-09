@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
     [SerializeField] private float deathZoneY = -10f;
+    public Vector3 lastCheckpointPosition = Vector3.zero;
 
     void Update()
     {
@@ -13,9 +13,20 @@ public class PlayerDeath : MonoBehaviour
         }
     }
 
-    private void Die()
+    public void SetCheckpoint(Vector3 position)
     {
-        Debug.Log("Player died!");
-        transform.position = Checkpoint.lastCheckpointPosition;
+        lastCheckpointPosition = position + Vector3.up * 2f;
+    }
+
+    public void Die()
+    {
+        
+        transform.position = lastCheckpointPosition;
+
+        Checkpoint checkpoint = FindFirstObjectByType<Checkpoint>();
+        if (checkpoint != null)
+        {
+            checkpoint.TriggerRespawn();
+        }
     }
 }
