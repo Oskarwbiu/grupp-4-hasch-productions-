@@ -34,9 +34,6 @@ public class PlayerJump : MonoBehaviour
         jumpHeld = value.isPressed;
         hasJumped = true;
         isJumping = true;
-
-        Debug.Log(jumpHeld);
-
         Invoke("JumpCutReset", 0.1f);
         Invoke("JumpTimer", jumpBufferTime);
         if (jumpHeld)
