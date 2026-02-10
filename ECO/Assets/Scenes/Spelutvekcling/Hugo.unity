@@ -4322,7 +4322,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.0934987
+      m_AnimationSpeed: 6.1566606
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -9, y: 5, z: 0}
@@ -4333,7 +4333,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.2401032
+      m_AnimationSpeed: 6.65068
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 5, z: 0}
@@ -4344,7 +4344,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.53636
+      m_AnimationSpeed: 6.0749326
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 5, z: 0}
@@ -4355,7 +4355,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.4119525
+      m_AnimationSpeed: 6.74163
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 5, z: 0}
@@ -4366,7 +4366,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.9754934
+      m_AnimationSpeed: 6.567959
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 5, z: 0}
@@ -4377,7 +4377,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.625239
+      m_AnimationSpeed: 6.028921
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 5, z: 0}
@@ -4388,7 +4388,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.950474
+      m_AnimationSpeed: 6.9806113
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -3, y: 5, z: 0}
@@ -4399,7 +4399,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.2467384
+      m_AnimationSpeed: 6.156533
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -2, y: 5, z: 0}
@@ -4410,7 +4410,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.487748
+      m_AnimationSpeed: 6.5866055
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -10121,7 +10121,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 5.3999996
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10242,11 +10242,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
   m_ComponentVersion: 1
-  m_AssetsPPU: 100
+  m_AssetsPPU: 16
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_CropFrame: 0
-  m_GridSnapping: 0
+  m_GridSnapping: 1
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
