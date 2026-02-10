@@ -595,6 +595,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445534627}
+  - component: {fileID: 445534628}
+  - component: {fileID: 445534629}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -618,6 +620,43 @@ Transform:
   - {fileID: 870360189}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &445534628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445534626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d055178f81e43e94d893ee607b4b6e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  tracks:
+  - trackName: BattleMusic
+    clip: {fileID: 8300000, guid: f4b0fb12ca4fd604d8249450d939b3ca, type: 3}
+  - trackName: MainMenu
+    clip: {fileID: 8300000, guid: 61881e781ba4d9043b61e4510f4e5f90, type: 3}
+  - trackName: Ambient
+    clip: {fileID: 8300000, guid: 349a706f677ec5f4983a480896a7390f, type: 3}
+  - trackName: 1(cloudy)
+    clip: {fileID: 8300000, guid: ce5b293b73969d242a0f15165d11f502, type: 3}
+  - trackName: 2 (backroom)
+    clip: {fileID: 8300000, guid: 2ff808467dd1de44b87a03231abed3fe, type: 3}
+--- !u!114 &445534629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445534626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98f7902924dc5c24394c8fb1f06975b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  musicLibrary: {fileID: 445534628}
+  musicSource: {fileID: 870360190}
 --- !u!4 &449044138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1667760751518943723, guid: 529ab5e180a3d804bb4724a0dd3f6848, type: 3}
@@ -911,7 +950,7 @@ GameObject:
   - component: {fileID: 870360189}
   - component: {fileID: 870360190}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Music Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,10 +983,10 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -2037,7 +2076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1545297797251371345, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Size.y
-      value: 0.76843756
+      value: 0.7087725
       objectReference: {fileID: 0}
     - target: {fileID: 1545297797251371345, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Offset.x
@@ -2045,7 +2084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1545297797251371345, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Offset.y
-      value: -0.039248616
+      value: -0.009416074
       objectReference: {fileID: 0}
     - target: {fileID: 2677336941660362917, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Name
