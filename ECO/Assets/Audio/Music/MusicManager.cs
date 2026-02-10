@@ -20,6 +20,7 @@ public class MusicManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            PlayMusic("MainMenu");
         }
     }
 
