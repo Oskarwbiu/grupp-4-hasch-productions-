@@ -69,5 +69,10 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
+    void OnPause()
+    {
+        FindFirstObjectByType<PauseMenu>().Pause();
+    }
+
 
 }
