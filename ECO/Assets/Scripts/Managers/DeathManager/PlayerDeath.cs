@@ -15,18 +15,17 @@ public class PlayerDeath : MonoBehaviour
 
     public void SetCheckpoint(Vector3 position)
     {
-        lastCheckpointPosition = position + Vector3.up * 2f;
+        lastCheckpointPosition = position;
     }
 
     public void Die()
     {
-        
         transform.position = lastCheckpointPosition;
 
-        Checkpoint checkpoint = FindFirstObjectByType<Checkpoint>();
-        if (checkpoint != null)
+        Checkpoint activeCheckpoint = Checkpoint.GetActiveCheckpoint();
+        if (activeCheckpoint != null)
         {
-            checkpoint.TriggerRespawn();
+            activeCheckpoint.TriggerRespawn();
         }
     }
 }
