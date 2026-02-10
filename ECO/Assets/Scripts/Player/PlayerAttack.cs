@@ -37,6 +37,8 @@ public class PlayerAttack : MonoBehaviour
         if (lastAttackTime < attackCooldown)
             return;
 
+        GetComponent<Animator>().SetTrigger("Attack");
+
         lastAttackTime = 0;
 
         Vector2 point = (Vector2)transform.position + (attackDirection *  new Vector2(attackRange/2, attackRange/2));

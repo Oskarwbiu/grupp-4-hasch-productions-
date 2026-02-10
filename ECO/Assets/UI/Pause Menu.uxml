@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Pause.uss?fileID=7433441132597879392&amp;guid=f4f4dbb1acf90a841a510f158ec0db79&amp;type=3#Pause" />
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Label text="Paused Game" name="PauseTitle" class="header" style="font-size: 100px; -unity-font-definition: url(&quot;project://database/Assets/Fonts/ExtraOrnamentalNo2.ttf?fileID=12800000&amp;guid=de3103a8813a29c4a878eb354d72e35f&amp;type=3#ExtraOrnamentalNo2&quot;); -unity-font-style: normal; color: rgb(13, 193, 0); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0);" />
+        <ui:Button text="Resume" name="Resume" class="buttons" />
+        <ui:Button text="Button" name="Settings" class="buttons" />
+        <ui:Button text="Button" name="MainMenu" class="buttons" />
+    </ui:VisualElement>
+</ui:UXML>

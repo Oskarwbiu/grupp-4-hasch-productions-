@@ -59,7 +59,7 @@ public class MechAttack : MonoBehaviour
             isTouchingPlayer = true;
             if (isDashing)
             {
-                Vector2 knockBackForce = collision.transform.position - transform.position * dashForce;
+                Vector2 knockBackForce = collision.transform.position - transform.position * knockBack;
                 collision.GetComponent<Rigidbody2D>().AddForce(knockBackForce);
             }
         }
@@ -97,6 +97,7 @@ public class MechAttack : MonoBehaviour
         if (lastAttack == attack)
         {
             ChooseAttack();
+            return;
         }
         else
         {
@@ -121,6 +122,7 @@ public class MechAttack : MonoBehaviour
     }
     IEnumerator DashAttack()
     {
+        isDashing = true;
         transform.rotation = Quaternion.Euler(0,0,90);
         currentDamage = dashingDamage;
         yield return new WaitForSeconds(0.5f);
@@ -143,6 +145,7 @@ public class MechAttack : MonoBehaviour
         currentDamage = 1;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        isDashing = false;
         Invoke("ChooseAttack", attackCooldown);
     }
 

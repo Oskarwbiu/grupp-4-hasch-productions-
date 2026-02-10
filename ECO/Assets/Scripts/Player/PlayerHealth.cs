@@ -15,7 +15,7 @@ public class PlayerHealth : MonoBehaviour
             isInvincible = true;
             currentHealth -= damage;
             Debug.Log("ouch         " + currentHealth);
-            if (currentHealth < 1)
+            if (currentHealth <= 0)
             {
                 PlayerDeath playerDeath = FindFirstObjectByType<PlayerDeath>();
                 if (playerDeath != null)
