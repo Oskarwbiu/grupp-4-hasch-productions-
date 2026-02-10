@@ -6,18 +6,19 @@
     -unity-font-definition: url("project://database/Assets/Fonts/ExtraOrnamentalNo2.ttf?fileID=12800000&guid=de3103a8813a29c4a878eb354d72e35f&type=3#ExtraOrnamentalNo2");
     -unity-text-outline-width: 1px;
     -unity-text-outline-color: rgb(0, 0, 0);
-    color: rgb(13, 193, 0);
+    color: rgb(255, 255, 255);
+    text-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
 .buttons {
-    width: 25%;
+    width: 50%;
     margin-top: 35px;
     margin-right: 35px;
     margin-bottom: 35px;
     margin-left: 35px;
     height: 10%;
     background-image: url("project://database/Assets/Sprites/UI/button-menu-sprite.png?fileID=2800000&guid=21cd01592e0ce324eb109713e08bad36&type=3#button-menu-sprite");
-    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(203, 203, 203);
     background-repeat: no-repeat no-repeat;
     background-size: 110% 125%;
     font-size: 30px;
@@ -27,4 +28,29 @@
     color: rgb(205, 205, 205);
     -unity-text-outline-width: 0;
     -unity-text-outline-color: rgb(0, 0, 0);
+    border-left-color: rgb(76, 76, 76);
+    border-right-color: rgb(76, 76, 76);
+    border-top-color: rgb(76, 76, 76);
+    border-bottom-color: rgb(76, 76, 76);
+    border-top-width: 8px;
+    border-right-width: 8px;
+    border-bottom-width: 8px;
+    border-left-width: 8px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.buttons:hover {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    transition-duration: 0.1s;
+    scale: 1.1 1.1;
+}
+
+.labels {
+    -unity-font-definition: url("project://database/Assets/Fonts/Ethnocentric-Regular.otf?fileID=12800000&guid=cc6a7c1b7001cbd408dc5752989071e3&type=3#Ethnocentric-Regular");
+    font-size: 42px;
+    color: rgb(255, 255, 255);
 }

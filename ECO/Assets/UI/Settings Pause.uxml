@@ -1,0 +1,21 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Pause.uss?fileID=7433441132597879392&amp;guid=f4f4dbb1acf90a841a510f158ec0db79&amp;type=3#Pause" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; align-items: center; background-image: url(&quot;project://database/Assets/Sprites/UI/Vignette_(SuperTux).png?fileID=2800000&amp;guid=1bb7f7cff958dd54cbf363e372ec8c35&amp;type=3#Vignette_(SuperTux)&quot;); -unity-background-image-tint-color: rgba(255, 255, 255, 0.41); background-color: rgba(0, 0, 0, 0.19);">
+        <ui:VisualElement style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Sprites/UI/menu-background-vines.png?fileID=2800000&amp;guid=ba504758b8925784c8bcde959121aa38&amp;type=3#menu-background-vines&quot;); background-size: 100% 100%;">
+            <ui:Label text="Settings" name="Header" class="header" />
+            <ui:VisualElement name="SettingsPanel" style="flex-grow: 1; width: 250%; height: 75%; background-color: rgb(0, 0, 0); align-items: flex-start; align-self: center; bottom: auto; background-image: none; min-height: 75%; max-height: 50%; top: 25px; border-top-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; border-bottom-left-radius: 100px;">
+                <ui:VisualElement name="AudioPanel" style="flex-grow: 0; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px; border-bottom-left-radius: 14px; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; padding-top: 7px; padding-right: 7px; padding-bottom: 7px; padding-left: 7px;">
+                    <ui:Label text="Audio Settings" name="AudioLabel" class="labels" style="border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);" />
+                    <ui:Slider label="Master" value="1" high-value="1" name="MasterVolume" class="labels" style="font-size: 30px;" />
+                    <ui:Slider label="Music" value="42" high-value="1" name="MusicVolume" class="labels" style="font-size: 25px;" />
+                    <ui:Slider label="SFX" value="42" high-value="1" name="SFXVolume" class="labels" style="font-size: 25px;" />
+                    <ui:Toggle label="Mute" name="MuteToggle" class="labels" style="font-size: 25px;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="VideoPanel" style="flex-grow: 0; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-left-radius: 14px; border-top-right-radius: 14px; border-bottom-right-radius: 14px; border-bottom-left-radius: 14px; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; padding-top: 7px; padding-right: 7px; padding-bottom: 7px; padding-left: 7px;">
+                    <ui:Label text="Video Settings" name="VideoLabel" class="labels" style="border-bottom-width: 2px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255);" />
+                    <ui:Toggle label="Fullscreen" name="FullscreenToggle" class="labels" style="font-size: 25px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
