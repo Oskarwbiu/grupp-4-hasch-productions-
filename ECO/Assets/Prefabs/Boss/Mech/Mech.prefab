@@ -116,10 +116,13 @@ MonoBehaviour:
   flyTimes: 1
   bombDropInterval: 0.5
   bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
-  spinShotInterval: 0.75
+  spinShotInterval: 0.37
   spinShotsPerAttack: 12
   spinShotForce: 15
   spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+  amount: 10
+  airstrike: {fileID: 0}
+  warning: {fileID: 0}
 --- !u!50 &5467980845472181828
 Rigidbody2D:
   serializedVersion: 5

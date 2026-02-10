@@ -1,8 +1,7 @@
 
 public enum Scene
 {
-   
-    Intro,
-    End
-
+    MAINMENU,
+    CITYLEVEL,
+    BOSSLEVEL
 }

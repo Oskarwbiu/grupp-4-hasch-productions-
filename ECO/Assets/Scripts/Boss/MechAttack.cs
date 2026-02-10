@@ -22,6 +22,10 @@ public class MechAttack : MonoBehaviour
     [SerializeField] float spinShotsPerAttack = 12f;
     [SerializeField] float spinShotForce = 15f;
     [SerializeField] GameObject spinShotPrefab;
+    [Header("Airstrike Attack")]
+    [SerializeField] float amount = 10f;
+    [SerializeField] GameObject airstrike;
+    [SerializeField] GameObject warning;
 
     Coroutine currentAttack;
     Coroutine revealAnimation;
@@ -30,11 +34,11 @@ public class MechAttack : MonoBehaviour
     float gravityScale;
     bool isAttacked = false;
     bool isTouchingPlayer = false;
-    bool canAttack = false;
+    bool canAttack = true;
     bool isDashing = false;
     float currentDamage = 1;
     int lastAttack = -1;
-
+    bool phase2 = true;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
     float BoundsRight => arenaBounds.bounds.max.x;
@@ -57,11 +61,7 @@ public class MechAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTouchingPlayer = true;
-            if (isDashing)
-            {
-                Vector2 knockBackForce = collision.transform.position - transform.position * knockBack;
-                collision.GetComponent<Rigidbody2D>().AddForce(knockBackForce);
-            }
+            Debug.Log(isTouchingPlayer);
         }
         else
         {
@@ -75,8 +75,15 @@ public class MechAttack : MonoBehaviour
         {
             canAttack = false;
             FindFirstObjectByType<PlayerHealth>().GetDamaged(currentDamage);
+            Debug.Log("damage player");
+            if (isDashing)
+            {
+                Vector2 knockBackForce = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), 0) * knockBack + (Vector2.up * (knockBack/2));
+                player.GetComponent<Rigidbody2D>().AddForce(knockBackForce);
+            }
             Invoke("ResetAttack", attackspeed);
         }
+        isTouchingPlayer = false;
     }
 
     private void ResetAttack()
@@ -111,7 +118,12 @@ public class MechAttack : MonoBehaviour
                 currentAttack = StartCoroutine(DashAttack());
                 break;
             case 1:
-                currentAttack = StartCoroutine(FlyAttack());
+                if (!phase2)
+                {
+                    currentAttack = StartCoroutine(FlyAttack());
+                    break;
+                }
+                currentAttack = StartCoroutine(Airstrike());
                 break;
             case 2:
                 currentAttack = StartCoroutine(SpinShot());
@@ -209,6 +221,9 @@ public class MechAttack : MonoBehaviour
 
     IEnumerator SpinShot()
     {
+        Vector2 startPos = transform.position;
+
+        // Jump to middle
         rb.linearVelocityY = 75f;
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
@@ -224,19 +239,118 @@ public class MechAttack : MonoBehaviour
 
         rb.gravityScale = gravityScale;
 
+        yield return new WaitForSeconds(0.5f);
+
+        // Shoot bullets
         float direction = 1;
+        Vector2 spawnPos = Vector2.down;
         for (int i = 0; i <= spinShotsPerAttack; i++)
         {
-            Rigidbody2D currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + Vector2.down, Quaternion.identity).GetComponent<Rigidbody2D>();
+            Rigidbody2D currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+
             yield return new WaitForSeconds(spinShotInterval);
             direction = -direction;
+            currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
+            currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+
+            direction = -direction;
+            if (phase2 && spawnPos == Vector2.down)
+            {
+                spawnPos = Vector2.up;
+            }
+            else
+            {
+                spawnPos = Vector2.down;
+            }
         }
+
+        rb.linearVelocityY = 75f;
+
+        // Jump back
+        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
+        yield return new WaitForSeconds(1f);
+
+        rb.linearVelocityY = 0;
+        rb.transform.position = new Vector2(startPos.x, transform.position.y);
+        rb.gravityScale *= 3;
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+
+        rb.gravityScale = gravityScale;
 
         Debug.Log("Spin Shot Attack Finished");
 
         Invoke("ChooseAttack", attackCooldown);
     }
+
+    IEnumerator Airstrike()
+    {
+        Vector2 startPos = transform.position;
+
+        // Jump to middle
+        rb.linearVelocityY = 75f;
+
+        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
+        yield return new WaitForSeconds(1f);
+        rb.linearVelocityY = 0;
+
+        rb.transform.position = new Vector2(BoundsCenterX, transform.position.y);
+        rb.gravityScale *= 3;
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+
+        rb.gravityScale = gravityScale;
+        
+        // Airstrike
+        for (int i = 0; i <= amount; i++)
+        {
+
+
+            Rigidbody2D currentAirstrike = Instantiate(airstrike, transform.position + (Vector3.up * 2), Quaternion.identity).GetComponent<Rigidbody2D>();
+
+            Vector2 force = new Vector2(-22 + i * 45/amount, 60f);
+
+            currentAirstrike.AddForce(force, ForceMode2D.Impulse);
+            yield return new WaitUntil(() => currentAirstrike.transform.position.y > BoundsTop + 30);
+            currentAirstrike.linearVelocity = Vector2.zero;
+            currentAirstrike.position = new Vector2(Random.Range(BoundsLeft, BoundsRight), currentAirstrike.position.y);
+
+            
+            RaycastHit2D ray = Physics2D.Raycast(currentAirstrike.position, Vector2.down, 999, 1 << 6);
+            Debug.DrawRay(currentAirstrike.position, Vector2.down * 999);
+            Instantiate(warning, ray.point, Quaternion.identity);
+            yield return null;
+
+            
+        }
+        
+
+        rb.linearVelocityY = 75f;
+        // Jump back
+        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
+        yield return new WaitForSeconds(1f);
+
+        rb.linearVelocityY = 0;
+        rb.transform.position = new Vector2(startPos.x, transform.position.y);
+        rb.gravityScale *= 3;
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+
+        rb.gravityScale = gravityScale;
+
+        Debug.Log("Airstrike Attack Finished");
+
+        Invoke("ChooseAttack", attackCooldown);
+    }
+
+
 
     void OnDrawGizmos()
     {

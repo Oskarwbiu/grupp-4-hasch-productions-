@@ -1,0 +1,6 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Pause Menu" src="project://database/Assets/UI/Pause%20Menu.uxml?fileID=9197481963319205126&amp;guid=032b4a09ee474874b8266f28b15f7709&amp;type=3#Pause Menu" />
+    <ui:Template name="Settings Pause" src="project://database/Assets/UI/Settings%20Pause.uxml?fileID=9197481963319205126&amp;guid=0f656776d45470240b14c27fc604816b&amp;type=3#Settings Pause" />
+    <ui:Instance template="Pause Menu" name="PauseMenu" style="position: absolute; width: 100%; height: 100%;" />
+    <ui:Instance template="Settings Pause" name="SettingsMenu" style="width: 100%; height: 100%; position: absolute; display: none;" />
+</ui:UXML>

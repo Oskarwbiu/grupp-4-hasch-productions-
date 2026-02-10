@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 98546645117418170}
   - component: {fileID: 641232556112554727}
   - component: {fileID: 3815563574060524692}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MechBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 3328
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

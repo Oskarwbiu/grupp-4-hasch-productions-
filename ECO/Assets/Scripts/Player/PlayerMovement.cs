@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     float multiplier = 1f;
     float absMoveSpeed;
     bool wasGrounded;
+    bool isLocked = false;
 
     void Start()
     {
@@ -36,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
-        ResetAnimation();
     }
     private void FixedUpdate()
     {
@@ -71,9 +71,7 @@ public class PlayerMovement : MonoBehaviour
         {
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
-            ResetAnimation();
-            ani.ResetTrigger("Dash");
-            ani.SetTrigger("Dash");
+            StartTriggerAnimation("Dash");
             Invoke("ResetDash", dashCooldown);
             multiplier = dashSpeedMultiplier;
         }
@@ -123,25 +121,46 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void AttackAnimation()
+    {
+        StartTriggerAnimation("Attack");
+    }
 
+    void StartTriggerAnimation(string animation)
+    {
+        ChangeAnimation(""); 
+        ani.ResetTrigger(animation);
+        ani.SetTrigger(animation);
+        isLocked = true;
+
+        float duration = ani.GetCurrentAnimatorStateInfo(0).length;
+        Invoke("ResetLock", duration);
+    }
+
+    void ResetLock()
+    { isLocked = false; }
     
     void SetAnimation()
     {
+        if (isLocked) { return; }
+
         float verticalVelocity = rb.linearVelocity.y;
         bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f && moveInput.x != 0;
+        AnimatorStateInfo currentClip = ani.GetCurrentAnimatorStateInfo(0);
 
-        // -- DASH --
-        if (ani.GetBool("Dash"))
+        if (currentClip.IsName("Attack") || currentClip.IsName("Dash") || currentClip.IsName("JumpLand"))
         {
-            return;
+
+            if (currentClip.normalizedTime < 1.0f)
+            {
+                return;
+            }
         }
 
         // -- LAND --
         if (isGrounded && !wasGrounded)
         {
-            ResetAnimation();
-            ani.ResetTrigger("JumpLand");
-            ani.SetTrigger("JumpLand");
+            StartTriggerAnimation("JumpLand");
         }
 
         // -- AIRBORNE --
@@ -150,57 +169,71 @@ public class PlayerMovement : MonoBehaviour
             // -- RISING --
             if (verticalVelocity > 0.1f)
             {
-                ResetAnimation();
-                ani.SetBool("isJumping", true);
+                
+                ChangeAnimation("isJumping");
             }
 
             // -- FALLING --
             else if (verticalVelocity < -0.1f)
             {
-                ResetAnimation();
-                ani.SetBool("isFalling", true);
+                
+                ChangeAnimation("isFalling");
             }
 
             // -- AT APEX --
             else
             {
-                ResetAnimation();
-                ani.SetBool("isTop", true);
+
+                ChangeAnimation("isTop"); 
             }
 
             return;
         }
 
-        ResetAnimation();
 
         if (movingHorizontally && isGrounded)
         {
             // -- RUNNING --
             if (absMoveSpeed >= moveSpeed * dashSpeedMultiplier - 0.1f && moveInput.x != 0)
             {
-                ani.SetBool("isRunning", true);
+                ChangeAnimation("isRunning");
             }
             // -- WALKING --
             else if (moveInput.x != 0)
             {
-                ani.SetBool("isWalking", true);
+                ChangeAnimation("isWalking");
             }
             return;
         }
         else if (absMoveSpeed > 0.1f && isGrounded)
         {
             // -- STOP --
-            ani.SetBool("isStopping", true);
+            ChangeAnimation("isStopping");
             return;
         }
+        else
+        {
+            ChangeAnimation("");
+        }
     }
-    public void ResetAnimation()
+    void ChangeAnimation(string newParam)
     {
-        ani.SetBool("isRunning", false);
-        ani.SetBool("isWalking", false);
-        ani.SetBool("isStopping", false);
-        ani.SetBool("isFalling", false);
-        ani.SetBool("isTop", false);
-        ani.SetBool("isJumping", false);
+       
+
+        string[] paramsToReset = { "isRunning", "isWalking", "isStopping", "isFalling", "isTop", "isJumping" };
+
+        if (newParam != "" && ani.GetBool(newParam))
+        {
+            return;
+        }
+        
+
+       
+
+        foreach (var p in paramsToReset)
+        {
+
+            ani.SetBool(p, p == newParam);
+        }
     }
 }

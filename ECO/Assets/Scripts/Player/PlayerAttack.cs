@@ -7,12 +7,14 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float attackDamage = 1f;
     [SerializeField] float attackCooldown = 0.5f;
     [SerializeField] float knockbackForce = 5f;
+    [SerializeField] GameObject slashEffect;
 
     Vector2 attackDirection;
     float lastAttackTime;
+ 
     private void Start()
-    {  
-
+    {
+        
     }
 
     void OnMove(InputValue value)
@@ -37,7 +39,7 @@ public class PlayerAttack : MonoBehaviour
         if (lastAttackTime < attackCooldown)
             return;
 
-        GetComponent<Animator>().SetTrigger("Attack");
+        GetComponent<PlayerMovement>().AttackAnimation();
 
         lastAttackTime = 0;
 
@@ -47,6 +49,9 @@ public class PlayerAttack : MonoBehaviour
 
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(point, size, angle, LayerMask.GetMask("Enemy"));
         Debug.DrawRay(transform.position, attackDirection * attackRange, Color.red, 0.1f);
+
+        
+        Instantiate(slashEffect, point, Quaternion.Euler(0, 0, angle));
 
         foreach (Collider2D enemy in hitEnemies)
         {
@@ -67,7 +72,10 @@ public class PlayerAttack : MonoBehaviour
                 }
             }
         }
+        
     }
+
+    
 
     void OnPause()
     {

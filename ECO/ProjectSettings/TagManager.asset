@@ -7,7 +7,7 @@ TagManager:
   - Enemy
   - End Point
   - Platform
-  - End Point Wall
+  - Warning
   layers:
   - Default
   - TransparentFX
@@ -20,7 +20,7 @@ TagManager:
   - Enemy
   - Plant
   - Boss
-  - 
+  - BossProjectile
   - 
   - 
   - 

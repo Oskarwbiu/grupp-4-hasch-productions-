@@ -11,29 +11,72 @@ public class PauseMenu : MonoBehaviour
     private Button resumeButton;
     private Button settingsButton;
     private Button mainMenuButton;
+    private Button exitButton;
 
-    private void Start()
+    private VisualElement pauseMenu;
+    private VisualElement settingsMenu;
+
+    private void Awake()
     {
-        
+
 
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
 
         VisualElement root = pauseDocument.rootVisualElement;
+        pauseMenu = root.Q<VisualElement>("PauseMenu");
+        settingsMenu = root.Q<VisualElement>("SettingsMenu");
+        
 
-        Button resumeButton = root.Q<Button>("Resume");
-        Button settingsButton = root.Q<Button>("Settings");
-        Button mainMenuButton = root.Q<Button>("MainMenu");
+        VisualElement image = pauseMenu.Q<VisualElement>();
+        VisualElement settingsRoot = settingsMenu.Q<VisualElement>();
 
+        VisualElement settingsPanel = settingsRoot.Q<VisualElement>().Q<VisualElement>();
+
+        resumeButton = image.Q<Button>("Resume");
+        settingsButton = image.Q<Button>("Settings");
+        mainMenuButton = image.Q<Button>("MainMenu");
+        exitButton = settingsPanel.Q<Button>();
+
+        resumeButton.RegisterCallback<ClickEvent>(evt => ResumeGame());
+        settingsButton.RegisterCallback<ClickEvent>(evt => EnableSettings());
+        mainMenuButton.RegisterCallback<ClickEvent>(evt => LoadMainMenu());
+        exitButton.RegisterCallback<ClickEvent>(evt => ExitSettings());
 
     }
+
+    private void Start()
+    {
+        pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
+    }
+
     public void Pause()
     {
-
+        pauseDocument.rootVisualElement.style.display = DisplayStyle.Flex;
+        Time.timeScale = 0;
     }
 
-    public void UnPause()
+    void ResumeGame()
     {
+        pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
+        Time.timeScale = 1;
+        pauseVE.Blur();
+    }
 
+    void EnableSettings()
+    {
+        pauseMenu.style.display = DisplayStyle.None;
+        settingsMenu.style.display = DisplayStyle.Flex;
+    }
+
+    void ExitSettings()
+    {
+        pauseMenu.style.display = DisplayStyle.Flex;
+        settingsMenu.style.display = DisplayStyle.None;
+    }
+    void LoadMainMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene((int)Scene.MAINMENU);
+        Time.timeScale = 1;
     }
 }
