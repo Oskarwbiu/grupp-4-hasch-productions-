@@ -4356,12 +4356,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.7126293
 =======
       m_AnimationSpeed: 6.962766
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.1720037
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.876803
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4375,12 +4379,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.2201147
 =======
       m_AnimationSpeed: 6.37095
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.8484783
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.576082
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4394,12 +4402,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.892616
 =======
       m_AnimationSpeed: 6.507084
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.9331274
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.617082
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4413,12 +4425,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.487933
 =======
       m_AnimationSpeed: 6.520561
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.9833655
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.803606
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4432,12 +4448,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.3542457
 =======
       m_AnimationSpeed: 6.498251
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.981827
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.736353
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4451,12 +4471,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.623553
 =======
       m_AnimationSpeed: 6.536727
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.1834373
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.9856544
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4470,12 +4494,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.786484
 =======
       m_AnimationSpeed: 6.20072
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.0262823
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.4302416
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4489,12 +4517,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.871046
 =======
       m_AnimationSpeed: 6.05268
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.3464427
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.473314
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -4508,12 +4540,16 @@ Tilemap:
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       m_AnimationSpeed: 6.0530643
 =======
       m_AnimationSpeed: 6.8599186
 >>>>>>> Stashed changes
 =======
       m_AnimationSpeed: 6.278314
+>>>>>>> Stashed changes
+=======
+      m_AnimationSpeed: 6.4513483
 >>>>>>> Stashed changes
       m_AnimationTimeOffset: 0
       m_Flags: 0
@@ -6834,15 +6870,72 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 31b0ddf69cca00949877a3b4416e5a1a, type: 2}
-    - target: {fileID: 7589148077253437790, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
-      propertyPath: m_DampingRatio
-      value: 0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+--- !u!1001 &824512575
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25.413
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.212
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3098949964307421470, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4367529164959204603, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+      propertyPath: m_Name
+      value: MechBullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
 --- !u!1 &828759081
 GameObject:
   m_ObjectHideFlags: 0
@@ -7301,7 +7394,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9f2515847aa84ebbea24e469c8d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  playerInput: {fileID: 2022221222}
+  playerInput: {fileID: 2116742062}
+  audioMixer: {fileID: 24100000, guid: 17194e3577632fa4ba781d32c3ea133a, type: 2}
 --- !u!1 &1119567429
 GameObject:
   m_ObjectHideFlags: 0
@@ -11108,17 +11202,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1365888614618348986, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
   m_PrefabInstance: {fileID: 814296813}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2022221222 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2676724372438415694, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
-  m_PrefabInstance: {fileID: 814296813}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
 --- !u!1001 &2027612882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11242,6 +11325,17 @@ Transform:
   - {fileID: 1678780232}
   m_Father: {fileID: 1780318068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116742062 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2676724372438415694, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+  m_PrefabInstance: {fileID: 814296813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
 --- !u!1001 &2138555809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11488,41 +11582,9 @@ PrefabInstance:
       value: Mech
       objectReference: {fileID: 0}
     - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: warning
-      value: 
-      objectReference: {fileID: 4342089698753490178, guid: ec52638b1429c034db5a743971bb3f97, type: 3}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: airstrike
-      value: 
-      objectReference: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: knockBack
-      value: 1500
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
       propertyPath: arenaBounds
       value: 
       objectReference: {fileID: 708825053}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: attackspeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: spinShotForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2130397715409740644, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: spinShotInterval
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955634529700202681, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5955634529700202681, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 5955634529700202681, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.74737
@@ -11563,10 +11625,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7890143316463402585, guid: 439063e8ec9ad0445bb0ee9f7fb434bc, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11588,4 +11646,8 @@ SceneRoots:
   - {fileID: 814296813}
   - {fileID: 298961358}
   - {fileID: 2640105668629125051}
+<<<<<<< Updated upstream
   - {fileID: 1322079452}
+=======
+  - {fileID: 824512575}
+>>>>>>> Stashed changes

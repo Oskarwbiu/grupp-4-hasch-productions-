@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.InputSystem;
@@ -18,6 +19,7 @@ public class PauseMenu : MonoBehaviour
     private VisualElement settingsMenu;
 
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] AudioMixer audioMixer;
 
     private void Awake()
     {
@@ -45,6 +47,17 @@ public class PauseMenu : MonoBehaviour
         settingsButton.RegisterCallback<ClickEvent>(evt => EnableSettings());
         mainMenuButton.RegisterCallback<ClickEvent>(evt => LoadMainMenu());
         exitButton.RegisterCallback<ClickEvent>(evt => ExitSettings());
+
+
+        Slider masterVolume = settingsPanel.Q<Slider>("MasterVolume");
+        Slider musicVolume = settingsPanel.Q<Slider>("MusicVolume");
+        Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
+
+        float masterVol = 0;
+        audioMixer.GetFloat("MasterVoulume", out masterVol);
+        masterVolume.value = masterVol + 80;
+
+
 
     }
 

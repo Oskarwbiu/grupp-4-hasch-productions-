@@ -38,7 +38,7 @@ public class MechAttack : MonoBehaviour
     bool isDashing = false;
     float currentDamage = 1;
     int lastAttack = -1;
-    bool phase2 = true;
+    int phase = 0;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
     float BoundsRight => arenaBounds.bounds.max.x;
@@ -100,7 +100,7 @@ public class MechAttack : MonoBehaviour
 
     void ChooseAttack()
     {
-        int attack = Random.Range(0, 3);
+        int attack = Random.Range(0, 3 + phase);
         if (lastAttack == attack)
         {
             ChooseAttack();
@@ -117,16 +117,14 @@ public class MechAttack : MonoBehaviour
             case 0:
                 currentAttack = StartCoroutine(DashAttack());
                 break;
-            case 1:
-                if (!phase2)
-                {
-                    currentAttack = StartCoroutine(FlyAttack());
-                    break;
-                }
-                currentAttack = StartCoroutine(Airstrike());
+            case 1: 
+                currentAttack = StartCoroutine(FlyAttack());
                 break;
             case 2:
                 currentAttack = StartCoroutine(SpinShot());
+                break;
+            case 3:
+                currentAttack = StartCoroutine(Airstrike());
                 break;
 
         }
@@ -248,14 +246,16 @@ public class MechAttack : MonoBehaviour
         {
             Rigidbody2D currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+            currentBullet.transform.localScale = new Vector2(-currentBullet.transform.localScale.x, currentBullet.transform.localScale.y);
 
             yield return new WaitForSeconds(spinShotInterval);
             direction = -direction;
             currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+            
 
             direction = -direction;
-            if (phase2 && spawnPos == Vector2.down)
+            if (phase == 1 && spawnPos == Vector2.down)
             {
                 spawnPos = Vector2.up;
             }
@@ -350,7 +350,10 @@ public class MechAttack : MonoBehaviour
         Invoke("ChooseAttack", attackCooldown);
     }
 
-
+    public void InitiatePhase2()
+    {
+        phase = 1;
+    }
 
     void OnDrawGizmos()
     {

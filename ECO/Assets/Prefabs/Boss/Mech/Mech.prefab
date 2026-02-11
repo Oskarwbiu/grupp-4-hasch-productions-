@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5955634529700202681}
   - component: {fileID: 8020558413928960761}
-  - component: {fileID: 2130397715409740644}
   - component: {fileID: 5467980845472181828}
   - component: {fileID: 2702629551857466005}
   - component: {fileID: 7890143316463402585}
+  - component: {fileID: 2130397715409740644}
+  - component: {fileID: 5780718766065383111}
   m_Layer: 10
   m_Name: Mech
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 62.55, y: 9.69, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 1}
+  m_LocalScale: {x: 1.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,35 +95,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2130397715409740644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247924443539186187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040229c7bc0571f4aadf123c206c325e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  attackspeed: 1
-  attackCooldown: 2
-  arenaBounds: {fileID: 0}
-  dashForce: 25
-  knockBack: 2
-  dashingDamage: 2
-  flySpeed: 5
-  flyTimes: 1
-  bombDropInterval: 0.5
-  bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
-  spinShotInterval: 0.37
-  spinShotsPerAttack: 12
-  spinShotForce: 15
-  spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
-  amount: 10
-  airstrike: {fileID: 0}
-  warning: {fileID: 0}
 --- !u!50 &5467980845472181828
 Rigidbody2D:
   serializedVersion: 5
@@ -212,7 +184,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -242,3 +214,47 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2130397715409740644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040229c7bc0571f4aadf123c206c325e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  attackspeed: 5
+  attackCooldown: 2
+  arenaBounds: {fileID: 0}
+  dashForce: 25
+  knockBack: 1500
+  dashingDamage: 2
+  flySpeed: 5
+  flyTimes: 1
+  bombDropInterval: 0.5
+  bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  spinShotInterval: 0.45
+  spinShotsPerAttack: 12
+  spinShotForce: 25
+  spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+  amount: 10
+  airstrike: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  warning: {fileID: 4342089698753490178, guid: ec52638b1429c034db5a743971bb3f97, type: 3}
+--- !u!114 &5780718766065383111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74000c3edb8f2404aa7d49f9db8bfd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 100
+  currentHealth: 100
+  invincibilityDuration: 1
