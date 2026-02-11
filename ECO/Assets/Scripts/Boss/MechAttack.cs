@@ -12,6 +12,8 @@ public class MechAttack : MonoBehaviour
     [SerializeField] float dashForce = 25f;
     [SerializeField] float knockBack = 2f;
     [SerializeField] float dashingDamage = 2f;
+    [SerializeField] BoxCollider2D triggerBox;
+    [SerializeField] BoxCollider2D hitBox;
     [Header("Fly Attack")]
     [SerializeField] float flySpeed = 5f;
     [SerializeField] int flyTimes = 1;
@@ -39,6 +41,7 @@ public class MechAttack : MonoBehaviour
     float currentDamage = 1;
     int lastAttack = -1;
     int phase = 0;
+    MechAnimation animation;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
     float BoundsRight => arenaBounds.bounds.max.x;
@@ -49,9 +52,11 @@ public class MechAttack : MonoBehaviour
 
     void Start()
     {
+        
         MusicManager.Instance.PlayMusic("BattleMusic");
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        animation = rb.GetComponent<MechAnimation>();
         gravityScale = rb.gravityScale;
         revealAnimation = StartCoroutine(RevealAnimation());
     }
@@ -61,7 +66,6 @@ public class MechAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTouchingPlayer = true;
-            Debug.Log(isTouchingPlayer);
         }
         else
         {
@@ -94,6 +98,27 @@ public class MechAttack : MonoBehaviour
     IEnumerator RevealAnimation()
     {
         yield return null;
+        float endPos = BoundsRight;
+        rb.linearVelocityY = 75;
+
+        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 10);
+        yield return new WaitForSeconds(2f);
+
+        rb.linearVelocityY = 0;
+        rb.transform.position = new Vector2(endPos, transform.position.y);
+        rb.gravityScale *= 3;
+
+        animation.PlayAnimation("isFalling");
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+
+        rb.gravityScale = gravityScale;
+        animation.PlayTrigger("Land");
+
+        yield return new WaitForSeconds(0.5f);
+
         ChooseAttack();
         Debug.Log("Reveal animation finished, starting attacks.");
     }
@@ -132,23 +157,28 @@ public class MechAttack : MonoBehaviour
     }
     IEnumerator DashAttack()
     {
+        hitBox.size /= 1.5f;
+        triggerBox.size /= 1.5f;
         isDashing = true;
-        transform.rotation = Quaternion.Euler(0,0,90);
         currentDamage = dashingDamage;
         yield return new WaitForSeconds(0.5f);
         rb.linearVelocityX = -dashForce;
+        animation.PlayAnimation("isFlying");
 
-        transform.rotation = Quaternion.Euler(0, 0, -90);
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        
+       
 
         yield return new WaitUntil(() => transform.position.x < BoundsLeft + 3.5f);
         rb.linearVelocityX = 0;
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        animation.PlayAnimation("isIdle");
         yield return new WaitForSeconds(0.3f);
-
+        animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
 
         yield return new WaitUntil(() => transform.position.x > BoundsRight - 3.5f);
         rb.linearVelocityX = 0;
+        animation.PlayAnimation("isIdle");
 
         Debug.Log("DashAttack Finished");
 
@@ -156,6 +186,9 @@ public class MechAttack : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         isDashing = false;
+        transform.position += Vector3.up;
+        hitBox.size *= 1.5f;
+        triggerBox.size *= 1.5f;
         Invoke("ChooseAttack", attackCooldown);
     }
 
@@ -166,7 +199,9 @@ public class MechAttack : MonoBehaviour
 
         rb.gravityScale = 0;
         rb.linearVelocityY = flySpeed;
-
+        animation.PlayTrigger("flyUp");
+        yield return new WaitForSeconds(0.5f);
+        animation.PlayAnimation("ísFlying");
 
         yield return new WaitUntil(() => transform.position.y > BoundsTop - 1.5f);
 
@@ -189,6 +224,7 @@ public class MechAttack : MonoBehaviour
                 }
             }
 
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             rb.linearVelocityX = -rb.linearVelocity.x;
 
             while (!(transform.position.x > BoundsRight - 5f))
@@ -206,10 +242,13 @@ public class MechAttack : MonoBehaviour
         rb.linearVelocityX = 0;
 
         rb.gravityScale = gravityScale/2;
+        animation.PlayTrigger("flyDown");
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
-        yield return new WaitForSeconds(0.15f);
-
+        yield return new WaitForSeconds(0.35f);
+        animation.PlayAnimation("isFalling");
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
         rb.gravityScale = gravityScale;
 
         Debug.Log("Fly Attack Finished");

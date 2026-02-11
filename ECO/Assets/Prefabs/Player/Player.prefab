@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 2184246853853715082}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9bd489025744fe8498112eaab25e0d10, type: 2}
+  m_Controller: {fileID: 9100000, guid: 31b0ddf69cca00949877a3b4416e5a1a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 4373190432289433430}
   - component: {fileID: 1790451087713655014}
   - component: {fileID: 1556750175506134240}
+  - component: {fileID: 1669936740410279576}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -355,7 +356,7 @@ LineRenderer:
     textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
-    generateLightingData: 0
+    generateLightingData: 1
   m_MaskInteraction: 0
   m_UseWorldSpace: 1
   m_Loop: 0
@@ -523,6 +524,10 @@ MonoBehaviour:
   attackDamage: 10
   attackCooldown: 0.5
   knockbackForce: 5
+  slashEffect: {fileID: 797018023861042997, guid: 6d1098453efc5f24cbc14455b60e7b35, type: 3}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1280
 --- !u!114 &1556750175506134240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,3 +541,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
   deathZoneY: -25
+  lastCheckpointPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1669936740410279576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85e9de559b8f74d4fa18e9693b2562de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  flySpeed: 5
+  canLevelskip: 0

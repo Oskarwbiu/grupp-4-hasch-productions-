@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
@@ -7,14 +8,19 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private float deathZoneY = -10f;
     public Vector3 lastCheckpointPosition = Vector3.zero;
 
+    PlayerInput input;
     Rigidbody2D rb;
     float gravity;
+    GameObject spriteObject;
 
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
-
+        input = rb.GetComponent<PlayerInput>();
+        spriteObject = rb.transform.GetChild(0).gameObject;
         gravity = rb.gravityScale;
+        
 
         Vector3 spawnPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
 
@@ -23,15 +29,15 @@ public class PlayerDeath : MonoBehaviour
             transform.position = spawnPosition;
 
 
-            Checkpoint active = Checkpoint.GetActiveCheckpoint();
+            Checkpoint active = CheckpointManager.Instance.CurrentActiveInstance;
             if (active != null)
             {
                 active.TriggerRespawn();
+                spriteObject.SetActive(false);
                 rb.gravityScale = 0;
-                rb.linearVelocityY = 0;
-                rb.linearVelocityX = 0;
                 GetComponent<PlayerJump>().enabled = false;
                 GetComponent<PlayerMovement>().enabled = false;
+                CheckpointManager.Instance.ResetCheckpoints();
             }
             StartCoroutine(Respawn());
         }
@@ -42,9 +48,10 @@ public class PlayerDeath : MonoBehaviour
 
     IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.3f);
+        spriteObject.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
         rb.gravityScale = gravity;
-        Debug.Log("add gravity");
         rb.AddForce(new Vector2(20, 12), ForceMode2D.Impulse);
         GetComponent<PlayerJump>().enabled = true;
         GetComponent <PlayerMovement>().enabled = true;
@@ -65,12 +72,14 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
-        Checkpoint activeCheckpoint = Checkpoint.GetActiveCheckpoint();
+        Checkpoint activeCheckpoint = CheckpointManager.Instance.CurrentActiveInstance;
         if (activeCheckpoint != null)
         {
             activeCheckpoint.TriggerRespawn();
         }
-
+        rb.linearVelocity = Vector2.zero;
+        GetComponent<PlayerMovement>().ResetMovement();
+        input.enabled = false;
         StartCoroutine(RestartSceneAfterDelay(2f));
     }
 
@@ -78,5 +87,6 @@ public class PlayerDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        FindFirstObjectByType<PlayerHealth>().ResetHealth();
     }
 }

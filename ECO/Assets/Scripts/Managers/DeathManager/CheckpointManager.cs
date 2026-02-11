@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class CheckpointManager : MonoBehaviour
 {
+    public Checkpoint CurrentActiveInstance;
     public static CheckpointManager Instance;
     private HashSet<int> activatedCheckpoints = new HashSet<int>();
     private Vector3 lastCheckpointPosition = Vector3.zero;

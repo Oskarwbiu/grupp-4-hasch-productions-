@@ -21,6 +21,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] PlayerCheats cheatsScript;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] AudioMixer audioMixer;
+    [SerializeField] UIDocument HUD;
+
 
     private void Awake()
     {
@@ -107,6 +109,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        HUD.rootVisualElement.style.display = DisplayStyle.None;
         playerInput.enabled = false;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.Flex;
         Time.timeScale = 0;
@@ -114,6 +117,7 @@ public class PauseMenu : MonoBehaviour
 
     void ResumeGame()
     {
+        HUD.rootVisualElement.style.display = DisplayStyle.Flex;
         playerInput.enabled = true;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
         Time.timeScale = 1;

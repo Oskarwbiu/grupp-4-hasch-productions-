@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="HUD" style="flex-grow: 1;">
+        <ui:VisualElement name="Health" style="flex-grow: 1; background-color: rgba(255, 255, 255, 0); width: 200px; height: 200px; min-height: 200px; max-height: 200px; background-image: url(&quot;project://database/Assets/Sprites/UI/Health_UI-Sheet.png?fileID=-273907801316172337&amp;guid=2eb80ff25ad3a22459d5937a8c731755&amp;type=3#Health_UI-Sheet_0&quot;); -unity-background-image-tint-color: rgb(220, 220, 220); top: 0; right: 0; position: absolute; flex-basis: auto;" />
+    </ui:VisualElement>
+</ui:UXML>

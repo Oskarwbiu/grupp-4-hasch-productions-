@@ -4,7 +4,7 @@ using System.Collections;
 public class Checkpoint : MonoBehaviour
 {
     private Animator animator;
-    private static Checkpoint activeCheckpoint;
+    
     [SerializeField] private int checkpointID;
 
     void Start()
@@ -13,8 +13,13 @@ public class Checkpoint : MonoBehaviour
 
         if (CheckpointManager.Instance != null && CheckpointManager.Instance.IsCheckpointActivated(checkpointID))
         {
-            animator.SetTrigger("Activate");
-            activeCheckpoint = this;
+            if (CheckpointManager.Instance.GetLastCheckpointPosition() == transform.position)
+            {
+                CheckpointManager.Instance.CurrentActiveInstance = this;
+                animator.SetTrigger("Activate");
+
+            }
+            
         }
     }
 
@@ -22,7 +27,7 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player") && CheckpointManager.Instance != null && !CheckpointManager.Instance.IsCheckpointActivated(checkpointID))
         {
-            activeCheckpoint = this;
+            CheckpointManager.Instance.CurrentActiveInstance = this;
             CheckpointManager.Instance.ActivateCheckpoint(checkpointID, transform.position);
 
             PlayerDeath playerDeath = collision.GetComponent<PlayerDeath>();
@@ -32,11 +37,6 @@ public class Checkpoint : MonoBehaviour
                 animator.SetTrigger("Activate");
             }
         }
-    }
-
-    public static Checkpoint GetActiveCheckpoint()
-    {
-        return activeCheckpoint;
     }
 
     public void TriggerRespawn()

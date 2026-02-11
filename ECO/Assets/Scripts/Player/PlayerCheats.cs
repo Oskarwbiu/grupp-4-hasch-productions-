@@ -61,12 +61,12 @@ public class PlayerCheats : MonoBehaviour
     {
         if (enabled)
         {
-            FindFirstObjectByType<PlayerHealth>().enabled = false;
+            FindFirstObjectByType<PlayerHealth>().gameObject.SetActive(false);
             Debug.Log("godmode on");
         }
         else
         {
-            FindFirstObjectByType<PlayerHealth>().enabled = true;
+            FindFirstObjectByType<PlayerHealth>().gameObject.SetActive(false);
             Debug.Log("godmode off");
         }
     }

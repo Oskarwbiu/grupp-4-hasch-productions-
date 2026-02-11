@@ -64,6 +64,12 @@ public class PlayerMovement : MonoBehaviour
         FlipSprite();
     }
 
+    public void ResetMovement()
+    {
+        moveInput = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
+    }
+
 
     void OnMove(InputValue value)
     {

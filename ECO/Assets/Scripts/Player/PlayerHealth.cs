@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float InvincibleTime = 1.0f;
-    [SerializeField] float currentHealth = 3f;
+    [SerializeField] float invincibleTime = 1.0f;
+    public float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
-
+    float origInvincibleTime => invincibleTime;
     public void GetDamaged(float damage)
     {
         if (!isInvincible)
@@ -21,10 +21,10 @@ public class PlayerHealth : MonoBehaviour
                 if (playerDeath != null)
                 {
                     playerDeath.Die();
-                    currentHealth = maxHealth;
+                    invincibleTime = 3;
                 }
             }
-            Invoke("Invincibility", InvincibleTime);
+            Invoke("Invincibility", invincibleTime);
         }
     }
 
@@ -39,6 +39,7 @@ public class PlayerHealth : MonoBehaviour
     public void Invincibility()
     {
         isInvincible = false;
+        invincibleTime = origInvincibleTime;
     }
 
     public void ResetHealth()
