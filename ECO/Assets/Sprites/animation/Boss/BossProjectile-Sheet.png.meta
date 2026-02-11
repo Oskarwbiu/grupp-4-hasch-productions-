@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: cb4d096c68c89b44e8533ffad84669ff
+guid: 6243063975931f143842c71d2217ee34
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4563712208195359656
-    second: slash-Sheet_0
+      213: -6798138008921098463
+    second: BossProjectile-Sheet_0
   - first:
-      213: 3355430407023061188
-    second: slash-Sheet_1
+      213: -193313921373979529
+    second: BossProjectile-Sheet_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,67 +116,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slash-Sheet_0
+      name: BossProjectile-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 32
-        height: 32
+        y: 1
+        width: 16
+        height: 15
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 85ce66d1def6aa0c0800000000000000
-      internalID: -4563712208195359656
+      spriteID: 1273d2cbf7928a1a0800000000000000
+      internalID: -6798138008921098463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slash-Sheet_1
+      name: BossProjectile-Sheet_1
       rect:
         serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
+        x: 16
+        y: 1
+        width: 16
+        height: 15
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4c867276d22e09e20800000000000000
-      internalID: 3355430407023061188
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: slash-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6afc8b7f657eca545bff07618bb495ed
-      internalID: -1731680079
+      spriteID: 77cbd524306315df0800000000000000
+      internalID: -193313921373979529
       vertices: []
       indices: 
       edges: []
@@ -185,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 608b5c7ddc3f88345aa54884e4faf4af
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -193,13 +171,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      slash-Sheet_0: -4563712208195359656
-      slash-Sheet_1: 3355430407023061188
-      slash-Sheet_2: -1731680079
+      BossProjectile-Sheet_0: -6798138008921098463
+      BossProjectile-Sheet_1: -193313921373979529
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -26,6 +26,7 @@ public class PlayerJump : MonoBehaviour
     bool isJumping;
     bool hasWallJumped;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -84,6 +85,8 @@ public class PlayerJump : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+
         CheckFallSpeed();
 
         if (startJumpTimer)

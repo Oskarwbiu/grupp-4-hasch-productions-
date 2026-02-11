@@ -8,8 +8,10 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] float attackCooldown = 0.5f;
     [SerializeField] float knockbackForce = 5f;
     [SerializeField] GameObject slashEffect;
+    [SerializeField] LayerMask enemyLayer;
 
-    Vector2 attackDirection;
+    MechHealth bossHealth;
+    Vector2 attackDirection = Vector2.right;
     float lastAttackTime;
  
     private void Start()
@@ -47,30 +49,43 @@ public class PlayerAttack : MonoBehaviour
         Vector2 size = new Vector2(attackRange, attackRange * 1.5f);
         float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
-        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(point, size, angle, LayerMask.GetMask("Enemy"));
+        Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(point, size, angle, enemyLayer);
         Debug.DrawRay(transform.position, attackDirection * attackRange, Color.red, 0.1f);
 
         
-        Instantiate(slashEffect, point, Quaternion.Euler(0, 0, angle));
+        Instantiate(slashEffect, point, Quaternion.Euler(Random.Range(0, 2) * 180, 0, angle));
 
         foreach (Collider2D enemy in hitEnemies)
         {
             EnemyHealth enemyScript = enemy.GetComponent<EnemyHealth>();
-
-            if (enemyScript != null)
+            if (enemyScript == null)
             {
-                enemyScript.TakeDamage(attackDamage);
+                bossHealth = enemy.GetComponent<MechHealth>();
+            }
+
+
+            if (enemyScript != null|| bossHealth != null)
+            {
+                if (enemyScript != null)
+                {
+                    enemyScript.TakeDamage(attackDamage);
+                }
+                else
+                {
+                    bossHealth.TakeDamage(attackDamage);
+                }
 
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();
                 if (enemyRb != null)
                 {
-                    
+
                     Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
                     float alignment = Vector2.Dot(attackDirection.normalized, knockbackDirection);
 
                     enemyRb.AddForce(knockbackDirection * (knockbackForce + alignment * 1.5f), ForceMode2D.Impulse);
                 }
             }
+            
         }
         
     }
