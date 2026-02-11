@@ -53,7 +53,7 @@ public class PlayerAttack : MonoBehaviour
         Debug.DrawRay(transform.position, attackDirection * attackRange, Color.red, 0.1f);
 
         
-        Instantiate(slashEffect, point, Quaternion.Euler(Random.Range(0, 2) * 180, 0, angle));
+        Instantiate(slashEffect, point, Quaternion.Euler(0, 0, angle));
 
         foreach (Collider2D enemy in hitEnemies)
         {

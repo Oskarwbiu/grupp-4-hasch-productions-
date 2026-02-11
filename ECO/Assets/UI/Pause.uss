@@ -51,6 +51,6 @@
 
 .labels {
     -unity-font-definition: url("project://database/Assets/Fonts/Ethnocentric-Regular.otf?fileID=12800000&guid=cc6a7c1b7001cbd408dc5752989071e3&type=3#Ethnocentric-Regular");
-    font-size: 42px;
+    font-size: 25px;
     color: rgb(255, 255, 255);
 }

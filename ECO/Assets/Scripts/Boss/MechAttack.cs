@@ -49,7 +49,7 @@ public class MechAttack : MonoBehaviour
 
     void Start()
     {
-        
+        MusicManager.Instance.PlayMusic("BattleMusic");
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         gravityScale = rb.gravityScale;

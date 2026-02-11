@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,17 +7,47 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] private float deathZoneY = -10f;
     public Vector3 lastCheckpointPosition = Vector3.zero;
 
+    Rigidbody2D rb;
+    float gravity;
+
     void Start()
     {
-        if (CheckpointManager.Instance != null)
+        rb = GetComponent<Rigidbody2D>();
+
+        gravity = rb.gravityScale;
+
+        Vector3 spawnPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
+
+        if (spawnPosition != Vector3.zero)
         {
-            lastCheckpointPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
+            transform.position = spawnPosition;
+
+
+            Checkpoint active = Checkpoint.GetActiveCheckpoint();
+            if (active != null)
+            {
+                active.TriggerRespawn();
+                rb.gravityScale = 0;
+                rb.linearVelocityY = 0;
+                rb.linearVelocityX = 0;
+                GetComponent<PlayerJump>().enabled = false;
+                GetComponent<PlayerMovement>().enabled = false;
+            }
+            StartCoroutine(Respawn());
         }
-        if (lastCheckpointPosition == Vector3.zero)
-        {
-            lastCheckpointPosition = new Vector3(0, 0, 0);
-        }
-        transform.position = lastCheckpointPosition;
+        
+
+
+    }
+
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(1.5f);
+        rb.gravityScale = gravity;
+        Debug.Log("add gravity");
+        rb.AddForce(new Vector2(20, 12), ForceMode2D.Impulse);
+        GetComponent<PlayerJump>().enabled = true;
+        GetComponent <PlayerMovement>().enabled = true;
     }
 
     void Update()
