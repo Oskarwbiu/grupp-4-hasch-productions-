@@ -17,7 +17,8 @@ public class PauseMenu : MonoBehaviour
 
     private VisualElement pauseMenu;
     private VisualElement settingsMenu;
-
+    
+    [SerializeField] PlayerCheats cheatsScript;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] AudioMixer audioMixer;
 
@@ -54,12 +55,50 @@ public class PauseMenu : MonoBehaviour
         Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
 
         float masterVol = 0;
-        audioMixer.GetFloat("MasterVoulume", out masterVol);
+        audioMixer.GetFloat("MasterVolume", out masterVol);
         masterVolume.value = masterVol + 80;
+        masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", evt.newValue - 80));
+        
+        float musicVol = 0;
+        audioMixer.GetFloat("MusicVolume", out musicVol);
+        musicVolume.value = musicVol + 80;
+        musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", evt.newValue - 80));
 
+        float sfxVol = 0;
+        audioMixer.GetFloat("SFXVolume", out sfxVol);
+        sfxVolume.value = sfxVol + 80;
+        sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", evt.newValue - 80));
 
+        Toggle muteToggle = settingsPanel.Q<Toggle>("MuteToggle");
+        muteToggle.value = AudioListener.pause;
+        muteToggle.RegisterCallback<ChangeEvent<bool>>(evt => AudioListener.pause = evt.newValue);
+
+        Toggle fullscreenToggle = settingsPanel.Q<Toggle>("FullscreenToggle");
+        fullscreenToggle.value = Screen.fullScreen;
+        fullscreenToggle.RegisterValueChangedCallback(evt => Screen.fullScreen = evt.newValue);
+
+        
+
+        Toggle godmodeToggle = settingsPanel.Q<Toggle>("GodmodeToggle");
+        godmodeToggle.value = cheatsScript.GodModeBool();
+        godmodeToggle.RegisterValueChangedCallback(evt => cheatsScript.GodMode(evt.newValue));
+
+        Toggle noClipToggle = settingsPanel.Q<Toggle>("NoClipToggle");
+        noClipToggle.value = cheatsScript.NoClipBool();
+        noClipToggle.RegisterValueChangedCallback(evt => cheatsScript.NoClip(evt.newValue));
+
+        float flySpeed = 0;
+        Slider flySpeedSlider = settingsPanel.Q<Slider>("SpeedSlider");
+        flySpeedSlider.value = flySpeed;
+        flySpeedSlider.RegisterCallback<ChangeEvent<float>>(evt => cheatsScript.flySpeed = evt.newValue);
+
+        Toggle levelSkipToggle = settingsPanel.Q<Toggle>("LevelSkipToggle");
+        levelSkipToggle.value = cheatsScript.canLevelskip;
+        levelSkipToggle.RegisterValueChangedCallback(evt => cheatsScript.canLevelskip = evt.newValue);
 
     }
+
+    
 
     private void Start()
     {

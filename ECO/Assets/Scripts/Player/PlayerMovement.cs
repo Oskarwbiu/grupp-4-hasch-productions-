@@ -29,8 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float absMoveSpeed;
     bool wasGrounded;
     bool isLocked = false;
-    bool hasFinishedRespawn = false;
-    float gravity;
+    
 
     void Start()
     {
@@ -39,48 +38,13 @@ public class PlayerMovement : MonoBehaviour
         originalSize = SpriteObject.transform.localScale;
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
-        gravity = rb.gravityScale;
-
-        Vector3 spawnPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
-
-        if (spawnPosition != Vector3.zero)
-        {
-            transform.position = spawnPosition;
-
-
-            Checkpoint active = Checkpoint.GetActiveCheckpoint();
-            if (active != null)
-            {
-                active.TriggerRespawn();
-                rb.gravityScale = 0;
-                rb.linearVelocityY = 0;
-                rb.linearVelocityX = 0;
-                GetComponent<PlayerJump>().enabled = false;
-            }
-            StartCoroutine(Respawn());
-        }
-        else { hasFinishedRespawn = true; }
-
-
     }
-
-    IEnumerator Respawn()
-    {
-        yield return new WaitForSeconds(1.5f);
-        rb.gravityScale = gravity;
-        Debug.Log("add gravity");
-        rb.AddForce(new Vector2(20,12), ForceMode2D.Impulse);
-        hasFinishedRespawn = true;
-        GetComponent<PlayerJump>().enabled = true;
-    }
+        
 
 
     private void FixedUpdate()
     {
-        if (!hasFinishedRespawn)
-        {
-            return;
-        }
+        
         absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
 
         wasGrounded = isGrounded;
