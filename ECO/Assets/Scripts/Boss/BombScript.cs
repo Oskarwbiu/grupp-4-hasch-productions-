@@ -17,7 +17,11 @@ public class BombScript : MonoBehaviour
         {
             if (hitObjects.CompareTag("Player"))
             {
-                FindFirstObjectByType<PlayerHealth>().GetDamaged(explosionDamage);
+                PlayerHealth health = hitObjects.GetComponent<PlayerHealth>();
+                if (health != null)
+                {
+                    health.GetDamaged(explosionDamage);
+                }
             }
         }
 
