@@ -8,7 +8,6 @@ public class SlashScript : MonoBehaviour
     {
         ani = GetComponent<Animator>();
         float duration = ani.GetCurrentAnimatorStateInfo(0).length;
-        Debug.Log(duration);
         Invoke("Suicide", duration);
     }
 
