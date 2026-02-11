@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: ec92061da0dc6e048862f12963b15aa1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2378328447143592722
+    second: Blimp-shitpost_0
+  - first:
+      213: -8295578175833302367
+    second: Blimp-shitpost_1
+  - first:
+      213: 376050655753685646
+    second: Blimp-shitpost_2
+  - first:
+      213: -3567940235969816020
+    second: Blimp-shitpost_3
+  - first:
+      213: 2488402466868970250
+    second: Blimp-shitpost_4
+  - first:
+      213: 9180078181504912267
+    second: Blimp-shitpost_5
+  - first:
+      213: 5085818258071380468
+    second: Blimp-shitpost_6
+  - first:
+      213: -4157687357947376878
+    second: Blimp-shitpost_7
+  - first:
+      213: 5757618729405641479
+    second: Blimp-shitpost_8
+  - first:
+      213: 8038348714227958493
+    second: Blimp-shitpost_9
+  - first:
+      213: -2912384568699788170
+    second: Blimp-shitpost_10
+  - first:
+      213: 3228663974313126445
+    second: Blimp-shitpost_11
+  - first:
+      213: 7012508660185021882
+    second: Blimp-shitpost_12
+  - first:
+      213: 3867728064375902706
+    second: Blimp-shitpost_13
+  - first:
+      213: -2813881550468803907
+    second: Blimp-shitpost_14
+  - first:
+      213: 6426185445207789069
+    second: Blimp-shitpost_15
+  - first:
+      213: -1500793164037284716
+    second: Blimp-shitpost_16
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Blimp-shitpost_0
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213433b2f15810120800000000000000
+      internalID: 2378328447143592722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_1
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aa19f6d99f20ec80800000000000000
+      internalID: -8295578175833302367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_2
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a40c93410083500800000000000000
+      internalID: 376050655753685646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_3
+      rect:
+        serializedVersion: 2
+        x: 1568
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2a123752412c7ec0800000000000000
+      internalID: -3567940235969816020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_4
+      rect:
+        serializedVersion: 2
+        x: 2080
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a034ee70cd4988220800000000000000
+      internalID: 2488402466868970250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_5
+      rect:
+        serializedVersion: 2
+        x: 2592
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8b0aeac770366f70800000000000000
+      internalID: 9180078181504912267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_6
+      rect:
+        serializedVersion: 2
+        x: 3104
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f16a8882c4749640800000000000000
+      internalID: 5085818258071380468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_7
+      rect:
+        serializedVersion: 2
+        x: 3616
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21b0a66506dec46c0800000000000000
+      internalID: -4157687357947376878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_8
+      rect:
+        serializedVersion: 2
+        x: 4128
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 703fb5eaabb27ef40800000000000000
+      internalID: 5757618729405641479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_9
+      rect:
+        serializedVersion: 2
+        x: 4640
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd2864c0193fd8f60800000000000000
+      internalID: 8038348714227958493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_10
+      rect:
+        serializedVersion: 2
+        x: 5152
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 674e15d4aa12597d0800000000000000
+      internalID: -2912384568699788170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_11
+      rect:
+        serializedVersion: 2
+        x: 5664
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2ae80847c48ecc20800000000000000
+      internalID: 3228663974313126445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_12
+      rect:
+        serializedVersion: 2
+        x: 6176
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abdbdaaf87f615160800000000000000
+      internalID: 7012508660185021882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_13
+      rect:
+        serializedVersion: 2
+        x: 6688
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f15fe4be2eeca530800000000000000
+      internalID: 3867728064375902706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_14
+      rect:
+        serializedVersion: 2
+        x: 7200
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db2184073a513f8d0800000000000000
+      internalID: -2813881550468803907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_15
+      rect:
+        serializedVersion: 2
+        x: 7712
+        y: 34
+        width: 481
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e45627d956e2950800000000000000
+      internalID: 6426185445207789069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Blimp-shitpost_16
+      rect:
+        serializedVersion: 2
+        x: 8224
+        y: 34
+        width: 480
+        height: 219
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c1930a19c1c2be0800000000000000
+      internalID: -1500793164037284716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Blimp-shitpost_0: 2378328447143592722
+      Blimp-shitpost_1: -8295578175833302367
+      Blimp-shitpost_10: -2912384568699788170
+      Blimp-shitpost_11: 3228663974313126445
+      Blimp-shitpost_12: 7012508660185021882
+      Blimp-shitpost_13: 3867728064375902706
+      Blimp-shitpost_14: -2813881550468803907
+      Blimp-shitpost_15: 6426185445207789069
+      Blimp-shitpost_16: -1500793164037284716
+      Blimp-shitpost_2: 376050655753685646
+      Blimp-shitpost_3: -3567940235969816020
+      Blimp-shitpost_4: 2488402466868970250
+      Blimp-shitpost_5: 9180078181504912267
+      Blimp-shitpost_6: 5085818258071380468
+      Blimp-shitpost_7: -4157687357947376878
+      Blimp-shitpost_8: 5757618729405641479
+      Blimp-shitpost_9: 8038348714227958493
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
