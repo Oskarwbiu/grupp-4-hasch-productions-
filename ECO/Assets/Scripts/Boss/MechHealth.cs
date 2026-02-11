@@ -3,10 +3,10 @@ using UnityEngine;
 public class MechHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100f;
-    [SerializeField] float currentHealth = 100f;
+    [SerializeField] float currentHealth = 51f;
     [SerializeField] float invincibilityDuration = 1f;
 
-    float invincibilityTimer = 0f;
+    bool isInvincible = false;
 
     private void Start()
     {
@@ -14,13 +14,13 @@ public class MechHealth : MonoBehaviour
     }
     public void TakeDamage(float damage)
     {
-        if (invincibilityTimer < invincibilityDuration)
+        if (isInvincible)
         {
             return;
         }
 
         currentHealth -= damage;
-        invincibilityTimer = 0f;
+        Invoke("ResetInvIncibility", invincibilityDuration);
 
         if (currentHealth <= maxHealth/2)
         {
@@ -35,15 +35,17 @@ public class MechHealth : MonoBehaviour
 
     }
 
+    void ResetInvIncibility()
+    {
+        isInvincible = false ;
+    }
+
     void Die()
     {
 
         Destroy(gameObject);
     }
-    private void Update()
-    {
-        invincibilityTimer += Time.deltaTime;
-    }
+    
 
 
 

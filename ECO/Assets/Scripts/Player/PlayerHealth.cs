@@ -21,6 +21,7 @@ public class PlayerHealth : MonoBehaviour
                 if (playerDeath != null)
                 {
                     playerDeath.Die();
+                    currentHealth = maxHealth;
                 }
             }
             Invoke("Invincibility", InvincibleTime);
@@ -49,4 +50,6 @@ public class PlayerHealth : MonoBehaviour
     {
         return currentHealth;
     }
+
+
 }
