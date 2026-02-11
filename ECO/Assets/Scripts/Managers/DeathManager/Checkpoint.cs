@@ -5,19 +5,25 @@ public class Checkpoint : MonoBehaviour
 {
     private Animator animator;
     private static Checkpoint activeCheckpoint;
-    private bool hasBeenActivated = false;
+    [SerializeField] private int checkpointID;
 
     void Start()
     {
         animator = GetComponent<Animator>();
+
+        if (CheckpointManager.Instance != null && CheckpointManager.Instance.IsCheckpointActivated(checkpointID))
+        {
+            animator.SetTrigger("Activate");
+            activeCheckpoint = this;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !hasBeenActivated)
+        if (collision.CompareTag("Player") && CheckpointManager.Instance != null && !CheckpointManager.Instance.IsCheckpointActivated(checkpointID))
         {
-            hasBeenActivated = true;
             activeCheckpoint = this;
+            CheckpointManager.Instance.ActivateCheckpoint(checkpointID, transform.position);
 
             PlayerDeath playerDeath = collision.GetComponent<PlayerDeath>();
             if (playerDeath != null)
@@ -35,12 +41,12 @@ public class Checkpoint : MonoBehaviour
 
     public void TriggerRespawn()
     {
-        animator.SetTrigger("Respawn");
-        StartCoroutine(TriggerAfterRespawn());
+        StartCoroutine(TriggerAfterRespawnSequence());
     }
 
-    private IEnumerator TriggerAfterRespawn()
+    private IEnumerator TriggerAfterRespawnSequence()
     {
+        animator.SetTrigger("Respawn");
         yield return new WaitForSeconds(1.5f);
         animator.SetTrigger("AfterRespawn");
     }
