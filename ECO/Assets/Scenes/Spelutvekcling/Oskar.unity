@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 167237909}
   - component: {fileID: 167237913}
   - component: {fileID: 167237914}
+  - component: {fileID: 167237915}
   m_Layer: 8
   m_Name: Stationary enemy
   m_TagString: Enemy
@@ -209,14 +210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bff83a7da03ec24c808ffd22602f37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StationaryEnemyAi
-  detectionRange: 5
+  detectionRange: 10.3
   detectionLayer:
     serializedVersion: 2
     m_Bits: 72
-  defDistanceRay: 25
+  defDistanceRay: 7
   laserFirePoint: {fileID: 953544935}
   m_lineRenderer: {fileID: 167237914}
   lazerDamage: 1
+  shootInterval: 3.45
+  laserPulseDuration: 0.61
+  stunCooldownDuration: 2
 --- !u!61 &167237910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -251,17 +255,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0058059692, y: -0.017415881}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.25, y: 1.875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.1973801, y: 1.8707988}
   m_EdgeRadius: 0
 --- !u!212 &167237911
 SpriteRenderer:
@@ -310,8 +314,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: 1608453639, guid: b80dcb8c3b6b62e4a90780b93e521956, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 6959067697475206517, guid: d082ccb9cbc289b45a1e4f6981e8d994, type: 3}
+  m_Color: {r: 0.9803922, g: 0.9803922, b: 0.9803922, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -331,7 +335,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 39.326736, y: -0.25432062, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1357951421}
@@ -364,7 +368,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!120 &167237914
 LineRenderer:
   serializedVersion: 2
@@ -391,7 +395,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -412,7 +416,7 @@ LineRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 900
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -436,9 +440,9 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.22405058, g: 1, b: 0.12893075, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
+      key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -453,8 +457,8 @@ LineRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 65535
-      atime2: 0
+      atime1: 49987
+      atime2: 65535
       atime3: 0
       atime4: 0
       atime5: 0
@@ -463,11 +467,11 @@ LineRenderer:
       m_Mode: 0
       m_ColorSpace: 0
       m_NumColorKeys: 2
-      m_NumAlphaKeys: 2
+      m_NumAlphaKeys: 3
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
@@ -475,6 +479,28 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!95 &167237915
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167237908}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c82748120082064a8a5b9f2c1ca9780, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &258050312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,7 +1637,7 @@ Transform:
   m_GameObject: {fileID: 953544934}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.52, y: 0, z: 0}
+  m_LocalPosition: {x: -0.45, y: -0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2010,7 +2036,7 @@ Transform:
   m_GameObject: {fileID: 1357951420}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: -0.046, z: 0}
+  m_LocalPosition: {x: -0.43, y: -0.02, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3204,7 +3230,7 @@ MonoBehaviour:
   detectionRange: 5
   detectionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!212 &1986531171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3347,9 +3373,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1986531175
 MonoBehaviour:
@@ -3370,7 +3396,7 @@ MonoBehaviour:
   lookaroundInterval: 0.5
   runSpeedMultiplier: 1.5
   crouchSpeedMultiplier: 0.5
-  detectionRange: 5
+  detectionRange: 8.13
   detectionLayer:
     serializedVersion: 2
     m_Bits: 72
@@ -3535,6 +3561,42 @@ PrefabInstance:
     - target: {fileID: 1545297797251371345, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Offset.y
       value: -0.1562644
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790451087713655014, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: slashEffect
+      value: 
+      objectReference: {fileID: 797018023861042997, guid: 6d1098453efc5f24cbc14455b60e7b35, type: 3}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime1
+      value: 4369
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.51886785
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.6640007
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.024563871
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.33962262
+      objectReference: {fileID: 0}
+    - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.07197708
       objectReference: {fileID: 0}
     - target: {fileID: 2677336941660362917, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Name
