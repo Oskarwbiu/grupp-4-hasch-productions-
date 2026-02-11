@@ -124,7 +124,7 @@ public class PlayerJump : MonoBehaviour
 
     void WallJump()
     {
-        Ray ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.67f), Vector2.right);
+        Ray ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.40f), Vector2.right);
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, groundLayer);
         Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
 
@@ -135,7 +135,7 @@ public class PlayerJump : MonoBehaviour
         }
         else
         {
-            ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.67f), Vector2.left);
+            ray = new Ray(new Vector2(transform.position.x, transform.position.y - 0.40f), Vector2.left);
             hit = Physics2D.Raycast(ray.origin, ray.direction, 0.5f, groundLayer);
             Debug.DrawRay(ray.origin, ray.direction, Color.red, 1f);
             if (hit.collider != null)

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
+using UnityEngine.UIElements.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class PauseMenu : MonoBehaviour
 
     private VisualElement pauseMenu;
     private VisualElement settingsMenu;
+
+    [SerializeField] PlayerInput playerInput;
 
     private void Awake()
     {
@@ -52,12 +55,14 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
+        playerInput.enabled = false;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.Flex;
         Time.timeScale = 0;
     }
 
     void ResumeGame()
     {
+        playerInput.enabled = true;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
         Time.timeScale = 1;
         pauseVE.Blur();
