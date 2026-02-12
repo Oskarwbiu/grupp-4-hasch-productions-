@@ -8,6 +8,8 @@ TagManager:
   - End Point
   - Platform
   - Warning
+  - BossBounds
+  - Scientist
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Plant
   - Boss
   - BossProjectile
-  - 
+  - VFX
   - 
   - 
   - 
