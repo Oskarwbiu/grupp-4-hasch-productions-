@@ -57,6 +57,12 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
+            if (enemy.CompareTag("Scientist"))
+            {
+                enemy.gameObject.GetComponent<ScientistScript>().GetDamaged();
+                return;
+            }
+
             EnemyHealth enemyScript = enemy.GetComponent<EnemyHealth>();
             if (enemyScript == null)
             {
