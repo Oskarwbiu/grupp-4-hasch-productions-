@@ -3,7 +3,7 @@ using UnityEngine;
 public class BombScript : MonoBehaviour
 {
     [SerializeField] float bombRadius;
-    [SerializeField] ParticleSystem explosion;
+    [SerializeField] GameObject explosion;
     [SerializeField] float explosionDamage;
 
     private void OnCollisionEnter2D(Collision2D collision)

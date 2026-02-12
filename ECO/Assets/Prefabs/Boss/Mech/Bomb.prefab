@@ -169,5 +169,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   bombRadius: 2
-  explosion: {fileID: 8101810525034766407, guid: 61fa5e30a39bbe0458f69f9b1e7e8f50, type: 3}
+  explosion: {fileID: 3651712003353304320, guid: 61fa5e30a39bbe0458f69f9b1e7e8f50, type: 3}
   explosionDamage: 1

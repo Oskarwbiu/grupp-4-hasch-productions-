@@ -25,11 +25,12 @@ public class enemyAI : MonoBehaviour
     bool isPatrolling = false;
     bool isGrounded = false;
     float moveSpeedMultiplier = 1f;
-
+    Animator ani;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = origMoveSpeed;
+        ani = GetComponent<Animator>();
     }
 
     public void StunEnemy(float stunDuration)
@@ -123,6 +124,11 @@ public class enemyAI : MonoBehaviour
 
     void Chase()
     {
+        if (!ani.GetBool("walk"))
+        {
+            ani.SetBool("walk", true);
+            ani.SetBool("idle", false);
+        }
         Vector2 directionToPlayer = (player.transform.position - transform.position).normalized;
 
         float targetSpeed = Mathf.Abs(origMoveSpeed) * runSpeedMultiplier * moveSpeedMultiplier * Mathf.Sign(directionToPlayer.x);
@@ -151,6 +157,11 @@ public class enemyAI : MonoBehaviour
     }
     void Move()
     {
+        if(!ani.GetBool("walk"))
+        {
+            ani.SetBool("walk", true);
+            ani.SetBool("idle", false);
+        }
         float speedDifference = moveSpeed - rb.linearVelocity.x;
 
         float accelerationRate = (Mathf.Abs(moveSpeed) > 0.01f) ? acceleration : decceleration;
@@ -183,6 +194,11 @@ public class enemyAI : MonoBehaviour
         
         if (!isPatrolling && !chasePlayer)
         {
+            if (!ani.GetBool("idle"))
+            {
+                ani.SetBool("idle", true);
+                ani.SetBool("walk", false);
+            }
 
             isPatrolling = true;
             origMoveSpeed = moveSpeed;

@@ -1,25 +1,22 @@
 fileFormatVersion: 2
-guid: d0312cddd78cab34db09dd40fe51b0dd
+guid: 2a946cd52d156d74abf7ce05feb8360f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8091056974426596705
-    second: Explosion-Sheet_0
+      213: 2006914334746060589
+    second: Strike-Reticle_0
   - first:
-      213: -3218929311635101537
-    second: Explosion-Sheet_1
+      213: 2835127962268424167
+    second: Strike-Reticle_1
   - first:
-      213: 173871583687338615
-    second: Explosion-Sheet_2
+      213: 6084584566037067771
+    second: Strike-Reticle_2
   - first:
-      213: 9216318445893695339
-    second: Explosion-Sheet_3
+      213: 3528654630514846742
+    second: Strike-Reticle_3
   - first:
-      213: 7158146712088619669
-    second: Explosion-Sheet_4
-  - first:
-      213: -7444273379099384145
-    second: Explosion-Sheet_5
+      213: -4094401139545979390
+    second: Strike-Reticle_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -61,7 +58,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -128,111 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Explosion-Sheet_0
+      name: Strike-Reticle_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 29
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27ad2154fdf9db10800000000000000
+      internalID: 2006914334746060589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Strike-Reticle_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 30
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f9a1bddcc8ac6bf80800000000000000
-      internalID: -8091056974426596705
+      spriteID: 7e759cb4cd5685720800000000000000
+      internalID: 2835127962268424167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Explosion-Sheet_1
+      name: Strike-Reticle_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 0
-        width: 64
-        height: 64
+        x: 24
+        y: 24
+        width: 7
+        height: 31
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f98a5ee78d01453d0800000000000000
-      internalID: -3218929311635101537
+      spriteID: bf7b670ec69c07450800000000000000
+      internalID: 6084584566037067771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Explosion-Sheet_2
+      name: Strike-Reticle_3
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 64
-        height: 64
+        x: 29
+        y: 29
+        width: 26
+        height: 26
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 77ae73eb847b96200800000000000000
-      internalID: 173871583687338615
+      spriteID: 61cefdad0bc48f030800000000000000
+      internalID: 3528654630514846742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Explosion-Sheet_3
+      name: Strike-Reticle_4
       rect:
         serializedVersion: 2
-        x: 192
+        x: 29
         y: 0
-        width: 64
-        height: 64
+        width: 26
+        height: 30
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b67bf50ebc0f6ef70800000000000000
-      internalID: 9216318445893695339
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Explosion-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 59a2c285288d65360800000000000000
-      internalID: 7158146712088619669
+      spriteID: 206486d4bd3cd27c0800000000000000
+      internalID: -4094401139545979390
       vertices: []
       indices: 
       edges: []
@@ -241,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 530e6a844a0b2fd4896b2492e0a211ee
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -249,15 +246,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Explosion-Sheet_0: -8091056974426596705
-      Explosion-Sheet_1: -3218929311635101537
-      Explosion-Sheet_2: 173871583687338615
-      Explosion-Sheet_3: 9216318445893695339
-      Explosion-Sheet_4: 7158146712088619669
+      Strike-Reticle_0: 2006914334746060589
+      Strike-Reticle_1: 2835127962268424167
+      Strike-Reticle_2: 6084584566037067771
+      Strike-Reticle_3: 3528654630514846742
+      Strike-Reticle_4: -4094401139545979390
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

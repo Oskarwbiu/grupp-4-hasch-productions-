@@ -218,7 +218,7 @@ public class MechAttack : MonoBehaviour
 
         for (int i = 0; i < flyTimes; i++)
         {
-            while (!(transform.position.x < BoundsLeft + 7f))
+            while (!(transform.position.x < BoundsLeft + 8f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
@@ -399,6 +399,7 @@ public class MechAttack : MonoBehaviour
             RaycastHit2D ray = Physics2D.Raycast(currentAirstrike.position, Vector2.down, 999, 1 << 6);
             Debug.DrawRay(currentAirstrike.position, Vector2.down * 999);
             Instantiate(warning, ray.point, Quaternion.identity);
+            currentAirstrike.transform.rotation = Quaternion.Euler(currentAirstrike.transform.rotation.x,currentAirstrike.transform.rotation.y,currentAirstrike.transform.rotation.z + 180f);
             yield return null;
 
             
