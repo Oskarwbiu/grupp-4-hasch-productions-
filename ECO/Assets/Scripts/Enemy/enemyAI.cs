@@ -134,6 +134,7 @@ public class enemyAI : MonoBehaviour
 
     void ResetAttack()
     {
+        Debug.Log("attackreset");
         isAttacking = false;
     }
 
@@ -214,7 +215,7 @@ public class enemyAI : MonoBehaviour
             isPatrolling = true;
             origMoveSpeed = moveSpeed;
             moveSpeed = 0;
-                if (!ani.GetBool("idle"))
+                if (!ani.GetBool("idle") && !isAttacking)
             {
                 ani.SetBool("idle", true);
                 ani.SetBool("walk", false);

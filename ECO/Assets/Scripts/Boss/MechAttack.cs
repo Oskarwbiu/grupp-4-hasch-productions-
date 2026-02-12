@@ -164,15 +164,16 @@ public class MechAttack : MonoBehaviour
     {
         hitBox.size /= 1.5f;
         triggerBox.size /= 1.5f;
-        isDashing = true;
-        currentDamage = dashingDamage;
         animation.PlayAnimation("isFlying");
         yield return new WaitForSeconds(1f);
         rb.linearVelocityX = -dashForce;
         
+        isDashing = true;
+        currentDamage = dashingDamage;
 
-        
-       
+
+
+
 
         yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
         rb.linearVelocityX = 0;
