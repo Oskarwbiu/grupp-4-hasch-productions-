@@ -12,6 +12,8 @@ public class MechAttack : MonoBehaviour
     [SerializeField] float dashForce = 25f;
     [SerializeField] float knockBack = 2f;
     [SerializeField] float dashingDamage = 2f;
+    [SerializeField] BoxCollider2D triggerBox;
+    [SerializeField] BoxCollider2D hitBox;
     [Header("Fly Attack")]
     [SerializeField] float flySpeed = 5f;
     [SerializeField] int flyTimes = 1;
@@ -38,7 +40,8 @@ public class MechAttack : MonoBehaviour
     bool isDashing = false;
     float currentDamage = 1;
     int lastAttack = -1;
-    bool phase2 = true;
+    int phase = 0;
+    MechAnimation animation;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
     float BoundsRight => arenaBounds.bounds.max.x;
@@ -49,9 +52,11 @@ public class MechAttack : MonoBehaviour
 
     void Start()
     {
-        
+
+        arenaBounds = GameObject.FindWithTag("BossBounds").GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        animation = rb.GetComponent<MechAnimation>();
         gravityScale = rb.gravityScale;
         revealAnimation = StartCoroutine(RevealAnimation());
     }
@@ -61,7 +66,6 @@ public class MechAttack : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isTouchingPlayer = true;
-            Debug.Log(isTouchingPlayer);
         }
         else
         {
@@ -74,7 +78,11 @@ public class MechAttack : MonoBehaviour
         if (isTouchingPlayer && canAttack)
         {
             canAttack = false;
-            FindFirstObjectByType<PlayerHealth>().GetDamaged(currentDamage);
+            PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+                if (playerHealth != null)
+            {
+                playerHealth.GetDamaged(currentDamage);
+            }
             Debug.Log("damage player");
             if (isDashing)
             {
@@ -94,13 +102,35 @@ public class MechAttack : MonoBehaviour
     IEnumerator RevealAnimation()
     {
         yield return null;
+        float endPos = BoundsRight - 5f;
+        rb.linearVelocityY = 75;
+
+        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 10);
+        yield return new WaitForSeconds(2f);
+
+        rb.linearVelocityY = 0;
+        rb.transform.position = new Vector2(endPos, transform.position.y);
+        rb.gravityScale *= 3;
+
+        animation.PlayAnimation("isFalling");
+
+        yield return new WaitForSeconds(0.2f);
+
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+
+        rb.gravityScale = gravityScale;
+        animation.PlayTrigger("land");
+
+        yield return new WaitForSeconds(0.5f);
+
         ChooseAttack();
         Debug.Log("Reveal animation finished, starting attacks.");
     }
 
     void ChooseAttack()
     {
-        int attack = Random.Range(0, 3);
+        transform.localScale = new Vector3(-1,1,1);
+        int attack = Random.Range(0, 3 + phase);
         if (lastAttack == attack)
         {
             ChooseAttack();
@@ -117,16 +147,14 @@ public class MechAttack : MonoBehaviour
             case 0:
                 currentAttack = StartCoroutine(DashAttack());
                 break;
-            case 1:
-                if (!phase2)
-                {
-                    currentAttack = StartCoroutine(FlyAttack());
-                    break;
-                }
-                currentAttack = StartCoroutine(Airstrike());
+            case 1: 
+                currentAttack = StartCoroutine(FlyAttack());
                 break;
             case 2:
                 currentAttack = StartCoroutine(SpinShot());
+                break;
+            case 3:
+                currentAttack = StartCoroutine(Airstrike());
                 break;
 
         }
@@ -134,23 +162,29 @@ public class MechAttack : MonoBehaviour
     }
     IEnumerator DashAttack()
     {
+        hitBox.size /= 1.5f;
+        triggerBox.size /= 1.5f;
         isDashing = true;
-        transform.rotation = Quaternion.Euler(0,0,90);
         currentDamage = dashingDamage;
-        yield return new WaitForSeconds(0.5f);
+        animation.PlayAnimation("isFlying");
+        yield return new WaitForSeconds(1f);
         rb.linearVelocityX = -dashForce;
+        
 
-        transform.rotation = Quaternion.Euler(0, 0, -90);
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        
+       
 
-        yield return new WaitUntil(() => transform.position.x < BoundsLeft + 3.5f);
+        yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
         rb.linearVelocityX = 0;
-        yield return new WaitForSeconds(0.3f);
-
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+        animation.PlayAnimation("isIdle");
+        yield return new WaitForSeconds(0.6f);
+        animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
 
-        yield return new WaitUntil(() => transform.position.x > BoundsRight - 3.5f);
+        yield return new WaitUntil(() => transform.position.x > BoundsRight - 5f);
         rb.linearVelocityX = 0;
+        animation.PlayAnimation("isIdle");
 
         Debug.Log("DashAttack Finished");
 
@@ -158,6 +192,9 @@ public class MechAttack : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         isDashing = false;
+        transform.position += Vector3.up;
+        hitBox.size *= 1.5f;
+        triggerBox.size *= 1.5f;
         Invoke("ChooseAttack", attackCooldown);
     }
 
@@ -168,7 +205,9 @@ public class MechAttack : MonoBehaviour
 
         rb.gravityScale = 0;
         rb.linearVelocityY = flySpeed;
-
+        animation.PlayTrigger("flyUp");
+        yield return new WaitForSeconds(0.5f);
+        animation.PlayAnimation("isFlying");
 
         yield return new WaitUntil(() => transform.position.y > BoundsTop - 1.5f);
 
@@ -179,7 +218,7 @@ public class MechAttack : MonoBehaviour
 
         for (int i = 0; i < flyTimes; i++)
         {
-            while (!(transform.position.x < BoundsLeft + 5f))
+            while (!(transform.position.x < BoundsLeft + 7f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
@@ -191,6 +230,7 @@ public class MechAttack : MonoBehaviour
                 }
             }
 
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             rb.linearVelocityX = -rb.linearVelocity.x;
 
             while (!(transform.position.x > BoundsRight - 5f))
@@ -207,12 +247,15 @@ public class MechAttack : MonoBehaviour
         }
         rb.linearVelocityX = 0;
 
-        rb.gravityScale = gravityScale/2;
-
-        yield return new WaitForSeconds(0.15f);
-
-        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         rb.gravityScale = gravityScale;
+        animation.PlayTrigger("flyDown");
+        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+
+        yield return new WaitForSeconds(0.5f);
+        animation.PlayAnimation("isFalling");
+        yield return new WaitForSeconds(0.2f);
+        yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
 
         Debug.Log("Fly Attack Finished");
 
@@ -224,6 +267,7 @@ public class MechAttack : MonoBehaviour
         Vector2 startPos = transform.position;
 
         // Jump to middle
+        animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
@@ -232,30 +276,50 @@ public class MechAttack : MonoBehaviour
 
         rb.transform.position = new Vector2(BoundsCenterX, transform.position.y);
         rb.gravityScale *= 3;
-
+        animation.PlayAnimation("isFalling");
         yield return new WaitForSeconds(0.2f);
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
 
         rb.gravityScale = gravityScale;
-
-        yield return new WaitForSeconds(0.5f);
+        if (phase == 1)
+        {
+            animation.PlayTrigger("readyCannons");
+            yield return new WaitForSeconds(0.5f);
+            animation.PlayAnimation("isShooting");
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
 
         // Shoot bullets
         float direction = 1;
         Vector2 spawnPos = Vector2.down;
         for (int i = 0; i <= spinShotsPerAttack; i++)
         {
+            if (phase != 1)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
             Rigidbody2D currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+            currentBullet.transform.localScale = new Vector2(-currentBullet.transform.localScale.x, currentBullet.transform.localScale.y);
 
             yield return new WaitForSeconds(spinShotInterval);
             direction = -direction;
+            if (phase != 1)
+            {
+                transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
+            
             currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
+            
 
             direction = -direction;
-            if (phase2 && spawnPos == Vector2.down)
+            if (phase == 1 && spawnPos == Vector2.down)
             {
                 spawnPos = Vector2.up;
             }
@@ -263,11 +327,16 @@ public class MechAttack : MonoBehaviour
             {
                 spawnPos = Vector2.down;
             }
+            yield return new WaitForSeconds(spinShotInterval);
+            
         }
-
+        animation.PlayAnimation("f");
+        yield return new WaitForSeconds(0.5f);
+        animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
 
         // Jump back
+        
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
         yield return new WaitForSeconds(1f);
 
@@ -275,12 +344,15 @@ public class MechAttack : MonoBehaviour
         rb.transform.position = new Vector2(startPos.x, transform.position.y);
         rb.gravityScale *= 3;
 
+        animation.PlayAnimation("isFalling");
         yield return new WaitForSeconds(0.2f);
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
 
         rb.gravityScale = gravityScale;
-
+        yield return new WaitForSeconds(0.5f);
+        animation.PlayAnimation("isIdle");
         Debug.Log("Spin Shot Attack Finished");
 
         Invoke("ChooseAttack", attackCooldown);
@@ -291,6 +363,7 @@ public class MechAttack : MonoBehaviour
         Vector2 startPos = transform.position;
 
         // Jump to middle
+        animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
@@ -300,9 +373,11 @@ public class MechAttack : MonoBehaviour
         rb.transform.position = new Vector2(BoundsCenterX, transform.position.y);
         rb.gravityScale *= 3;
 
+        animation.PlayAnimation("isFalling");
         yield return new WaitForSeconds(0.2f);
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
 
         rb.gravityScale = gravityScale;
         
@@ -328,8 +403,8 @@ public class MechAttack : MonoBehaviour
 
             
         }
-        
 
+        animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
         // Jump back
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
@@ -339,9 +414,11 @@ public class MechAttack : MonoBehaviour
         rb.transform.position = new Vector2(startPos.x, transform.position.y);
         rb.gravityScale *= 3;
 
+        animation.PlayAnimation("isFalling");
         yield return new WaitForSeconds(0.2f);
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
+        animation.PlayTrigger("land");
 
         rb.gravityScale = gravityScale;
 
@@ -350,7 +427,10 @@ public class MechAttack : MonoBehaviour
         Invoke("ChooseAttack", attackCooldown);
     }
 
-
+    public void InitiatePhase2()
+    {
+        phase = 1;
+    }
 
     void OnDrawGizmos()
     {

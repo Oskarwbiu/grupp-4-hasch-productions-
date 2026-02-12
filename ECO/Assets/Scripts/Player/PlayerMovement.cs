@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     float absMoveSpeed;
     bool wasGrounded;
     bool isLocked = false;
+    
 
     void Start()
     {
@@ -38,8 +39,12 @@ public class PlayerMovement : MonoBehaviour
         ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
     }
+        
+
+
     private void FixedUpdate()
     {
+        
         absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
 
         wasGrounded = isGrounded;
@@ -57,6 +62,12 @@ public class PlayerMovement : MonoBehaviour
     {
         SetAnimation();
         FlipSprite();
+    }
+
+    public void ResetMovement()
+    {
+        moveInput = Vector2.zero;
+        rb.linearVelocity = Vector2.zero;
     }
 
 

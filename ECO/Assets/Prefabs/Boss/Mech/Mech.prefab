@@ -10,10 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5955634529700202681}
   - component: {fileID: 8020558413928960761}
-  - component: {fileID: 2130397715409740644}
   - component: {fileID: 5467980845472181828}
   - component: {fileID: 2702629551857466005}
   - component: {fileID: 7890143316463402585}
+  - component: {fileID: 2130397715409740644}
+  - component: {fileID: 5780718766065383111}
+  - component: {fileID: 3354684496125201921}
+  - component: {fileID: 3811708673413052549}
   m_Layer: 10
   m_Name: Mech
   m_TagString: Untagged
@@ -31,7 +34,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 62.55, y: 9.69, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,8 +86,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.509434, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -3549317722357511791, guid: 830c32908106fbb42a5786212fa257bf, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -94,35 +97,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2130397715409740644
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247924443539186187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 040229c7bc0571f4aadf123c206c325e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  attackspeed: 1
-  attackCooldown: 2
-  arenaBounds: {fileID: 0}
-  dashForce: 25
-  knockBack: 2
-  dashingDamage: 2
-  flySpeed: 5
-  flyTimes: 1
-  bombDropInterval: 0.5
-  bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
-  spinShotInterval: 0.37
-  spinShotsPerAttack: 12
-  spinShotForce: 15
-  spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
-  amount: 10
-  airstrike: {fileID: 0}
-  warning: {fileID: 0}
 --- !u!50 &5467980845472181828
 Rigidbody2D:
   serializedVersion: 5
@@ -188,13 +162,13 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6, y: 7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.7, y: 4.7}
   m_EdgeRadius: 0
 --- !u!61 &7890143316463402585
 BoxCollider2D:
@@ -212,7 +186,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -234,11 +208,91 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 6, y: 7}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.7, y: 4.7}
   m_EdgeRadius: 0
+--- !u!114 &2130397715409740644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 040229c7bc0571f4aadf123c206c325e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  attackspeed: 5
+  attackCooldown: 2
+  arenaBounds: {fileID: 0}
+  dashForce: 25
+  knockBack: 1500
+  dashingDamage: 2
+  triggerBox: {fileID: 7890143316463402585}
+  hitBox: {fileID: 2702629551857466005}
+  flySpeed: 5
+  flyTimes: 1
+  bombDropInterval: 0.75
+  bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  spinShotInterval: 0.45
+  spinShotsPerAttack: 12
+  spinShotForce: 25
+  spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
+  amount: 10
+  airstrike: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  warning: {fileID: 4342089698753490178, guid: ec52638b1429c034db5a743971bb3f97, type: 3}
+--- !u!114 &5780718766065383111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74000c3edb8f2404aa7d49f9db8bfd0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  maxHealth: 100
+  currentHealth: 500
+  invincibilityDuration: 1
+--- !u!114 &3354684496125201921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35147946e7b8d92409e838c55e3b6962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!95 &3811708673413052549
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 247924443539186187}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8797afa6bfa9c42449886c6038492750, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

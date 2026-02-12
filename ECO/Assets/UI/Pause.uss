@@ -17,10 +17,10 @@
     margin-bottom: 35px;
     margin-left: 35px;
     height: 10%;
-    background-image: url("project://database/Assets/Sprites/UI/button-menu-sprite.png?fileID=2800000&guid=21cd01592e0ce324eb109713e08bad36&type=3#button-menu-sprite");
+    background-image: url("project://database/Assets/Sprites/UI/button-menu-sprite%201.png?fileID=2800000&guid=a1155bb8f00dd2f4a9169c740504c379&type=3#button-menu-sprite 1");
     -unity-background-image-tint-color: rgb(203, 203, 203);
     background-repeat: no-repeat no-repeat;
-    background-size: 110% 125%;
+    background-size: 100% 100%;
     font-size: 30px;
     -unity-font-style: normal;
     -unity-text-align: middle-center;
@@ -51,6 +51,6 @@
 
 .labels {
     -unity-font-definition: url("project://database/Assets/Fonts/Ethnocentric-Regular.otf?fileID=12800000&guid=cc6a7c1b7001cbd408dc5752989071e3&type=3#Ethnocentric-Regular");
-    font-size: 42px;
+    font-size: 25px;
     color: rgb(255, 255, 255);
 }
