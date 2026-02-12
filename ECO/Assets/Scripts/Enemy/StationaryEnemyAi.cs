@@ -17,10 +17,13 @@ public class StationaryEnemyAI : MonoBehaviour
     Vector2 dir;
     Coroutine flipCoroutine;
     bool isFlipping = false;
+    bool hasStartedCharging = false;
+    bool isResettingAfterShot = false;
 
     Vector2 directionToPlayer;
 
     PlayerHealth playerHealth;
+    Animator animator;
     //lazer
     [SerializeField] private float defDistanceRay = 100f;
     public Transform laserFirePoint;
@@ -32,13 +35,24 @@ public class StationaryEnemyAI : MonoBehaviour
     [SerializeField] float laserPulseDuration = 0.1f;
     Coroutine laserPulseCoroutine;
     bool canShoot = true;
-    [SerializeField] float stunCooldownDuration = 2f;
-    Coroutine stunCooldownCoroutine;
 
-    private void Awake()
+    void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        m_lineRenderer.enabled = false;
         m_transform = GetComponent<Transform>();
         playerHealth = FindFirstObjectByType<PlayerHealth>();
+        animator = GetComponent<Animator>();
+    }
+
+
+    void SetAnimationState(string activeState)
+    {
+        animator.SetBool("Idle", false);
+        animator.SetBool("Charge", false);
+        animator.SetBool("Shoot", false);
+        animator.SetBool("Reset", false);
+        animator.SetBool(activeState, true);
     }
     void ShootLazer()
     {
@@ -61,10 +75,38 @@ public class StationaryEnemyAI : MonoBehaviour
             Draw2DRay(laserFirePoint.position, (Vector2)laserFirePoint.position + directionToPlayer * defDistanceRay);
         }
 
-        // start pulse effect
+        if (animator != null)
+        {
+            animator.SetBool("Shoot", true);
+            SetAnimationState("Shoot");
+        }
+
         if (laserPulseCoroutine != null)
             StopCoroutine(laserPulseCoroutine);
         laserPulseCoroutine = StartCoroutine(LaserPulse());
+
+        StartCoroutine(PostShootReset());
+    }
+
+    IEnumerator PostShootReset()
+    {
+        isResettingAfterShot = true;
+        shootTimer = 0f;
+        yield return new WaitForSeconds(0.3f);
+        if (animator != null)
+        {
+            animator.SetBool("Reset", true);
+            SetAnimationState("Reset");
+        }
+
+        yield return new WaitForSeconds(0.4f);
+
+        if (!seePlayer)
+            SetAnimationState("Idle");
+        else
+            SetAnimationState("Charge");
+
+        isResettingAfterShot = false;
     }
     void Draw2DRay(Vector2 startPos, Vector2 endPos)
     {
@@ -82,13 +124,7 @@ public class StationaryEnemyAI : MonoBehaviour
             m_lineRenderer.enabled = false;
         }
     }
-        void Start()
-        {
-            rb = GetComponent<Rigidbody2D>();
-            if (m_lineRenderer != null)
-                m_lineRenderer.enabled = false;
-        }
-
+        
     private void FixedUpdate()
     {
         Vision();
@@ -101,13 +137,12 @@ public class StationaryEnemyAI : MonoBehaviour
             {
                 ResetToLooking();
             }
-            else if (canShoot)
+            else if (canShoot && !isResettingAfterShot)
             {
                 shootTimer += Time.fixedDeltaTime;
                 if (shootTimer >= shootInterval)
                 {
                     ShootLazer();
-                    shootTimer = 0f;
                 }
             }
         }
@@ -115,6 +150,19 @@ public class StationaryEnemyAI : MonoBehaviour
         {
             shootTimer = 0f;
         }
+    }
+    IEnumerator Wait()
+    {    
+        if (!hasStartedCharging && animator != null)
+        {
+            SetAnimationState("Idle");
+            yield return new WaitForSeconds(0.5f);
+            SetAnimationState("Charge");
+            yield return new WaitForSeconds(0.5f);
+            hasStartedCharging = true;
+        }
+
+        yield return null;
     }
 
     void Vision()
@@ -135,6 +183,9 @@ public class StationaryEnemyAI : MonoBehaviour
                     isLookingForPlayer = false;
                     seePlayer = true;
                     Getdirection();
+                    StartCoroutine(Wait());
+                   
+
                     found = true;
                     break;
                 }
@@ -167,45 +218,21 @@ public class StationaryEnemyAI : MonoBehaviour
             return true;
         return false;
     }
-    public void StunEnemy(float stunDuration)
-    {
-        StopAllCoroutines();
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        canShoot = false;
-        if (m_lineRenderer != null)
-            m_lineRenderer.enabled = false;
-        Invoke("UnStun", stunDuration);
-    }
-
-    public void UnStun()
-    {
-        canShoot = true;
-        // start cooldown before resuming player detection
-        if (stunCooldownCoroutine != null)
-            StopCoroutine(stunCooldownCoroutine);
-        stunCooldownCoroutine = StartCoroutine(StunCooldown());
-    }
-
-    IEnumerator StunCooldown()
-    {
-        yield return new WaitForSeconds(stunCooldownDuration);
-        // resume looking for player
-        ResetToLooking();
-        stunCooldownCoroutine = null;
-    }
-
-    
-
+   
     void ResetToLooking()
     {
         player = null;
         seePlayer = false;
         isLookingForPlayer = true;
+        hasStartedCharging = false;
+        isResettingAfterShot = false;
         directionToPlayer = Vector2.zero;
-        // disable laser
         if (m_lineRenderer != null)
             m_lineRenderer.enabled = false;
-        // start flipping if not already
+        if (animator != null)
+        {
+            SetAnimationState("Idle");
+        }
         if (flipCoroutine == null)
             flipCoroutine = StartCoroutine(FlipHorizontalDir());
     }
@@ -215,18 +242,22 @@ public class StationaryEnemyAI : MonoBehaviour
         {
             isFlipping = true;
             transform.localScale = new Vector2(-transform.localScale.x, transform.localScale.y);
+            if(!seePlayer)
+            SetAnimationState("Idle");
+
             yield return new WaitForSeconds(2f);
             isFlipping = false;
-            // allow starting again
             flipCoroutine = null;
         }
-      
+
     }
     public Transform PlayerPos()
     {
         if (player != null)
         {
+            SetAnimationState("Charge");
             return player.transform;
+            
         }
         else
         {

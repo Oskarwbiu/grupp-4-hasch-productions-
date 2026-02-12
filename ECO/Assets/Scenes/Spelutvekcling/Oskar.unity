@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 167237913}
   - component: {fileID: 167237914}
   - component: {fileID: 167237915}
+  - component: {fileID: 167237916}
   m_Layer: 8
   m_Name: Stationary enemy
   m_TagString: Enemy
@@ -218,9 +219,8 @@ MonoBehaviour:
   laserFirePoint: {fileID: 953544935}
   m_lineRenderer: {fileID: 167237914}
   lazerDamage: 1
-  shootInterval: 3.45
+  shootInterval: 1.28
   laserPulseDuration: 0.61
-  stunCooldownDuration: 2
 --- !u!61 &167237910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -501,6 +501,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &167237916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167237908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9bf6a984042094ea44118c55879ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  maxHealth: 100
+  currentHealth: 0
+  invincibilityDuration: 0.5
 --- !u!1 &258050312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1328,6 +1343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 827942359}
   - component: {fileID: 827942358}
+  - component: {fileID: 827942360}
   m_Layer: 0
   m_Name: Mountain background_0
   m_TagString: Untagged
@@ -1408,6 +1424,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2106855367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &827942360
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827942357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d71d172ae503d0a4486ad0d154ef9275, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &858664197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1672,7 +1710,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89c576fe1a5235540baf6b73a427c33c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
-  InvincibleTime: 1
+  invincibleTime: 1
   currentHealth: 5
   maxHealth: 5
 --- !u!4 &1016118434

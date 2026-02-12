@@ -52,8 +52,8 @@ public class MechAttack : MonoBehaviour
 
     void Start()
     {
-        
-        MusicManager.Instance.PlayMusic("BattleMusic");
+
+        arenaBounds = GameObject.FindWithTag("BossBounds").GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         animation = rb.GetComponent<MechAnimation>();
@@ -102,7 +102,7 @@ public class MechAttack : MonoBehaviour
     IEnumerator RevealAnimation()
     {
         yield return null;
-        float endPos = BoundsRight;
+        float endPos = BoundsRight - 5f;
         rb.linearVelocityY = 75;
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 10);
@@ -166,22 +166,23 @@ public class MechAttack : MonoBehaviour
         triggerBox.size /= 1.5f;
         isDashing = true;
         currentDamage = dashingDamage;
-        yield return new WaitForSeconds(0.5f);
-        rb.linearVelocityX = -dashForce;
         animation.PlayAnimation("isFlying");
+        yield return new WaitForSeconds(1f);
+        rb.linearVelocityX = -dashForce;
+        
 
         
        
 
-        yield return new WaitUntil(() => transform.position.x < BoundsLeft + 3.5f);
+        yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
         rb.linearVelocityX = 0;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         animation.PlayAnimation("isIdle");
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.6f);
         animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
 
-        yield return new WaitUntil(() => transform.position.x > BoundsRight - 3.5f);
+        yield return new WaitUntil(() => transform.position.x > BoundsRight - 5f);
         rb.linearVelocityX = 0;
         animation.PlayAnimation("isIdle");
 
@@ -217,7 +218,7 @@ public class MechAttack : MonoBehaviour
 
         for (int i = 0; i < flyTimes; i++)
         {
-            while (!(transform.position.x < BoundsLeft + 5f))
+            while (!(transform.position.x < BoundsLeft + 7f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
