@@ -1,30 +1,108 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class MainMenu : MonoBehaviour
 {
+
+
+    private Button exitButton;
+    private Button settingsButton;
+
+    private VisualElement settingsMenu;
+    private VisualElement mainMenu;
+
+    [SerializeField] Scene intro;
+    [SerializeField] LevelExit levelExit;
+    [SerializeField] AudioMixer audioMixer;
+
+
+
+
     private UIDocument _document;
+
+    private void Awake()
+    {
+        _document = GetComponent<UIDocument>();
+        
+    }
+
     private void Start()
     {
         MusicManager.Instance.PlayMusic("Backrooms");
 
         VisualElement root = _document.rootVisualElement;
+        settingsMenu = root.Q<VisualElement>("SettingsMenu");
+        VisualElement settingsRoot = settingsMenu.Q<VisualElement>();
+        mainMenu = root.Q<VisualElement>("MainMenu");
+        VisualElement settingsPanel = settingsRoot.Q<VisualElement>().Q<VisualElement>();
+
+
+        settingsButton = mainMenu.Q<Button>("SettingsButton");
+        exitButton = settingsPanel.Q<Button>();
+
+        settingsButton.RegisterCallback<ClickEvent>(evt => EnableSettings());
+        exitButton.RegisterCallback<ClickEvent>(evt => ExitSettings());
+
+
+
+
+        
+
 
         Button quitButton = root.Q<Button>("QuitButton");
         quitButton.RegisterCallback<ClickEvent>(evt => Application.Quit());
 
         Button startButton = root.Q<Button>("StartButton");
-        startButton.RegisterCallback<ClickEvent>(evt => SceneManager.LoadScene(1));
-        startButton.RegisterCallback<ClickEvent>(evt => FindFirstObjectByType<HUDScript>().StartGame());
-        startButton.RegisterCallback<ClickEvent>(evt => _document.enabled = false);
+        startButton.RegisterCallback<ClickEvent>(evt => Time.timeScale = 1);
+        startButton.RegisterCallback<ClickEvent>(evt => MusicManager.Instance.PlayMusic("MainMenu"));
+        startButton.RegisterCallback<ClickEvent>(evt => levelExit.StartCoroutine(intro));
+
+
+        Slider masterVolume = settingsPanel.Q<Slider>("MasterVolume");
+        Slider musicVolume = settingsPanel.Q<Slider>("MusicVolume");
+        Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
+
+        float masterVol = 0;
+        audioMixer.GetFloat("MasterVolume", out masterVol);
+        masterVolume.value = masterVol + 80;
+        masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", evt.newValue - 80));
+
+        float musicVol = 0;
+        audioMixer.GetFloat("MusicVolume", out musicVol);
+        musicVolume.value = musicVol + 80;
+        musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", evt.newValue - 80));
+
+        float sfxVol = 0;
+        audioMixer.GetFloat("SFXVolume", out sfxVol);
+        sfxVolume.value = sfxVol + 80;
+        sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", evt.newValue - 80));
+
+        Toggle muteToggle = settingsPanel.Q<Toggle>("MuteToggle");
+        muteToggle.value = AudioListener.pause;
+        muteToggle.RegisterCallback<ChangeEvent<bool>>(evt => AudioListener.pause = evt.newValue);
+
+        Toggle fullscreenToggle = settingsPanel.Q<Toggle>("FullscreenToggle");
+        fullscreenToggle.value = Screen.fullScreen;
+        fullscreenToggle.RegisterValueChangedCallback(evt => Screen.fullScreen = evt.newValue);
     }
 
-    
-    void Update()
+
+
+    void EnableSettings()
     {
-        
+        mainMenu.style.display = DisplayStyle.None;
+        settingsMenu.style.display = DisplayStyle.Flex;
+    }
+
+    void ExitSettings()
+    {
+        mainMenu.style.display = DisplayStyle.Flex;
+        settingsMenu.style.display = DisplayStyle.None;
     }
 }

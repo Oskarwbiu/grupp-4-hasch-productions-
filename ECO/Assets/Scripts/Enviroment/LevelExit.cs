@@ -13,10 +13,10 @@ public class LevelExit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(LoadLevel());
+            StartCoroutine(LoadLevel(level));
         }
     }
-    public IEnumerator LoadLevel()
+    public IEnumerator LoadLevel(Scene level)
     {
         CheckpointManager.Instance.ResetCheckpoints();
         transition.SetTrigger("start");
@@ -26,5 +26,9 @@ public class LevelExit : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)level);
     }
 
+    public void StartCoroutine(Scene level)
+    {
+        StartCoroutine(LoadLevel(level));
+    }
 
 }
