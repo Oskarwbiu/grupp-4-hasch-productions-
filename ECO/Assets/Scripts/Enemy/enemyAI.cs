@@ -24,6 +24,7 @@ public class enemyAI : MonoBehaviour
     bool isLookingForPlayer = false;
     bool isPatrolling = false;
     bool isGrounded = false;
+    bool isAttacking = false;
     float moveSpeedMultiplier = 1f;
     Animator ani;
     void Start()
@@ -122,9 +123,23 @@ public class enemyAI : MonoBehaviour
         
     }
 
+
+    public void PlayAttackAnimation()
+    {
+        ani.SetTrigger("attack");
+        float duration = ani.GetCurrentAnimatorStateInfo(0).length;
+        isAttacking = true;
+        Invoke("ResetAttack", duration);
+    }
+
+    void ResetAttack()
+    {
+        isAttacking = false;
+    }
+
     void Chase()
     {
-        if (!ani.GetBool("walk") && !ani.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if (!ani.GetBool("walk") && !isAttacking && moveSpeed != 0)
         {
             ani.SetBool("walk", true);
             ani.SetBool("idle", false);
@@ -157,7 +172,7 @@ public class enemyAI : MonoBehaviour
     }
     void Move()
     {
-        if(!ani.GetBool("walk") && !ani.GetCurrentAnimatorStateInfo(0).IsName("Attack"))
+        if(!ani.GetBool("walk") && !isAttacking && moveSpeed != 0)
         {
             ani.SetBool("walk", true);
             ani.SetBool("idle", false);
@@ -194,15 +209,16 @@ public class enemyAI : MonoBehaviour
         
         if (!isPatrolling && !chasePlayer)
         {
-            if (!ani.GetBool("idle"))
-            {
-                ani.SetBool("idle", true);
-                ani.SetBool("walk", false);
-            }
+            
 
             isPatrolling = true;
             origMoveSpeed = moveSpeed;
             moveSpeed = 0;
+                if (!ani.GetBool("idle"))
+            {
+                ani.SetBool("idle", true);
+                ani.SetBool("walk", false);
+            }
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             for (int i = 0; i < lookaroundDuration; i++)
             {

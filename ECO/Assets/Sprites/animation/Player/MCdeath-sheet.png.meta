@@ -1,25 +1,22 @@
 fileFormatVersion: 2
-guid: 2eb80ff25ad3a22459d5937a8c731755
+guid: 825a4b2b170202f49ab8a036c3f45452
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -273907801316172337
-    second: Health_UI-Sheet_0
+      213: -1330486287936937549
+    second: MCdeath-sheet_0
   - first:
-      213: 6268914685459560450
-    second: Health_UI-Sheet_1
+      213: 5883556815935491426
+    second: MCdeath-sheet_1
   - first:
-      213: -4827094382094938343
-    second: Health_UI-Sheet_2
+      213: 5038118864326129904
+    second: MCdeath-sheet_2
   - first:
-      213: -3077447744730827459
-    second: Health_UI-Sheet_3
+      213: -1178043677975784128
+    second: MCdeath-sheet_3
   - first:
-      213: -3206836857838988413
-    second: Health_UI-Sheet_4
-  - first:
-      213: 8765805164812907913
-    second: Health_UI-Sheet_5
+      213: -3138603968262230713
+    second: MCdeath-sheet_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -89,7 +86,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -128,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Health_UI-Sheet_0
+      name: MCdeath-sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fcd57515e42e23cf0800000000000000
-      internalID: -273907801316172337
+      spriteID: 3b1adf435c9298de0800000000000000
+      internalID: -1330486287936937549
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_UI-Sheet_1
+      name: MCdeath-sheet_1
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,20 +162,42 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 208fb0a31b8aff650800000000000000
-      internalID: 6268914685459560450
+      spriteID: 26dc9ad60c796a150800000000000000
+      internalID: 5883556815935491426
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_UI-Sheet_2
+      name: MCdeath-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f87a5cf96efae540800000000000000
+      internalID: 5038118864326129904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MCdeath-sheet_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,20 +206,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 91f82f90c37b20db0800000000000000
-      internalID: -4827094382094938343
+      spriteID: 045db54348fb6afe0800000000000000
+      internalID: -1178043677975784128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Health_UI-Sheet_3
+      name: MCdeath-sheet_4
       rect:
         serializedVersion: 2
-        x: 144
+        x: 128
         y: 0
-        width: 48
-        height: 48
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,52 +228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d35fd78c495ba45d0800000000000000
-      internalID: -3077447744730827459
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Health_UI-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 38390eb4ed60f73d0800000000000000
-      internalID: -3206836857838988413
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Health_UI-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 48
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98535faaa5566a970800000000000000
-      internalID: 8765805164812907913
+      spriteID: 74d2915e1507174d0800000000000000
+      internalID: -3138603968262230713
       vertices: []
       indices: 
       edges: []
@@ -263,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bddcb402af146044e8eef7ea4c3c75ec
+    spriteID: e5b615e257ee2904e8e8ab0b728ab350
     internalID: 0
     vertices: []
     indices: 
@@ -273,14 +248,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":48.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Health_UI-Sheet_0: -273907801316172337
-      Health_UI-Sheet_1: 6268914685459560450
-      Health_UI-Sheet_2: -4827094382094938343
-      Health_UI-Sheet_3: -3077447744730827459
-      Health_UI-Sheet_4: -3206836857838988413
-      Health_UI-Sheet_5: 8765805164812907913
+      MCdeath-sheet_0: -1330486287936937549
+      MCdeath-sheet_1: 5883556815935491426
+      MCdeath-sheet_2: 5038118864326129904
+      MCdeath-sheet_3: -1178043677975784128
+      MCdeath-sheet_4: -3138603968262230713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

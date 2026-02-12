@@ -21,7 +21,10 @@ public class HUDScript : MonoBehaviour
         VisualElement root = pauseDocument.rootVisualElement;
 
         healthElement = root.Q<VisualElement>("Health");
-        healthElement.style.backgroundImage = new StyleBackground(healthSprites[0]);
+        if (playerHealth.currentHealth >= healthSprites.Length)
+        {
+            healthElement.style.backgroundImage = new StyleBackground(healthSprites[0]);
+        }
 
     }
     private void Update()

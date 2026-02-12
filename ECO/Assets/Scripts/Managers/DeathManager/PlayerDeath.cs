@@ -79,7 +79,9 @@ public class PlayerDeath : MonoBehaviour
         }
         rb.linearVelocity = Vector2.zero;
         GetComponent<PlayerMovement>().ResetMovement();
+        GetComponent<PlayerMovement>().StartTriggerAnimation("Die");
         input.enabled = false;
+        
         StartCoroutine(RestartSceneAfterDelay(2f));
     }
 

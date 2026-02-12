@@ -75,7 +75,7 @@ public class MechAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isTouchingPlayer && canAttack)
+        if (isTouchingPlayer && canAttack && isDashing)
         {
             canAttack = false;
             PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
@@ -182,7 +182,7 @@ public class MechAttack : MonoBehaviour
         animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
 
-        yield return new WaitUntil(() => transform.position.x > BoundsRight - 5f);
+        yield return new WaitUntil(() => transform.position.x > BoundsRight - 2.5f);
         rb.linearVelocityX = 0;
         animation.PlayAnimation("isIdle");
 
@@ -233,7 +233,7 @@ public class MechAttack : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             rb.linearVelocityX = -rb.linearVelocity.x;
 
-            while (!(transform.position.x > BoundsRight - 5f))
+            while (!(transform.position.x > BoundsRight - 2.5f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
@@ -265,6 +265,7 @@ public class MechAttack : MonoBehaviour
     IEnumerator SpinShot()
     {
         Vector2 startPos = transform.position;
+        int startPhase = phase;
 
         // Jump to middle
         animation.PlayTrigger("flyUp");
@@ -299,7 +300,7 @@ public class MechAttack : MonoBehaviour
         Vector2 spawnPos = Vector2.down;
         for (int i = 0; i <= spinShotsPerAttack; i++)
         {
-            if (phase != 1)
+            if (startPhase != 1)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
@@ -309,7 +310,7 @@ public class MechAttack : MonoBehaviour
 
             yield return new WaitForSeconds(spinShotInterval);
             direction = -direction;
-            if (phase != 1)
+            if (startPhase != 1)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
@@ -319,7 +320,7 @@ public class MechAttack : MonoBehaviour
             
 
             direction = -direction;
-            if (phase == 1 && spawnPos == Vector2.down)
+            if (startPhase == 1 && spawnPos == Vector2.down)
             {
                 spawnPos = Vector2.up;
             }

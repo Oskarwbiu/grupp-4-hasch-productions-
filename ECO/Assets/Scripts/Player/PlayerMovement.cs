@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
         StartTriggerAnimation("Attack");
     }
 
-    void StartTriggerAnimation(string animation)
+    public void StartTriggerAnimation(string animation)
     {
         ChangeAnimation(""); 
         ani.ResetTrigger(animation);
@@ -153,19 +153,26 @@ public class PlayerMovement : MonoBehaviour
     
     void SetAnimation()
     {
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Die") || ani.GetBool("isDead"))
+        {
+            return;
+        }
+
+
         if (isLocked) { return; }
 
         float verticalVelocity = rb.linearVelocity.y;
         bool movingHorizontally = Mathf.Abs(rb.linearVelocity.x) > 0.3f && moveInput.x != 0;
         AnimatorStateInfo currentClip = ani.GetCurrentAnimatorStateInfo(0);
 
-        if (currentClip.IsName("Attack") || currentClip.IsName("Dash") || currentClip.IsName("JumpLand"))
+        if (currentClip.IsName("Attack") || currentClip.IsName("Dash") || currentClip.IsName("JumpLand") || currentClip.IsName("Die"))
         {
 
             if (currentClip.normalizedTime < 1.0f)
             {
                 return;
             }
+            
         }
 
         // -- LAND --
