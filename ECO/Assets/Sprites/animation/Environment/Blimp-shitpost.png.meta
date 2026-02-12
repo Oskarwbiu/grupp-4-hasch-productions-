@@ -120,10 +120,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -151,12 +151,12 @@ TextureImporter:
       name: Blimp-shitpost_0
       rect:
         serializedVersion: 2
-        x: 32
-        y: 34
-        width: 481
-        height: 219
+        x: 0
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -173,12 +173,12 @@ TextureImporter:
       name: Blimp-shitpost_1
       rect:
         serializedVersion: 2
-        x: 544
-        y: 34
-        width: 481
-        height: 219
+        x: 521
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -195,12 +195,12 @@ TextureImporter:
       name: Blimp-shitpost_2
       rect:
         serializedVersion: 2
-        x: 1056
-        y: 34
-        width: 481
-        height: 219
+        x: 1042
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: Blimp-shitpost_3
       rect:
         serializedVersion: 2
-        x: 1568
-        y: 34
-        width: 481
-        height: 219
+        x: 1563
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -239,12 +239,12 @@ TextureImporter:
       name: Blimp-shitpost_4
       rect:
         serializedVersion: 2
-        x: 2080
-        y: 34
-        width: 481
-        height: 219
+        x: 2084
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -261,12 +261,12 @@ TextureImporter:
       name: Blimp-shitpost_5
       rect:
         serializedVersion: 2
-        x: 2592
-        y: 34
-        width: 481
-        height: 219
+        x: 2605
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,12 +283,12 @@ TextureImporter:
       name: Blimp-shitpost_6
       rect:
         serializedVersion: 2
-        x: 3104
-        y: 34
-        width: 481
-        height: 219
+        x: 3126
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,12 +305,12 @@ TextureImporter:
       name: Blimp-shitpost_7
       rect:
         serializedVersion: 2
-        x: 3616
-        y: 34
-        width: 481
-        height: 219
+        x: 3647
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,12 +327,12 @@ TextureImporter:
       name: Blimp-shitpost_8
       rect:
         serializedVersion: 2
-        x: 4128
-        y: 34
-        width: 481
-        height: 219
+        x: 4168
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -349,12 +349,12 @@ TextureImporter:
       name: Blimp-shitpost_9
       rect:
         serializedVersion: 2
-        x: 4640
-        y: 34
-        width: 481
-        height: 219
+        x: 4689
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -371,12 +371,12 @@ TextureImporter:
       name: Blimp-shitpost_10
       rect:
         serializedVersion: 2
-        x: 5152
-        y: 34
-        width: 481
-        height: 219
+        x: 5210
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -393,12 +393,12 @@ TextureImporter:
       name: Blimp-shitpost_11
       rect:
         serializedVersion: 2
-        x: 5664
-        y: 34
-        width: 481
-        height: 219
+        x: 5731
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -415,12 +415,12 @@ TextureImporter:
       name: Blimp-shitpost_12
       rect:
         serializedVersion: 2
-        x: 6176
-        y: 34
-        width: 481
-        height: 219
+        x: 6252
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -437,12 +437,12 @@ TextureImporter:
       name: Blimp-shitpost_13
       rect:
         serializedVersion: 2
-        x: 6688
-        y: 34
-        width: 481
-        height: 219
+        x: 6773
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -459,12 +459,12 @@ TextureImporter:
       name: Blimp-shitpost_14
       rect:
         serializedVersion: 2
-        x: 7200
-        y: 34
-        width: 481
-        height: 219
+        x: 7294
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -481,12 +481,12 @@ TextureImporter:
       name: Blimp-shitpost_15
       rect:
         serializedVersion: 2
-        x: 7712
-        y: 34
-        width: 481
-        height: 219
+        x: 7815
+        y: 0
+        width: 521
+        height: 256
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -499,33 +499,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Blimp-shitpost_16
-      rect:
-        serializedVersion: 2
-        x: 8224
-        y: 34
-        width: 480
-        height: 219
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 49c1930a19c1c2be0800000000000000
-      internalID: -1500793164037284716
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 125df382b5a3b3940a0bba75f603295a
     internalID: 0
     vertices: []
     indices: 
@@ -533,7 +511,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":521.0,"y":256.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Blimp-shitpost_0: 2378328447143592722
       Blimp-shitpost_1: -8295578175833302367
@@ -543,7 +523,6 @@ TextureImporter:
       Blimp-shitpost_13: 3867728064375902706
       Blimp-shitpost_14: -2813881550468803907
       Blimp-shitpost_15: 6426185445207789069
-      Blimp-shitpost_16: -1500793164037284716
       Blimp-shitpost_2: 376050655753685646
       Blimp-shitpost_3: -3567940235969816020
       Blimp-shitpost_4: 2488402466868970250
