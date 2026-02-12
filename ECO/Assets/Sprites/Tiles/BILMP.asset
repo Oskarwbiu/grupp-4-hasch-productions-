@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: BILMP
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: 2378328447143592722, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -8295578175833302367, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 376050655753685646, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -3567940235969816020, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 2488402466868970250, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 9180078181504912267, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 5085818258071380468, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -4157687357947376878, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -4157687357947376878, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 5757618729405641479, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 8038348714227958493, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -2912384568699788170, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 3228663974313126445, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 7012508660185021882, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 3867728064375902706, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: -2813881550468803907, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  - {fileID: 6426185445207789069, guid: ec92061da0dc6e048862f12963b15aa1, type: 3}
+  m_MinSpeed: 8
+  m_MaxSpeed: 15
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
