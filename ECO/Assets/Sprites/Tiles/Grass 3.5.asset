@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13b75c95f34a00d4e8c04f76b73312e6, type: 3}
+  m_Name: Grass 3.5
+  m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
+  m_AnimatedSprites:
+  - {fileID: -5775452980006679169, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  - {fileID: -3706893518912907663, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  - {fileID: -8766880132562422126, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  - {fileID: -7909894143207247879, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  - {fileID: 6312760108757217689, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  - {fileID: -5046713387438179816, guid: 65941889b8ea1c541b960c490da5127e, type: 3}
+  m_MinSpeed: 6
+  m_MaxSpeed: 6
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
