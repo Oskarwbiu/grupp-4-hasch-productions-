@@ -11,6 +11,7 @@ public class ScientistScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
+        MusicManager.Instance.PlayMusic("Cloudy");
     }
 
     public void GetDamaged()

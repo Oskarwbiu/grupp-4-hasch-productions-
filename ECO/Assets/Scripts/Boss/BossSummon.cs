@@ -19,6 +19,7 @@ public class BossSummon : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             MusicManager.Instance.PlayMusic(bossTrack);
+            door.SetActive(true);
             StartCoroutine(spawnBoss());
             
         }
@@ -29,7 +30,7 @@ public class BossSummon : MonoBehaviour
         Debug.Log("start delay");
         yield return new WaitForSeconds(delay);
         Debug.Log("start spawning");
-        door.SetActive(true);
+        
 
         Instantiate(boss, spawnPos.position, Quaternion.identity);
     }
