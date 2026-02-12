@@ -395,7 +395,8 @@ public class MechAttack : MonoBehaviour
             currentAirstrike.AddForce(force, ForceMode2D.Impulse);
             yield return new WaitUntil(() => currentAirstrike.transform.position.y > BoundsTop + 30);
             currentAirstrike.linearVelocity = Vector2.zero;
-            currentAirstrike.position = new Vector2(Random.Range(BoundsLeft, BoundsRight), currentAirstrike.position.y);
+            Vector2 PlayerPos = player.transform.position;
+            currentAirstrike.position = new Vector2(Random.Range(PlayerPos.x - 4, PlayerPos.x + 4), currentAirstrike.position.y);
 
             
             RaycastHit2D ray = Physics2D.Raycast(currentAirstrike.position, Vector2.down, 999, 1 << 6);

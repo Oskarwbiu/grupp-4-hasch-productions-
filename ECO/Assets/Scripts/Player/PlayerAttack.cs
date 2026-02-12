@@ -13,6 +13,7 @@ public class PlayerAttack : MonoBehaviour
     MechHealth bossHealth;
     Vector2 attackDirection = Vector2.right;
     float lastAttackTime;
+    enemyAttack enemyAttack;
  
     private void Start()
     {
@@ -74,7 +75,10 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (enemyScript != null)
                 {
+                    enemyAttack  = enemyScript.GetComponent<enemyAttack>();
+                    enemyAttack.lockScale = true;
                     enemyScript.TakeDamage(attackDamage);
+                    Invoke("Unlockscale", attackCooldown);
                 }
                 else
                 {
@@ -97,7 +101,10 @@ public class PlayerAttack : MonoBehaviour
     }
 
     
-
+    void Unlockscale()
+    {
+        enemyAttack.lockScale = false;
+    }
     void OnPause()
     {
         FindFirstObjectByType<PauseMenu>().Pause();

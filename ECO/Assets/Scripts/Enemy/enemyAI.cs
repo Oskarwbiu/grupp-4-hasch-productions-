@@ -65,13 +65,15 @@ public class enemyAI : MonoBehaviour
             
         }
         Vision();
+
+        if (GetComponent<enemyAttack>().lockScale) { return; }
         if (rb.linearVelocityX < 0)
         {
-            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
         }
         else if (rb.linearVelocityX > 0)
         {
-            transform.localScale = new Vector2(Mathf.Abs(transform.localScale.x), transform.localScale.y);
+            transform.localScale = new Vector2(-Mathf.Abs(transform.localScale.x), transform.localScale.y);
         }
     }
 
@@ -126,10 +128,28 @@ public class enemyAI : MonoBehaviour
 
     public void PlayAttackAnimation()
     {
+        if (isAttacking) return;
+
+
+        ani.SetBool("walk", false);
+        ani.SetBool("idle", false);
         ani.SetTrigger("attack");
         float duration = ani.GetCurrentAnimatorStateInfo(0).length;
         isAttacking = true;
-        Invoke("ResetAttack", duration);
+        
+        StopCoroutine(HandleAttackReset());
+        StartCoroutine(HandleAttackReset());
+    }
+
+    IEnumerator HandleAttackReset()
+    {
+
+        yield return new WaitForEndOfFrame();
+
+        float duration = ani.GetCurrentAnimatorStateInfo(0).length;
+        yield return new WaitForSeconds(duration);
+
+        isAttacking = false;
     }
 
     void ResetAttack()
