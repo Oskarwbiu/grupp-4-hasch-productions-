@@ -89,6 +89,7 @@ public class PlayerCheats : MonoBehaviour
         if (canLevelskip)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            CheckpointManager.Instance.ResetCheckpoints();
         }
     }
 

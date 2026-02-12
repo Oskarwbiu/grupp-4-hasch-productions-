@@ -14,7 +14,7 @@ public class HUDScript : MonoBehaviour
     float lastHealth = 0;
     private void Start()
     {
-
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
 

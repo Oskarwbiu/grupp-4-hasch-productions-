@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   attackspeed: 5
-  attackCooldown: 2
+  attackCooldown: 4
   arenaBounds: {fileID: 0}
   dashForce: 25
   knockBack: 1500

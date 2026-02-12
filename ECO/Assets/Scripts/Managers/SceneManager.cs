@@ -1,4 +1,5 @@
 using UnityEngine;
+using static System.TimeZoneInfo;
 
 public class SceneManager : MonoBehaviour
 {
@@ -6,5 +7,6 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
+
     
 }

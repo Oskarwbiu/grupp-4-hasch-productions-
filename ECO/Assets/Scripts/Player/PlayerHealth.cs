@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
-    float origInvincibleTime => invincibleTime;
+    float OrigInvincibleTime => invincibleTime;
     public void GetDamaged(float damage)
     {
         if (!isInvincible)
@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour
     public void Invincibility()
     {
         isInvincible = false;
-        invincibleTime = origInvincibleTime;
+        invincibleTime = OrigInvincibleTime;
     }
 
     public void ResetHealth()
