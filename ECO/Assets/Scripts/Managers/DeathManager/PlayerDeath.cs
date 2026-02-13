@@ -13,13 +13,22 @@ public class PlayerDeath : MonoBehaviour
     float gravity;
     GameObject spriteObject;
 
-    void Start()
+    private void Awake()
     {
         
+    }
+
+    void Start()
+    {
         rb = GetComponent<Rigidbody2D>();
         input = rb.GetComponent<PlayerInput>();
+        input.enabled = false;
+        StartCoroutine(ResetInput());
+
+
         spriteObject = rb.transform.GetChild(0).gameObject;
         gravity = rb.gravityScale;
+
         
 
         Vector3 spawnPosition = CheckpointManager.Instance.GetLastCheckpointPosition();
@@ -44,6 +53,12 @@ public class PlayerDeath : MonoBehaviour
         
 
 
+    }
+
+    IEnumerator ResetInput()
+    {
+        yield return new WaitForSeconds(0.1f);
+        input.enabled = true;
     }
 
     IEnumerator Respawn()

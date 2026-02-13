@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelExit : MonoBehaviour
 {
@@ -13,7 +14,8 @@ public class LevelExit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            StartCoroutine(LoadLevel(level));
+            //Destroy(collision.gameObject.GetComponent<PlayerInput>());
+            StartLevelCoroutine(level);
         }
     }
     public IEnumerator LoadLevel(Scene level)
@@ -26,7 +28,7 @@ public class LevelExit : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)level);
     }
 
-    public void StartCoroutine(Scene level)
+    public void StartLevelCoroutine(Scene level)
     {
         StartCoroutine(LoadLevel(level));
     }

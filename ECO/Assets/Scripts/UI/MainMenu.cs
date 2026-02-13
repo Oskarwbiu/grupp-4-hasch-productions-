@@ -61,7 +61,7 @@ public class MainMenu : MonoBehaviour
         Button startButton = root.Q<Button>("StartButton");
         startButton.RegisterCallback<ClickEvent>(evt => Time.timeScale = 1);
         startButton.RegisterCallback<ClickEvent>(evt => MusicManager.Instance.PlayMusic("MainMenu"));
-        startButton.RegisterCallback<ClickEvent>(evt => levelExit.StartCoroutine(intro));
+        startButton.RegisterCallback<ClickEvent>(evt => levelExit.StartLevelCoroutine(intro));
 
 
         Slider masterVolume = settingsPanel.Q<Slider>("MasterVolume");

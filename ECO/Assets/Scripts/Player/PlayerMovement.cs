@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Unity.Mathematics.Geometry;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,33 +32,69 @@ public class PlayerMovement : MonoBehaviour
     bool wasGrounded;
     bool isLocked = false;
 
+    private InputAction moveAction;
 
-
-    void Awake()
+    void OnEnable()
     {
-        rb = GetComponent<Rigidbody2D>();
+        if (playerInput == null)
+            playerInput = GetComponent<PlayerInput>();
 
-        if (transform.childCount > 0)
-            SpriteObject = transform.GetChild(0).gameObject;
-
-        if (SpriteObject != null)
-            ani = SpriteObject.GetComponent<Animator>();
-
-        playerInput = GetComponent<PlayerInput>();
-    }
-
-    void Start()
-    {
-        originalSize = SpriteObject.transform.localScale;
-        moveSpeed = originalMoveSpeed;
+        if (playerInput == null)
+            playerInput = FindFirstObjectByType<PlayerInput>();
 
         if (playerInput != null)
         {
             playerInput.ActivateInput();
-            playerInput.actions.Enable();
+            playerInput.actions?.Enable();
+
+            var moveActionCandidate = playerInput.actions.FindAction("Move");
+            if (moveActionCandidate != null)
+            {
+                moveAction = moveActionCandidate;
+                moveAction.performed += OnMovePerformed;
+                moveAction.canceled += OnMovePerformed;
+            }
         }
-        Debug.Log(playerInput);
     }
+
+    void OnDisable()
+    {
+        
+        if (moveAction != null)
+        {
+            moveAction.performed -= OnMovePerformed;
+            moveAction.canceled -= OnMovePerformed;
+            moveAction = null;
+        }
+    }
+
+
+    void Awake()
+        {
+            rb = GetComponent<Rigidbody2D>();
+
+            if (transform.childCount > 0)
+                SpriteObject = transform.GetChild(0).gameObject;
+
+            if (SpriteObject != null)
+                ani = SpriteObject.GetComponent<Animator>();
+
+            playerInput = GetComponent<PlayerInput>();
+        }
+
+        void Start()
+        {
+            originalSize = SpriteObject.transform.localScale;
+            moveSpeed = originalMoveSpeed;
+
+            if (playerInput != null)
+            {
+                playerInput.ActivateInput();
+                playerInput.actions.Enable();
+            }
+            Debug.Log(playerInput);
+        }
+    
         
 
 
@@ -93,8 +130,15 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
-        Debug.Log("MoveMent triggad");
+        Debug.Log("Movement triggad");
 
+    }
+
+    void OnMovePerformed(InputAction.CallbackContext ctx)
+    {
+
+        moveInput = ctx.ReadValue<Vector2>();
+        Debug.Log("Movement updated via InputAction callback: " + moveInput);
     }
     void OnDash()
     {
