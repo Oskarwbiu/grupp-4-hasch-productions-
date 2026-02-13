@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float decceleration = 10f;
     [SerializeField] float frictionAmount = 0.2f;
     [SerializeField] PlayerInput playerInput;
+    [SerializeField] float footstepInterval = 0.5f;
     float moveSpeed;
     Animator ani;
     float multiplier = 1f;
     float absMoveSpeed;
     bool wasGrounded;
     bool isLocked = false;
+    float footstepTimer = 0f;
 
     private InputAction moveAction;
 
@@ -59,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
-        
+
         if (moveAction != null)
         {
             moveAction.performed -= OnMovePerformed;
@@ -70,37 +72,37 @@ public class PlayerMovement : MonoBehaviour
 
 
     void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        if (transform.childCount > 0)
+            SpriteObject = transform.GetChild(0).gameObject;
+
+        if (SpriteObject != null)
+            ani = SpriteObject.GetComponent<Animator>();
+
+        playerInput = GetComponent<PlayerInput>();
+    }
+
+    void Start()
+    {
+        originalSize = SpriteObject.transform.localScale;
+        moveSpeed = originalMoveSpeed;
+
+        if (playerInput != null)
         {
-            rb = GetComponent<Rigidbody2D>();
-
-            if (transform.childCount > 0)
-                SpriteObject = transform.GetChild(0).gameObject;
-
-            if (SpriteObject != null)
-                ani = SpriteObject.GetComponent<Animator>();
-
-            playerInput = GetComponent<PlayerInput>();
+            playerInput.ActivateInput();
+            playerInput.actions.Enable();
         }
+        Debug.Log(playerInput);
+    }
 
-        void Start()
-        {
-            originalSize = SpriteObject.transform.localScale;
-            moveSpeed = originalMoveSpeed;
 
-            if (playerInput != null)
-            {
-                playerInput.ActivateInput();
-                playerInput.actions.Enable();
-            }
-            Debug.Log(playerInput);
-        }
-    
-        
 
 
     private void FixedUpdate()
     {
-        
+
         absMoveSpeed = Mathf.Abs(rb.linearVelocity.x);
 
         wasGrounded = isGrounded;
@@ -110,6 +112,25 @@ public class PlayerMovement : MonoBehaviour
         if (absMoveSpeed <= moveSpeed)
         {
             multiplier = 1f;
+            footstepInterval = 0.4f;
+        }
+        else if (absMoveSpeed > moveSpeed && absMoveSpeed < moveSpeed * dashSpeedMultiplier)
+        {
+            footstepInterval = 0.2f;
+        }
+
+        if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.5f)
+        {
+            footstepTimer -= Time.deltaTime;
+            if (footstepTimer <= 0f)
+            {
+                SoundManager.Instance.PlaySound2D("Footstep");
+                footstepTimer = footstepInterval;
+            }
+        }
+        else
+        {
+            footstepTimer = 0f;
         }
 
     }
@@ -203,7 +224,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void StartTriggerAnimation(string animation)
     {
-        ChangeAnimation(""); 
+        ChangeAnimation("");
         ani.ResetTrigger(animation);
         ani.SetTrigger(animation);
         isLocked = true;
@@ -214,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
 
     void ResetLock()
     { isLocked = false; }
-    
+
     void SetAnimation()
     {
         if (ani.GetCurrentAnimatorStateInfo(0).IsName("Die") || ani.GetBool("isDead"))
@@ -236,7 +257,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 return;
             }
-            
+
         }
 
         // -- LAND --
@@ -251,14 +272,14 @@ public class PlayerMovement : MonoBehaviour
             // -- RISING --
             if (verticalVelocity > 0.1f)
             {
-                
+
                 ChangeAnimation("isJumping");
             }
 
             // -- FALLING --
             else if (verticalVelocity < -0.1f)
             {
-                
+
                 ChangeAnimation("isFalling");
             }
 
@@ -266,7 +287,7 @@ public class PlayerMovement : MonoBehaviour
             else
             {
 
-                ChangeAnimation("isTop"); 
+                ChangeAnimation("isTop");
             }
 
             return;
@@ -300,7 +321,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void ChangeAnimation(string newParam)
     {
-       
+
 
         string[] paramsToReset = { "isRunning", "isWalking", "isStopping", "isFalling", "isTop", "isJumping" };
 
@@ -308,9 +329,9 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
-        
 
-       
+
+
 
         foreach (var p in paramsToReset)
         {
