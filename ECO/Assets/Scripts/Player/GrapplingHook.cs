@@ -22,6 +22,7 @@ public class GrapplingHook : MonoBehaviour
     GameObject currentVisualIndicator;
     GameObject spriteObject;
     bool isGrappling;
+    bool wasGrapplingLastFrame;
     RaycastHit2D point;
     float moveInput;
     float jumpInput;
@@ -54,7 +55,7 @@ public class GrapplingHook : MonoBehaviour
             if (moveInput != 1 || !canPull)
             {
 
-               Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
 
 
@@ -80,12 +81,12 @@ public class GrapplingHook : MonoBehaviour
                 else
                 {
                     currentVisualIndicator.SetActive(false);
-                    
+
                 }
             }
         }
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (objectHit != null)
@@ -99,10 +100,10 @@ public class GrapplingHook : MonoBehaviour
         {
             if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
             {
-                
+
                 if (lr.enabled)
                 {
-                    
+
                     lr.SetPosition(0, transform.position);
                     lr.SetPosition(1, point.point);
                 }
@@ -115,18 +116,20 @@ public class GrapplingHook : MonoBehaviour
                     canPull = false;
                     isGrappling = false;
                     objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x) + ((pullDirection.y * 3) * pullForce * 5 + rb.linearVelocityY)));
-                   
-                    
+
+
 
                     Invoke("disableGrapple", 0.5f);
                 }
-                else if (canPull)
+                else if (canPull && !isGrappling)
                 {
+                    
                     isPulling = false;
                     isGrappling = true;
                     lr.enabled = true;
                     dj.enabled = true;
                     dj.connectedAnchor = point.point;
+                    SoundManager.Instance.PlaySound2D("Grapple");
                 }
             }
             else
@@ -139,6 +142,7 @@ public class GrapplingHook : MonoBehaviour
         {
             dj.enabled = false;
             lr.enabled = false;
+            isGrappling = false;
         }
 
         if (dj.distance >= minDistance && dj.enabled && jumpInput == 1)
@@ -188,7 +192,7 @@ public class GrapplingHook : MonoBehaviour
         }
         else if (moveInput == 0)
         {
-            isGrappling = false;
+            isGrappling = false;        
         }
     }
 
