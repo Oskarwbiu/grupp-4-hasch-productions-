@@ -13,10 +13,11 @@ public class PlayerAttack : MonoBehaviour
     MechHealth bossHealth;
     Vector2 attackDirection = Vector2.right;
     float lastAttackTime;
- 
+    enemyAttack enemyAttack;
+
     private void Start()
     {
-        
+
     }
 
     void OnMove(InputValue value)
@@ -26,7 +27,7 @@ public class PlayerAttack : MonoBehaviour
         if (moveInput != Vector2.zero)
         {
             attackDirection = moveInput.normalized;
-          
+
         }
     }
 
@@ -37,22 +38,23 @@ public class PlayerAttack : MonoBehaviour
 
     void OnAttack()
     {
-       
+
         if (lastAttackTime < attackCooldown)
             return;
 
         GetComponent<PlayerMovement>().AttackAnimation();
+        SoundManager.Instance.PlaySound2D("Slash");
 
         lastAttackTime = 0;
 
-        Vector2 point = (Vector2)transform.position + (attackDirection *  new Vector2(attackRange/2, attackRange/2));
+        Vector2 point = (Vector2)transform.position + (attackDirection * new Vector2(attackRange / 2, attackRange / 2));
         Vector2 size = new Vector2(attackRange, attackRange * 1.5f);
         float angle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
         Collider2D[] hitEnemies = Physics2D.OverlapBoxAll(point, size, angle, enemyLayer);
         Debug.DrawRay(transform.position, attackDirection * attackRange, Color.red, 0.1f);
 
-        
+
         Instantiate(slashEffect, point, Quaternion.Euler(0, 0, angle));
 
         foreach (Collider2D enemy in hitEnemies)
@@ -70,11 +72,16 @@ public class PlayerAttack : MonoBehaviour
             }
 
 
-            if (enemyScript != null|| bossHealth != null)
+            if (enemyScript != null || bossHealth != null)
             {
+                SoundManager.Instance.PlaySound2D("Hit");
+
                 if (enemyScript != null)
                 {
+                    enemyAttack = enemyScript.GetComponent<enemyAttack>();
+                    enemyAttack.lockScale = true;
                     enemyScript.TakeDamage(attackDamage);
+                    Invoke("Unlockscale", attackCooldown);
                 }
                 else
                 {
@@ -91,13 +98,16 @@ public class PlayerAttack : MonoBehaviour
                     enemyRb.AddForce(knockbackDirection * (knockbackForce + alignment * 1.5f), ForceMode2D.Impulse);
                 }
             }
-            
+
         }
-        
+
     }
 
-    
 
+    void Unlockscale()
+    {
+        enemyAttack.lockScale = false;
+    }
     void OnPause()
     {
         FindFirstObjectByType<PauseMenu>().Pause();

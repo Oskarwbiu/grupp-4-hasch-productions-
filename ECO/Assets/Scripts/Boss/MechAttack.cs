@@ -75,7 +75,7 @@ public class MechAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isTouchingPlayer && canAttack)
+        if (isTouchingPlayer && canAttack && isDashing)
         {
             canAttack = false;
             PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
@@ -120,6 +120,7 @@ public class MechAttack : MonoBehaviour
 
         rb.gravityScale = gravityScale;
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         yield return new WaitForSeconds(0.5f);
 
@@ -164,15 +165,13 @@ public class MechAttack : MonoBehaviour
     {
         hitBox.size /= 1.5f;
         triggerBox.size /= 1.5f;
-        isDashing = true;
-        currentDamage = dashingDamage;
         animation.PlayAnimation("isFlying");
         yield return new WaitForSeconds(1f);
         rb.linearVelocityX = -dashForce;
+        SoundManager.Instance.PlaySound2D("MechDash");
         
-
-        
-       
+        isDashing = true;
+        currentDamage = dashingDamage;
 
         yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
         rb.linearVelocityX = 0;
@@ -181,8 +180,9 @@ public class MechAttack : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
+        SoundManager.Instance.PlaySound2D("MechDash");
 
-        yield return new WaitUntil(() => transform.position.x > BoundsRight - 5f);
+        yield return new WaitUntil(() => transform.position.x > BoundsRight - 2.5f);
         rb.linearVelocityX = 0;
         animation.PlayAnimation("isIdle");
 
@@ -206,6 +206,7 @@ public class MechAttack : MonoBehaviour
         rb.gravityScale = 0;
         rb.linearVelocityY = flySpeed;
         animation.PlayTrigger("flyUp");
+        SoundManager.Instance.PlaySound2D("MechFly");
         yield return new WaitForSeconds(0.5f);
         animation.PlayAnimation("isFlying");
 
@@ -218,9 +219,10 @@ public class MechAttack : MonoBehaviour
 
         for (int i = 0; i < flyTimes; i++)
         {
-            while (!(transform.position.x < BoundsLeft + 7f))
+            while (!(transform.position.x < BoundsLeft + 8f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
+                SoundManager.Instance.PlaySound2D("BombDrop");
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
                 if (isAttacked)
                 {
@@ -233,9 +235,10 @@ public class MechAttack : MonoBehaviour
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             rb.linearVelocityX = -rb.linearVelocity.x;
 
-            while (!(transform.position.x > BoundsRight - 5f))
+            while (!(transform.position.x > BoundsRight - 2.5f))
             {
                 yield return new WaitForSeconds(bombDropInterval);
+                SoundManager.Instance.PlaySound2D("BombDrop");
                 Instantiate(bombPrefab, transform.position, Quaternion.identity);
                 if (isAttacked)
                 {
@@ -256,6 +259,7 @@ public class MechAttack : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         Debug.Log("Fly Attack Finished");
 
@@ -265,10 +269,12 @@ public class MechAttack : MonoBehaviour
     IEnumerator SpinShot()
     {
         Vector2 startPos = transform.position;
+        int startPhase = phase;
 
         // Jump to middle
         animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
+        SoundManager.Instance.PlaySound2D("MechFly");
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
         yield return new WaitForSeconds(1f);
@@ -281,11 +287,13 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
         if (phase == 1)
         {
             animation.PlayTrigger("readyCannons");
+            SoundManager.Instance.PlaySound2D("MissileReady");
             yield return new WaitForSeconds(0.5f);
             animation.PlayAnimation("isShooting");
         }
@@ -299,27 +307,28 @@ public class MechAttack : MonoBehaviour
         Vector2 spawnPos = Vector2.down;
         for (int i = 0; i <= spinShotsPerAttack; i++)
         {
-            if (phase != 1)
+            if (startPhase != 1)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
             Rigidbody2D currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
             currentBullet.transform.localScale = new Vector2(-currentBullet.transform.localScale.x, currentBullet.transform.localScale.y);
+            SoundManager.Instance.PlaySound2D("LaserShoot");
 
             yield return new WaitForSeconds(spinShotInterval);
             direction = -direction;
-            if (phase != 1)
+            if (startPhase != 1)
             {
                 transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
             }
             
             currentBullet = Instantiate(spinShotPrefab, (Vector2)transform.position + spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
             currentBullet.AddForceX(direction * spinShotForce, ForceMode2D.Impulse);
-            
+            SoundManager.Instance.PlaySound2D("LaserShoot");
 
             direction = -direction;
-            if (phase == 1 && spawnPos == Vector2.down)
+            if (startPhase == 1 && spawnPos == Vector2.down)
             {
                 spawnPos = Vector2.up;
             }
@@ -334,6 +343,7 @@ public class MechAttack : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
+        SoundManager.Instance.PlaySound2D("MechFly");
 
         // Jump back
         
@@ -349,6 +359,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
         yield return new WaitForSeconds(0.5f);
@@ -365,6 +376,7 @@ public class MechAttack : MonoBehaviour
         // Jump to middle
         animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
+        SoundManager.Instance.PlaySound2D("MechFly");
 
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
         yield return new WaitForSeconds(1f);
@@ -378,6 +390,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
         
@@ -393,12 +406,14 @@ public class MechAttack : MonoBehaviour
             currentAirstrike.AddForce(force, ForceMode2D.Impulse);
             yield return new WaitUntil(() => currentAirstrike.transform.position.y > BoundsTop + 30);
             currentAirstrike.linearVelocity = Vector2.zero;
-            currentAirstrike.position = new Vector2(Random.Range(BoundsLeft, BoundsRight), currentAirstrike.position.y);
+            Vector2 PlayerPos = player.transform.position;
+            currentAirstrike.position = new Vector2(Random.Range(PlayerPos.x - 4, PlayerPos.x + 4), currentAirstrike.position.y);
 
             
             RaycastHit2D ray = Physics2D.Raycast(currentAirstrike.position, Vector2.down, 999, 1 << 6);
             Debug.DrawRay(currentAirstrike.position, Vector2.down * 999);
             Instantiate(warning, ray.point, Quaternion.identity);
+            currentAirstrike.transform.rotation = Quaternion.Euler(currentAirstrike.transform.rotation.x,currentAirstrike.transform.rotation.y,currentAirstrike.transform.rotation.z + 180f);
             yield return null;
 
             
@@ -406,6 +421,7 @@ public class MechAttack : MonoBehaviour
 
         animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
+        SoundManager.Instance.PlaySound2D("MechFly");
         // Jump back
         yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
         yield return new WaitForSeconds(1f);
@@ -419,6 +435,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         animation.PlayTrigger("land");
+        SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
 

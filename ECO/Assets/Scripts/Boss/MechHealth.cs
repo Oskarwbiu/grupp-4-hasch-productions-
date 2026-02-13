@@ -7,10 +7,12 @@ public class MechHealth : MonoBehaviour
     [SerializeField] float invincibilityDuration = 1f;
 
     bool isInvincible = false;
+    Animator ani;
 
     private void Start()
     {
         currentHealth = maxHealth;
+        ani = GetComponent<Animator>();
     }
     public void TakeDamage(float damage)
     {
@@ -20,6 +22,7 @@ public class MechHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
+        isInvincible=true;
         Invoke("ResetInvIncibility", invincibilityDuration);
 
         if (currentHealth <= maxHealth/2)
@@ -29,7 +32,14 @@ public class MechHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            GetComponent<MechAttack>().StopAllCoroutines();
+            GetComponent<MechAttack>().enabled = false;
+            GetComponent<MechAnimation>().enabled = false;
+            FindFirstObjectByType<EndScreen>().ShowScreen();
+            ani.SetTrigger("Die");
+            float duration = ani.GetCurrentAnimatorStateInfo(0).length;
+        
+            Invoke("Die", duration);
         }
 
 
@@ -42,7 +52,7 @@ public class MechHealth : MonoBehaviour
 
     void Die()
     {
-
+        MusicManager.Instance.PlayMusic("Backrooms", 1);
         Destroy(gameObject);
     }
     

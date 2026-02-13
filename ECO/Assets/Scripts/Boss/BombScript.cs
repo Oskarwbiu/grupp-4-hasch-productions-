@@ -3,13 +3,13 @@ using UnityEngine;
 public class BombScript : MonoBehaviour
 {
     [SerializeField] float bombRadius;
-    [SerializeField] ParticleSystem explosion;
+    [SerializeField] GameObject explosion;
     [SerializeField] float explosionDamage;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(explosion, gameObject.transform.position, Quaternion.Euler(325, 0, 0));
-        
+        SoundManager.Instance.PlaySound2D("MissileShoot");
 
         Collider2D[] bombField = Physics2D.OverlapCircleAll(transform.position, bombRadius);
 
@@ -17,7 +17,7 @@ public class BombScript : MonoBehaviour
         {
             if (hitObjects.CompareTag("Player"))
             {
-                PlayerHealth health = hitObjects.GetComponent<PlayerHealth>();
+                PlayerHealth health = FindFirstObjectByType<PlayerHealth>();
                 if (health != null)
                 {
                     health.GetDamaged(explosionDamage);

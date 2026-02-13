@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="MainMenu" src="project://database/Assets/UI/Main%20Menu/MainMenu.uxml?fileID=9197481963319205126&amp;guid=866417964e474704da817e7ac8dcf305&amp;type=3#MainMenu" />
+    <ui:Template name="Settings Pause" src="project://database/Assets/UI/Settings%20Pause.uxml?fileID=9197481963319205126&amp;guid=0f656776d45470240b14c27fc604816b&amp;type=3#Settings Pause" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgb(255, 255, 255); background-image: url(&quot;project://database/Assets/Sprites/UI/Sprite-0006.png?fileID=7473920403424214205&amp;guid=5e894c9034baeaf49814f57a59cbdfbb&amp;type=3#Sprite-0006_0&quot;); -unity-background-image-tint-color: rgb(255, 255, 255);">
+        <ui:Instance template="MainMenu" name="MainMenu" style="width: 100%; height: 100%; display: flex;" />
+        <ui:Instance template="Settings Pause" name="SettingsMenu" style="display: none; width: 100%; height: 100%;" />
+    </ui:VisualElement>
+</ui:UXML>

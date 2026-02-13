@@ -14,14 +14,17 @@ public class HUDScript : MonoBehaviour
     float lastHealth = 0;
     private void Start()
     {
-
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
 
         VisualElement root = pauseDocument.rootVisualElement;
 
         healthElement = root.Q<VisualElement>("Health");
-        healthElement.style.backgroundImage = new StyleBackground(healthSprites[0]);
+        if (playerHealth.currentHealth >= healthSprites.Length)
+        {
+            healthElement.style.backgroundImage = new StyleBackground(healthSprites[0]);
+        }
 
     }
     private void Update()

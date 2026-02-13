@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   attackspeed: 5
-  attackCooldown: 2
+  attackCooldown: 3
   arenaBounds: {fileID: 0}
   dashForce: 25
   knockBack: 1500
@@ -238,14 +238,14 @@ MonoBehaviour:
   hitBox: {fileID: 2702629551857466005}
   flySpeed: 5
   flyTimes: 1
-  bombDropInterval: 0.75
+  bombDropInterval: 0.5
   bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
-  spinShotInterval: 0.45
+  spinShotInterval: 0.5
   spinShotsPerAttack: 12
-  spinShotForce: 25
+  spinShotForce: 35
   spinShotPrefab: {fileID: 6716767226737124759, guid: f3b03d5e20506d14eb79eee3f27bfb5f, type: 3}
   amount: 10
-  airstrike: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  airstrike: {fileID: 8736045582364838020, guid: 74da7ada9d1efaa4bb776bdccd777918, type: 3}
   warning: {fileID: 4342089698753490178, guid: ec52638b1429c034db5a743971bb3f97, type: 3}
 --- !u!114 &5780718766065383111
 MonoBehaviour:
@@ -259,9 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74000c3edb8f2404aa7d49f9db8bfd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 100
-  currentHealth: 500
-  invincibilityDuration: 1
+  maxHealth: 700
+  currentHealth: 700
+  invincibilityDuration: 0.1
 --- !u!114 &3354684496125201921
 MonoBehaviour:
   m_ObjectHideFlags: 0
