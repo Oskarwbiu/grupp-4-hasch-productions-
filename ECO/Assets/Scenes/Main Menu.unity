@@ -410,7 +410,7 @@ PrefabInstance:
       objectReference: {fileID: 642415207}
     - target: {fileID: 8466349500207787602, guid: 6673c40fe65409744a413cbd1187355a, type: 3}
       propertyPath: transitionTime
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -468,6 +468,10 @@ PrefabInstance:
     - target: {fileID: 6442573060062496687, guid: dfe7f4564105f9346bcd1257989826fd, type: 3}
       propertyPath: m_Name
       value: Levelloader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8407548426720110354, guid: dfe7f4564105f9346bcd1257989826fd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -868,7 +872,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 709549909}
+  - {fileID: 642415206}
   - {fileID: 573405252}
   - {fileID: 98076630}
-  - {fileID: 642415206}
   - {fileID: 596215642}

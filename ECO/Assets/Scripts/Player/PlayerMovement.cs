@@ -23,21 +23,40 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float acceleration = 10f;
     [SerializeField] float decceleration = 10f;
     [SerializeField] float frictionAmount = 0.2f;
+    [SerializeField] PlayerInput playerInput;
     float moveSpeed;
     Animator ani;
     float multiplier = 1f;
     float absMoveSpeed;
     bool wasGrounded;
     bool isLocked = false;
-    
+
+
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+
+        if (transform.childCount > 0)
+            SpriteObject = transform.GetChild(0).gameObject;
+
+        if (SpriteObject != null)
+            ani = SpriteObject.GetComponent<Animator>();
+
+        playerInput = GetComponent<PlayerInput>();
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        SpriteObject = rb.transform.GetChild(0).gameObject;
         originalSize = SpriteObject.transform.localScale;
-        ani = SpriteObject.GetComponent<Animator>();
         moveSpeed = originalMoveSpeed;
+
+        if (playerInput != null)
+        {
+            playerInput.ActivateInput();
+            playerInput.actions.Enable();
+        }
+        Debug.Log(playerInput);
     }
         
 
@@ -74,6 +93,7 @@ public class PlayerMovement : MonoBehaviour
     void OnMove(InputValue value)
     {
         moveInput = value.Get<Vector2>();
+        Debug.Log("MoveMent triggad");
 
     }
     void OnDash()
