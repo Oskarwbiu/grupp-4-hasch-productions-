@@ -44,11 +44,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: light
+    uniqueID: 2518438999
+    locked: 0
   - name: player
     uniqueID: 717001421
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ground
+    uniqueID: 2734395761
+    locked: 0
   m_RenderingLayers:
   - Default
+  - Layer 1
