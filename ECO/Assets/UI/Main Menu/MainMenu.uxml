@@ -1,9 +1,9 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Pause/Pause.uss?fileID=7433441132597879392&amp;guid=f4f4dbb1acf90a841a510f158ec0db79&amp;type=3#Pause" />
-    <ui:VisualElement name="MainMenu" style="flex-grow: 1; justify-content: flex-start; align-content: auto; align-items: center;">
-        <ui:VisualElement name="Logo" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/nedladdning.png?fileID=9100628432037306104&amp;guid=20c79753039b81f43bfc31500370ee39&amp;type=3#nedladdning_0&quot;); height: 25%; width: 25%; min-height: 25%; max-height: 25%; align-self: center;" />
-        <ui:Button text="Start Game" name="StartButton" class="buttons" style="height: 10%; width: 20%;" />
-        <ui:Button text="Settings" name="SettingsButton" class="buttons" style="width: 20%;" />
-        <ui:Button text="Quit Game" name="QuitButton" class="buttons" style="width: 20%;" />
+    <ui:VisualElement name="MainMenu" style="flex-grow: 1; justify-content: flex-start; align-content: auto; align-items: flex-start;">
+        <ui:VisualElement name="Logo" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/Sprites/UI/nedladdning.png?fileID=9100628432037306104&amp;guid=20c79753039b81f43bfc31500370ee39&amp;type=3#nedladdning_0&quot;); height: 30%; width: 30%; min-height: 30%; max-height: 25%; align-self: flex-end; justify-content: flex-start; right: 5%; top: 5%;" />
+        <ui:Button text="Start Game" name="StartButton" class="buttons" style="height: 15%; width: 30%; position: absolute; top: 10%;" />
+        <ui:Button text="Settings" name="SettingsButton" class="buttons" style="width: 30%; align-items: stretch; align-self: flex-start; position: absolute; top: 30%; height: 15%;" />
+        <ui:Button text="Quit Game" name="QuitButton" class="buttons" style="width: 30%; position: absolute; top: 50%; height: 15%;" />
     </ui:VisualElement>
 </ui:UXML>
