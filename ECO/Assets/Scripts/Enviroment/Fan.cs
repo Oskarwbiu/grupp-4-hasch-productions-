@@ -1,19 +1,11 @@
 using UnityEngine;
-using System.Collections;
 
 public class Fan : MonoBehaviour
 {
-    [SerializeField] private float blowForce = 10f;
+    [SerializeField] private float blowSpeed = 10f;
     [SerializeField] private Vector2 blowDirection = Vector2.right;
-
-    private Collider2D fanCollider;
     private Rigidbody2D playerRb;
     private bool playerInRange = false;
-
-    void Start()
-    {
-        fanCollider = GetComponent<Collider2D>();
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -37,7 +29,7 @@ public class Fan : MonoBehaviour
     {
         if (playerInRange && playerRb != null)
         {
-            playerRb.AddForce(blowDirection * blowForce, ForceMode2D.Force);
+            playerRb.linearVelocity = new Vector2(playerRb.linearVelocity.x + blowDirection.x * blowSpeed, playerRb.linearVelocity.y);
         }
     }
 }

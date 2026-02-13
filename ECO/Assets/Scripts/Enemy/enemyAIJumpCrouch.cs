@@ -44,8 +44,8 @@ public class enemyAIJumpCrouch : MonoBehaviour
         Transform playerPos = GetComponent<enemyAI>().PlayerPos();
 
         footPosition = transform.position - new Vector3(0, originalColliderSize.y/2.4f, 0);
-        Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 0.5f + originalColliderSize.y - collider.size.y);
-        Vector2 areaMax = areaMin + new Vector2(originalColliderSize.x * 2, 0.5f + originalColliderSize.y - collider.size.y);
+        Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 1f + originalColliderSize.y - collider.size.y);
+        Vector2 areaMax = areaMin + new Vector2(originalColliderSize.x * 2, 1f + originalColliderSize.y - collider.size.y);
 
  
 

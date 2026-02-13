@@ -150,6 +150,7 @@ public class enemyAI : MonoBehaviour
         yield return new WaitForSeconds(duration);
 
         isAttacking = false;
+        ani.SetBool("idle", true);
     }
 
     void ResetAttack()

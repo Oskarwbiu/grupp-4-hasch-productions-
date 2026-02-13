@@ -12,9 +12,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvincible)
         {
+            FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
             isInvincible = true;
             currentHealth -= damage;
-            Debug.Log("ouch         " + currentHealth);
             if (currentHealth <= 0)
             {
                 PlayerDeath playerDeath = FindFirstObjectByType<PlayerDeath>();
