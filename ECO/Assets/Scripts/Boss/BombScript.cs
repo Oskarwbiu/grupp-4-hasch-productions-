@@ -9,7 +9,7 @@ public class BombScript : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Instantiate(explosion, gameObject.transform.position, Quaternion.Euler(325, 0, 0));
-        
+        SoundManager.Instance.PlaySound2D("MissileShoot");
 
         Collider2D[] bombField = Physics2D.OverlapCircleAll(transform.position, bombRadius);
 
