@@ -23,7 +23,7 @@ public class PlayerDeath : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = rb.GetComponent<PlayerInput>();
         input.enabled = false;
-        
+        StartCoroutine(ResetInput());
 
 
         spriteObject = rb.transform.GetChild(0).gameObject;
@@ -45,15 +45,13 @@ public class PlayerDeath : MonoBehaviour
                 spriteObject.SetActive(false);
                 rb.gravityScale = 0;
                 GetComponent<PlayerJump>().enabled = false;
-                GetComponent<PlayerMovement>().enabled = false;
                 CheckpointManager.Instance.ResetCheckpoints();
             }
             StartCoroutine(Respawn());
         }
-        else
-        {
-            StartCoroutine(ResetInput());
-        }
+        
+        
+        
         
 
 
@@ -69,11 +67,12 @@ public class PlayerDeath : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         spriteObject.SetActive(true);
+        input.enabled = false;
         yield return new WaitForSeconds(1.2f);
         rb.gravityScale = gravity;
         rb.AddForce(new Vector2(20, 12), ForceMode2D.Impulse);
         GetComponent<PlayerJump>().enabled = true;
-        GetComponent <PlayerMovement>().enabled = true;
+        input.enabled = true;
     }
 
     void Update()
