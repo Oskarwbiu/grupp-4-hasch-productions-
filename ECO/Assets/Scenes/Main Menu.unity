@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MusicLibrary
   tracks:
   - trackName: MainMenu
-    clip: {fileID: 8300000, guid: 61881e781ba4d9043b61e4510f4e5f90, type: 3}
+    clip: {fileID: 8300000, guid: 0b2d0efcf64923c4f9989ad48c0b364a, type: 3}
   - trackName: Ambience
     clip: {fileID: 8300000, guid: 349a706f677ec5f4983a480896a7390f, type: 3}
   - trackName: Cloudy
