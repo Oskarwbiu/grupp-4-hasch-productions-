@@ -41,6 +41,7 @@ public class Checkpoint : MonoBehaviour
 
     public void TriggerRespawn()
     {
+        animator = GetComponent<Animator>();
         StartCoroutine(TriggerAfterRespawnSequence());
     }
 

@@ -23,7 +23,7 @@ public class PlayerDeath : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         input = rb.GetComponent<PlayerInput>();
         input.enabled = false;
-        StartCoroutine(ResetInput());
+        
 
 
         spriteObject = rb.transform.GetChild(0).gameObject;
@@ -49,6 +49,10 @@ public class PlayerDeath : MonoBehaviour
                 CheckpointManager.Instance.ResetCheckpoints();
             }
             StartCoroutine(Respawn());
+        }
+        else
+        {
+            StartCoroutine(ResetInput());
         }
         
 
