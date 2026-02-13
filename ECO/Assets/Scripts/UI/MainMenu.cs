@@ -34,6 +34,8 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+
+        float volumeOffset = 20f;
         MusicManager.Instance.PlayMusic("Backrooms");
 
         VisualElement root = _document.rootVisualElement;
@@ -70,18 +72,21 @@ public class MainMenu : MonoBehaviour
 
         float masterVol = 0;
         audioMixer.GetFloat("MasterVolume", out masterVol);
-        masterVolume.value = masterVol + 80;
-        masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", evt.newValue - 80));
+        masterVolume.value = masterVol + volumeOffset;
+        masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
+
 
         float musicVol = 0;
         audioMixer.GetFloat("MusicVolume", out musicVol);
-        musicVolume.value = musicVol + 80;
-        musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", evt.newValue - 80));
+        musicVolume.value = musicVol + volumeOffset;
+        musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
+
 
         float sfxVol = 0;
         audioMixer.GetFloat("SFXVolume", out sfxVol);
-        sfxVolume.value = sfxVol + 80;
-        sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", evt.newValue - 80));
+        sfxVolume.value = sfxVol + volumeOffset;
+        sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
+
 
         Toggle muteToggle = settingsPanel.Q<Toggle>("MuteToggle");
         muteToggle.value = AudioListener.pause;
