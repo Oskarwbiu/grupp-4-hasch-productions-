@@ -8,7 +8,11 @@ public class BossBulletScript : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            FindAnyObjectByType<PlayerHealth>().GetDamaged(damage);
+            PlayerHealth playerHealth = FindAnyObjectByType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.GetDamaged(damage);
+            }
         }
         Destroy(gameObject);
     }

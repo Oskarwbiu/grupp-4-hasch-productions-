@@ -49,13 +49,13 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
  
 
-        jumpCast = Physics2D.Raycast(footPosition, Vector2.right * transform.localScale.x, 1f, groundLayer);
-        Vector2 dir = Quaternion.Euler(0, 0, -90 + (Mathf.Sign(transform.localScale.x) * 55)) * Vector2.right;
-        jumpCast2 = Physics2D.Raycast(transform.position, dir, 2f, groundLayer);
+        jumpCast = Physics2D.Raycast(footPosition, Vector2.right * -transform.localScale.x, 1f, groundLayer);
+        Vector2 dir = Quaternion.Euler(0, 0, -90 + -(Mathf.Sign(transform.localScale.x) * 55)) * Vector2.right;
+        jumpCast2 = Physics2D.Raycast(transform.position, dir, 2.2f, groundLayer);
 
-        Debug.DrawRay(transform.position, dir * 2f, Color.darkGreen, 0.05f);
-        Debug.DrawRay(footPosition, transform.right * Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.05f);
-        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null) && isChasing)
+        Debug.DrawRay(transform.position, dir * 2.2f, Color.darkGreen, 0.05f);
+        Debug.DrawRay(footPosition, transform.right * -Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.05f);
+        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null || playerPos.position.y > transform.position.y) && isChasing)
         {
 
             if (!isJumping && playerPos.position.y > transform.position.y - 0.2)

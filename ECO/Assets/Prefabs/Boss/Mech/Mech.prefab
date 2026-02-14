@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 040229c7bc0571f4aadf123c206c325e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackspeed: 5
+  attackspeed: 0.5
   attackCooldown: 3
   arenaBounds: {fileID: 0}
   dashForce: 25

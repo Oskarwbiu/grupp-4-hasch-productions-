@@ -166,9 +166,12 @@ public class MechAttack : MonoBehaviour
         hitBox.size /= 1.5f;
         triggerBox.size /= 1.5f;
         animation.PlayAnimation("isFlying");
-        yield return new WaitForSeconds(1f);
-        rb.linearVelocityX = -dashForce;
+        yield return new WaitForSeconds(0.4f);
+        SoundManager.Instance.PlaySound2D("MissileReady");
+        yield return new WaitForSeconds(0.6f);
         SoundManager.Instance.PlaySound2D("MechDash");
+        rb.linearVelocityX = -dashForce;
+        
         
         isDashing = true;
         currentDamage = dashingDamage;
@@ -177,6 +180,7 @@ public class MechAttack : MonoBehaviour
         rb.linearVelocityX = 0;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         animation.PlayAnimation("isIdle");
+        SoundManager.Instance.PlaySound2D("MissileReady");
         yield return new WaitForSeconds(0.6f);
         animation.PlayAnimation("isFlying");
         rb.linearVelocityX = dashForce * 2;
@@ -339,7 +343,7 @@ public class MechAttack : MonoBehaviour
             yield return new WaitForSeconds(spinShotInterval);
             
         }
-        animation.PlayAnimation("f");
+        animation.PlayAnimation("isIdle");
         yield return new WaitForSeconds(0.5f);
         animation.PlayTrigger("flyUp");
         rb.linearVelocityY = 75f;
