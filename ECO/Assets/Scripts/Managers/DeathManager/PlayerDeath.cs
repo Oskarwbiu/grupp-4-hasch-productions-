@@ -44,7 +44,6 @@ public class PlayerDeath : MonoBehaviour
                 active.TriggerRespawn();
                 spriteObject.SetActive(false);
                 rb.gravityScale = 0;
-                GetComponent<PlayerJump>().enabled = false;
                 CheckpointManager.Instance.ResetCheckpoints();
             }
             StartCoroutine(Respawn());
@@ -71,7 +70,6 @@ public class PlayerDeath : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         rb.gravityScale = gravity;
         rb.AddForce(new Vector2(20, 12), ForceMode2D.Impulse);
-        GetComponent<PlayerJump>().enabled = true;
         input.enabled = true;
     }
 

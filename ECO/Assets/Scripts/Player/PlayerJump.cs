@@ -11,14 +11,15 @@ public class PlayerJump : MonoBehaviour
     [SerializeField] float jumpBufferTime = 0.5f;
     [SerializeField] float coyoteTime = 0.1f;
     [SerializeField] float maxFallSpeed = 10f;
+    [SerializeField] float gravityScaleAtStart;
     [SerializeField] ContactFilter2D groundFilter;
     [SerializeField] LayerMask groundLayer;
+    public bool isRespawning = false;
 
     Animator ani;
     Rigidbody2D rb;
     public bool isGrounded;
     bool hasJumped;
-    float gravityScaleAtStart;
     float lastGrounded;
     float lastJumpTime;
     bool jumpHeld;
@@ -32,7 +33,6 @@ public class PlayerJump : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         GameObject SpriteObject = rb.transform.GetChild(0).gameObject;
         ani = SpriteObject.GetComponent<Animator>();
-        gravityScaleAtStart = rb.gravityScale;
 
     }
     void OnJump(InputValue value)
@@ -153,8 +153,13 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
-
+        
         isGrounded = rb.IsTouching(groundFilter);
+
+        if (isRespawning) { rb.gravityScale = 0;
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
 
         if (!jumpHeld && isJumping && rb.linearVelocity.y > 0)
         {
