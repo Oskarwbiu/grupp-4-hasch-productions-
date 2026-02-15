@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     private VisualElement settingsMenu;
     private VisualElement mainMenu;
 
-    [SerializeField] Scene intro;
+    [SerializeField] Level intro;
     [SerializeField] LevelExit levelExit;
     [SerializeField] AudioMixer audioMixer;
 

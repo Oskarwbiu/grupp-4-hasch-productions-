@@ -17,6 +17,7 @@ public class HUDScript : MonoBehaviour
         playerHealth = FindFirstObjectByType<PlayerHealth>();
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
+        
 
         VisualElement root = pauseDocument.rootVisualElement;
 
@@ -45,4 +46,5 @@ public class HUDScript : MonoBehaviour
         healthElement.style.backgroundImage = new StyleBackground(healthSprites[(int)playerHealth.currentHealth]);
         lastHealth = playerHealth.currentHealth;
     }
+
 }

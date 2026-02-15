@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.InputSystem;
 
@@ -18,8 +19,8 @@ public class PauseMenu : MonoBehaviour
     private VisualElement pauseMenu;
     private VisualElement settingsMenu;
     
-    [SerializeField] PlayerCheats cheatsScript;
-    [SerializeField] PlayerInput playerInput;
+    PlayerCheats cheatsScript;
+    PlayerInput playerInput;
     [SerializeField] AudioMixer audioMixer;
     [SerializeField] UIDocument HUD;
 
@@ -83,24 +84,43 @@ public class PauseMenu : MonoBehaviour
         fullscreenToggle.value = Screen.fullScreen;
         fullscreenToggle.RegisterValueChangedCallback(evt => Screen.fullScreen = evt.newValue);
 
-        
+
 
         Toggle godmodeToggle = settingsPanel.Q<Toggle>("GodmodeToggle");
-        godmodeToggle.value = cheatsScript.GodModeBool();
-        godmodeToggle.RegisterValueChangedCallback(evt => cheatsScript.GodMode(evt.newValue));
+        godmodeToggle.RegisterValueChangedCallback(evt =>
+        {
+            PlayerCheats cheats = GetCurrentCheatsScript();
+            if (cheats != null)
+                cheats.isGodMode = evt.newValue;
+        });
 
         Toggle noClipToggle = settingsPanel.Q<Toggle>("NoClipToggle");
-        noClipToggle.value = cheatsScript.NoClipBool();
-        noClipToggle.RegisterValueChangedCallback(evt => cheatsScript.NoClip(evt.newValue));
+        noClipToggle.RegisterValueChangedCallback(evt =>
+        {
+            PlayerCheats cheats = GetCurrentCheatsScript();
+            if (cheats != null)
+                cheats.NoClip(evt.newValue);
+        });
 
         float flySpeed = 0;
         Slider flySpeedSlider = settingsPanel.Q<Slider>("SpeedSlider");
         flySpeedSlider.value = flySpeed;
-        flySpeedSlider.RegisterCallback<ChangeEvent<float>>(evt => cheatsScript.flySpeed = evt.newValue);
+        flySpeedSlider.RegisterCallback<ChangeEvent<float>>((evt =>
+        {
+            PlayerCheats cheats = GetCurrentCheatsScript();
+            if (cheats != null)
+                cheats.flySpeed = evt.newValue;
+        }));
 
         Toggle levelSkipToggle = settingsPanel.Q<Toggle>("LevelSkipToggle");
-        levelSkipToggle.value = cheatsScript.canLevelskip;
-        levelSkipToggle.RegisterValueChangedCallback(evt => cheatsScript.canLevelskip = evt.newValue);
+        levelSkipToggle.RegisterValueChangedCallback(evt =>
+        {
+            PlayerCheats cheats = GetCurrentCheatsScript();
+            if (cheats != null)
+                cheats.canLevelskip = evt.newValue;
+        });
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
 
     }
 
@@ -111,10 +131,44 @@ public class PauseMenu : MonoBehaviour
         pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
     }
 
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        cheatsScript = null;
+        playerInput = null;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    private PlayerCheats GetCurrentCheatsScript()
+    {
+        if (cheatsScript == null)
+        {
+            cheatsScript = FindFirstObjectByType<PlayerCheats>();
+        }
+        return cheatsScript;
+    }
+
+   
+    private PlayerInput GetCurrentPlayerInput()
+    {
+        if (playerInput == null)
+        {
+            playerInput = FindFirstObjectByType<PlayerInput>();
+        }
+        return playerInput;
+    }
+
+
     public void Pause()
     {
         HUD.rootVisualElement.style.display = DisplayStyle.None;
-        playerInput.enabled = false;
+        PlayerInput pi = GetCurrentPlayerInput();
+        if (pi != null)
+            pi.enabled = false;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.Flex;
         Time.timeScale = 0;
     }
@@ -122,7 +176,9 @@ public class PauseMenu : MonoBehaviour
     void ResumeGame()
     {
         HUD.rootVisualElement.style.display = DisplayStyle.Flex;
-        playerInput.enabled = true;
+        PlayerInput pi = GetCurrentPlayerInput();
+        if (pi != null)
+            pi.enabled = true;
         pauseDocument.rootVisualElement.style.display = DisplayStyle.None;
         Time.timeScale = 1;
         pauseVE.Blur();
@@ -141,7 +197,7 @@ public class PauseMenu : MonoBehaviour
     }
     void LoadMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene((int)Scene.MAINMENU);
+        UnityEngine.SceneManagement.SceneManager.LoadScene((int)Level.MAINMENU);
         Time.timeScale = 1;
     }
 }

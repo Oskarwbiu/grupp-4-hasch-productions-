@@ -8,15 +8,13 @@ public class PlayerCheats : MonoBehaviour
     public float flySpeed = 5;
     float gravity;
     bool isNoClipping = false;
-    bool isGodMode = false;
-    PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
+    public bool isGodMode = false;
     public bool canLevelskip = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
-        playerHealth = FindFirstObjectByType<PlayerHealth>();
     }
     void OnMove(InputValue value)
     {
@@ -63,24 +61,15 @@ public class PlayerCheats : MonoBehaviour
     {
         if (enabled)
         {
-            playerHealth.gameObject.SetActive(false);
             Debug.Log("godmode on");
         }
         else
         {
-            playerHealth.gameObject.SetActive(false);
             Debug.Log("godmode off");
         }
+        isGodMode = enabled;
     }
-    
-
-
-
-    public bool GodModeBool()
-    {
-        return isGodMode;
-    }
-
+   
     public bool NoClipBool()
     {
         return isNoClipping;

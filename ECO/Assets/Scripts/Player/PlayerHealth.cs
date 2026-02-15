@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     float OrigInvincibleTime => invincibleTime;
     public void GetDamaged(float damage)
     {
-        if (!isInvincible)
+        if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode)
         {
             FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
             isInvincible = true;

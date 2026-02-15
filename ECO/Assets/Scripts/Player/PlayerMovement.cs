@@ -158,7 +158,6 @@ public class PlayerMovement : MonoBehaviour
     {
 
         moveInput = ctx.ReadValue<Vector2>();
-        Debug.Log("Movement updated via InputAction callback: " + moveInput);
     }
     void OnDash()
     {

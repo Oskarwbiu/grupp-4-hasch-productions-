@@ -1,5 +1,5 @@
 
-public enum Scene
+public enum Level
 {
     MAINMENU,
     CITYLEVEL,

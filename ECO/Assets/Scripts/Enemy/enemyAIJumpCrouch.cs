@@ -18,6 +18,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
     Rigidbody2D rb;
     Vector2 originalColliderSize;
     Vector2 originalColliderOffset;
+    enemyAI aiScript;
 
     Coroutine jumpCoroutine;
 
@@ -30,6 +31,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
         collider = GetComponent<BoxCollider2D>();
         colliderSize = collider.bounds;
         rb = GetComponent<Rigidbody2D>();
+        aiScript = GetComponent<enemyAI>();    
 
         originalColliderSize = collider.size;
         originalColliderOffset = collider.offset;
@@ -40,8 +42,8 @@ public class enemyAIJumpCrouch : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = rb.IsTouching(groundFilter);
-        bool isChasing = GetComponent<enemyAI>().IsChasing();
-        Transform playerPos = GetComponent<enemyAI>().PlayerPos();
+        bool isChasing = aiScript.IsChasing();
+        Transform playerPos = aiScript.PlayerPos();
 
         footPosition = transform.position - new Vector3(0, originalColliderSize.y/2.4f, 0);
         Vector2 areaMin = (Vector2)transform.position + collider.offset + new Vector2(-originalColliderSize.x, originalColliderSize.y/2 - 1f + originalColliderSize.y - collider.size.y);
@@ -55,7 +57,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
         Debug.DrawRay(transform.position, dir * 2.2f, Color.darkGreen, 0.05f);
         Debug.DrawRay(footPosition, transform.right * -Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.05f);
-        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null || playerPos.position.y > transform.position.y) && isChasing)
+        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null || playerPos.position.y > transform.position.y) && isChasing && playerPos != null)
         {
 
             if (!isJumping && playerPos.position.y > transform.position.y - 0.2)
@@ -92,7 +94,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
     {
         if (!isCrouching)
         {
-            rb.GetComponent<enemyAI>().SetCrouchSpeedMultiplier(shouldCrouch);
+            aiScript.SetCrouchSpeedMultiplier(shouldCrouch);
         }
         if (shouldCrouch && !isCrouching && !isJumping)
         {

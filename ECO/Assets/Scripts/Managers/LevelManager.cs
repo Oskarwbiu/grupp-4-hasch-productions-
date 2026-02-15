@@ -1,7 +1,7 @@
 using UnityEngine;
 using static System.TimeZoneInfo;
 
-public class SceneManager : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
 
     public void Restart()
@@ -9,7 +9,7 @@ public class SceneManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
-    public void LoadScene(Scene level)
+    public void LoadScene(Level level)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)level);
     }

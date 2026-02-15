@@ -7,7 +7,7 @@ public class LevelExit : MonoBehaviour
 {
     public Animator transition;
     
-    [SerializeField] Scene level;
+    [SerializeField] Level level;
     [SerializeField] float transitionTime;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -17,7 +17,7 @@ public class LevelExit : MonoBehaviour
             StartLevelCoroutine(level);
         }
     }
-    public IEnumerator LoadLevel(Scene level)
+    public IEnumerator LoadLevel(Level level)
     {
         CheckpointManager.Instance.ResetCheckpoints();
         transition.SetTrigger("start");
@@ -27,7 +27,7 @@ public class LevelExit : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)level);
     }
 
-    public void StartLevelCoroutine(Scene level)
+    public void StartLevelCoroutine(Level level)
     {
         StartCoroutine(LoadLevel(level));
     }

@@ -166,12 +166,14 @@ public class MechAttack : MonoBehaviour
     {
         hitBox.size /= 1.5f;
         triggerBox.size /= 1.5f;
+        ani.SetBool("isIdle", false);
         hitBox.offset = new Vector2(0,-0.8f);
-        
+        triggerBox.offset = new Vector2(0, -0.8f);
+        mechAnimation.PlayAnimation("readyDash");
         yield return new WaitForSeconds(0.4f);
         SoundManager.Instance.PlaySound2D("MissileReady");
         yield return new WaitForSeconds(0.6f);
-        ani.SetBool("isIdle", false);
+        ani.SetBool("readyDash", false);
         mechAnimation.PlayTrigger("dash");
         SoundManager.Instance.PlaySound2D("MechDash");
         rb.linearVelocityX = -dashForce;
@@ -183,10 +185,10 @@ public class MechAttack : MonoBehaviour
         yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
         rb.linearVelocityX = 0;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
-        mechAnimation.PlayAnimation("isIdle");
+        mechAnimation.PlayAnimation("readyDash");
         SoundManager.Instance.PlaySound2D("MissileReady");
         yield return new WaitForSeconds(0.6f);
-        ani.SetBool("isIdle", false);
+        ani.SetBool("readyDash", false);
         mechAnimation.PlayTrigger("dash");
         rb.linearVelocityX = dashForce * 2;
         SoundManager.Instance.PlaySound2D("MechDash");
@@ -205,6 +207,7 @@ public class MechAttack : MonoBehaviour
         hitBox.size *= 1.5f;
         triggerBox.size *= 1.5f;
         hitBox.offset = new Vector2(0, 0);
+        triggerBox.offset = new Vector2(0, 0);
         Invoke("ChooseAttack", attackCooldown);
     }
 

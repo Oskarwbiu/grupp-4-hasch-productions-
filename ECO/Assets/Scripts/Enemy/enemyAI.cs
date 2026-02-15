@@ -32,6 +32,7 @@ public class enemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = origMoveSpeed;
         ani = GetComponent<Animator>();
+        player = GameObject.FindWithTag("Player");
     }
 
     public void StunEnemy(float stunDuration)

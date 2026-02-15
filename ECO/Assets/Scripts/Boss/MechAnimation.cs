@@ -23,7 +23,7 @@ public class MechAnimation : MonoBehaviour
 
         }
 
-        string[] paramsToReset = { "isIdle", "isShooting", "isFalling", "isFlying", "isShootingMissiles" };
+        string[] paramsToReset = { "isIdle", "isShooting", "isFalling", "isFlying", "isShootingMissiles", "readyDash" };
 
         if (newParam != "" && ani.GetBool(newParam))
         {
