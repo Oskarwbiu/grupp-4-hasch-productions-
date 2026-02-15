@@ -36,7 +36,7 @@ public class MechHealth : MonoBehaviour
             GetComponent<MechAttack>().enabled = false;
             GetComponent<MechAnimation>().enabled = false;
             FindFirstObjectByType<EndScreen>().ShowScreen();
-            ani.SetTrigger("Die");
+            ani.SetTrigger("die");
             float duration = ani.GetCurrentAnimatorStateInfo(0).length;
         
             Invoke("Die", duration);

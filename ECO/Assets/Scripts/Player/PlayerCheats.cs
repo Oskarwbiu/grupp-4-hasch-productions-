@@ -9,12 +9,14 @@ public class PlayerCheats : MonoBehaviour
     float gravity;
     bool isNoClipping = false;
     bool isGodMode = false;
+    PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
     public bool canLevelskip = false;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
     }
     void OnMove(InputValue value)
     {
@@ -61,12 +63,12 @@ public class PlayerCheats : MonoBehaviour
     {
         if (enabled)
         {
-            FindFirstObjectByType<PlayerHealth>().gameObject.SetActive(false);
+            playerHealth.gameObject.SetActive(false);
             Debug.Log("godmode on");
         }
         else
         {
-            FindFirstObjectByType<PlayerHealth>().gameObject.SetActive(false);
+            playerHealth.gameObject.SetActive(false);
             Debug.Log("godmode off");
         }
     }

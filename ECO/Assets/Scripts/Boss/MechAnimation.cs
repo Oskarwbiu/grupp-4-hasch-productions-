@@ -13,7 +13,7 @@ public class MechAnimation : MonoBehaviour
         AnimatorStateInfo currentClip = ani.GetCurrentAnimatorStateInfo(0);
 
 
-        if (currentClip.IsName("flyUp") || currentClip.IsName("flyDown") || currentClip.IsName("land") || currentClip.IsName("Die") || currentClip.IsName("readyCannons"))
+        if (currentClip.IsName("flyUp") || currentClip.IsName("flyDown") || currentClip.IsName("land") || currentClip.IsName("Die") || currentClip.IsName("readyCannons") || currentClip.IsName("dash") || currentClip.IsName("readyMissiles"))
         {
 
             if (currentClip.normalizedTime < 1.0f)
@@ -23,7 +23,7 @@ public class MechAnimation : MonoBehaviour
 
         }
 
-        string[] paramsToReset = { "isIdle", "isShooting", "isFalling", "isFlying"};
+        string[] paramsToReset = { "isIdle", "isShooting", "isFalling", "isFlying", "isShootingMissiles" };
 
         if (newParam != "" && ani.GetBool(newParam))
         {
@@ -42,7 +42,7 @@ public class MechAnimation : MonoBehaviour
 
     public void PlayTrigger(string newParam)
     {
-      
+        ani.ResetTrigger(newParam);
         ani.SetTrigger(newParam);
     }
 }
