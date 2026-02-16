@@ -8742,11 +8742,11 @@ Transform:
   m_GameObject: {fileID: 976518362}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -29.70263, y: -10.922989, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1898046562}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061888015
 GameObject:
@@ -17730,7 +17730,6 @@ Transform:
   m_Children:
   - {fileID: 2114160733}
   - {fileID: 824435092}
-  - {fileID: 976518365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1898046563
@@ -17745,28 +17744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adea9fab20eeb4b4983aa6c1ea09623b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DontDestroyMenu
---- !u!114 &1948005249 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1669936740410279576, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
-  m_PrefabInstance: {fileID: 1839589593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85e9de559b8f74d4fa18e9693b2562de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
---- !u!114 &1948005255 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2676724372438415694, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
-  m_PrefabInstance: {fileID: 1839589593}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
 --- !u!1 &2081576796
 GameObject:
   m_ObjectHideFlags: 0
@@ -18274,8 +18251,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14a9f2515847aa84ebbea24e469c8d74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
-  cheatsScript: {fileID: 1948005249}
-  playerInput: {fileID: 1948005255}
   audioMixer: {fileID: 24100000, guid: 17194e3577632fa4ba781d32c3ea133a, type: 2}
   HUD: {fileID: 824435094}
 --- !u!114 &2114160735
@@ -18371,6 +18346,7 @@ SceneRoots:
   - {fileID: 8456737305685319146}
   - {fileID: 1408782154}
   - {fileID: 1898046562}
+  - {fileID: 976518365}
   - {fileID: 1433486277}
   - {fileID: 41744644}
   - {fileID: 1876749127}
