@@ -57,20 +57,23 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
         Debug.DrawRay(transform.position, dir * 2.2f, Color.darkGreen, 0.05f);
         Debug.DrawRay(footPosition, transform.right * -Mathf.Sign(transform.localScale.x) * 1f, Color.green, 0.05f);
-        if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null || playerPos.position.y > transform.position.y) && isChasing && playerPos != null)
+        if (playerPos != null)
         {
+            if (((jumpCast.collider != null && jumpCast.collider != this.collider) || jumpCast2.collider == null || playerPos.position.y > transform.position.y) && isChasing)
+            {
 
-            if (!isJumping && playerPos.position.y > transform.position.y - 0.2)
-            {
-                StartCoroutine(Jump(true));
-               
+                if (!isJumping && playerPos.position.y > transform.position.y - 0.2)
+                {
+                    StartCoroutine(Jump(true));
+
+                }
             }
-        }
-        else
-        {
-            if (!isJumping)
+            else
             {
-                StartCoroutine(Jump(false));
+                if (!isJumping)
+                {
+                    StartCoroutine(Jump(false));
+                }
             }
         }
 

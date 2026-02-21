@@ -341,9 +341,9 @@ public class MechAttack : MonoBehaviour
             yield return new WaitForSeconds(spinShotInterval);
             
         }
-        if (phase == 1)
+        if (startPhase == 1)
         {
-            ani.SetBool("isShooting", false);
+            mechAnimation.PlayTrigger("unReadyCannons");
         }
         else
         {
@@ -432,7 +432,7 @@ public class MechAttack : MonoBehaviour
 
             
         }
-        ani.SetBool("isShootingMissiles", false);
+        mechAnimation.PlayTrigger("unReadyMissiles");
         
         yield return new WaitForSeconds(0.5f);
         mechAnimation.PlayTrigger("flyUp");

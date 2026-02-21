@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] float invincibleTime = 1.0f;
+    [SerializeField] float invincibleTime = 0.4f;
     public float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;

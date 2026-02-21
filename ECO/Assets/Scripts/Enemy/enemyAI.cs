@@ -49,6 +49,14 @@ public class enemyAI : MonoBehaviour
         moveSpeed = origMoveSpeed;
     }
 
+    private void Update()
+    {
+        if (player == null)
+        {
+            player = GameObject.FindWithTag("Player");
+        }
+    }
+
     private void FixedUpdate()
     {
         isGrounded = GetComponent<enemyAI>().isGrounded;

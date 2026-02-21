@@ -13,7 +13,7 @@ public class MechAnimation : MonoBehaviour
         AnimatorStateInfo currentClip = ani.GetCurrentAnimatorStateInfo(0);
 
 
-        if (currentClip.IsName("flyUp") || currentClip.IsName("flyDown") || currentClip.IsName("land") || currentClip.IsName("Die") || currentClip.IsName("readyCannons") || currentClip.IsName("dash") || currentClip.IsName("readyMissiles"))
+        if (currentClip.IsName("flyUp") || currentClip.IsName("flyDown") || currentClip.IsName("land") || currentClip.IsName("Die") || currentClip.IsName("readyCannons") || currentClip.IsName("dash") || currentClip.IsName("readyMissiles") || currentClip.IsName("unReadyCannons") || currentClip.IsName("unReadyMissiles"))
         {
 
             if (currentClip.normalizedTime < 1.0f)
