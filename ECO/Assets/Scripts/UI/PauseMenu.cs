@@ -198,6 +198,7 @@ public class PauseMenu : MonoBehaviour
     void LoadMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)Level.MAINMENU);
+        FindFirstObjectByType<PlayerHealth>().ResetHealth();
         Time.timeScale = 1;
     }
 }
