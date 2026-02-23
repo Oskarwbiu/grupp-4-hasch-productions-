@@ -176,6 +176,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void MovePlayer()
     {
+        // --- EJ MIG VA TUTORIAL
         float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
 
         float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
@@ -185,6 +186,7 @@ public class PlayerMovement : MonoBehaviour
         float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
 
         rb.AddForce(movement * Vector2.right);
+        
 
 
         if (isGrounded && moveInput.x == 0)
@@ -200,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
         }
-
+        //---
     }
 
     void FlipSprite()
