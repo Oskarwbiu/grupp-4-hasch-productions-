@@ -3604,6 +3604,10 @@ PrefabInstance:
       propertyPath: slashEffect
       value: 
       objectReference: {fileID: 797018023861042997, guid: 6d1098453efc5f24cbc14455b60e7b35, type: 3}
+    - target: {fileID: 1874292031666492880, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
+      propertyPath: gravityScaleAtStart
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2666711250747103521, guid: 0c21ef00832dd0d4da1b2f2a4180fbee, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime0
       value: 0

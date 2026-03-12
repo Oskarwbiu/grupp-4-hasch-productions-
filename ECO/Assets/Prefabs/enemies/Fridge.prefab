@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 673488112334048814}
   - component: {fileID: 5484296894822057273}
   m_Layer: 8
-  m_Name: enemy
+  m_Name: Fridge
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

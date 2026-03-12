@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerInput playerInput;
     [SerializeField] float footstepInterval = 0.5f;
     float moveSpeed;
+    PlayerHealth playerHealth;
     Animator ani;
     float multiplier = 1f;
     float absMoveSpeed;
@@ -94,6 +95,7 @@ public class PlayerMovement : MonoBehaviour
             playerInput.ActivateInput();
             playerInput.actions.Enable();
         }
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
         Debug.Log(playerInput);
     }
 
@@ -177,15 +179,18 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
         // --- EJ MIG VA TUTORIAL
-        float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
+        if (!playerHealth.isDead)
+        {
+            float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
 
-        float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
+            float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
 
-        float accelerationRate = (Mathf.Abs(targetMoveSpeed) > 0.01f) ? acceleration : decceleration;
+            float accelerationRate = (Mathf.Abs(targetMoveSpeed) > 0.01f) ? acceleration : decceleration;
 
-        float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
+            float movement = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, 0.9f) * Mathf.Sign(speedDifference);
 
-        rb.AddForce(movement * Vector2.right);
+            rb.AddForce(movement * Vector2.right);
+        }
         
 
 
@@ -207,6 +212,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FlipSprite()
     {
+        if (playerHealth.isDead)
+        {
+            return;
+        }
         if (moveInput.x > 0)
         {
             SpriteObject.transform.localScale = new Vector3(Mathf.Abs(originalSize.x), originalSize.y, originalSize.z);
@@ -238,7 +247,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetAnimation()
     {
-        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Die") || ani.GetBool("isDead"))
+        if (ani.GetCurrentAnimatorStateInfo(0).IsName("Die") || ani.GetBool("isDead") || playerHealth.isDead)
         {
             return;
         }

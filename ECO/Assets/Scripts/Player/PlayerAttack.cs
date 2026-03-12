@@ -79,9 +79,13 @@ public class PlayerAttack : MonoBehaviour
                 if (enemyScript != null)
                 {
                     enemyAttack = enemyScript.GetComponent<enemyAttack>();
-                    enemyAttack.lockScale = true;
+                    if (enemyAttack != null)
+                    {
+                        enemyAttack.lockScale = true;
+                        Invoke("Unlockscale", attackCooldown);
+                    }
                     enemyScript.TakeDamage(attackDamage);
-                    Invoke("Unlockscale", attackCooldown);
+                    
                 }
                 else
                 {

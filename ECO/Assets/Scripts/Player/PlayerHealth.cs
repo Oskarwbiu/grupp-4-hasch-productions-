@@ -7,10 +7,10 @@ public class PlayerHealth : MonoBehaviour
     public float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
-    float OrigInvincibleTime => invincibleTime;
+    public bool isDead = false;
     public void GetDamaged(float damage)
     {
-        if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode)
+        if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
             FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
             isInvincible = true;
@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
                 if (playerDeath != null)
                 {
                     playerDeath.Die();
-                    invincibleTime = 3;
+                    isDead = true;
                 }
             }
             Invoke("Invincibility", invincibleTime);
@@ -39,12 +39,12 @@ public class PlayerHealth : MonoBehaviour
     public void Invincibility()
     {
         isInvincible = false;
-        invincibleTime = OrigInvincibleTime;
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth;
+        isDead = false;
     }
 
     public float CurrentHealth()
