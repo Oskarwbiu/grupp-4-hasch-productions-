@@ -8,6 +8,7 @@ public class BossSummon : MonoBehaviour
     [SerializeField] Transform spawnPos;
     [SerializeField] string bossTrack;
     [SerializeField] GameObject door;
+    [SerializeField] Bossbar bossbar;
 
     private void Start()
     {
@@ -31,7 +32,7 @@ public class BossSummon : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Debug.Log("start spawning");
         
-
+        bossbar.showBar();
         Instantiate(boss, spawnPos.position, Quaternion.identity);
     }
 

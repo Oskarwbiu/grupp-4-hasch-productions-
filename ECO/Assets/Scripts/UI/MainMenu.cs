@@ -67,6 +67,7 @@ public class MainMenu : MonoBehaviour
         startButton.RegisterCallback<ClickEvent>(evt => Time.timeScale = 1);
         startButton.RegisterCallback<ClickEvent>(evt => levelExit.StartLevelCoroutine(intro));
         startButton.RegisterCallback<ClickEvent>(evt => PlayerPrefs.DeleteKey("CheckpointID"));
+        startButton.RegisterCallback<ClickEvent>(evt => FindFirstObjectByType<PlayerHealth>().ResetHealth());
 
         Button continueButton = root.Q<Button>("ContinueButton");
         continueButton.RegisterCallback<ClickEvent>(evt => levelExit.StartLevelCoroutine((Level)PlayerPrefs.GetInt("Level")));

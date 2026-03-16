@@ -8,11 +8,15 @@ public class MechHealth : MonoBehaviour
 
     bool isInvincible = false;
     Animator ani;
+    Bossbar healthbar;
 
     private void Start()
     {
         currentHealth = maxHealth;
         ani = GetComponent<Animator>();
+        healthbar = FindFirstObjectByType<Bossbar>();
+        healthbar.maxHealth = maxHealth;
+        healthbar.health = currentHealth;
     }
     public void TakeDamage(float damage)
     {
@@ -22,6 +26,7 @@ public class MechHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
+        healthbar.health = currentHealth;
         isInvincible=true;
         Invoke("ResetInvIncibility", invincibilityDuration);
 
