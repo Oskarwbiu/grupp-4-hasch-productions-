@@ -13,6 +13,8 @@ public class PlayerCheats : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("GodMode Pref: " + PlayerPrefs.GetInt("GodMode", 0));
+        Debug.Log("LevelSkip Pref: " + PlayerPrefs.GetInt("LevelSkip", 0));
         rb = GetComponent<Rigidbody2D>();
         gravity = rb.gravityScale;
     }

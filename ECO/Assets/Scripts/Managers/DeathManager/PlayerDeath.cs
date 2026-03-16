@@ -42,9 +42,6 @@ public class PlayerDeath : MonoBehaviour
             if (active != null)
             {
                 active.TriggerRespawn();
-                spriteObject.SetActive(false);
-                rb.gravityScale = 0;
-                CheckpointManager.Instance.ResetCheckpoints();
             }
             StartCoroutine(Respawn());
         }
@@ -62,8 +59,11 @@ public class PlayerDeath : MonoBehaviour
         input.enabled = true;
     }
 
-    IEnumerator Respawn()
+    public IEnumerator Respawn()
     {
+        spriteObject.SetActive(false);
+        CheckpointManager.Instance.ResetCheckpoints();
+        rb.gravityScale = 0;
         yield return new WaitForSeconds(0.3f);
         spriteObject.SetActive(true);
         input.enabled = false;

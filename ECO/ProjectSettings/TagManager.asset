@@ -10,6 +10,7 @@ TagManager:
   - Warning
   - BossBounds
   - Scientist
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

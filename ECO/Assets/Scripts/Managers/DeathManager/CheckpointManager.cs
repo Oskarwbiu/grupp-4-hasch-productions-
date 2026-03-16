@@ -28,6 +28,7 @@ public class CheckpointManager : MonoBehaviour
     public void ActivateCheckpoint(int checkpointID, Vector3 position)
     {
         activatedCheckpoints.Add(checkpointID);
+        PlayerPrefs.SetInt("CheckpointID", checkpointID);
         lastCheckpointPosition = position;
     }
 

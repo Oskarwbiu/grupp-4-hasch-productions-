@@ -6,8 +6,7 @@ public class SettingsManager : MonoBehaviour
 {
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] AudioSource sfxAudioSource;
-
-
+    public bool continued = false;
     private void Start()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -15,8 +14,8 @@ public class SettingsManager : MonoBehaviour
         float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
-        bool isMuted = PlayerPrefs.GetInt("IsMuted", 0) == 1;
-        bool isFullscreen = PlayerPrefs.GetInt("IsFullscreen", 0) == 1;
+        bool isMuted = PlayerPrefs.GetInt("Mute", 0) == 1;
+        bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 0) == 1;
         float flySpeed = PlayerPrefs.GetFloat("FlySpeed", 5f);
         bool isGodMode = PlayerPrefs.GetInt("GodMode", 0) == 1;
         bool noClip = PlayerPrefs.GetInt("NoClip", 0) == 1;
@@ -32,6 +31,10 @@ public class SettingsManager : MonoBehaviour
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (scene.buildIndex != (int)Level.MAINMENU)
+        {
+            PlayerPrefs.SetInt("Level", scene.buildIndex);
+        }
         // Re-apply settings when a new scene is loaded
         float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
@@ -57,6 +60,7 @@ public class SettingsManager : MonoBehaviour
         {
             cheats = FindFirstObjectByType<PlayerCheats>();
             yield return null;
+            yield return null;
         }
 
         if (cheats != null)
@@ -72,5 +76,39 @@ public class SettingsManager : MonoBehaviour
             cheats.canLevelskip = levelSkip;
         }
         Debug.Log("cheats = " + cheats);
+
+        if (continued)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                int checkpointID = PlayerPrefs.GetInt("CheckpointID", -1);
+                if (checkpointID != -1)
+                {
+                    CheckpointManager checkpointManager = CheckpointManager.Instance;
+                    if (checkpointManager != null)
+                    {
+                        GameObject[] checkpoints = GameObject.FindGameObjectsWithTag("Checkpoint");
+                        foreach (GameObject checkpoint in checkpoints)
+                        {
+                            {
+                                if (checkpoint.GetComponent<Checkpoint>().checkpointID == checkpointID)
+                                {
+                                    Vector3 checkpointPosition = checkpoint.transform.position;
+                                    player.GetComponent<Rigidbody2D>().gravityScale = 0;
+
+                                    player.transform.position = checkpointPosition;
+                                    StartCoroutine(player.GetComponent<PlayerDeath>().Respawn());
+                                    checkpoint.GetComponent<Checkpoint>().TriggerRespawn();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            continued = false;
+
+        }
     }
 }

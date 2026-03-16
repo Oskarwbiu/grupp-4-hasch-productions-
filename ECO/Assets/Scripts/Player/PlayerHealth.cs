@@ -8,6 +8,11 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
     public bool isDead = false;
+
+    private void Start()
+    {
+        currentHealth = PlayerPrefs.GetFloat("PlayerHealth", maxHealth);
+    }
     public void GetDamaged(float damage)
     {
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
@@ -24,7 +29,9 @@ public class PlayerHealth : MonoBehaviour
                     isDead = true;
                 }
             }
+            PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
             Invoke("Invincibility", invincibleTime);
+            
         }
     }
 

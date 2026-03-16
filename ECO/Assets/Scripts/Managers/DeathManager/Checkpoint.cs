@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
     private Animator animator;
     GameObject player;
     
-    [SerializeField] private int checkpointID;
+    [SerializeField] public int checkpointID;
 
     void Awake()
     {
@@ -51,6 +51,7 @@ public class Checkpoint : MonoBehaviour
 
     private IEnumerator TriggerAfterRespawnSequence()
     {
+        player = GameObject.FindWithTag("Player");
         yield return null;
         Debug.Log("play animation");
         animator.SetTrigger("Respawn");

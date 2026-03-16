@@ -145,6 +145,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        ResumeGame();
         cheatsScript = null;
         playerInput = null;
     }
@@ -210,7 +211,6 @@ public class PauseMenu : MonoBehaviour
     void LoadMainMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)Level.MAINMENU);
-        FindFirstObjectByType<PlayerHealth>().ResetHealth();
         Time.timeScale = 1;
     }
 }

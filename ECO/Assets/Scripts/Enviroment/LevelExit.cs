@@ -13,7 +13,6 @@ public class LevelExit : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            //Destroy(collision.gameObject.GetComponent<PlayerInput>());
             StartLevelCoroutine(level);
         }
     }
