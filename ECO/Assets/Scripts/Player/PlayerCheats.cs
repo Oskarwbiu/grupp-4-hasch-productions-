@@ -77,6 +77,7 @@ public class PlayerCheats : MonoBehaviour
         
     void OnSkipLevel()
     {
+        Debug.Log("skip level = " + canLevelskip);
         if (canLevelskip)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);

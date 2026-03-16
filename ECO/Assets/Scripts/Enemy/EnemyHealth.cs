@@ -3,10 +3,11 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float maxHealth = 100f;
-    [SerializeField] float currentHealth;
+    public float currentHealth;
     [SerializeField] float invincibilityDuration = 0.5f;
 
     float invincibilityTimer = 0f;
+    public bool isHurt = false;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
         {
             return;
         }
+        
 
         currentHealth -= damage;
         invincibilityTimer = 0f;
@@ -26,8 +28,12 @@ public class EnemyHealth : MonoBehaviour
         {
             Die();
         }
-
-       
+        isHurt = true;
+        Invoke("ResetHurt", 0.15f);
+    }
+    void ResetHurt()
+    {
+        isHurt = false;
     }
 
     void Die()

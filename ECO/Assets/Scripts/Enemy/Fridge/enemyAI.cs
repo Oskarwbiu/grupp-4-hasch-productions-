@@ -51,6 +51,10 @@ public class enemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GetComponent<EnemyHealth>().isHurt && !chasePlayer)
+        {
+            Chase();   
+        }
         if (player == null)
         {
             player = GameObject.FindWithTag("Player");
@@ -160,12 +164,6 @@ public class enemyAI : MonoBehaviour
 
         isAttacking = false;
         ani.SetBool("idle", true);
-    }
-
-    void ResetAttack()
-    {
-        Debug.Log("attackreset");
-        isAttacking = false;
     }
 
     void Chase()

@@ -61,32 +61,39 @@ public class PauseMenu : MonoBehaviour
         audioMixer.GetFloat("MasterVolume", out masterVol);
         masterVolume.value = masterVol + volumeOffset;
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
-        
+        masterVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
+
 
         float musicVol = 0;
         audioMixer.GetFloat("MusicVolume", out musicVol);
         musicVolume.value = musicVol + volumeOffset;
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
-  
+        musicVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
+
 
         float sfxVol = 0;
         audioMixer.GetFloat("SFXVolume", out sfxVol);
         sfxVolume.value = sfxVol + volumeOffset;
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
-        
+        sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
+
 
 
         Toggle muteToggle = settingsPanel.Q<Toggle>("MuteToggle");
         muteToggle.value = AudioListener.pause;
         muteToggle.RegisterCallback<ChangeEvent<bool>>(evt => AudioListener.pause = evt.newValue);
+        muteToggle.RegisterCallback<ChangeEvent<bool>>(evt => PlayerPrefs.SetInt("Mute", evt.newValue ? 1 : 0));
 
         Toggle fullscreenToggle = settingsPanel.Q<Toggle>("FullscreenToggle");
         fullscreenToggle.value = Screen.fullScreen;
         fullscreenToggle.RegisterValueChangedCallback(evt => Screen.fullScreen = evt.newValue);
+        fullscreenToggle.RegisterValueChangedCallback(evt => PlayerPrefs.SetInt("Fullscreen", evt.newValue ? 1 : 0));
 
 
 
         Toggle godmodeToggle = settingsPanel.Q<Toggle>("GodmodeToggle");
+        godmodeToggle.value = PlayerPrefs.GetInt("GodMode", 0) == 1;
+        godmodeToggle.RegisterValueChangedCallback(evt => PlayerPrefs.SetInt("GodMode", evt.newValue ? 1 : 0));
         godmodeToggle.RegisterValueChangedCallback(evt =>
         {
             PlayerCheats cheats = GetCurrentCheatsScript();
@@ -95,6 +102,8 @@ public class PauseMenu : MonoBehaviour
         });
 
         Toggle noClipToggle = settingsPanel.Q<Toggle>("NoClipToggle");
+        noClipToggle.value = PlayerPrefs.GetInt("NoClip", 0) == 1;
+        noClipToggle.RegisterValueChangedCallback(evt => PlayerPrefs.SetInt("NoClip", evt.newValue ? 1 : 0));
         noClipToggle.RegisterValueChangedCallback(evt =>
         {
             PlayerCheats cheats = GetCurrentCheatsScript();
@@ -105,6 +114,7 @@ public class PauseMenu : MonoBehaviour
         float flySpeed = 0;
         Slider flySpeedSlider = settingsPanel.Q<Slider>("SpeedSlider");
         flySpeedSlider.value = flySpeed;
+        flySpeedSlider.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("FlySpeed", evt.newValue));
         flySpeedSlider.RegisterCallback<ChangeEvent<float>>((evt =>
         {
             PlayerCheats cheats = GetCurrentCheatsScript();
@@ -113,6 +123,8 @@ public class PauseMenu : MonoBehaviour
         }));
 
         Toggle levelSkipToggle = settingsPanel.Q<Toggle>("LevelSkipToggle");
+        levelSkipToggle.value = PlayerPrefs.GetInt("LevelSkip", 0) == 1;
+        levelSkipToggle.RegisterValueChangedCallback(evt => PlayerPrefs.SetInt("LevelSkip", evt.newValue ? 1 : 0));
         levelSkipToggle.RegisterValueChangedCallback(evt =>
         {
             PlayerCheats cheats = GetCurrentCheatsScript();
