@@ -115,7 +115,7 @@ public class GrapplingHook : MonoBehaviour
                     lr.enabled = true;
                     canPull = false;
                     isGrappling = false;
-                    objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x) + ((pullDirection.y * 3) * pullForce * 5 + rb.linearVelocityY)));
+                    objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x * 2) + ((pullDirection.y + 1.5f) * pullForce * 5 + rb.linearVelocityY)));
 
 
 

@@ -39,10 +39,10 @@ public class SettingsManager : MonoBehaviour
         float masterVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         float musicVolume = PlayerPrefs.GetFloat("MusicVolume", 1f);
         float sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);    
-        bool isMuted = PlayerPrefs.GetInt("IsMuted", 0) == 1;
-        bool isFullscreen = PlayerPrefs.GetInt("IsFullscreen", 0) == 1;
+        bool isMuted = PlayerPrefs.GetInt("Mute", 0) == 1;
+        bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 0) == 1;
 
-        StartCoroutine(ApplyCheats());
+        
 
 
         AudioListener.volume = masterVolume;
@@ -50,6 +50,7 @@ public class SettingsManager : MonoBehaviour
         sfxAudioSource.volume = sfxVolume;
         AudioListener.pause = isMuted;
         Screen.fullScreen = isFullscreen;
+        StartCoroutine(ApplyCheats());
     }
 
     IEnumerator ApplyCheats()
@@ -94,17 +95,20 @@ public class SettingsManager : MonoBehaviour
                             {
                                 if (checkpoint.GetComponent<Checkpoint>().checkpointID == checkpointID)
                                 {
-                                    Vector3 checkpointPosition = checkpoint.transform.position;
                                     player.GetComponent<Rigidbody2D>().gravityScale = 0;
 
-                                    player.transform.position = checkpointPosition;
-                                    StartCoroutine(player.GetComponent<PlayerDeath>().Respawn());
-                                    checkpoint.GetComponent<Checkpoint>().TriggerRespawn();
+                                    
+                                    checkpoint.GetComponent<Checkpoint>().ActivateCheckpoint();
                                     break;
                                 }
                             }
                         }
                     }
+                }
+                Vector2 savedPos = new Vector2(PlayerPrefs.GetFloat("PlayerPosX", 0), PlayerPrefs.GetFloat("PlayerPosY", 0));
+                if (savedPos != Vector2.zero)
+                {
+                    player.transform.position = new Vector2(PlayerPrefs.GetFloat("PlayerPosX"), PlayerPrefs.GetFloat("PlayerPosY"));
                 }
             }
             continued = false;

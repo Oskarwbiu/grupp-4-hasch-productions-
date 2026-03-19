@@ -42,6 +42,12 @@ public class Checkpoint : MonoBehaviour
             }
         }
     }
+    
+    public void ActivateCheckpoint()
+    {
+        CheckpointManager.Instance.CurrentActiveInstance = this;
+        CheckpointManager.Instance.ActivateCheckpoint(checkpointID, transform.position);
+    }
 
     public void TriggerRespawn()
     {

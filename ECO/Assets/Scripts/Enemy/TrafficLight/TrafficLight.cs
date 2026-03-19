@@ -45,7 +45,7 @@ public class TrafficLight : MonoBehaviour
             if (hit.collider.CompareTag("Player"))
             {
                 player = hit.collider.gameObject;
-                StartCoroutine(attackScript.AttackPlayer(player.transform.position, 0.5f));
+                StartCoroutine(attackScript.AttackPlayer(player, 0.5f));
 
             }
 

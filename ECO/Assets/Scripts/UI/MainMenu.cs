@@ -79,23 +79,23 @@ public class MainMenu : MonoBehaviour
         Slider musicVolume = settingsPanel.Q<Slider>("MusicVolume");
         Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
 
-        float masterVol = 0;
-        audioMixer.GetFloat("MasterVolume", out masterVol);
-        masterVolume.value = masterVol + volumeOffset;
+        float masterVol = PlayerPrefs.GetFloat("MasterVolume", 0);
+        audioMixer.SetFloat("MasterVolume", masterVol);
+        masterVolume.value = Mathf.Pow(10f, masterVol/ 20f);
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float musicVol = 0;
-        audioMixer.GetFloat("MusicVolume", out musicVol);
-        musicVolume.value = musicVol + volumeOffset;
+        float musicVol = PlayerPrefs.GetFloat("MusicVolume", 0); ;
+        audioMixer.SetFloat("MusicVolume", musicVol);
+        musicVolume.value = Mathf.Pow(10f, musicVol / 20f);
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float sfxVol = 0;
-        audioMixer.GetFloat("SFXVolume", out sfxVol);
-        sfxVolume.value = sfxVol + volumeOffset;
+        float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 0); ;
+        audioMixer.SetFloat("MasterVolume", sfxVol);
+        sfxVolume.value = Mathf.Pow(10f, sfxVol / 20f);
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
 
@@ -138,6 +138,7 @@ public class MainMenu : MonoBehaviour
 
     void ExitSettings()
     {
+        PlayerPrefs.Save();
         mainMenu.style.display = DisplayStyle.Flex;
         settingsMenu.style.display = DisplayStyle.None;
     }

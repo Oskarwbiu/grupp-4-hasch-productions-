@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7163257185167586068, guid: 0b58e08c2c23084489aed6ae9cb5f494, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -197,7 +197,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -410,7 +410,7 @@ MonoBehaviour:
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 
+  m_DefaultActionMap: df70fa95-8a34-4494-b137-73ab6b9c7d37
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &1874292031666492880
@@ -432,6 +432,7 @@ MonoBehaviour:
   jumpBufferTime: 0.5
   coyoteTime: 0.1
   maxFallSpeed: 13
+  gravityScaleAtStart: 3
   groundFilter:
     useTriggers: 0
     useLayerMask: 1
@@ -441,7 +442,7 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 576
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 15
@@ -449,6 +450,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  isRespawning: 0
   isGrounded: 0
 --- !u!114 &633121656109802774
 MonoBehaviour:
@@ -472,17 +474,19 @@ MonoBehaviour:
     useOutsideNormalAngle: 0
     layerMask:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 576
     minDepth: 0
     maxDepth: 0
     minNormalAngle: 15
     maxNormalAngle: 155
   dashForce: 15
-  dashCooldown: 3
+  dashCooldown: 1.5
   dashSpeedMultiplier: 2
   acceleration: 10
   decceleration: 10
   frictionAmount: 0.2
+  playerInput: {fileID: 2676724372438415694}
+  footstepInterval: 0.5
 --- !u!114 &4373190432289433430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,7 +506,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 832
   reelSpeed: 0.2
-  maxDistance: 60
+  maxDistance: 13
   pullForce: 30
   pullCooldown: 2
   stunDuration: 1.5
@@ -540,7 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237a079964f7f8745a8b24a5e8e58542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerDeath
-  deathZoneY: -25
+  deathZoneY: -21
   lastCheckpointPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1669936740410279576
 MonoBehaviour:
@@ -555,4 +559,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   flySpeed: 5
+  isGodMode: 0
   canLevelskip: 0
