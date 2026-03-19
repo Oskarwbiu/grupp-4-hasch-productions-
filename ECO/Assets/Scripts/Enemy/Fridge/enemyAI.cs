@@ -26,6 +26,7 @@ public class enemyAI : MonoBehaviour
     bool isGrounded = false;
     bool isAttacking = false;
     float moveSpeedMultiplier = 1f;
+    Coroutine lookaroundCoroutine;
     Animator ani;
     void Start()
     {
@@ -63,7 +64,7 @@ public class enemyAI : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGrounded = GetComponent<enemyAI>().isGrounded;
+        isGrounded = GetComponent<enemyAIJumpCrouch>().isGrounded;
 
         if (!chasePlayer)
         {
@@ -74,7 +75,7 @@ public class enemyAI : MonoBehaviour
             Chase();
             
              isPatrolling = false;
-             StopCoroutine(Lookaround());
+             StopCoroutine(lookaroundCoroutine);
             
         }
         Vision();
@@ -222,7 +223,7 @@ public class enemyAI : MonoBehaviour
         if (collision.gameObject.CompareTag("End Point") && !isPatrolling && !chasePlayer)
         {
 
-            StartCoroutine(Lookaround());
+            lookaroundCoroutine = StartCoroutine(Lookaround());
         }
         
     }

@@ -8419,7 +8419,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13374,6 +13374,46 @@ PrefabInstance:
     - target: {fileID: 4714949977962510592, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
       propertyPath: m_Name
       value: LightEnemy (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowSoftness
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowsEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_LightVolumeEnabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_LightVolumeIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowVolumeIntensity
+      value: 0.295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowVolumeIntensityEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ShadowSoftnessFalloffIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6821037582457409731, guid: ecf15a874b7c75f45bf2cb19eb975df0, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[3]'
+      value: -1560571535
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

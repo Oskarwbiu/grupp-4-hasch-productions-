@@ -22,7 +22,7 @@ public class enemyAIJumpCrouch : MonoBehaviour
 
     Coroutine jumpCoroutine;
 
-    bool isGrounded = false;
+    public bool isGrounded = false;
     bool isCrouching = false;
     bool isJumping = false;
     bool hasjumped = false;

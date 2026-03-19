@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -30,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
                 }
             }
             PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
+            StartCoroutine(ResetTime());
+            Time.timeScale = 0;
             Invoke("Invincibility", invincibleTime);
             
         }
@@ -41,6 +44,12 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth++;
         }
+    }
+
+    IEnumerator ResetTime()
+    {
+        yield return new WaitForSecondsRealtime(0.5f);
+        Time.timeScale = 1;
     }
 
     public void Invincibility()
