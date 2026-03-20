@@ -172,7 +172,7 @@ public class GrapplingHook : MonoBehaviour
 
     void RotatePlayer()
     {
-        if (isGrappling && point.collider != null && !isPulling)
+        if (isGrappling && point.collider != null && !isPulling && !isGrounded)
         {
             Vector2 direction = point.point - (Vector2)transform.position;
 

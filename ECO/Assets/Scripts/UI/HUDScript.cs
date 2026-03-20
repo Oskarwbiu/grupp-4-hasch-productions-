@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class HUDScript : MonoBehaviour
@@ -14,9 +15,11 @@ public class HUDScript : MonoBehaviour
     float lastHealth = 0;
     private void Start()
     {
-        playerHealth = FindFirstObjectByType<PlayerHealth>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
+
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
         
 
         VisualElement root = pauseDocument.rootVisualElement;
@@ -30,18 +33,26 @@ public class HUDScript : MonoBehaviour
     }
     private void Update()
     {
-       
-        if (playerHealth.currentHealth != lastHealth)
-        {
+       if (playerHealth == null)
+       {
+            playerHealth = FindFirstObjectByType<PlayerHealth>();
+       }
+        
+       if (playerHealth.currentHealth != lastHealth)
+       {
             UpdateHealthGUI();
-        }
-        
-        
-
-
+       }
     }
 
-    void UpdateHealthGUI()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        UpdateHealthGUI();
+        if (playerHealth != null) { return; }
+        playerHealth = FindFirstObjectByType<PlayerHealth>();
+    }
+
+
+        void UpdateHealthGUI()
     {
         healthElement.style.backgroundImage = new StyleBackground(healthSprites[(int)playerHealth.currentHealth]);
         lastHealth = playerHealth.currentHealth;

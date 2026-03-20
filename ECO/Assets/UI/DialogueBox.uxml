@@ -1,0 +1,8 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="DialogueBox" style="flex-grow: 1; width: 35%; height: 15%; min-height: 15%; max-height: 25%; align-self: center; align-content: flex-start; top: 70%; background-color: rgb(255, 255, 255);">
+        <ui:Label text="Name" name="Name" style="-unity-font-style: bold; font-size: 35px; width: 80%; text-overflow: ellipsis;" />
+        <ui:VisualElement name="Icon" style="flex-grow: 1; align-self: flex-end; align-items: stretch; width: 13%; height: 30%; max-height: 20%; background-color: rgba(0, 0, 0, 0.26); min-height: 30%; bottom: 21%; left: auto; background-image: url(&quot;project://database/Assets/Sprites/Non%20tile%20deco/bbl.png?fileID=2800000&amp;guid=db996343c5184cb47bac548fcccab686&amp;type=3#bbl&quot;); top: auto;" />
+        <ui:Label text="bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla" name="Dialogue" style="width: 600px; height: 70%; white-space: normal; font-size: 30px; bottom: 30%; -unity-font-style: bold;" />
+        <ui:Button text="Continue" name="Continue" style="width: 12%; height: 12%; align-self: flex-end; bottom: 38%; font-size: 14px; -unity-font-style: bold;" />
+    </ui:VisualElement>
+</ui:UXML>
