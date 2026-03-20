@@ -6,9 +6,18 @@ public class enemyAttack : MonoBehaviour
     [SerializeField] private float attackCooldown = 1f;
     bool hasAttacked = false;
     public bool lockScale = false;
+    EnemyHealth health;
 
+    private void Start()
+    {
+        health = GetComponent<EnemyHealth>();
+    }
     private void OnTriggerStay2D(Collider2D other)
     {
+        if (health.isStunned)
+        {
+            return;
+        }
         lockScale = true;
         if (other.CompareTag("Player") && !hasAttacked)
         {

@@ -10,14 +10,21 @@ public class TrafficLightAttack : MonoBehaviour
     LineRenderer lr;
     bool canAttack = true;
     bool isAttacking = false;
+    EnemyHealth health;
     private void Start()
     {
         ani = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
+        health = GetComponent<EnemyHealth>();
     }
 
     private void FixedUpdate()
     {
+        if (health.isStunned)
+        {
+            lr.enabled = false;
+            return;
+        }
         if (isAttacking)
         {
             transform.localScale = new Vector3(-Mathf.Sign(GameObject.FindWithTag("Player").transform.position.x - transform.position.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);

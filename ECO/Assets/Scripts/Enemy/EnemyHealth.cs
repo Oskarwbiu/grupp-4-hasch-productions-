@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -8,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
 
     float invincibilityTimer = 0f;
     public bool isHurt = false;
+    public bool isStunned = false;
 
     private void Start()
     {
@@ -44,5 +46,12 @@ public class EnemyHealth : MonoBehaviour
     private void Update()
     {
         invincibilityTimer += Time.deltaTime;
+    }
+
+    public IEnumerator Stun(float stunDuration)
+    {
+        isStunned = true;
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
     }
 }

@@ -28,27 +28,17 @@ public class enemyAI : MonoBehaviour
     float moveSpeedMultiplier = 1f;
     Coroutine lookaroundCoroutine;
     Animator ani;
+    EnemyHealth health;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = origMoveSpeed;
         ani = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+        health = GetComponent<EnemyHealth>();
     }
 
-    public void StunEnemy(float stunDuration)
-        {
-        StopAllCoroutines();
-        moveSpeed = 0;
-        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
-        isPatrolling = false;
-        Invoke("UnStun", stunDuration);
-    }
-
-    void UnStun()
-    {
-        moveSpeed = origMoveSpeed;
-    }
+    
 
     private void Update()
     {
@@ -65,7 +55,11 @@ public class enemyAI : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = GetComponent<enemyAIJumpCrouch>().isGrounded;
-
+        if (health.isStunned)
+        {
+            Friction();
+            return;
+        }
         if (!chasePlayer)
         {
             Move();
@@ -91,6 +85,14 @@ public class enemyAI : MonoBehaviour
         }
     }
 
+    void Friction()
+    {
+
+        if (Mathf.Abs(rb.linearVelocity.y) <= 0.1)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.9f, rb.linearVelocity.y);
+        }
+    }
     void Vision()
     {
         if (player == null && chasePlayer)

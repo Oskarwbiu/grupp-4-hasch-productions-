@@ -6,6 +6,7 @@ public class FireExtinguisher : MonoBehaviour
 {
     [SerializeField] float origMoveSpeed;
     [SerializeField] float detectionRange = 5f;
+    [SerializeField] float attackCooldown = 2f;
     [SerializeField] float attackRange = 1f;
     [SerializeField] float acceleration = 10f;
     [SerializeField] float decceleration = 10f;
@@ -25,6 +26,8 @@ public class FireExtinguisher : MonoBehaviour
     bool isLookingForPlayer = false;
     bool isPatrolling = false;
     bool isAttacking = false;
+    FireAttack fireAttack;
+    EnemyHealth health;
 
     float wallCheckTimer = 0;
 
@@ -34,6 +37,8 @@ public class FireExtinguisher : MonoBehaviour
         moveSpeed = origMoveSpeed;
         ani = GetComponent<Animator>();
         player = GameObject.FindWithTag("Player");
+        fireAttack = GetComponent<FireAttack>();
+        health = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -47,9 +52,20 @@ public class FireExtinguisher : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        if (health.isStunned)
+        {
+            Friction();
+            return;
+        }
         if (!chasePlayer)
         {
             Move();
+            if (fireAttack.Attack() != null)
+            {
+                fireAttack.StopAllCoroutines();
+                fireAttack.isAttacking = false;
+            }
         }
         else if (chasePlayer)
         {
@@ -93,7 +109,7 @@ public class FireExtinguisher : MonoBehaviour
                     rb.linearVelocityX = 0;
                     player = hit.collider.gameObject;
                     chasePlayer = true;
-
+                    StartCoroutine(Attack());
                 }
 
             }
@@ -114,6 +130,14 @@ public class FireExtinguisher : MonoBehaviour
 
     }
 
+    void Friction()
+    {
+
+        if (Mathf.Abs(rb.linearVelocity.y) <= 0.1)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x * 0.9f, rb.linearVelocity.y);
+        }
+    }
     private void OnBecameInvisible()
     {
         if (chasePlayer)
@@ -166,6 +190,24 @@ public class FireExtinguisher : MonoBehaviour
         }
     }
 
+    IEnumerator Attack()
+    {
+        bool isattackStarted = false;
+        while (true)
+        {
+            yield return new WaitForSeconds(1f);
+            if (chasePlayer && !isattackStarted)
+            {
+                isattackStarted = true;
+                fireAttack.StopCoroutine(fireAttack.Attack());
+                fireAttack.StartCoroutine(fireAttack.Attack());
+                yield return new WaitForSeconds(attackCooldown + fireAttack.attackDuration);
+            }
+            isattackStarted = false;
+        }
+
+    }
+
 
     void FlipHorizontalMovement()
     {
@@ -200,6 +242,7 @@ public class FireExtinguisher : MonoBehaviour
             targetSpeed = 0f;
         }
 
+        transform.localScale = new Vector3(Mathf.Sign(direction), transform.localScale.y, transform.localScale.z);
 
         float speedDifference = targetSpeed - rb.linearVelocity.x;
 

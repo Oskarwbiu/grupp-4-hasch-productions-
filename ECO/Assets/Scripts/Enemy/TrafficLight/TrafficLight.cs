@@ -11,15 +11,22 @@ public class TrafficLight : MonoBehaviour
     Rigidbody2D rb;
     TrafficLightAttack attackScript;
     GameObject player;
+    EnemyHealth health;
     private void Start()
     {
         attackScript = GetComponent<TrafficLightAttack>();
         rb = GetComponent<Rigidbody2D>();
+        health = GetComponent<EnemyHealth>();
     }
     private void FixedUpdate()
     {
-        Vision();
+        
         Friction();
+        if (health.isStunned)
+        {
+            return;
+        }
+        Vision();
     }
     void Friction()
     {

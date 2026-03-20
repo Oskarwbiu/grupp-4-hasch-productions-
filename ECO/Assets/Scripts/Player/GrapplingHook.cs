@@ -115,6 +115,11 @@ public class GrapplingHook : MonoBehaviour
                     lr.enabled = true;
                     canPull = false;
                     isGrappling = false;
+                    if (objectHit.gameObject.TryGetComponent<EnemyHealth>(out hitAI))
+                    {
+                       hitAI.StartCoroutine(hitAI.Stun(stunDuration));
+                    }
+
                     objectHit.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(pullDirection.x * pullForce * 5 + rb.linearVelocityX, Mathf.Abs(pullDirection.x * 2) + ((pullDirection.y + 1.5f) * pullForce * 5 + rb.linearVelocityY)));
 
 
