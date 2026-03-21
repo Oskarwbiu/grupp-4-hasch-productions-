@@ -69,7 +69,10 @@ public class enemyAI : MonoBehaviour
             Chase();
             
              isPatrolling = false;
-             StopCoroutine(lookaroundCoroutine);
+            if (lookaroundCoroutine != null)
+            {
+                StopCoroutine(lookaroundCoroutine);
+            }
             
         }
         Vision();

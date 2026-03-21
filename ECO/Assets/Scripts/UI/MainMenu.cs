@@ -39,7 +39,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
 
-        float volumeOffset = 20f;
+
 
         VisualElement root = _document.rootVisualElement;
         settingsMenu = root.Q<VisualElement>("SettingsMenu");
@@ -70,7 +70,7 @@ public class MainMenu : MonoBehaviour
         startButton.RegisterCallback<ClickEvent>(evt => FindFirstObjectByType<PlayerHealth>().ResetHealth());
 
         Button continueButton = root.Q<Button>("ContinueButton");
-        continueButton.RegisterCallback<ClickEvent>(evt => levelExit.StartLevelCoroutine((Level)PlayerPrefs.GetInt("Level")));
+        continueButton.RegisterCallback<ClickEvent>(evt => levelExit.StartLevelCoroutine((Level)PlayerPrefs.GetInt("Level", 1)));
         continueButton.RegisterCallback<ClickEvent>(evt => FindFirstObjectByType<SettingsManager>().continued = true);
         continueButton.RegisterCallback<ClickEvent>(evt => Time.timeScale = 1);
 
@@ -79,22 +79,22 @@ public class MainMenu : MonoBehaviour
         Slider musicVolume = settingsPanel.Q<Slider>("MusicVolume");
         Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
 
-        float masterVol = PlayerPrefs.GetFloat("MasterVolume", 0);
+        float masterVol = PlayerPrefs.GetFloat("MasterVolume", 1);
         audioMixer.SetFloat("MasterVolume", masterVol);
         masterVolume.value = Mathf.Pow(10f, masterVol/ 20f);
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float musicVol = PlayerPrefs.GetFloat("MusicVolume", 0); ;
+        float musicVol = PlayerPrefs.GetFloat("MusicVolume", 1); ;
         audioMixer.SetFloat("MusicVolume", musicVol);
         musicVolume.value = Mathf.Pow(10f, musicVol / 20f);
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 0); ;
-        audioMixer.SetFloat("MasterVolume", sfxVol);
+        float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 1); ;
+        audioMixer.SetFloat("SFXVolume", sfxVol);
         sfxVolume.value = Mathf.Pow(10f, sfxVol / 20f);
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));

@@ -5,12 +5,14 @@ public class TrafficLightAttack : MonoBehaviour
 {
     [SerializeField] float damage = 1f;
     [SerializeField] float attackSpeed = 1f;
+    [SerializeField] float chargeInterval = 0.2f;
 
     Animator ani;
     LineRenderer lr;
     bool canAttack = true;
     bool isAttacking = false;
     EnemyHealth health;
+    float chargeTimer;
     private void Start()
     {
         ani = GetComponent<Animator>();
@@ -27,6 +29,15 @@ public class TrafficLightAttack : MonoBehaviour
         }
         if (isAttacking)
         {
+            chargeTimer -= Time.deltaTime;
+
+            if (chargeTimer <= 0f)
+            {
+                SoundManager.Instance.PlaySound2D("TrafficCharge");
+                chargeTimer = chargeInterval;
+            }
+
+
             transform.localScale = new Vector3(-Mathf.Sign(GameObject.FindWithTag("Player").transform.position.x - transform.position.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             Vector2 playerPos = GameObject.FindWithTag("Player").transform.position;
             Vector2 dir = (playerPos - (Vector2)transform.position).normalized;
@@ -40,6 +51,10 @@ public class TrafficLightAttack : MonoBehaviour
             lr.endColor = color;
             lr.SetPosition(0, transform.position);
             lr.SetPosition(1, (Vector2)transform.position + (30 * dir));
+        }
+        else
+        {
+            chargeTimer = 0f;
         }
     }
     public IEnumerator AttackPlayer(GameObject player, float delay)
@@ -57,6 +72,7 @@ public class TrafficLightAttack : MonoBehaviour
             isAttacking = true;
 
             ani.SetTrigger("Charge");
+ 
 
             yield return new WaitForSeconds(0.35f);
             Vector2 dir = (player.transform.position - transform.position).normalized;
@@ -64,7 +80,7 @@ public class TrafficLightAttack : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Ground", "Player"));
-            
+            SoundManager.Instance.PlaySound2D("TrafficShoot");
             lr.enabled = true;
             lr.startColor = Color.yellow;
             lr.endColor = Color.yellow;

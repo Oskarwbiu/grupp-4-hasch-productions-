@@ -44,6 +44,7 @@ public class PlayerAttack : MonoBehaviour
 
         GetComponent<PlayerMovement>().AttackAnimation();
         SoundManager.Instance.PlaySound2D("Slash");
+        SoundManager.Instance.PlaySound2D("PlayerAttack");
 
         lastAttackTime = 0;
 

@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
             FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
+            SoundManager.Instance.PlaySound2D("PlayerHurt");
             isInvincible = true;
             currentHealth -= damage;
             if (currentHealth <= 0)
@@ -49,7 +50,10 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator ResetTime()
     {
         yield return new WaitForSecondsRealtime(0.5f);
-        Time.timeScale = 1;
+        if (!FindFirstObjectByType<PauseMenu>().isPaused)
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void Invincibility()

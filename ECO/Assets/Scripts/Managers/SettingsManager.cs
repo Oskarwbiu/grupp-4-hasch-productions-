@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] AudioSource musicAudioSource;
     [SerializeField] AudioSource sfxAudioSource;
+    [SerializeField] AudioMixer audioMixer;
+
     public bool continued = false;
     private void Start()
     {
@@ -22,7 +25,7 @@ public class SettingsManager : MonoBehaviour
         bool levelSkip = PlayerPrefs.GetInt("LevelSkip", 0) == 1;
 
         // Apply loaded settings
-        AudioListener.volume = masterVolume;
+        audioMixer.SetFloat("MasterVolume", masterVolume);
         musicAudioSource.volume = musicVolume;
         sfxAudioSource.volume = sfxVolume;
         AudioListener.pause = isMuted;
@@ -42,12 +45,16 @@ public class SettingsManager : MonoBehaviour
         bool isMuted = PlayerPrefs.GetInt("Mute", 0) == 1;
         bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 0) == 1;
 
-        
+
+        Debug.Log($"Volume {masterVolume}");
+        Debug.Log($"Music {musicVolume}");
+        Debug.Log($"SFX {sfxVolume}");
+        Debug.Log($"Mute: {isMuted}");
 
 
-        AudioListener.volume = masterVolume;
-        musicAudioSource.volume = musicVolume;
-        sfxAudioSource.volume = sfxVolume;
+        audioMixer.SetFloat("MasterVolume", masterVolume);
+        musicAudioSource.volume = Mathf.Pow(10f, musicVolume / 20f); ;
+        sfxAudioSource.volume = Mathf.Pow(10f, sfxVolume / 20f); ;
         AudioListener.pause = isMuted;
         Screen.fullScreen = isFullscreen;
         StartCoroutine(ApplyCheats());

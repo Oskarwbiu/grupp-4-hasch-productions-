@@ -19,6 +19,7 @@ public class MechAttack : MonoBehaviour
     [SerializeField] int flyTimes = 1;
     [SerializeField] float bombDropInterval = 0.5f;
     [SerializeField] GameObject bombPrefab;
+    [SerializeField] float flyInterval = 0.2f;
     [Header("Spin Shot Attack")]
     [SerializeField] float spinShotInterval = 0.1f;
     [SerializeField] float spinShotsPerAttack = 12f;
@@ -41,6 +42,8 @@ public class MechAttack : MonoBehaviour
     float currentDamage = 1;
     int lastAttack = -1;
     int phase = 0;
+    bool isflying;
+    float flyTimer;
     MechAnimation mechAnimation;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
@@ -93,6 +96,24 @@ public class MechAttack : MonoBehaviour
             Invoke("ResetAttack", attackspeed);
         }
         isTouchingPlayer = false;
+
+
+        if (isflying)
+        {
+            flyTimer -= Time.deltaTime;
+
+            if (flyTimer <= 0f)
+            {
+                SoundManager.Instance.PlaySound2D("MechFlying");
+                flyTimer = flyInterval;
+            }
+        }
+        else
+        {
+            flyTimer = 0f;
+        }
+
+
     }
 
     private void ResetAttack()
@@ -220,7 +241,9 @@ public class MechAttack : MonoBehaviour
         rb.linearVelocityY = flySpeed;
         mechAnimation.PlayTrigger("flyUp");
         SoundManager.Instance.PlaySound2D("MechFly");
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.1f);
+        isflying = true;
+        yield return new WaitForSeconds(0.5f);
         mechAnimation.PlayAnimation("isFlying");
 
         yield return new WaitUntil(() => transform.position.y > BoundsTop - 1.5f);
@@ -254,6 +277,7 @@ public class MechAttack : MonoBehaviour
         rb.gravityScale = gravityScale;
         mechAnimation.PlayTrigger("flyDown");
         ani.SetBool("isFlying", false);
+        isflying = false;
         transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
         yield return new WaitForSeconds(0.5f);

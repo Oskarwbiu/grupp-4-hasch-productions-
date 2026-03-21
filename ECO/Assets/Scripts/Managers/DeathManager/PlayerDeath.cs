@@ -11,11 +11,12 @@ public class PlayerDeath : MonoBehaviour
     PlayerInput input;
     Rigidbody2D rb;
     float gravity;
+    bool isDead;
     GameObject spriteObject;
 
     private void Awake()
     {
-        
+        isDead = false;
     }
 
     void Start()
@@ -75,7 +76,7 @@ public class PlayerDeath : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.y < deathZoneY)
+        if (transform.position.y < deathZoneY && !isDead) 
         {
             Die();
         }
@@ -88,16 +89,14 @@ public class PlayerDeath : MonoBehaviour
 
     public void Die()
     {
-        Checkpoint activeCheckpoint = CheckpointManager.Instance.CurrentActiveInstance;
-        if (activeCheckpoint != null)
-        {
-            activeCheckpoint.TriggerRespawn();
-        }
+        isDead = true;
         rb.linearVelocity = Vector2.zero;
         GetComponent<PlayerMovement>().ResetMovement();
         GetComponent<PlayerMovement>().StartTriggerAnimation("Die");
         input.enabled = false;
-        
+        rb.GetComponent<PlayerJump>().isRespawning = true;
+        rb.gravityScale = 0;
+        SoundManager.Instance.PlaySound2D("PlayerDie");
         StartCoroutine(RestartSceneAfterDelay(2f));
     }
 

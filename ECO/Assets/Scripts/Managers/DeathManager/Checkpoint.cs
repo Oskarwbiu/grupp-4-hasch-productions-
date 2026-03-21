@@ -20,6 +20,7 @@ public class Checkpoint : MonoBehaviour
                 player.GetComponent<PlayerJump>().isRespawning = true;
                 CheckpointManager.Instance.CurrentActiveInstance = this;
                 animator.SetTrigger("Activate");
+                SoundManager.Instance.PlaySound3D("ActivateCheckpoint", transform.position);
                 float duration = animator.GetAnimatorTransitionInfo(0).duration;
                 Invoke("TriggerRespawn", duration);
             }
@@ -31,22 +32,24 @@ public class Checkpoint : MonoBehaviour
     {
         if (collision.CompareTag("Player") && CheckpointManager.Instance != null && !CheckpointManager.Instance.IsCheckpointActivated(checkpointID))
         {
-            CheckpointManager.Instance.CurrentActiveInstance = this;
-            CheckpointManager.Instance.ActivateCheckpoint(checkpointID, transform.position);
+            ActivateCheckpoint();
 
             PlayerDeath playerDeath = collision.GetComponent<PlayerDeath>();
             if (playerDeath != null)
             {
+                
                 playerDeath.SetCheckpoint(transform.position);
-                animator.SetTrigger("Activate");
+                
             }
         }
     }
     
     public void ActivateCheckpoint()
     {
+        animator.SetTrigger("Activate");
         CheckpointManager.Instance.CurrentActiveInstance = this;
         CheckpointManager.Instance.ActivateCheckpoint(checkpointID, transform.position);
+        SoundManager.Instance.PlaySound2D("ActivateCheckpoint");
     }
 
     public void TriggerRespawn()
@@ -59,10 +62,11 @@ public class Checkpoint : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         yield return null;
-        Debug.Log("play animation");
         animator.SetTrigger("Respawn");
+        SoundManager.Instance.PlaySound2D("RespawnCheckpoint");
         yield return new WaitForSeconds(1.5f);
         player.GetComponent<PlayerJump>().isRespawning = false;
+        SoundManager.Instance.PlaySound2D("AfterRespawnCheckpoint");
         animator.SetTrigger("AfterRespawn");
     }
 }

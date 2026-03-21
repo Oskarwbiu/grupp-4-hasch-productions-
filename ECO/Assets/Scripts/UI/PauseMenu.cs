@@ -7,6 +7,7 @@ using UnityEngine.UIElements.InputSystem;
 
 public class PauseMenu : MonoBehaviour
 {
+    public bool isPaused;
     private UIDocument pauseDocument;
 
     private VisualElement pauseVE;
@@ -28,7 +29,6 @@ public class PauseMenu : MonoBehaviour
     private void Awake()
     {
 
-        float volumeOffset = 20f;
         pauseDocument = GetComponent<UIDocument>();
         pauseVE = pauseDocument.rootVisualElement as VisualElement;
 
@@ -57,22 +57,22 @@ public class PauseMenu : MonoBehaviour
         Slider musicVolume = settingsPanel.Q<Slider>("MusicVolume");
         Slider sfxVolume = settingsPanel.Q<Slider>("SFXVolume");
 
-        float masterVol = PlayerPrefs.GetFloat("MasterVolume", 0); ;
+        float masterVol = PlayerPrefs.GetFloat("MasterVolume", 1); ;
         audioMixer.SetFloat("MasterVolume", masterVol);
         masterVolume.value = Mathf.Pow(10f, masterVol/ 20f);
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
         masterVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MasterVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float musicVol = PlayerPrefs.GetFloat("MusicVolume", 0); ;
+        float musicVol = PlayerPrefs.GetFloat("MusicVolume", 1); ;
         audioMixer.SetFloat("MusicVolume", musicVol);
         musicVolume.value = Mathf.Pow(10f, musicVol / 20f);
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
         musicVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("MusicVolume", Mathf.Log10(evt.newValue) * 20));
 
 
-        float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 0); ;
-        audioMixer.SetFloat("MasterVolume", sfxVol);
+        float sfxVol = PlayerPrefs.GetFloat("SFXVolume", 1);
+        audioMixer.SetFloat("SFXVolume", sfxVol);
         sfxVolume.value = Mathf.Pow(10f, sfxVol / 20f);
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => audioMixer.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
         sfxVolume.RegisterCallback<ChangeEvent<float>>(evt => PlayerPrefs.SetFloat("SFXVolume", Mathf.Log10(evt.newValue) * 20));
@@ -179,6 +179,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         HUD.rootVisualElement.style.display = DisplayStyle.None;
+        isPaused = true;
         PlayerInput pi = GetCurrentPlayerInput();
         if (pi != null)
             pi.enabled = false;
@@ -188,6 +189,7 @@ public class PauseMenu : MonoBehaviour
 
     void ResumeGame()
     {
+        isPaused = false;
         PlayerPrefs.Save();
         HUD.rootVisualElement.style.display = DisplayStyle.Flex;
         PlayerInput pi = GetCurrentPlayerInput();

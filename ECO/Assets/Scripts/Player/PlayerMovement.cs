@@ -178,10 +178,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void MovePlayer()
     {
+ 
         // --- EJ MIG VA TUTORIAL
         if (!playerHealth.isDead)
         {
-            float targetMoveSpeed = moveInput.x * moveSpeed * multiplier;
+            float horizontalInput = MathF.Sign(moveInput.x);
+            float targetMoveSpeed = horizontalInput * moveSpeed * multiplier;
 
             float speedDifference = targetMoveSpeed - rb.linearVelocity.x;
 
@@ -194,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
         
 
 
-        if (isGrounded && moveInput.x == 0)
+        if (isGrounded && Mathf.Abs(moveInput.x) < 0.01f)
         {
             float stoppingSpeed = Mathf.Min(absMoveSpeed, Mathf.Abs(frictionAmount));
 

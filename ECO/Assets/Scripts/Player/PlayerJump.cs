@@ -74,7 +74,7 @@ public class PlayerJump : MonoBehaviour
 
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-
+        SoundManager.Instance.PlaySound2D("PlayerJump");
 
         startJumpTimer = true;
     }
@@ -134,6 +134,7 @@ public class PlayerJump : MonoBehaviour
         if (hit.collider != null)
         {
             rb.AddForce(new Vector2(-jumpForce, jumpForce * 1.3f), ForceMode2D.Impulse);
+            SoundManager.Instance.PlaySound2D("PlayerJump");
             hasJumped = false;
         }
         else
@@ -195,6 +196,7 @@ public class PlayerJump : MonoBehaviour
         {
             Vector2 clampedVelocity = Vector2.ClampMagnitude(rb.linearVelocity, maxFallSpeed);
             rb.linearVelocityY = clampedVelocity.y;
+
         }
 
 
