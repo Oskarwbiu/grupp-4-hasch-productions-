@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float maxHealth = 3f;
     bool isInvincible = false;
     public bool isDead = false;
+    SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -33,11 +34,18 @@ public class PlayerHealth : MonoBehaviour
             }
             PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
             StartCoroutine(ResetTime());
+            spriteRenderer = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer.material.SetFloat("_Flash", 1);
             Time.timeScale = 0;
+
             Invoke("Invincibility", invincibleTime);
             
         }
     }
+
+    
+        
+    
 
     public void Heal()
     {
@@ -52,6 +60,8 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.5f);
         if (!FindFirstObjectByType<PauseMenu>().isPaused)
         {
+            spriteRenderer = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
+            spriteRenderer.material.SetFloat("_Flash", 0);
             Time.timeScale = 1;
         }
     }

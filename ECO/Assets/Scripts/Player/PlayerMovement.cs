@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float frictionAmount = 0.2f;
     [SerializeField] PlayerInput playerInput;
     [SerializeField] float footstepInterval = 0.5f;
+    [SerializeField] float runInterval = 0.5f;
     float moveSpeed;
     PlayerHealth playerHealth;
     Animator ani;
@@ -34,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     bool wasGrounded;
     bool isLocked = false;
     float footstepTimer = 0f;
+    bool isRunning = false;
+    float runTimer = 0;
 
     private InputAction moveAction;
 
@@ -50,26 +53,11 @@ public class PlayerMovement : MonoBehaviour
             playerInput.ActivateInput();
             playerInput.actions?.Enable();
 
-            var moveActionCandidate = playerInput.actions.FindAction("Move");
-            if (moveActionCandidate != null)
-            {
-                moveAction = moveActionCandidate;
-                moveAction.performed += OnMovePerformed;
-                moveAction.canceled += OnMovePerformed;
-            }
+            
         }
     }
 
-    void OnDisable()
-    {
-
-        if (moveAction != null)
-        {
-            moveAction.performed -= OnMovePerformed;
-            moveAction.canceled -= OnMovePerformed;
-            moveAction = null;
-        }
-    }
+   
 
 
     void Awake()
@@ -115,10 +103,12 @@ public class PlayerMovement : MonoBehaviour
         {
             multiplier = 1f;
             footstepInterval = 0.4f;
+            isRunning = false;
         }
         else if (absMoveSpeed > moveSpeed && absMoveSpeed < moveSpeed * dashSpeedMultiplier)
         {
             footstepInterval = 0.2f;
+            isRunning = true;
         }
 
         if (isGrounded && Mathf.Abs(rb.linearVelocity.x) > 0.5f)
@@ -134,6 +124,17 @@ public class PlayerMovement : MonoBehaviour
         {
             footstepTimer = 0f;
         }
+
+        if (isRunning && isGrounded)
+        {
+            runTimer -= Time.deltaTime;
+            if (runTimer <= 0)
+            {
+                SoundManager.Instance.PlaySound2D("PlayerRun");
+                runTimer = runInterval;
+            }
+        }
+        else { runTimer = 0f; }
 
     }
 
@@ -156,11 +157,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    void OnMovePerformed(InputAction.CallbackContext ctx)
-    {
-
-        moveInput = ctx.ReadValue<Vector2>();
-    }
+    
     void OnDash()
     {
         if (!dashed)
@@ -168,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
             dashed = true;
             rb.AddForce(new Vector2(SpriteObject.transform.localScale.x * dashForce, 0), ForceMode2D.Impulse);
             StartTriggerAnimation("Dash");
+            SoundManager.Instance.PlaySound2D("PlayerDash");
             Invoke("ResetDash", dashCooldown);
             multiplier = dashSpeedMultiplier;
         }
@@ -179,7 +177,7 @@ public class PlayerMovement : MonoBehaviour
     void MovePlayer()
     {
  
-        // --- EJ MIG VA TUTORIAL
+        
         if (!playerHealth.isDead)
         {
             float horizontalInput = MathF.Sign(moveInput.x);
@@ -209,7 +207,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             }
         }
-        //---
+ 
     }
 
     void FlipSprite()

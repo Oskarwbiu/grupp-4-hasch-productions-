@@ -164,7 +164,6 @@ public class MechAttack : MonoBehaviour
             lastAttack = attack;
         }
 
-        Debug.Log("Chosen attack: " + attack);
         switch (attack)
         {
             case 0:

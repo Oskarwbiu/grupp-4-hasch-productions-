@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TrafficLight : MonoBehaviour
 {
-    [SerializeField] float detectionRange = 5f;
+    [SerializeField] public float detectionRange = 5f;
     [SerializeField] LayerMask detectionLayer;
     
 

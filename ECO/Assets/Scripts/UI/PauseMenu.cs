@@ -155,7 +155,13 @@ public class PauseMenu : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-
+    private void OnApplicationFocus(bool focus)
+    {
+        if (!focus && isPaused)
+        {
+            Pause();
+        }
+    }
     private PlayerCheats GetCurrentCheatsScript()
     {
         if (cheatsScript == null)

@@ -65,7 +65,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 427a5afb3f174814aab08c8f42ebb6b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -276,6 +276,7 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 15
     maxNormalAngle: 155
+  isGrounded: 0
 --- !u!114 &8269682326316189126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +307,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   invincibilityDuration: 0.5
+  isHurt: 0
+  isStunned: 0
 --- !u!95 &5484296894822057273
 Animator:
   serializedVersion: 7

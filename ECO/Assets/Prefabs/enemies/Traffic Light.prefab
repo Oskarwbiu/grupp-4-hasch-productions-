@@ -65,7 +65,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 427a5afb3f174814aab08c8f42ebb6b0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -371,6 +371,7 @@ MonoBehaviour:
   currentHealth: 0
   invincibilityDuration: 0.5
   isHurt: 0
+  isStunned: 0
 --- !u!114 &5707220107350522959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,3 +402,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TrafficLightAttack
   damage: 1
   attackSpeed: 2
+  chargeInterval: 0.2

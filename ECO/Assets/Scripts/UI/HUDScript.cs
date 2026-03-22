@@ -54,7 +54,7 @@ public class HUDScript : MonoBehaviour
 
         void UpdateHealthGUI()
     {
-        if (healthElement != null && healthSprites[(int)playerHealth.currentHealth] != null)
+        if (healthElement != null && playerHealth.currentHealth >= 0 && playerHealth.currentHealth < healthSprites.Length)
         {
             healthElement.style.backgroundImage = new StyleBackground(healthSprites[(int)playerHealth.currentHealth]);
         }

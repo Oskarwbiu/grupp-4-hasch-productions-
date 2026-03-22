@@ -6,6 +6,7 @@ public class TrafficLightAttack : MonoBehaviour
     [SerializeField] float damage = 1f;
     [SerializeField] float attackSpeed = 1f;
     [SerializeField] float chargeInterval = 0.2f;
+    [SerializeField] float chargeDuration = 0.35f;
 
     Animator ani;
     LineRenderer lr;
@@ -50,7 +51,7 @@ public class TrafficLightAttack : MonoBehaviour
             lr.startColor = color;
             lr.endColor = color;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, (Vector2)transform.position + (30 * dir));
+            lr.SetPosition(1, (Vector2)transform.position + (60 * dir));
         }
         else
         {
@@ -74,10 +75,10 @@ public class TrafficLightAttack : MonoBehaviour
             ani.SetTrigger("Charge");
  
 
-            yield return new WaitForSeconds(0.35f);
+            yield return new WaitForSeconds(chargeDuration);
             Vector2 dir = (player.transform.position - transform.position).normalized;
             isAttacking = false;
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSeconds(0.25f);
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Ground", "Player"));
             SoundManager.Instance.PlaySound2D("TrafficShoot");
@@ -87,7 +88,7 @@ public class TrafficLightAttack : MonoBehaviour
             lr.startWidth = 0.4f;
             lr.endWidth = 0.4f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, (Vector2)transform.position + (30 * dir));
+            lr.SetPosition(1, (Vector2)transform.position + (60 * dir));
 
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {

@@ -11,6 +11,7 @@ TagManager:
   - BossBounds
   - Scientist
   - Checkpoint
+  - Minions
   layers:
   - Default
   - TransparentFX

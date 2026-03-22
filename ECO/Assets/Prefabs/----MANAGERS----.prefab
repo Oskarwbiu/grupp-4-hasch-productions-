@@ -102,7 +102,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: ab5e2d138c38e27418c205b51bee3860, type: 3}
   - groupID: MechFly
     clips:
-    - {fileID: 8300000, guid: 8b7478fd4ffb84f469343d39335e97a4, type: 3}
+    - {fileID: 8300000, guid: 24eada2dc09a0084396d55740aef837c, type: 3}
+  - groupID: MechFlying
+    clips:
+    - {fileID: 8300000, guid: 2fc696d4dd30db447a68a977dfbb021e, type: 3}
+    - {fileID: 8300000, guid: 2beaa907b3996f64e8dd5c5018be6b38, type: 3}
+    - {fileID: 8300000, guid: 2139f8aa708122f4688d0c7e88e200a3, type: 3}
+    - {fileID: 8300000, guid: 52b2372ed096f6146af70b73fec94d7c, type: 3}
   - groupID: MechLand
     clips:
     - {fileID: 8300000, guid: c319bcbc0c177fc41aa2aecfe57d58e2, type: 3}
@@ -130,6 +136,60 @@ MonoBehaviour:
   - groupID: Grapple
     clips:
     - {fileID: 8300000, guid: 1c3625ac4a7ed684f86dbf6ccdf6ad86, type: 3}
+  - groupID: PlayerJump
+    clips:
+    - {fileID: 8300000, guid: 1598a9f1dca949f4c910d0afe482ec84, type: 3}
+    - {fileID: 8300000, guid: e97401ceb8e8a124590021449c8c3816, type: 3}
+    - {fileID: 8300000, guid: d717686ec305add4bb4a2ab5b488c4bd, type: 3}
+  - groupID: PlayerAttack
+    clips:
+    - {fileID: 8300000, guid: ba273f2a01259f94481aa200a09cab56, type: 3}
+    - {fileID: 8300000, guid: 94e93f879be2e33449550ea7f9beffb2, type: 3}
+    - {fileID: 8300000, guid: cabff99820a2949498765e8119dfd37f, type: 3}
+  - groupID: PlayerHurt
+    clips:
+    - {fileID: 8300000, guid: fe625fbe7672ddd4a8bd97b8631689a5, type: 3}
+    - {fileID: 8300000, guid: ae9eab323b14d2e429bce2ccdc6a3b9c, type: 3}
+    - {fileID: 8300000, guid: 1979762cea453b84eaac1580b58b60fd, type: 3}
+  - groupID: PlayerDie
+    clips:
+    - {fileID: 8300000, guid: c7861c33b4b5e05469b4cbab70cdc8ea, type: 3}
+    - {fileID: 8300000, guid: fb6e90788c620ab4aaa5f37d2681a593, type: 3}
+    - {fileID: 8300000, guid: 6e6c44a5880ab06488837786f67fbfd8, type: 3}
+    - {fileID: 8300000, guid: 650c465b7ee9754439fe70132a50e698, type: 3}
+  - groupID: PlayerRun
+    clips:
+    - {fileID: 8300000, guid: 727d757c3c36fae4799b074f77de95d2, type: 3}
+    - {fileID: 8300000, guid: e02c01d5a0be7304f9bc34707bcffad0, type: 3}
+    - {fileID: 8300000, guid: 5197f2bdbea77894896efc5614b0ad6c, type: 3}
+  - groupID: PlayerDash
+    clips:
+    - {fileID: 8300000, guid: 29d04cf874510384a8a642ce5b26144a, type: 3}
+    - {fileID: 8300000, guid: 696e3781e4a3d264fb5f93a7f6c37839, type: 3}
+    - {fileID: 8300000, guid: ada1efcad176c3c4985531e7ba85efbd, type: 3}
+    - {fileID: 8300000, guid: efa41428890f2474f8679d012df1b72b, type: 3}
+  - groupID: ActivateCheckpoint
+    clips:
+    - {fileID: 8300000, guid: a294122dc59032145b6b22a1c8cb0b7a, type: 3}
+  - groupID: RespawnCheckpoint
+    clips:
+    - {fileID: 8300000, guid: fcfde7fd734362c4ab36150fcf3837e4, type: 3}
+  - groupID: AfterRespawnCheckpoint
+    clips:
+    - {fileID: 8300000, guid: 6492e39a331f0e34fa8e2089dda80b5b, type: 3}
+  - groupID: TrafficShoot
+    clips:
+    - {fileID: 8300000, guid: 688097709fb8f774abae71ca62871807, type: 3}
+  - groupID: TrafficCharge
+    clips:
+    - {fileID: 8300000, guid: 392fa3749d3a399428b7d157c99901ee, type: 3}
+  - groupID: FridgeAttack
+    clips:
+    - {fileID: 8300000, guid: 0fc7005e06896e9438f4cbf993732b49, type: 3}
+    - {fileID: 8300000, guid: b6083439ca0fb744fa5173d92eb01afa, type: 3}
+    - {fileID: 8300000, guid: 7768b4a9a9706754097d6510fa1752d6, type: 3}
+    - {fileID: 8300000, guid: 657a7b96f643f9845b379757377cba8a, type: 3}
+    - {fileID: 8300000, guid: 1520eefc2d82d3b468504eb402f40033, type: 3}
 --- !u!114 &7714057008343768777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   musicAudioSource: {fileID: 1011680405142637475}
   sfxAudioSource: {fileID: 2024333288865533381}
+  audioMixer: {fileID: 24100000, guid: 17194e3577632fa4ba781d32c3ea133a, type: 2}
   continued: 0
 --- !u!1 &1312610530370307461
 GameObject:

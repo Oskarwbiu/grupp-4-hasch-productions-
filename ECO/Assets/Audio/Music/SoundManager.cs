@@ -39,7 +39,6 @@ public class SoundManager : MonoBehaviour
     public void PlaySound2D(string soundName)
     {
         AudioClip clip = sfxLibrary.GetClipFromName(soundName);
-        Debug.Log($"Playing: {soundName}, clip: {clip}, source enabled: {sfx2DSource.enabled}, volume: {sfx2DSource.volume}, mute: {sfx2DSource.mute}, isActiveAndEnabled: {sfx2DSource.isActiveAndEnabled}");
         sfx2DSource.PlayOneShot(sfxLibrary.GetClipFromName(soundName));
     }
 }
