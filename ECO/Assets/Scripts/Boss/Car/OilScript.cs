@@ -25,7 +25,7 @@ public class OilScript : MonoBehaviour
         UpdatePosition();
         UpdateRotation();
 
-        if (Vector2.Distance(transform.position, target) < 0.1f)
+        if (Vector2.Distance(transform.position, target) < 0.3f)
         {
             Destroy(gameObject);
         }

@@ -149,8 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1e040b623a13e5499be128fca565add, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  health: 100
-  maxHealth: 100
+  bossName: Car
 --- !u!114 &14335675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5479,7 +5478,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.3778057
+      m_AnimationSpeed: 6.454997
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -9, y: 5, z: 0}
@@ -5490,7 +5489,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.072721
+      m_AnimationSpeed: 6.270644
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -8, y: 5, z: 0}
@@ -5501,7 +5500,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.571782
+      m_AnimationSpeed: 6.714879
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -7, y: 5, z: 0}
@@ -5512,7 +5511,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.2495546
+      m_AnimationSpeed: 6.8148704
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: 5, z: 0}
@@ -5523,7 +5522,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.852755
+      m_AnimationSpeed: 6.593184
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 5, z: 0}
@@ -5534,7 +5533,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.3708115
+      m_AnimationSpeed: 6.4014606
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: 5, z: 0}
@@ -5545,7 +5544,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.954359
+      m_AnimationSpeed: 6.7892056
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -3, y: 5, z: 0}
@@ -5556,7 +5555,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.035663
+      m_AnimationSpeed: 6.074485
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -2, y: 5, z: 0}
@@ -5567,7 +5566,7 @@ Tilemap:
       - {fileID: -935115189478923221, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: -698373950437059840, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
       - {fileID: 1493538883583387571, guid: fcaae58d9d707a54aabc6b1f8f88189a, type: 3}
-      m_AnimationSpeed: 6.3819084
+      m_AnimationSpeed: 6.362427
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -7067,6 +7066,8 @@ GameObject:
   m_Component:
   - component: {fileID: 555065405}
   - component: {fileID: 555065406}
+  - component: {fileID: 555065408}
+  - component: {fileID: 555065407}
   m_Layer: 0
   m_Name: BossCam
   m_TagString: Untagged
@@ -7132,6 +7133,35 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &555065407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555065404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd54bc3b52bef044960d38e50e776a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShakeController
+--- !u!114 &555065408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555065404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &568153819
 GameObject:
   m_ObjectHideFlags: 0
@@ -8830,6 +8860,8 @@ GameObject:
   - component: {fileID: 1198815091}
   - component: {fileID: 1198815090}
   - component: {fileID: 1198815092}
+  - component: {fileID: 1198815093}
+  - component: {fileID: 1198815094}
   m_Layer: 0
   m_Name: Follow Camera
   m_TagString: Untagged
@@ -8938,6 +8970,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8a05de0ac134f4f9d01bef6b9da077, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePixelPerfect
+--- !u!114 &1198815093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198815088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 1
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
+--- !u!114 &1198815094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198815088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd54bc3b52bef044960d38e50e776a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShakeController
 --- !u!1001 &1205266356
 PrefabInstance:
   m_ObjectHideFlags: 0

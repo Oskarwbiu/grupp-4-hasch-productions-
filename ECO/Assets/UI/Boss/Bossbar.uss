@@ -4,10 +4,16 @@ VisualElement {
 #Bossbar {
     width: 1000px;
     height: 20px;
+    background-image: url("project://database/Assets/Sprites/UI/368-3687354_screen-red-vignette-parallel.png?fileID=2800000&guid=b4108e81dec464345aafaa642c1f348e&type=3#368-3687354_screen-red-vignette-parallel");
+    background-color: rgb(0, 0, 0);
 }
 
 #Bossbar .unity-progress-bar__container {
-    height: 100%;
+    height: 50px;
+    scale: 1 1;
+    width: 1000px;
+    transition-property: width;
+    transition-timing-function: ease-in-out;
 }
 
 #Bossbar .unity-progress-bar__progress {
@@ -15,11 +21,21 @@ VisualElement {
     background-repeat: repeat-x;
     background-size: auto 100%;
     background-position: left top;
+    height: 42px;
+    align-items: auto;
+    align-content: auto;
+    transition-property: width;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
 }
 
 #Bossbar .unity-progress-bar__background {
-    background-color: black;
-    height: 100%;
+    background-color: rgb(0, 0, 0);
+    height: 50px;
     background-image: url("project://database/Assets/Sprites/UI/368-3687354_screen-red-vignette-parallel.png?fileID=2800000&guid=b4108e81dec464345aafaa642c1f348e&type=3#368-3687354_screen-red-vignette-parallel");
     background-repeat: repeat no-repeat;
+    -unity-background-scale-mode: stretch-to-fill;
+    min-height: 50px;
+    max-height: 50px;
 }

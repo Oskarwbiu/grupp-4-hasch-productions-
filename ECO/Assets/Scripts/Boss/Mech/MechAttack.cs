@@ -85,7 +85,7 @@ public class MechAttack : MonoBehaviour
             PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
                 if (playerHealth != null)
             {
-                playerHealth.GetDamaged(currentDamage);
+                playerHealth.GetDamaged(currentDamage, 0.4f, 0.4f, 3f);
             }
             Debug.Log("damage player");
             if (isDashing)

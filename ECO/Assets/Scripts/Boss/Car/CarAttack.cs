@@ -65,12 +65,12 @@ public class CarAttack : MonoBehaviour
             PlayerHealth playerHealth = FindFirstObjectByType<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.GetDamaged(currentDamage);
+                playerHealth.GetDamaged(currentDamage, 0.4f, 0.4f, 3f);
             }
             Debug.Log("damage player");
             if (isDashing)
             {
-                Vector2 knockBackForce = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), 0) * knockBack + (Vector2.up * (knockBack / 2));
+                Vector2 knockBackForce = new Vector2(Mathf.Sign(rb.linearVelocity.x), 0) * knockBack + (Vector2.up * (knockBack / 2));
                 player.GetComponent<Rigidbody2D>().AddForce(knockBackForce);
             }
             Invoke("ResetAttack", attackspeed);
@@ -107,7 +107,7 @@ public class CarAttack : MonoBehaviour
                 currentAttack = StartCoroutine(TrafficAttack());
                 break;
             case 2:
-                currentAttack = StartCoroutine(WheelThrow());
+                currentAttack = StartCoroutine(OilLeak());
                 break;
 
 
@@ -205,7 +205,7 @@ public class CarAttack : MonoBehaviour
     }
 
 
-    IEnumerator WheelThrow()
+    IEnumerator OilLeak()
     {
         for (int i = 0; i < amountProjectiles; i++)
         {

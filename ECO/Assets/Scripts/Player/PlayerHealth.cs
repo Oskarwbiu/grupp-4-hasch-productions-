@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Threading.Tasks;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -7,23 +8,52 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float invincibleTime = 0.4f;
     public float currentHealth = 3f;
     [SerializeField] float maxHealth = 3f;
+    [SerializeField] float deathShakeDuration = 0.5f;
+    [SerializeField] float deathShakeIntensity = 4f;
+    [SerializeField] float deathHitFlashDuration = 0.5f;
     bool isInvincible = false;
     public bool isDead = false;
     SpriteRenderer spriteRenderer;
+    GameObject[] cameraShakeControllers;
 
 
     private void Start()
     {
         currentHealth = PlayerPrefs.GetFloat("PlayerHealth", maxHealth);
+        cameraShakeControllers = GameObject.FindGameObjectsWithTag("Camera");
     }
-    public void GetDamaged(float damage, float hitFlashDuration = 0.5f)
+    public void GetDamaged(float damage, float hitFlashDuration = 0.25f, float shakeDuration = 0.25f, float shakeIntensity = 2f)
     {
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
+            
+             cameraShakeControllers = GameObject.FindGameObjectsWithTag("Camera");
+            
+            CameraShakeController cameraShakeController = null;
+            float highestPriority = 0;
+
+            foreach (GameObject controller in cameraShakeControllers)
+            {
+                CinemachineCamera cam = controller.GetComponent<CinemachineCamera>();
+                CameraShakeController shaker = controller.GetComponent<CameraShakeController>();
+
+                if (cameraShakeController == null || cam.Priority.Value > highestPriority )
+                {
+                    highestPriority = cam.Priority.Value;
+                    cameraShakeController = shaker;
+                }
+            }
+            
+
+
             FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
             SoundManager.Instance.PlaySound2D("PlayerHurt");
+
             isInvincible = true;
             currentHealth -= damage;
+
+            
+
             if (currentHealth <= 0)
             {
                 PlayerDeath playerDeath = FindFirstObjectByType<PlayerDeath>();
@@ -33,10 +63,20 @@ public class PlayerHealth : MonoBehaviour
                     isDead = true;
                 }
             }
+            if (isDead)
+            {
+                shakeDuration = deathShakeDuration;
+                shakeIntensity = deathShakeIntensity;
+                hitFlashDuration = deathHitFlashDuration;
+            }
+            cameraShakeController.ShakeCamera(shakeDuration, shakeIntensity);
+
             PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
             StartCoroutine(ResetTime(hitFlashDuration));
+
             spriteRenderer = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.material.SetFloat("_Flash", 1);
+
             Time.timeScale = 0;
 
             Invoke("Invincibility", invincibleTime);

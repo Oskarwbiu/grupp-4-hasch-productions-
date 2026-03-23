@@ -31,9 +31,8 @@ public class BossSummon : MonoBehaviour
         Debug.Log("start delay");
         yield return new WaitForSeconds(delay);
         Debug.Log("start spawning");
-        
-        bossbar.showBar();
         Instantiate(boss, spawnPos.position, Quaternion.identity);
+       
     }
 
 }

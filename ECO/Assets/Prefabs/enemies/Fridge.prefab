@@ -304,9 +304,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9bf6a984042094ea44118c55879ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 100
+  maxHealth: 60
   currentHealth: 0
   invincibilityDuration: 0.5
+  hitFlashDuration: 0.25
   isHurt: 0
   isStunned: 0
 --- !u!95 &5484296894822057273

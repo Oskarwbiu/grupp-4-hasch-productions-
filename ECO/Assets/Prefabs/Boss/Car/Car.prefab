@@ -236,7 +236,7 @@ MonoBehaviour:
   arenaBounds: {fileID: 0}
   phase2Multiplier: 2
   dashForce: 25
-  knockBack: 2
+  knockBack: 2000
   dashingDamage: 2
   amountOfDashes: 1
   crashedDuration: 2
@@ -261,10 +261,10 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.08571428
     - serializedVersion: 3
-      time: 0.503268
-      value: 0.82619125
-      inSlope: -0.011233389
-      outSlope: -0.011233389
+      time: 0.5032551
+      value: 0.6058726
+      inSlope: -0.008206189
+      outSlope: -0.008206189
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

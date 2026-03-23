@@ -12,6 +12,7 @@ TagManager:
   - Scientist
   - Checkpoint
   - Minions
+  - Camera
   layers:
   - Default
   - TransparentFX

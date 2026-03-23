@@ -1,13 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class Bossbar : MonoBehaviour
 {
-    
 
-    public float health = 100f;
-    public float maxHealth = 100f;
+
+    [SerializeField] string bossName;
     private UIDocument barDocument;
+    VisualElement fill;
     ProgressBar bossHealthBar;
 
     private VisualElement barVE;
@@ -15,16 +16,18 @@ public class Bossbar : MonoBehaviour
     {
         barDocument = GetComponent<UIDocument>();
         barVE = barDocument.rootVisualElement as VisualElement;
-        hideBar();
+        fill = barVE.Q("Bossbar").Q(className: "unity-progress-bar__progress");
         bossHealthBar = barVE.Q<ProgressBar>("Bossbar");
-        bossHealthBar.value = 100;
-
+        hideBar();
+        bossHealthBar.value = 100f;
+        bossHealthBar.title = bossName;
 
     }
 
     public void showBar()
     {
         barVE.style.display = DisplayStyle.Flex;
+        Debug.Log("showBar called, fill is: " + fill);
     }
 
     void hideBar()
@@ -32,13 +35,29 @@ public class Bossbar : MonoBehaviour
         barVE.style.display = DisplayStyle.None;
     }
 
-    private void Update()
+    public void UpdateHealth(float currentHealth, float maxHealth)
     {
-        bossHealthBar.value = health/maxHealth * 100;
+        float percent = Mathf.Clamp01(currentHealth / maxHealth) * 100f;
+        
+        StartCoroutine(AnimateBar(bossHealthBar.value, percent, 0.5f));
 
-        if (health <= 0)
+        if (currentHealth <= 0)
         {
             hideBar();
         }
+    }
+
+    IEnumerator AnimateBar(float from, float to, float duration)
+    {
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+            t = Mathf.SmoothStep(0f, 1f, t); // ease in/out
+            bossHealthBar.value = Mathf.Lerp(from, to, t);
+            yield return null;
+        }
+        bossHealthBar.value = to;
     }
 }

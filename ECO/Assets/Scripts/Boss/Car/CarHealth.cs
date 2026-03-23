@@ -22,8 +22,8 @@ public class CarHealth : MonoBehaviour
         healthbar = FindFirstObjectByType<Bossbar>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         attackScript = GetComponent<CarAttack>();
-        healthbar.maxHealth = maxHealth;
-        healthbar.health = currentHealth;
+        healthbar.showBar();
+        healthbar.UpdateHealth(currentHealth, maxHealth);
     }
 
     public void TakeDamage(float damage)
@@ -35,7 +35,7 @@ public class CarHealth : MonoBehaviour
 
         currentHealth -= damage;
         StartCoroutine(HitFlash());
-        healthbar.health = currentHealth;
+        healthbar.UpdateHealth(currentHealth, maxHealth);
         isInvincible = true;
         Invoke("ResetInvIncibility", invincibilityDuration);
 
