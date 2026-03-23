@@ -11,11 +11,12 @@ public class PlayerHealth : MonoBehaviour
     public bool isDead = false;
     SpriteRenderer spriteRenderer;
 
+
     private void Start()
     {
         currentHealth = PlayerPrefs.GetFloat("PlayerHealth", maxHealth);
     }
-    public void GetDamaged(float damage)
+    public void GetDamaged(float damage, float hitFlashDuration = 0.5f)
     {
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
@@ -33,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
                 }
             }
             PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
-            StartCoroutine(ResetTime());
+            StartCoroutine(ResetTime(hitFlashDuration));
             spriteRenderer = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();
             spriteRenderer.material.SetFloat("_Flash", 1);
             Time.timeScale = 0;
@@ -55,9 +56,9 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    IEnumerator ResetTime()
+    IEnumerator ResetTime(float duration)
     {
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(duration);
         if (!FindFirstObjectByType<PauseMenu>().isPaused)
         {
             spriteRenderer = GameObject.FindWithTag("Player").GetComponentInChildren<SpriteRenderer>();

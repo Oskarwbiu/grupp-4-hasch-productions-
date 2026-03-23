@@ -160,7 +160,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.29}
+    oldSize: {x: 1.875, y: 1.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -206,7 +206,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.3, y: 0.29}
+    oldSize: {x: 1.875, y: 1.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -247,39 +247,39 @@ MonoBehaviour:
   - {fileID: 0}
   amountOfAttacks: 3
   delayBetweenAttacks: 2.5
-  wheel: {fileID: 1116521146331228183, guid: 61b65ccf25f9c3947b4557332de31f61, type: 3}
+  oilBlob: {fileID: 1116521146331228183, guid: 61b65ccf25f9c3947b4557332de31f61, type: 3}
   trajectory:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1.4976051
-      outSlope: 1.4976051
+      inSlope: 2.9805195
+      outSlope: 2.9805195
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.10819799
+      outWeight: 0.08571428
     - serializedVersion: 3
-      time: 0.49958467
-      value: 0.49999523
-      inSlope: 0.0026189373
-      outSlope: 0.0026189373
-      tangentMode: 0
+      time: 0.503268
+      value: 0.82619125
+      inSlope: -0.011233389
+      outSlope: -0.011233389
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0.0017459807
-      inSlope: -1.8362812
-      outSlope: -1.8362812
+      time: 0.99974066
+      value: 0.0000014882535
+      inSlope: -3.4590433
+      outSlope: -3.4590433
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.08101374
+      inWeight: 0.06793443
       outWeight: 0
     m_PreInfinity: 2
-    m_PostInfinity: 1
+    m_PostInfinity: 2
     m_RotationOrder: 4
   axisCorrection:
     serializedVersion: 2

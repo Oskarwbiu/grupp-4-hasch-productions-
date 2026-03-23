@@ -19,8 +19,8 @@ public class CarAttack : MonoBehaviour
     [SerializeField] GameObject[] trafficLights;
     [SerializeField] int amountOfAttacks = 3;
     [SerializeField] float delayBetweenAttacks = 1f;
-    [Header("Wheel Throw")]
-    [SerializeField] GameObject wheel;
+    [Header("Oil Leak")]
+    [SerializeField] GameObject oilBlob;
     [SerializeField] AnimationCurve trajectory;
     [SerializeField] AnimationCurve axisCorrection;
     [SerializeField] AnimationCurve oilSpeed;
@@ -211,7 +211,7 @@ public class CarAttack : MonoBehaviour
         {
             yield return new WaitForSeconds(delayBetweenProjectiles);
             Vector2 playerPos = player.transform.position;
-            GameObject currentBlob = Instantiate(wheel, transform.position, Quaternion.identity);
+            GameObject currentBlob = Instantiate(oilBlob, transform.position, Quaternion.identity);
             currentBlob.GetComponent<OilScript>().InitializeProjectile(playerPos, projectileSpeed, trajectory, axisCorrection, oilSpeed, projectileMaxHeight);
         }
 
