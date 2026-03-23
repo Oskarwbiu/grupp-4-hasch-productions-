@@ -10,6 +10,7 @@ public class BossSummon : MonoBehaviour
     [SerializeField] GameObject door;
     [SerializeField] Bossbar bossbar;
 
+    bool hasSpawned = false;
     private void Start()
     {
         door.SetActive(false);
@@ -28,6 +29,11 @@ public class BossSummon : MonoBehaviour
 
     IEnumerator spawnBoss()
     {
+        if (hasSpawned)
+        {
+            yield break;
+        }
+        hasSpawned = true;
         Debug.Log("start delay");
         yield return new WaitForSeconds(delay);
         Debug.Log("start spawning");

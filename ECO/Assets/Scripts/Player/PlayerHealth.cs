@@ -14,35 +14,19 @@ public class PlayerHealth : MonoBehaviour
     bool isInvincible = false;
     public bool isDead = false;
     SpriteRenderer spriteRenderer;
-    GameObject[] cameraShakeControllers;
 
 
     private void Start()
     {
         currentHealth = PlayerPrefs.GetFloat("PlayerHealth", maxHealth);
-        cameraShakeControllers = GameObject.FindGameObjectsWithTag("Camera");
+      
     }
     public void GetDamaged(float damage, float hitFlashDuration = 0.25f, float shakeDuration = 0.25f, float shakeIntensity = 2f)
     {
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
             
-             cameraShakeControllers = GameObject.FindGameObjectsWithTag("Camera");
-            
-            CameraShakeController cameraShakeController = null;
-            float highestPriority = 0;
-
-            foreach (GameObject controller in cameraShakeControllers)
-            {
-                CinemachineCamera cam = controller.GetComponent<CinemachineCamera>();
-                CameraShakeController shaker = controller.GetComponent<CameraShakeController>();
-
-                if (cameraShakeController == null || cam.Priority.Value > highestPriority )
-                {
-                    highestPriority = cam.Priority.Value;
-                    cameraShakeController = shaker;
-                }
-            }
+             
             
 
 
@@ -69,7 +53,7 @@ public class PlayerHealth : MonoBehaviour
                 shakeIntensity = deathShakeIntensity;
                 hitFlashDuration = deathHitFlashDuration;
             }
-            cameraShakeController.ShakeCamera(shakeDuration, shakeIntensity);
+            ShakeManager.Instance.ShakeCamera(shakeDuration, shakeIntensity);
 
             PlayerPrefs.SetFloat("PlayerHealth", currentHealth);
             StartCoroutine(ResetTime(hitFlashDuration));

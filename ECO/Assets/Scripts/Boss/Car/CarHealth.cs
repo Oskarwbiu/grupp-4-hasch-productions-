@@ -72,6 +72,7 @@ public class CarHealth : MonoBehaviour
 
     void Die()
     {
+        attackScript.ShootLights(false);
         Destroy(gameObject);
     }
 }

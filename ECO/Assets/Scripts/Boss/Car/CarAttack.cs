@@ -188,7 +188,7 @@ public class CarAttack : MonoBehaviour
         Invoke("ChooseAttack", attackCooldown);
     }
 
-    void ShootLights(bool shoot)
+    public void ShootLights(bool shoot)
     {
         foreach (GameObject light in trafficLights)
         {
