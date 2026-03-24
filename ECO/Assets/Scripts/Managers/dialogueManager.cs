@@ -4,13 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class dialogueManager : MonoBehaviour
 {
-    private Queue<string> sentences;
+    private Queue<Sentences> sentences;
 
     private DialogueBox dialogueBox;
     
     void Start()
     {
-        sentences = new Queue<string>();
+        sentences = new Queue<Sentences>();
+        dialogueBox = FindFirstObjectByType<DialogueBox>();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -24,11 +25,11 @@ public class dialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        dialogueBox.StartDialogue(dialogue.name, dialogue.sentences[0], dialogue.icon);
+        dialogueBox.StartDialogue(dialogue.name, dialogue.sentences[0].ToString(), dialogue.icon);
 
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (Sentences sentence in dialogue.sentences)
         { 
             sentences.Enqueue(sentence); 
         }
@@ -44,8 +45,8 @@ public class dialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = sentences.Dequeue();
-        dialogueBox.UpdateDialogue(sentence);
+        Sentences sentence = sentences.Dequeue();
+        dialogueBox.UpdateDialogue(sentence.ToString(), sentence.GetVoice());
 
     }
 

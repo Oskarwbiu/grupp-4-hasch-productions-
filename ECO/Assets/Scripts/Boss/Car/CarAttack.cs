@@ -24,6 +24,7 @@ public class CarAttack : MonoBehaviour
     [SerializeField] AnimationCurve trajectory;
     [SerializeField] AnimationCurve axisCorrection;
     [SerializeField] AnimationCurve oilSpeed;
+    [SerializeField] float damagePerBlob = 1f;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileMaxHeight = 10f;
     [SerializeField] int amountProjectiles = 5;
@@ -115,7 +116,13 @@ public class CarAttack : MonoBehaviour
         }
 
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isTouchingPlayer = true;
+        }
+    }
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -212,7 +219,7 @@ public class CarAttack : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenProjectiles);
             Vector2 playerPos = player.transform.position;
             GameObject currentBlob = Instantiate(oilBlob, transform.position, Quaternion.identity);
-            currentBlob.GetComponent<OilScript>().InitializeProjectile(playerPos, projectileSpeed, trajectory, axisCorrection, oilSpeed, projectileMaxHeight);
+            currentBlob.GetComponent<OilScript>().InitializeProjectile(playerPos, projectileSpeed, trajectory, axisCorrection, oilSpeed, projectileMaxHeight, damagePerBlob);
         }
 
         Debug.Log("WheelThrow Finished");

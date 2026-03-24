@@ -39,9 +39,14 @@ public class DialogueBox : MonoBehaviour
         icon.style.backgroundImage = new StyleBackground(currentIcon);
     }
 
-    public void UpdateDialogue(string currentDialogue)
+    public void UpdateDialogue(string currentDialogue, AudioClip voice)
     {
         StopAllCoroutines();
+        if (voice != null)
+        {
+            SoundManager.Instance.PlaySoundByClip2D(voice);
+        }
+
         StartCoroutine(AnimateLetters(currentDialogue));
     }
 

@@ -120,7 +120,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &4859613817297067303
 BoxCollider2D:
@@ -166,7 +166,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
 --- !u!60 &4028170054572362177
 PolygonCollider2D:
@@ -214,10 +214,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
-      - {x: 0.5, y: -0.5}
-      - {x: 0.5, y: 0.5}
+    - - {x: -1.493823, y: 1.0044403}
+      - {x: -1.4787655, y: -0.98185444}
+      - {x: 1.5164108, y: -0.996912}
+      - {x: 1.5013523, y: -0.95926666}
+      - {x: 1.4938221, y: 0.9893818}
   m_UseDelaunayMesh: 0
 --- !u!114 &5195976945590851265
 MonoBehaviour:
@@ -338,6 +339,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  damagePerBlob: 1
   projectileSpeed: 10
   projectileMaxHeight: 1
   amountProjectiles: 5

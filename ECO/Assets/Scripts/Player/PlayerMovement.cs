@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Drawing;
 using System.Linq;
 using Unity.Mathematics.Geometry;
 using UnityEngine;
@@ -87,8 +88,22 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(playerInput);
     }
 
+    public void SpeedBuff(UnityEngine.Color color, float speedMultiplier, float duration)
+    {
+        StartCoroutine(SpeedCoroutine(color, speedMultiplier, duration));
+    }
 
-
+    IEnumerator SpeedCoroutine(UnityEngine.Color color, float speedMultiplier, float duration)
+    {
+        UnityEngine.Color originalColor = SpriteObject.GetComponent<SpriteRenderer>().material.GetColor("_Color");
+        SpriteObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", color);
+        SpriteObject.GetComponent<SpriteRenderer>().material.SetFloat("_ChangeColor", 1);
+        moveSpeed *= speedMultiplier;
+        yield return new WaitForSeconds(duration);
+        SpriteObject.GetComponent<SpriteRenderer>().material.SetFloat("_ChangeColor", 0);
+        SpriteObject.GetComponent<SpriteRenderer>().material.SetColor("_Color", originalColor);
+        moveSpeed = originalMoveSpeed;
+    }
 
     private void FixedUpdate()
     {

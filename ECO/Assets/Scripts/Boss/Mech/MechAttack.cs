@@ -65,6 +65,13 @@ public class MechAttack : MonoBehaviour
         revealAnimation = StartCoroutine(RevealAnimation());
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            isTouchingPlayer = true;
+        }
+    }
     void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

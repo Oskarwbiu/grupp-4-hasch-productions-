@@ -13,6 +13,8 @@ public class OilScript : MonoBehaviour
     private AnimationCurve projSpeed;
     private float curveMaxHeight;
 
+    float damage = 1f;
+
     private Vector3 projectileMoveDir;
     private float maxMoveSpeed;
 
@@ -30,6 +32,23 @@ public class OilScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = FindAnyObjectByType<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.GetDamaged(1);
+                
+            }
+
+            collision.gameObject.GetComponentInParent<PlayerMovement>().SpeedBuff(Color.black, 0.5f, 3f);
+        }
+        Destroy(gameObject);
+    }
+
 
     private void UpdateRotation()
     {
@@ -49,6 +68,14 @@ public class OilScript : MonoBehaviour
 
         float nextPositionX = transform.position.x + moveSpeed * Time.deltaTime;
         float nextPositionXNormalized = (nextPositionX - curveStartPoint.x) / curveRange.x;
+
+
+        if (nextPositionXNormalized >= 1f)
+        {
+            transform.position = target;
+            Destroy(gameObject);
+            return;
+        }
 
         float nextPositionYNormalized = curve.Evaluate(nextPositionXNormalized);
 
@@ -73,13 +100,14 @@ public class OilScript : MonoBehaviour
         moveSpeed = nextMoveSpeedNormalized * maxMoveSpeed;
     }
 
-    public void InitializeProjectile(Vector2 pos, float speed, AnimationCurve trajectory, AnimationCurve axisCorrection, AnimationCurve projectileSpeed, float trajectoryMaxHeight)
+    public void InitializeProjectile(Vector2 pos, float speed, AnimationCurve trajectory, AnimationCurve axisCorrection, AnimationCurve projectileSpeed, float trajectoryMaxHeight, float blobDamage)
     {
         target = pos;
         maxMoveSpeed = speed;
         curve = trajectory;
         axisCorrectionCurve = axisCorrection;
         projSpeed = projectileSpeed;
+        damage = blobDamage;
 
         float xDistanceToTarget = target.x - transform.position.x;
         curveMaxHeight = Mathf.Abs(xDistanceToTarget) * trajectoryMaxHeight;
