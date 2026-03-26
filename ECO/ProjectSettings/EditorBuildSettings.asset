@@ -12,11 +12,23 @@ EditorBuildSettings:
     path: Assets/Scenes/spelet/Main Menu.unity
     guid: ccc1b974316de404bb66fbb15cb8d7bd
   - enabled: 1
+    path: Assets/Scenes/spelet/Sewers.unity
+    guid: 7a19955141348be4d9ff744b29e4e533
+  - enabled: 1
     path: Assets/Scenes/Spelgrafiker/Emuls.unity
     guid: 5b8b58ce34615054f8c64b242630c544
   - enabled: 1
+    path: Assets/Scenes/spelet/IKA.unity
+    guid: 735bb1f4c68cc774ca1f7a906f45c1d5
+  - enabled: 1
     path: Assets/Scenes/spelet/BAUSS.unity
     guid: 03405c2e0498f5548ad6f8df9364fe69
+  - enabled: 1
+    path: Assets/Scenes/spelet/BAUSS After Kill.unity
+    guid: e9ea77a9c3b346640bb61eaad56cc5f5
+  - enabled: 1
+    path: Assets/Scenes/spelet/Burning Forest.unity
+    guid: 66215843b7161b34490fed6a8a051fc9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 823aa887b3fa9b849a3cdb884822950c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

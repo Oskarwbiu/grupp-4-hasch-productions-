@@ -86,7 +86,7 @@ public class CarAttack : MonoBehaviour
 
     void ChooseAttack()
     {
-        transform.localScale = new Vector3(-1, 1, 1);
+        transform.localScale = new Vector3(1, 1, 1);
         int attack = Random.Range(0, 3);
         if (lastAttack == attack)
         {
@@ -214,6 +214,7 @@ public class CarAttack : MonoBehaviour
 
     IEnumerator OilLeak()
     {
+        transform.localScale = new Vector3(-1,1,1);
         for (int i = 0; i < amountProjectiles; i++)
         {
             yield return new WaitForSeconds(delayBetweenProjectiles);
@@ -222,7 +223,9 @@ public class CarAttack : MonoBehaviour
             currentBlob.GetComponent<OilScript>().InitializeProjectile(playerPos, projectileSpeed, trajectory, axisCorrection, oilSpeed, projectileMaxHeight, damagePerBlob);
         }
 
-        Debug.Log("WheelThrow Finished");
+
+
+        Debug.Log("OilLeak Finished");
         Invoke("ChooseAttack", attackCooldown);
     }
 
@@ -232,6 +235,14 @@ public class CarAttack : MonoBehaviour
         amountOfAttacks *= phase2Multiplier;
         amountOfDashes *= phase2Multiplier;
 
+    }
+
+    private void OnDestroy()
+    {
+        foreach (GameObject light in trafficLights)
+        {
+           Destroy(light);
+        }
     }
 
 }

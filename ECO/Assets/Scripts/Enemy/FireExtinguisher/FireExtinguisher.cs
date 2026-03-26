@@ -61,11 +61,8 @@ public class FireExtinguisher : MonoBehaviour
         if (!chasePlayer)
         {
             Move();
-            if (fireAttack.Attack() != null)
-            {
-                fireAttack.StopAllCoroutines();
-                fireAttack.isAttacking = false;
-            }
+            fireAttack.isAttacking = false;
+            
         }
         else if (chasePlayer)
         {
@@ -192,20 +189,22 @@ public class FireExtinguisher : MonoBehaviour
 
     IEnumerator Attack()
     {
-        bool isattackStarted = false;
+
         while (true)
         {
             yield return new WaitForSeconds(1f);
-            if (chasePlayer && !isattackStarted)
+            if (chasePlayer)
             {
-                isattackStarted = true;
-                fireAttack.StopCoroutine(fireAttack.Attack());
+                fireAttack.StopAllCoroutines();
                 fireAttack.StartCoroutine(fireAttack.Attack());
                 yield return new WaitForSeconds(attackCooldown + fireAttack.attackDuration);
             }
-            isattackStarted = false;
-        }
+            else
+            {
+                yield return null;
 
+            }
+        }
     }
 
 

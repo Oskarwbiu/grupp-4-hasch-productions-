@@ -46,7 +46,6 @@ public class MechHealth : MonoBehaviour
         {
             attackScript.StopAllCoroutines();
             attackScript.enabled = false;
-            FindFirstObjectByType<EndScreen>().ShowScreen();
             ani.SetTrigger("die");
             float duration = ani.GetCurrentAnimatorStateInfo(0).length;
         

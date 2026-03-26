@@ -9,6 +9,9 @@ public class BossSummon : MonoBehaviour
     [SerializeField] string bossTrack;
     [SerializeField] GameObject door;
     [SerializeField] Bossbar bossbar;
+    [SerializeField] bool exitLevelAfterKill = true;
+    [SerializeField] float exitDelay;
+    [SerializeField] Level level;
 
     bool hasSpawned = false;
     private void Start()
@@ -37,8 +40,21 @@ public class BossSummon : MonoBehaviour
         Debug.Log("start delay");
         yield return new WaitForSeconds(delay);
         Debug.Log("start spawning");
-        Instantiate(boss, spawnPos.position, Quaternion.identity);
+        GameObject spawnedBoss = Instantiate(boss, spawnPos.position, Quaternion.identity);
+        if (exitLevelAfterKill)
+        {
+            StartCoroutine(ExitLevel(spawnedBoss));
+        }
        
+    }
+
+    IEnumerator ExitLevel(GameObject spawnedBoss)
+    {
+        yield return new WaitUntil(() => spawnedBoss == null);
+        Debug.Log("Boss defeated, starting exit delay");
+        yield return new WaitForSeconds(exitDelay);
+        Debug.Log("Loading next level");
+        FindFirstObjectByType<LevelExit>().StartLevelCoroutine(level);
     }
 
 }

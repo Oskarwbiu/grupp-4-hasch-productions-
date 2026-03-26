@@ -2,6 +2,10 @@
 public enum Level
 {
     MAINMENU,
+    SEWERS,
     CITYLEVEL,
-    BOSSLEVEL
+    IKA,
+    BOSSLEVEL,
+    BOSSAFTERKILL,
+    BURNINGFOREST
 }

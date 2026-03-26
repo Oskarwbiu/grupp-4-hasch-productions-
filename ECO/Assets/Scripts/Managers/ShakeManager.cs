@@ -22,7 +22,7 @@ public class ShakeManager : MonoBehaviour
         GameObject[] cameraShakeControllers = GameObject.FindGameObjectsWithTag("Camera");
 
         CameraShakeController cameraShakeController = null;
-        float highestPriority = 0;
+        float highestPriority = -100000;
 
         foreach (GameObject controller in cameraShakeControllers)
         {

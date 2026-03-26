@@ -69,14 +69,8 @@ public class GrapplingHook : MonoBehaviour
                 {
 
                     currentVisualIndicator.SetActive(true);
-                    if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
-                    {
-                        currentVisualIndicator.transform.position = point.transform.position;
-                    }
-                    else
-                    {
-                        currentVisualIndicator.transform.position = point.point;
-                    }
+                    currentVisualIndicator.transform.position = point.transform.position;
+                    
                 }
                 else
                 {
@@ -105,7 +99,7 @@ public class GrapplingHook : MonoBehaviour
                 {
 
                     lr.SetPosition(0, transform.position);
-                    lr.SetPosition(1, point.point);
+                    lr.SetPosition(1, point.transform.position);
                 }
 
                 Vector2 pullDirection = transform.position - objectHit.transform.position;
