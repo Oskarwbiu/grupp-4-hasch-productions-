@@ -260,7 +260,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   origMoveSpeed: 5
   detectionRange: 5
-  attackCooldown: 2
+  attackCooldown: 3
   attackRange: 5
   acceleration: 10
   decceleration: 10
@@ -501,10 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5715f2d7bcda34e45bc74c4b74ce59a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  attackDuration: 5
+  attackDuration: 1.5
   damage: 1
   particleEmissionInterval: 0.15
-  attackRange: 3.5
+  attackRange: 5
   fireParticleSystem: {fileID: 5259238809146741405, guid: ec4ffe88386a94640870def3d3c8e6db, type: 3}
   fireParticleSystem2: {fileID: 6282977317699006400, guid: 9e2e3ce5d79e3b64d87b016d7ea081e2, type: 3}
   attackLayer:
@@ -3784,7 +3784,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 10.40625
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
