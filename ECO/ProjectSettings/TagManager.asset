@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - Minions
   - Camera
+  - Indicator
   layers:
   - Default
   - TransparentFX

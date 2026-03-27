@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 91f280afcd65c074d949fd5298b593ba
+guid: 5ee93b0e72cf35549b996f5e3187b008
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4800915287281171475
-    second: Building 2 with foliage_0
+      213: -7683627403150070896
+    second: GrappleLine3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Building 2 with foliage_0
+      name: GrappleLine3_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 27
-        height: 47
+        x: 0
+        y: 14
+        width: 32
+        height: 6
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: de30dd88bf8bf5db0800000000000000
-      internalID: -4800915287281171475
+      spriteID: 09b68c026954e5590800000000000000
+      internalID: -7683627403150070896
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Building 2 with foliage_0: -4800915287281171475
+      GrappleLine3_0: -7683627403150070896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

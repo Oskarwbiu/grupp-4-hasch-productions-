@@ -46,11 +46,6 @@ public class SettingsManager : MonoBehaviour
         bool isFullscreen = PlayerPrefs.GetInt("Fullscreen", 0) == 1;
 
 
-        Debug.Log($"Volume {masterVolume}");
-        Debug.Log($"Music {musicVolume}");
-        Debug.Log($"SFX {sfxVolume}");
-        Debug.Log($"Mute: {isMuted}");
-
 
         audioMixer.SetFloat("MasterVolume", masterVolume);
         musicAudioSource.volume = Mathf.Pow(10f, musicVolume / 20f); ;

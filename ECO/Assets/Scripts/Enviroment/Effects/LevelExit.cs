@@ -23,6 +23,7 @@ public class LevelExit : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
+        Debug.Log(gameObject.name + " loading: " + level + " (" + (int)level + ")");
         UnityEngine.SceneManagement.SceneManager.LoadScene((int)level);
     }
 

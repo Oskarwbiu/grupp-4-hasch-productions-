@@ -32,6 +32,7 @@ public class MechAttack : MonoBehaviour
 
     Coroutine currentAttack;
     Coroutine revealAnimation;
+    ShakeManager cameraShake;
     Rigidbody2D rb;
     GameObject player;
     Animator ani;
@@ -61,6 +62,7 @@ public class MechAttack : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         mechAnimation = rb.GetComponent<MechAnimation>();
         gravityScale = rb.gravityScale;
+        cameraShake = FindFirstObjectByType<ShakeManager>();
         ani = GetComponent<Animator>();
         revealAnimation = StartCoroutine(RevealAnimation());
     }
@@ -149,6 +151,7 @@ public class MechAttack : MonoBehaviour
 
         rb.gravityScale = gravityScale;
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 4f);
         SoundManager.Instance.PlaySound2D("MechLand");
 
         yield return new WaitForSeconds(0.5f);
@@ -289,6 +292,7 @@ public class MechAttack : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 1f);
         SoundManager.Instance.PlaySound2D("MechLand");
 
         Debug.Log("Fly Attack Finished");
@@ -317,6 +321,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 3f);
         SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
@@ -398,6 +403,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 3f);
         SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
@@ -430,6 +436,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 3f);
         SoundManager.Instance.PlaySound2D("MechLand");
         yield return new WaitForSeconds(0.4f);
         mechAnimation.PlayTrigger("readyMissiles");
@@ -481,6 +488,7 @@ public class MechAttack : MonoBehaviour
 
         yield return new WaitUntil(() => rb.linearVelocity.y >= -0.1);
         mechAnimation.PlayTrigger("land");
+        cameraShake.ShakeCamera(0.5f, 3f);
         SoundManager.Instance.PlaySound2D("MechLand");
 
         rb.gravityScale = gravityScale;
