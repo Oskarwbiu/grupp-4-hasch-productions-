@@ -705,8 +705,8 @@ GameObject:
   - component: {fileID: 1093381168}
   - component: {fileID: 1093381167}
   - component: {fileID: 1093381166}
-  - component: {fileID: 1093381170}
   - component: {fileID: 1093381169}
+  - component: {fileID: 1093381170}
   m_Layer: 0
   m_Name: Follow Camera
   m_TagString: Camera
@@ -3784,7 +3784,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 6.75
+  orthographic size: 9.0625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

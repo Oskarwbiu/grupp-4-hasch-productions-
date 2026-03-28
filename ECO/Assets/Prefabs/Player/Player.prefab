@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1790451087713655014}
   - component: {fileID: 1556750175506134240}
   - component: {fileID: 1669936740410279576}
+  - component: {fileID: 7128339496364155562}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -277,7 +278,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 577abdbb319e9a043825662d72fc3618, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -304,7 +305,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 1.4
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -322,8 +323,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6640007, g: 1, b: 0.51886785, a: 1}
-      key1: {r: 0.07197708, g: 0.33962262, b: 0.024563871, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0.07197708, g: 0.33962262, b: 0.024563871, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -331,7 +332,7 @@ LineRenderer:
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
-      ctime1: 21974
+      ctime1: 65535
       ctime2: 36044
       ctime3: 0
       ctime4: 0
@@ -350,8 +351,8 @@ LineRenderer:
       m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
-    numCornerVertices: 10
-    numCapVertices: 10
+    numCornerVertices: 0
+    numCapVertices: 0
     alignment: 1
     textureMode: 1
     textureScale: {x: 1, y: 1}
@@ -487,6 +488,7 @@ MonoBehaviour:
   frictionAmount: 0.2
   playerInput: {fileID: 2676724372438415694}
   footstepInterval: 0.5
+  runInterval: 0.5
 --- !u!114 &4373190432289433430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,3 +563,20 @@ MonoBehaviour:
   flySpeed: 5
   isGodMode: 0
   canLevelskip: 0
+--- !u!114 &7128339496364155562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2677336941660362917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe46daca5830944db2d2cc44d4727e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LineController
+  textures:
+  - {fileID: 2800000, guid: e9d6ea2e5e8bb2c4ba0b5c563ee42e91, type: 3}
+  - {fileID: 2800000, guid: 1c388dc845e4d16408703e36413d5cdd, type: 3}
+  - {fileID: 2800000, guid: 5ee93b0e72cf35549b996f5e3187b008, type: 3}
+  fps: 10
