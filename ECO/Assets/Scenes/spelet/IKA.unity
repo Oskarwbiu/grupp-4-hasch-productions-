@@ -13855,7 +13855,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 6.75
+  orthographic size: 9.0625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14169,6 +14169,9 @@ MonoBehaviour:
   bossTrack: BattleMusic
   door: {fileID: 260267886}
   bossbar: {fileID: 232526215}
+  exitLevelAfterKill: 1
+  exitDelay: 0
+  level: 0
 --- !u!61 &2134037760
 BoxCollider2D:
   m_ObjectHideFlags: 0

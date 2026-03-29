@@ -444,7 +444,7 @@ public class MechAttack : MonoBehaviour
         mechAnimation.PlayAnimation("isShootingMissiles");
 
         rb.gravityScale = gravityScale;
-        
+
         // Airstrike
         for (int i = 0; i <= amount; i++)
         {
@@ -452,7 +452,7 @@ public class MechAttack : MonoBehaviour
 
             Rigidbody2D currentAirstrike = Instantiate(airstrike, transform.position + (Vector3.up * 2), Quaternion.identity).GetComponent<Rigidbody2D>();
 
-            Vector2 force = new Vector2(-22 + i * 45/amount, 60f);
+            Vector2 force = new Vector2(-22 + i * 45 / amount, 60f);
 
             currentAirstrike.AddForce(force, ForceMode2D.Impulse);
             yield return new WaitUntil(() => currentAirstrike.transform.position.y > BoundsTop + 30);
@@ -460,14 +460,14 @@ public class MechAttack : MonoBehaviour
             Vector2 PlayerPos = player.transform.position;
             currentAirstrike.position = new Vector2(Random.Range(PlayerPos.x - 4, PlayerPos.x + 4), currentAirstrike.position.y);
 
-            
+
             RaycastHit2D ray = Physics2D.Raycast(currentAirstrike.position, Vector2.down, 999, 1 << 6);
             Debug.DrawRay(currentAirstrike.position, Vector2.down * 999);
             Instantiate(warning, ray.point, Quaternion.identity);
-            currentAirstrike.transform.rotation = Quaternion.Euler(currentAirstrike.transform.rotation.x,currentAirstrike.transform.rotation.y,currentAirstrike.transform.rotation.z + 180f);
+            currentAirstrike.transform.rotation = Quaternion.Euler(currentAirstrike.transform.rotation.x, currentAirstrike.transform.rotation.y, currentAirstrike.transform.rotation.z + 180f);
             yield return null;
 
-            
+
         }
         mechAnimation.PlayTrigger("unReadyMissiles");
         

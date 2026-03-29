@@ -22,7 +22,7 @@ public class LineController : MonoBehaviour
         if (!lr.enabled) 
         { 
             stopAnimation = false;
-            animationStep = 0;
+            animationStep = -1;
             return; 
         }
         if (stopAnimation) { return; }
@@ -33,8 +33,8 @@ public class LineController : MonoBehaviour
             animationStep++;
             Debug.Log("step");
             if (animationStep == textures.Length && isreapeating)
-            { animationStep = 0; }
-            else if (animationStep == textures.Length && !isreapeating)
+            { animationStep = -1; }
+            else if (animationStep == textures.Length + 1 && !isreapeating)
             {
                 stopAnimation = true;
                 return;

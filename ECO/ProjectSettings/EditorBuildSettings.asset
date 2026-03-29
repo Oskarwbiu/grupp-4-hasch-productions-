@@ -29,6 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/spelet/Burning Forest.unity
     guid: 66215843b7161b34490fed6a8a051fc9
+  - enabled: 1
+    path: Assets/Scenes/spelet/Bunker.unity
+    guid: a3a601c55a6b8c84097d03a76db25c69
+  - enabled: 1
+    path: Assets/Scenes/spelet/Final Boss.unity
+    guid: c924e1e80acbaff419d1b1c27eff31d7
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 823aa887b3fa9b849a3cdb884822950c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

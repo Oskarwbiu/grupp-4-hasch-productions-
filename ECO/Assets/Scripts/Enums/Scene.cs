@@ -7,5 +7,7 @@ public enum Level
     IKA,
     BOSSLEVEL,
     BOSSAFTERKILL,
-    BURNINGFOREST
+    BURNINGFOREST,
+    BUNKER,
+    FINALBOSS
 }

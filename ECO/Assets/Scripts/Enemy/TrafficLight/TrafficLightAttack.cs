@@ -19,6 +19,7 @@ public class TrafficLightAttack : MonoBehaviour
         ani = GetComponent<Animator>();
         lr = GetComponent<LineRenderer>();
         health = GetComponent<EnemyHealth>();
+        lr.enabled = false;
     }
 
     private void FixedUpdate()
