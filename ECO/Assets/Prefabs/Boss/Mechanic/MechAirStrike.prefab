@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2512601918369525554}
   - component: {fileID: 3845481315455184623}
   - component: {fileID: 27757772029786698}
+  - component: {fileID: -1314019109033304703}
+  - component: {fileID: 927062530748092625}
   m_Layer: 10
   m_Name: MechAirStrike
   m_TagString: Minions
@@ -83,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -6807171040025458712, guid: 9a108a79e75b7494e9e25f73e08c64bb, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6811324, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -109,7 +111,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1288
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -180,3 +182,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   airstrike: {fileID: 8736045582364838020, guid: 74da7ada9d1efaa4bb776bdccd777918, type: 3}
   warning: {fileID: 4342089698753490178, guid: ec52638b1429c034db5a743971bb3f97, type: 3}
+--- !u!114 &-1314019109033304703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6145503188569740004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35147946e7b8d92409e838c55e3b6962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MechAnimation
+--- !u!95 &927062530748092625
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6145503188569740004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8797afa6bfa9c42449886c6038492750, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

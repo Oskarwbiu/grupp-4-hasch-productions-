@@ -190,7 +190,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: fea675c9764fb334284e0b09318e5060, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 0ea71ca55e56a5c46a7a21200b45e5bd, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39c792a104dd56941a471e45c15e6ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MainMenu
-  intro: 2
+  intro: 1
   levelExit: {fileID: 146548433}
   audioMixer: {fileID: 24100000, guid: 17194e3577632fa4ba781d32c3ea133a, type: 2}
 --- !u!1001 &596215642
@@ -475,7 +475,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: fea675c9764fb334284e0b09318e5060, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 8ce982220f696f048bec91893ebbe2fc, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_PanelSettings: {fileID: 11400000, guid: fea675c9764fb334284e0b09318e5060, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 83f5f6edf73a5ec4fb3f63fe1d664bb3, type: 3}
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Position: 0
   m_WorldSpaceSizeMode: 1
   m_WorldSpaceWidth: 1920

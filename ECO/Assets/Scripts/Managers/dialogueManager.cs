@@ -7,6 +7,8 @@ public class dialogueManager : MonoBehaviour
     private Queue<Sentences> sentences;
 
     private DialogueBox dialogueBox;
+    bool trigger;
+    DialogueTrigger triggerObject;
     
     void Start()
     {
@@ -24,9 +26,12 @@ public class dialogueManager : MonoBehaviour
         dialogueBox.HideBox();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, bool triggerOnEnDialogue, DialogueTrigger dialogueTrigger)
     {
         dialogueBox.StartDialogue(dialogue.name, dialogue.sentences[0].ToString(), dialogue.icon);
+
+        trigger = triggerOnEnDialogue;
+        triggerObject = dialogueTrigger;
 
         sentences.Clear();
 
@@ -51,10 +56,16 @@ public class dialogueManager : MonoBehaviour
 
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
         SoundManager.Instance.StopPlayingClip();
         dialogueBox.HideBox();
+
+        if (trigger)
+        {
+            triggerObject.triggerEvent = true;
+        }
+
     }
 
 

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Boss/Bossbar.uss?fileID=7433441132597879392&amp;guid=d9c8e84f7e56e66448290e97c850dec9&amp;type=3#Bossbar" />
     <ui:VisualElement class="unity-progress-bar__container" style="flex-grow: 1; width: 960px; align-items: stretch; align-self: center;">
-        <ui:ProgressBar title="Scientist" name="Bossbar" value="50" class="unity-progress-bar__progress unity-progress-bar__background" style="top: 5%; -unity-font-style: normal; font-size: 50px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/ExtraOrnamentalNo2.ttf?fileID=12800000&amp;guid=de3103a8813a29c4a878eb354d72e35f&amp;type=3#ExtraOrnamentalNo2&quot;); -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(0, 0, 0);" />
+        <ui:ProgressBar title="mechanic" name="Bossbar" value="100" class="unity-progress-bar__progress unity-progress-bar__background" style="top: 5%; -unity-font-style: normal; font-size: 50px; color: rgb(255, 255, 255); -unity-font-definition: url(&quot;project://database/Assets/Fonts/ExtraOrnamentalNo2.ttf?fileID=12800000&amp;guid=de3103a8813a29c4a878eb354d72e35f&amp;type=3#ExtraOrnamentalNo2&quot;); -unity-text-outline-width: 0.5px; -unity-text-outline-color: rgb(0, 0, 0);" />
     </ui:VisualElement>
 </ui:UXML>

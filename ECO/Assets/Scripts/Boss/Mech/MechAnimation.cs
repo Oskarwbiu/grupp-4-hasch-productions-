@@ -4,7 +4,7 @@ using UnityEngine;
 public class MechAnimation : MonoBehaviour
 {
     Animator ani;
-    private void Start()
+    private void Awake()
     {
         ani = GetComponent<Animator>();
     }

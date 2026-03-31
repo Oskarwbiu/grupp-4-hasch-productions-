@@ -31,10 +31,13 @@ public class LineController : MonoBehaviour
         if (fpsCounter >= 1f / fps)
         {
             animationStep++;
-            Debug.Log("step");
+
             if (animationStep == textures.Length && isreapeating)
-            { animationStep = -1; }
-            else if (animationStep == textures.Length + 1 && !isreapeating)
+            { 
+                animationStep = -1;
+                return; 
+            }
+            else if (animationStep == textures.Length && !isreapeating)
             {
                 stopAnimation = true;
                 return;

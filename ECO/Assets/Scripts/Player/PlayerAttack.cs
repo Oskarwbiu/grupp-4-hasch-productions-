@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     MechHealth bossHealth;
     CarHealth carHealth;
+    MechanicHealth mechanicHealth;
     Vector2 attackDirection = Vector2.right;
     float lastAttackTime;
     enemyAttack enemyAttack;
@@ -75,10 +76,14 @@ public class PlayerAttack : MonoBehaviour
                 {
                     carHealth = enemy.GetComponent<CarHealth>();
                 }
+                if (carHealth == null && bossHealth == null)
+                {
+                    mechanicHealth = enemy.GetComponent<MechanicHealth>();
+                }
             }
 
 
-            if (enemyScript != null || bossHealth != null || carHealth != null)
+            if (enemyScript != null || bossHealth != null || carHealth != null || mechanicHealth != null)
             {
                 SoundManager.Instance.PlaySound2D("Hit");
 
@@ -91,15 +96,19 @@ public class PlayerAttack : MonoBehaviour
                         Invoke("Unlockscale", attackCooldown);
                     }
                     enemyScript.TakeDamage(attackDamage);
-                    
+
                 }
                 else if (bossHealth != null)
                 {
                     bossHealth.TakeDamage(attackDamage);
                 }
-                else if(carHealth != null)
+                else if (carHealth != null)
                 {
                     carHealth.TakeDamage(attackDamage);
+                }
+                else if (mechanicHealth != null)
+                {
+                    mechanicHealth.TakeDamage(attackDamage);
                 }
 
                 Rigidbody2D enemyRb = enemy.GetComponent<Rigidbody2D>();

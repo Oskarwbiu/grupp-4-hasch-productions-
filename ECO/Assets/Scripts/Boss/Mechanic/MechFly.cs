@@ -9,6 +9,7 @@ public class MechFly : MonoBehaviour
 
     Collider2D arenaBounds;
     Rigidbody2D rb;
+    MechAnimation mechAnimation;
 
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
@@ -21,6 +22,7 @@ public class MechFly : MonoBehaviour
 
     void Start()
     {
+        mechAnimation = GetComponent<MechAnimation>();
         arenaBounds = GameObject.FindWithTag("BossBounds").GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(Fly());
@@ -28,6 +30,7 @@ public class MechFly : MonoBehaviour
 
     IEnumerator Fly()
     {
+        mechAnimation.PlayAnimation("isFlying");
         while (true)
             {
             rb.linearVelocityX = -flySpeed * 2;

@@ -12,5 +12,6 @@ public enum Level
     BOSSAFTERKILL,
     BURNINGFOREST,
     BUNKER,
-    FINALBOSS
+    FINALBOSS,
+    AFTERFINALE
 }

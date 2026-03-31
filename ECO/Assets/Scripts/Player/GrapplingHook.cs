@@ -84,7 +84,7 @@ public class GrapplingHook : MonoBehaviour
 
     void Update()
     {
-        if (isPulling)
+        if (isPulling && enemyHit != null)
         {
             lr.SetPosition(1, enemyHit.position);
             lr.SetPosition(0, transform.position);

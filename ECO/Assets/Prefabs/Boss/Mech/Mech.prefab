@@ -240,6 +240,7 @@ MonoBehaviour:
   flyTimes: 1
   bombDropInterval: 0.5
   bombPrefab: {fileID: 4694720486465048203, guid: 38f473a9ae176234f8404304bfd15e63, type: 3}
+  flyInterval: 0.2
   spinShotInterval: 0.5
   spinShotsPerAttack: 12
   spinShotForce: 35
@@ -259,9 +260,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74000c3edb8f2404aa7d49f9db8bfd0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  maxHealth: 700
-  currentHealth: 700
+  maxHealth: 400
+  currentHealth: 400
   invincibilityDuration: 0.1
+  hitFlashDuration: 0.3
 --- !u!114 &3354684496125201921
 MonoBehaviour:
   m_ObjectHideFlags: 0

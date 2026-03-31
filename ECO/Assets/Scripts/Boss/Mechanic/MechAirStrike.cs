@@ -8,17 +8,23 @@ public class MechAirStrike : MonoBehaviour
     [SerializeField] GameObject warning;
 
     GameObject player;
+    MechAnimation mechAnimation;
+    Rigidbody2D currentAirstrike;
     private void Start()
     {
+        mechAnimation = GetComponent<MechAnimation>();
         player = GameObject.FindWithTag("Player");
         StartCoroutine(Attack());
     }
     IEnumerator Attack()
     {
+        mechAnimation.PlayTrigger("readyMissiles");
+        yield return new WaitForSeconds(0.5f);
+        mechAnimation.PlayAnimation("isShootingMissiles");
         while (true)
         { 
 
-            Rigidbody2D currentAirstrike = Instantiate(airstrike, transform.position + (Vector3.up * 2), Quaternion.identity).GetComponent<Rigidbody2D>();
+            currentAirstrike = Instantiate(airstrike, transform.position + (Vector3.up * 2), Quaternion.identity).GetComponent<Rigidbody2D>();
 
             Vector2 force = new Vector2(0, 60f);
 

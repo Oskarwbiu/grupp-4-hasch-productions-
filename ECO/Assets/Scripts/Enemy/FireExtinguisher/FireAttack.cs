@@ -42,8 +42,12 @@ public class FireAttack : MonoBehaviour
         isEndingAttack = true;
         isAttacking = false;
         ani.SetTrigger("EndAttack");
-        
-        StopCoroutine(particleCoroutine);
+
+        if (particleCoroutine != null)
+        {
+            StopCoroutine(particleCoroutine);
+        }
+       
         yield return null;
 
         yield return new WaitForSeconds(1f);
@@ -89,7 +93,7 @@ public class FireAttack : MonoBehaviour
 
     IEnumerator EmitParticles()
     {
-        while (true)
+        while (isAttacking || isPreparing)
         {
             if (health.isStunned)
             {

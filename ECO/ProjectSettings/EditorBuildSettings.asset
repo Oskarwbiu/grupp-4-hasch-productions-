@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/spelet/Final Boss.unity
     guid: c924e1e80acbaff419d1b1c27eff31d7
+  - enabled: 1
+    path: Assets/Scenes/spelet/After Finale.unity
+    guid: ee21392877e9bbf4790b93fe6aeed5a4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 823aa887b3fa9b849a3cdb884822950c, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
