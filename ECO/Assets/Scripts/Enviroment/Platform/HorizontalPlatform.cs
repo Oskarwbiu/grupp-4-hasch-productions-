@@ -9,6 +9,7 @@ public class HorizontalPlatform : MonoBehaviour
     private bool movingRight = true;
     private Vector3 lastPosition;
     private Rigidbody2D playerOnPlatform;
+    private bool isMoving;
 
     void Start()
     {
@@ -18,13 +19,27 @@ public class HorizontalPlatform : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!isMoving)
+        {
+            return;
+        }
         Vector3 targetPosition = movingRight ?
             startPosition + Vector3.right * distance :
-            startPosition - Vector3.right * distance;
+            startPosition;
 
         if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
         {
             movingRight = !movingRight;
+            transform.position = targetPosition;
+
+            if (playerOnPlatform == null && movingRight)
+            {
+                isMoving = false;
+                return;
+            }
+            targetPosition = movingRight ?
+            startPosition + Vector3.right * distance :
+            startPosition - Vector3.right * distance;
         }
 
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
@@ -44,6 +59,7 @@ public class HorizontalPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             playerOnPlatform = collision.gameObject.GetComponent<Rigidbody2D>();
+            isMoving = true;
         }
     }
 

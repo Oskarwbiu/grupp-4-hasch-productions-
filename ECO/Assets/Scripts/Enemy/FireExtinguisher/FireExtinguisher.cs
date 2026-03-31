@@ -28,6 +28,7 @@ public class FireExtinguisher : MonoBehaviour
     bool isAttacking = false;
     FireAttack fireAttack;
     EnemyHealth health;
+    Coroutine attackCoroutine;
 
     float wallCheckTimer = 0;
 
@@ -48,6 +49,7 @@ public class FireExtinguisher : MonoBehaviour
         {
             player = GameObject.FindWithTag("Player");
         }
+        PlayAnimation();
     }
 
     private void FixedUpdate()
@@ -106,7 +108,11 @@ public class FireExtinguisher : MonoBehaviour
                     rb.linearVelocityX = 0;
                     player = hit.collider.gameObject;
                     chasePlayer = true;
-                    StartCoroutine(Attack());
+                    if (attackCoroutine == null)
+                    {
+                        attackCoroutine = StartCoroutine(Attack());
+                    }
+                    
                 }
 
             }
@@ -146,6 +152,12 @@ public class FireExtinguisher : MonoBehaviour
     {
         chasePlayer = false;
         player = null;
+
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -241,7 +253,7 @@ public class FireExtinguisher : MonoBehaviour
             targetSpeed = 0f;
         }
 
-        transform.localScale = new Vector3(Mathf.Sign(direction), transform.localScale.y, transform.localScale.z);
+        transform.localScale = new Vector3(Mathf.Sign(-direction), transform.localScale.y, transform.localScale.z);
 
         float speedDifference = targetSpeed - rb.linearVelocity.x;
 
@@ -264,6 +276,25 @@ public class FireExtinguisher : MonoBehaviour
 
         rb.AddForce(movement * Vector2.right);
 
+    }
+
+
+    void PlayAnimation()
+    {
+        if (fireAttack.isAttacking) { return;}
+        if (fireAttack.isEndingAttack) { return;} 
+        if (fireAttack.isPreparing) { return;}
+
+        if (Mathf.Abs(rb.linearVelocity.x) > 0.1f)
+        {
+            ani.SetBool("isIdle", false);
+            ani.SetBool("isWalking", true);
+        }
+        else 
+        {
+            ani.SetBool("isWalking", false);
+            ani.SetBool("isIdle", true);
+        }
     }
 
 }

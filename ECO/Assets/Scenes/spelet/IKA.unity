@@ -916,7 +916,7 @@ Transform:
   m_GameObject: {fileID: 395553139}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8490896, y: 3.6253152, z: -10}
+  m_LocalPosition: {x: -2.8490896, y: 5.125315, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -987,7 +987,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 1, y: 0, z: 0}
+  TargetOffset: {x: 1, y: 1.5, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 1
@@ -13706,7 +13706,7 @@ Transform:
   m_GameObject: {fileID: 1610185468}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.8490896, y: 3.6253152, z: -10}
+  m_LocalPosition: {x: -2.8490896, y: 5.125315, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13855,7 +13855,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 9.0625
+  orthographic size: 8.90625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14170,8 +14170,8 @@ MonoBehaviour:
   door: {fileID: 260267886}
   bossbar: {fileID: 232526215}
   exitLevelAfterKill: 1
-  exitDelay: 0
-  level: 0
+  exitDelay: 1
+  level: 5
 --- !u!61 &2134037760
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class dialogueManager : MonoBehaviour
         {
             dialogueBox = FindFirstObjectByType<DialogueBox>();
         }
+        dialogueBox.HideBox();
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -52,6 +53,7 @@ public class dialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        SoundManager.Instance.StopPlayingClip();
         dialogueBox.HideBox();
     }
 

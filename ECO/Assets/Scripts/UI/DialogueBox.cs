@@ -8,12 +8,15 @@ public class DialogueBox : MonoBehaviour
 
     private VisualElement dialogueVE;
 
+    dialogueManager manager;
+    float dialogueDuration;
     VisualElement icon;
     Label dialogue;
     Label characterName;
 
     void Start()
     {
+        manager = FindFirstObjectByType<dialogueManager>();
         dialogueDocument = GetComponent<UIDocument>();
         dialogueVE = dialogueDocument.rootVisualElement as VisualElement;
 
@@ -26,7 +29,7 @@ public class DialogueBox : MonoBehaviour
         dialogue = root.Q<Label>("Dialogue");
 
         Button continueButton = root.Q<Button>("Continue");
-        continueButton.RegisterCallback<ClickEvent>(evt => FindFirstObjectByType<dialogueManager>().DisplayNextSentence());
+        continueButton.RegisterCallback<ClickEvent>(evt => manager.DisplayNextSentence());
 
         icon = root.Q<VisualElement>("Icon");
     }
@@ -42,12 +45,16 @@ public class DialogueBox : MonoBehaviour
     public void UpdateDialogue(string currentDialogue, AudioClip voice)
     {
         StopAllCoroutines();
+        SoundManager.Instance.StopPlayingClip();
+
         if (voice != null)
         {
             SoundManager.Instance.PlaySoundByClip2D(voice);
+            dialogueDuration = voice.length;
         }
 
         StartCoroutine(AnimateLetters(currentDialogue));
+        StartCoroutine(EndDialogue());
     }
 
     IEnumerator AnimateLetters(string currentDialogue)
@@ -62,9 +69,16 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
+    IEnumerator EndDialogue()
+    {
+        yield return new WaitForSeconds(dialogueDuration + 1);
+        manager.DisplayNextSentence();
+    }
+
     public void HideBox()
     {
         dialogueVE.style.display = DisplayStyle.None;
+        SoundManager.Instance.StopPlayingClip();
     }
 
     

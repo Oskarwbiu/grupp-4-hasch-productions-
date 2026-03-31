@@ -12,14 +12,23 @@ EditorBuildSettings:
     path: Assets/Scenes/spelet/Main Menu.unity
     guid: ccc1b974316de404bb66fbb15cb8d7bd
   - enabled: 1
+    path: Assets/Scenes/spelet/Tutorial.unity
+    guid: 05c21f07c0fc1694b9ffc59458e8e93e
+  - enabled: 1
+    path: Assets/Scenes/spelet/Below Cliff.unity
+    guid: 8cd608aca1f56f844b37b7fce52913c9
+  - enabled: 1
     path: Assets/Scenes/spelet/Sewers.unity
     guid: 7a19955141348be4d9ff744b29e4e533
   - enabled: 1
-    path: Assets/Scenes/Spelgrafiker/Emuls.unity
-    guid: 5b8b58ce34615054f8c64b242630c544
+    path: Assets/Scenes/spelet/IKA Entrance.unity
+    guid: c5829c1c2ebbab145a26fa1da403aa69
   - enabled: 1
     path: Assets/Scenes/spelet/IKA.unity
     guid: 735bb1f4c68cc774ca1f7a906f45c1d5
+  - enabled: 1
+    path: Assets/Scenes/spelet/City.unity
+    guid: 5b8b58ce34615054f8c64b242630c544
   - enabled: 1
     path: Assets/Scenes/spelet/BAUSS.unity
     guid: 03405c2e0498f5548ad6f8df9364fe69

@@ -17,7 +17,7 @@ VisualElement {
 }
 
 #Bossbar .unity-progress-bar__progress {
-    background-image: url("project://database/Assets/Sprites/UI/button-menu-sprite.png?fileID=2800000&guid=21cd01592e0ce324eb109713e08bad36&type=3#button-menu-sprite");
+    background-image: url("project://database/Assets/Sprites/UI/healthbar_boss_eco_frame.png?fileID=2800000&guid=294cbe4c5efa6dd4d946a0a008272d76&type=3#healthbar_boss_eco_frame");
     background-repeat: repeat-x;
     background-size: auto 100%;
     background-position: left top;
@@ -28,12 +28,20 @@ VisualElement {
     transition-duration: 0.5s;
     transition-timing-function: ease-out;
     transition-delay: 0s;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
 }
 
 #Bossbar .unity-progress-bar__background {
     background-color: rgb(0, 0, 0);
     height: 50px;
-    background-image: url("project://database/Assets/Sprites/UI/368-3687354_screen-red-vignette-parallel.png?fileID=2800000&guid=b4108e81dec464345aafaa642c1f348e&type=3#368-3687354_screen-red-vignette-parallel");
+    background-image: url("project://database/Assets/Sprites/UI/healthbar_boss_eco_infill.png?fileID=2800000&guid=d77e803bff02e8b45a0f839e586980ec&type=3#healthbar_boss_eco_infill");
     background-repeat: repeat no-repeat;
     -unity-background-scale-mode: stretch-to-fill;
     min-height: 50px;

@@ -33,6 +33,7 @@ public class GrapplingHook : MonoBehaviour
     bool canPull = true;
     bool isPulling;
     EnemyHealth hitAI;
+    Transform enemyHit;
 
     void Start()
     {
@@ -83,6 +84,13 @@ public class GrapplingHook : MonoBehaviour
 
     void Update()
     {
+        if (isPulling)
+        {
+            lr.SetPosition(1, enemyHit.position);
+            lr.SetPosition(0, transform.position);
+        }
+
+
         if (objectHit != null)
         {
             if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy"))
@@ -95,12 +103,7 @@ public class GrapplingHook : MonoBehaviour
             if (objectHit != null && (grappleLayer.value & (1 << objectHit.gameObject.layer)) != 0)
             {
 
-                if (lr.enabled)
-                {
-
-                    lr.SetPosition(0, transform.position);
-                    lr.SetPosition(1, point.transform.position);
-                }
+                
 
                 Vector2 pullDirection = transform.position - objectHit.transform.position;
                 if (objectHit.gameObject.layer == LayerMask.NameToLayer("Enemy") && canPull)
@@ -109,6 +112,7 @@ public class GrapplingHook : MonoBehaviour
                     lr.enabled = true;
                     canPull = false;
                     isGrappling = false;
+                    enemyHit = objectHit.transform;
                     if (objectHit.gameObject.TryGetComponent<EnemyHealth>(out hitAI))
                     {
                        hitAI.StartCoroutine(hitAI.Stun(stunDuration));
@@ -129,6 +133,14 @@ public class GrapplingHook : MonoBehaviour
                     dj.enabled = true;
                     dj.connectedAnchor = point.point;
                     SoundManager.Instance.PlaySound2D("Grapple");
+
+                    
+                }
+                if (lr.enabled && isGrappling)
+                {
+
+                    lr.SetPosition(0, transform.position);
+                    lr.SetPosition(1, point.transform.position);
                 }
             }
             else
@@ -155,6 +167,8 @@ public class GrapplingHook : MonoBehaviour
     void disableGrapple()
     {
         objectHit = null;
+        enemyHit = null;
+        isPulling = false;
         lr.enabled = false;
         currentVisualIndicator.SetActive(false);
         Invoke("EnablePull", pullCooldown);

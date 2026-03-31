@@ -2,9 +2,12 @@
 public enum Level
 {
     MAINMENU,
+    TUTORIAL,
+    BELOWCLIFF,
     SEWERS,
-    CITYLEVEL,
+    IKAENTRANCE,
     IKA,
+    CITYLEVEL,
     BOSSLEVEL,
     BOSSAFTERKILL,
     BURNINGFOREST,

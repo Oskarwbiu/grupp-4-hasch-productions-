@@ -448,7 +448,7 @@ Transform:
   m_GameObject: {fileID: 225185713}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.86909, y: 10.955316, z: -10}
+  m_LocalPosition: {x: -9.86909, y: 12.455316, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -599,7 +599,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 6.75
+  orthographic size: 8.90625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1163,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 307051408}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.86909, y: 10.955316, z: -10}
+  m_LocalPosition: {x: -9.86909, y: 12.455316, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1205,7 +1205,7 @@ MonoBehaviour:
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 1, y: 0, z: 0}
+  TargetOffset: {x: 1, y: 1.5, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 1
@@ -9185,7 +9185,7 @@ MonoBehaviour:
   bossbar: {fileID: 1127306007}
   exitLevelAfterKill: 1
   exitDelay: 1
-  level: 5
+  level: 7
 --- !u!1 &1127306006
 GameObject:
   m_ObjectHideFlags: 0

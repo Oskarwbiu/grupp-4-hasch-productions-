@@ -45,5 +45,9 @@ public class SoundManager : MonoBehaviour
     public void PlaySoundByClip2D(AudioClip clip)
     {
         sfx2DSource.PlayOneShot(clip);
+       
     }
+
+    public void StopPlayingClip()
+        { sfx2DSource.Stop(); }
 }
