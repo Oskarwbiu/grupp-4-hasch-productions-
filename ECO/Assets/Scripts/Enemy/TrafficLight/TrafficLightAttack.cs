@@ -14,6 +14,7 @@ public class TrafficLightAttack : MonoBehaviour
     bool isAttacking = false;
     EnemyHealth health;
     float chargeTimer;
+    RaycastHit2D endPoint;
     private void Start()
     {
         ani = GetComponent<Animator>();
@@ -21,6 +22,7 @@ public class TrafficLightAttack : MonoBehaviour
         health = GetComponent<EnemyHealth>();
         lr.enabled = false;
     }
+
 
     private void FixedUpdate()
     {
@@ -39,10 +41,13 @@ public class TrafficLightAttack : MonoBehaviour
                 chargeTimer = chargeInterval;
             }
 
-
-            transform.localScale = new Vector3(-Mathf.Sign(GameObject.FindWithTag("Player").transform.position.x - transform.position.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             Vector2 playerPos = GameObject.FindWithTag("Player").transform.position;
             Vector2 dir = (playerPos - (Vector2)transform.position).normalized;
+
+            endPoint = Physics2D.Raycast(transform.position, dir, Mathf.Infinity, LayerMask.GetMask("Ground"));
+
+            transform.localScale = new Vector3(-Mathf.Sign(GameObject.FindWithTag("Player").transform.position.x - transform.position.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            
             Color red = new Color(1, 0, 0, 0.1f);
             Color yellow = new Color(1, 1, 0, 0.75f);
             Color color = Color.Lerp(red, yellow, Mathf.PingPong(Time.time * 2, 1));
@@ -52,7 +57,7 @@ public class TrafficLightAttack : MonoBehaviour
             lr.startColor = color;
             lr.endColor = color;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, (Vector2)transform.position + (60 * dir));
+            lr.SetPosition(1, endPoint.point);
         }
         else
         {
@@ -89,7 +94,7 @@ public class TrafficLightAttack : MonoBehaviour
             lr.startWidth = 0.4f;
             lr.endWidth = 0.4f;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, (Vector2)transform.position + (60 * dir));
+            lr.SetPosition(1, endPoint.point);
 
             if (hit.collider != null && hit.collider.CompareTag("Player"))
             {

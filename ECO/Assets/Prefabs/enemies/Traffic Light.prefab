@@ -268,9 +268,9 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1560571535
+  m_SortingLayer: -1
+  m_SortingOrder: -1
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -370,6 +370,7 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 0
   invincibilityDuration: 0.5
+  hitFlashDuration: 0.25
   isHurt: 0
   isStunned: 0
 --- !u!114 &5707220107350522959
@@ -403,3 +404,4 @@ MonoBehaviour:
   damage: 1
   attackSpeed: 2
   chargeInterval: 0.2
+  chargeDuration: 0.35

@@ -59,6 +59,12 @@ public class dialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         SoundManager.Instance.StopPlayingClip();
+
+        if (dialogueBox == null)
+        {
+            dialogueBox = FindFirstObjectByType<DialogueBox>();
+        }
+
         dialogueBox.HideBox();
 
         if (trigger)
