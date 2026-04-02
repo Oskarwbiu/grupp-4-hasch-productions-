@@ -33,6 +33,7 @@ public class CarAttack : MonoBehaviour
     Rigidbody2D rb;
     Coroutine currentAttack;
     GameObject player;
+    Animator ani;
     int lastAttack = -1;
     bool isDashing = false;
     float currentDamage = 1;
@@ -50,6 +51,7 @@ public class CarAttack : MonoBehaviour
 
     private void Start()
     {
+        ani = GetComponent<Animator>();
         trafficLights = GameObject.FindGameObjectsWithTag("Minions");
         arenaBounds = GameObject.FindWithTag("BossBounds").GetComponent<Collider2D>();
         player = GameObject.FindWithTag("Player");
@@ -138,7 +140,7 @@ public class CarAttack : MonoBehaviour
     IEnumerator DashAttack()
     {
         
-
+        ani.SetTrigger("Drive");
 
         isDashing = true;
         currentDamage = dashingDamage;
@@ -148,6 +150,7 @@ public class CarAttack : MonoBehaviour
             rb.linearVelocityX = -dashForce;
             yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
             rb.linearVelocityX = 0;
+            ani.SetTrigger("Turn");
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             yield return new WaitForSeconds(0.6f);
@@ -167,11 +170,11 @@ public class CarAttack : MonoBehaviour
 
         if (!hasHitPlayer)
         {
-            Debug.Log("Car Crashed");
+            ani.SetTrigger("Crash");
             yield return new WaitForSeconds(crashedDuration);
         }
         hasHitPlayer = false;
-
+        ani.SetTrigger("Turn");
         Invoke("ChooseAttack", attackCooldown);
     }
 
@@ -214,7 +217,7 @@ public class CarAttack : MonoBehaviour
 
     IEnumerator OilLeak()
     {
-        transform.localScale = new Vector3(-1,1,1);
+        ani.SetTrigger("Oil");
         for (int i = 0; i < amountProjectiles; i++)
         {
             yield return new WaitForSeconds(delayBetweenProjectiles);
@@ -222,7 +225,7 @@ public class CarAttack : MonoBehaviour
             GameObject currentBlob = Instantiate(oilBlob, transform.position, Quaternion.identity);
             currentBlob.GetComponent<OilScript>().InitializeProjectile(playerPos, projectileSpeed, trajectory, axisCorrection, oilSpeed, projectileMaxHeight, damagePerBlob);
         }
-
+        ani.SetTrigger("OilStop");
 
 
         Debug.Log("OilLeak Finished");

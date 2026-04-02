@@ -52,7 +52,7 @@ public class OilScript : MonoBehaviour
 
     private void UpdateRotation()
     {
-        float angle = Mathf.Atan2(projectileMoveDir.y, projectileMoveDir.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(-projectileMoveDir.y, -projectileMoveDir.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
