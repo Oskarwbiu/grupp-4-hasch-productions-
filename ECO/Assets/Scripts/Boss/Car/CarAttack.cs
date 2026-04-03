@@ -9,6 +9,7 @@ public class CarAttack : MonoBehaviour
     [SerializeField] float attackCooldown = 2f;
     [SerializeField] Collider2D arenaBounds;
     [SerializeField] int phase2Multiplier = 2;
+    [SerializeField] float carInterval = 0.2f;
     [Header("Dash Attack")]
     [SerializeField] float dashForce = 25f;
     [SerializeField] float knockBack = 2f;
@@ -40,6 +41,8 @@ public class CarAttack : MonoBehaviour
     bool isTouchingPlayer = false;
     bool canAttack = true;
     bool hasHitPlayer = false;
+    float carTimer = 0;
+
 
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
@@ -79,6 +82,19 @@ public class CarAttack : MonoBehaviour
             Invoke("ResetAttack", attackspeed);
         }
         isTouchingPlayer = false;
+
+
+
+
+        carTimer -= Time.deltaTime;
+
+        if (carTimer <= 0f)
+        {
+            SoundManager.Instance.PlaySound2D("CarIdle");
+            carTimer = carInterval;
+        }
+
+
     }
 
     void ResetAttack()

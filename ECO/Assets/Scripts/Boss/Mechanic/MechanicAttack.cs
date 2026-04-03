@@ -184,6 +184,11 @@ public class MechanicAttack : MonoBehaviour
     IEnumerator CarMechSummon()
     {
         dashCounter++;
+
+        SoundManager.Instance.PlaySound2D("MechanicRain");
+
+        yield return new WaitForSeconds(0.4f);
+
         Vector3 spawnPos = new Vector3(BoundsLeft + 3, BoundsBottom + 2f);
 
 
@@ -249,6 +254,9 @@ public class MechanicAttack : MonoBehaviour
         dashCounter++;
         Vector3 spawnPos = new Vector3(BoundsLeft + 3, BoundsTop - 1f);
 
+        SoundManager.Instance.PlaySound2D("MechanicMech");
+
+        yield return new WaitForSeconds(0.4f);
 
         Instantiate(mechFly, spawnPos, Quaternion.identity);
 
@@ -303,6 +311,9 @@ public class MechanicAttack : MonoBehaviour
         dashCounter = 0;
         Vector3 spawnPos = new Vector3(BoundsLeft + 3, BoundsBottom + 2f);
 
+        SoundManager.Instance.PlaySound2D("MechanicSpin");
+
+        yield return new WaitForSeconds(0.4f);
 
         Instantiate(mechSpin, spawnPos, Quaternion.identity);
 

@@ -199,7 +199,10 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 905ace5a20f3181479d2bb8171f37e12, type: 3}
   - groupID: CarIdle
     clips:
-    - {fileID: 8300000, guid: e008dc7454061b540bc789f4033a251e, type: 3}
+    - {fileID: 8300000, guid: 48544cf17e0a0774da9cd0055c3c9f44, type: 3}
+    - {fileID: 8300000, guid: 48441c7fdaeee1d4081447969967c415, type: 3}
+    - {fileID: 8300000, guid: 347f21537c5611147880dcc40b992d58, type: 3}
+    - {fileID: 8300000, guid: c7a75112ccdc181458351b4b4c33fb65, type: 3}
   - groupID: CarCrash
     clips:
     - {fileID: 8300000, guid: e0ef95b041e63494fb4a92f633dd78f1, type: 3}
@@ -220,6 +223,33 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
     - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
     - {fileID: 8300000, guid: 056eca2b70ef1254192645b297420c01, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+    - {fileID: 8300000, guid: 82319f1ddacc16c4b85b19d7a911b693, type: 3}
+  - groupID: MechanicHurt
+    clips:
+    - {fileID: 8300000, guid: a75a5d05805dc104a9c7f80c9e878ebc, type: 3}
+    - {fileID: 8300000, guid: 9edc071c3ea57be4ab07d7c0ec99115f, type: 3}
+    - {fileID: 8300000, guid: 237b75a02763ff544b5030eab152db71, type: 3}
+  - groupID: MechanicRain
+    clips:
+    - {fileID: 8300000, guid: 031c46de31321074eb1404b5c8fdb68b, type: 3}
+  - groupID: MechanicMech
+    clips:
+    - {fileID: 8300000, guid: ebd5441e16a535f41a5a2e6d3526e312, type: 3}
+  - groupID: MechanicSpin
+    clips:
+    - {fileID: 8300000, guid: c380ca801a928f14a8f89fa0a5cc23bc, type: 3}
+  - groupID: Extinguisher
+    clips:
+    - {fileID: 8300000, guid: b5c3da772f2ff354cb44dd9299e66fe6, type: 3}
 --- !u!114 &7714057008343768777
 MonoBehaviour:
   m_ObjectHideFlags: 0

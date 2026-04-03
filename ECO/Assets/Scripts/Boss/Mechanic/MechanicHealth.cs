@@ -34,7 +34,7 @@ public class MechanicHealth : MonoBehaviour
         }
 
         currentHealth -= damage;
-        
+        SoundManager.Instance.PlaySound2D("MechanicHurt");
         healthbar.UpdateHealth(currentHealth, maxHealth);
         isInvincible = true;
 

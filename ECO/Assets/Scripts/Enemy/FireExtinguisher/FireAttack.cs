@@ -103,10 +103,12 @@ public class FireAttack : MonoBehaviour
             ParticleSystem particle =Instantiate(fireParticleSystem, transform.position, fireParticleSystem.transform.rotation);
             var shape = particle.shape;
             shape.rotation = new Vector3(0, -Mathf.Sign(transform.localScale.x) * 90, 0);
+            SoundManager.Instance.PlaySound2D("Extinguisher");
             yield return new WaitForSeconds(particleEmissionInterval);
             particle = Instantiate(fireParticleSystem2, transform.position, fireParticleSystem2.transform.rotation);
             shape = particle.shape;
             shape.rotation = new Vector3(0, -Mathf.Sign(transform.localScale.x) * 90, 0);
+            SoundManager.Instance.PlaySound2D("Extinguisher");
             yield return new WaitForSeconds(particleEmissionInterval);
         }
     }
