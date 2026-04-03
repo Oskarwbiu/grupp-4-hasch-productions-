@@ -47,6 +47,11 @@ public class BossSummon : MonoBehaviour
         }
        
     }
+    public void GoToNextLevel()
+    {
+        StopAllCoroutines();
+        StartCoroutine(ExitLevel(null));
+    }
 
     IEnumerator ExitLevel(GameObject spawnedBoss)
     {

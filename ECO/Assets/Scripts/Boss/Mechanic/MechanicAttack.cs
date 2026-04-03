@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class MechanicAttack : MonoBehaviour
 {
@@ -43,7 +44,7 @@ public class MechanicAttack : MonoBehaviour
     Animator ani;
     Coroutine currentAttack;
     PlayerHealth playerHealth;
-    LineRenderer lr;
+    BoxCollider2D hitbox;
     float BoundsTop => arenaBounds.bounds.max.y;
     float BoundsBottom => arenaBounds.bounds.min.y;
     float BoundsRight => arenaBounds.bounds.max.x;
@@ -60,16 +61,12 @@ public class MechanicAttack : MonoBehaviour
         cameraShake = FindFirstObjectByType<ShakeManager>();
         ani = GetComponent<Animator>();
         playerHealth = FindFirstObjectByType<PlayerHealth>();
-        lr = GetComponent<LineRenderer>();
-        lr.enabled = false;
+        hitbox = GetComponent<BoxCollider2D>();
         StartCoroutine(StartingSequence());
     }
 
     IEnumerator StartingSequence()
     {
-        rb.linearVelocityY = dashFlySpeed / 2;
-        yield return new WaitUntil(() => transform.position.y >= BoundsCenterY);
-        rb.linearVelocity = Vector2.zero;
         transform.position = new Vector2(BoundsCenterX, BoundsCenterY);
         yield return new WaitForSeconds(1.5f);
         ChooseAttack();
@@ -93,7 +90,7 @@ public class MechanicAttack : MonoBehaviour
     public void IsHurt()
     {
         StopAllCoroutines();
-        StartCoroutine(ResetToCenter());
+        ResetToCenter();
         
     }
 
@@ -104,6 +101,16 @@ public class MechanicAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (healthScript.isDead)
+        {
+            GameObject[] minions = GameObject.FindGameObjectsWithTag("Minions");
+            foreach (GameObject minion in minions)
+            {
+                Destroy(minion);
+            }
+                StopAllCoroutines();
+
+        }
         if (isDamaging)
         {
             float xDistance = Mathf.Abs(transform.position.x - player.transform.position.x);
@@ -117,20 +124,16 @@ public class MechanicAttack : MonoBehaviour
         }
     }
 
-    IEnumerator ResetToCenter()
+    void ResetToCenter()
     {
-        rb.linearVelocityY = dashFlySpeed;
+        ani.SetTrigger("StopAttack");
         healthScript.ResetInvIncibility(true);
-        yield return new WaitUntil(() => transform.position.y >= BoundsCenterY);
-        rb.linearVelocity = Vector2.zero;
-        transform.position = new Vector2(BoundsCenterX, BoundsCenterY);
         Invoke("ChooseAttack", attackCooldown);
     }
 
     void ChooseAttack()
     {
-        transform.localScale = new Vector3(-1, 1, 1);
-        int attack = Random.Range(0, 4);
+        int attack = Random.Range(0, 3);
         if (lastAttack == attack)
         {
             ChooseAttack();
@@ -145,10 +148,17 @@ public class MechanicAttack : MonoBehaviour
             attack = 0;
         }
 
+        Debug.Log("Attack: " + attack);
+
+        if (healthScript.isDead)
+        {
+            return;
+        }
+
         switch (attack)
         {
             case 0:
-                currentAttack = StartCoroutine(FlyDash());
+                currentAttack = StartCoroutine(DoubleSpinShot());
                 break;
             case 1:
                 currentAttack = StartCoroutine(CarMechSummon());
@@ -156,66 +166,16 @@ public class MechanicAttack : MonoBehaviour
             case 2:
                 currentAttack = StartCoroutine(MechSummon());
                 break;
-            case 3:
-                currentAttack = StartCoroutine(DoubleSpinShot());
-                break;
 
         }
 
     }
 
-    IEnumerator FlyDash()
-    {
-        dashCounter = 0;
-        rb.linearVelocityY = dashFlySpeed;
-        yield return new WaitUntil(() => rb.transform.position.y > BoundsTop + 8);
-
-        rb.transform.position = new Vector3(BoundsRight + 5, BoundsBottom + 2, 0);
-        rb.linearVelocity = Vector2.zero;
-
-        yield return new WaitForSeconds(dashDelay);
-
-        isDamaging = true;
-        rb.linearVelocityX = -dashFlySpeed * 5;
-
-        yield return new WaitUntil(() => transform.position.x < BoundsLeft - 5f);
-
-        rb.linearVelocityX = 0f;
-
-        yield return new WaitForSeconds(dashDelay);
-
-        rb.linearVelocityX = dashFlySpeed * 5;
-
-        yield return new WaitUntil(() => transform.position.x > BoundsRight + 5f);
-
-        yield return new WaitForSeconds(dashDelay + 1);
-
-        rb.transform.position = new Vector3(BoundsCenterX, BoundsTop + 5, 0);
-
-        rb.linearVelocityX = 0;
-        rb.linearVelocityY = -dashFlySpeed * 5;
-
-        yield return new WaitUntil(() => transform.position.y <= BoundsBottom + 1f);
-
-        ShootBullet(-1f);
-        ShootBullet(1f);
-        healthScript.ResetInvIncibility(false);
-
-        isDamaging = false;
-        rb.transform.position = new Vector2(BoundsCenterX, BoundsBottom + 1f);
-        rb.linearVelocity = Vector2.zero;
-
-        Debug.Log("Fly Dash Finished");
-
-        yield return new WaitForSeconds(dashDelay * 2);
-        StartCoroutine(ResetToCenter());
-
-
-    }
 
     void ShootBullet(float direction)
     {
-        Rigidbody2D currentBullet = Instantiate(bullet, transform.position, Quaternion.identity).GetComponent<Rigidbody2D>();
+        Vector2 spawnPos = new Vector2(transform.position.x, transform.position.y + hitbox.offset.y - 1f);
+        Rigidbody2D currentBullet = Instantiate(bullet, spawnPos, Quaternion.identity).GetComponent<Rigidbody2D>();
         currentBullet.AddForceX(direction * dashFlySpeed * 5, ForceMode2D.Impulse);
         currentBullet.transform.localScale = new Vector2(-direction * currentBullet.transform.localScale.x, currentBullet.transform.localScale.y);
         SoundManager.Instance.PlaySound2D("LaserShoot");
@@ -227,7 +187,9 @@ public class MechanicAttack : MonoBehaviour
         Vector3 spawnPos = new Vector3(BoundsLeft + 3, BoundsBottom + 2f);
 
 
-        Instantiate(carOilLeak, spawnPos, Quaternion.identity);
+        GameObject car = Instantiate(carOilLeak, spawnPos, Quaternion.identity);
+
+        car.transform.localScale += Vector3.left * 2;
 
         spawnPos = new Vector3(BoundsRight - 3, BoundsBottom + 2f);
 
@@ -348,9 +310,9 @@ public class MechanicAttack : MonoBehaviour
 
         Instantiate(mechSpin, spawnPos, Quaternion.identity);
 
-        yield return new WaitForSeconds(spinDuration - 1f);
-        rb.linearVelocityY = flySpeed;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(spinDuration);
+
+        
 
         GameObject[] minions = GameObject.FindGameObjectsWithTag("Minions");
         foreach (GameObject minion in minions)
@@ -359,24 +321,28 @@ public class MechanicAttack : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
 
-        rb.linearVelocityY = -flySpeed * 5f;
-        isDamaging = true;
-        yield return new WaitUntil(() => transform.position.y <= BoundsBottom + 1f);
+        ani.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(1f);
 
         healthScript.ResetInvIncibility(false);
-        isDamaging = false;
-        rb.transform.position = new Vector2(BoundsCenterX, BoundsBottom + 1f);
-        rb.linearVelocity = Vector2.zero;
+       
 
-        ShootBullet(-1f);
         ShootBullet(1f);
+        yield return new WaitForSeconds(0.5f);
+        ShootBullet(-1f);
         yield return new WaitForSeconds(1f);
-        ShootBullet(-1f);
         ShootBullet(1f);
+        yield return new WaitForSeconds(0.5f);
+        ShootBullet(-1f);
+        yield return new WaitForSeconds(1f);
+        ShootBullet(1f);
+        yield return new WaitForSeconds(0.5f);
+        ShootBullet(-1f);
 
-        
+
         yield return new WaitForSeconds(dashDelay * 2);
-        StartCoroutine(ResetToCenter());
+        ResetToCenter();
 
 
     }

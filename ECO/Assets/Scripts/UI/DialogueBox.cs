@@ -52,17 +52,25 @@ public class DialogueBox : MonoBehaviour
             SoundManager.Instance.PlaySoundByClip2D(voice);
             dialogueDuration = voice.length;
         }
+        else
+        {
+            dialogueDuration = 5f;
+        }
 
-        StartCoroutine(AnimateLetters(currentDialogue));
+        StartCoroutine(AnimateLetters(currentDialogue, voice));
         StartCoroutine(EndDialogue());
     }
 
-    IEnumerator AnimateLetters(string currentDialogue)
+    IEnumerator AnimateLetters(string currentDialogue, AudioClip audio)
     {
         dialogue.text = "";
         
         foreach (char letter in currentDialogue.ToCharArray())
         {
+            if (audio == null)
+            {
+                SoundManager.Instance.PlaySound2D("Dialogue");
+            }
             dialogue.text += letter;
             yield return null;
             yield return null;

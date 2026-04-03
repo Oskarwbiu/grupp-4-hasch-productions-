@@ -139,25 +139,31 @@ public class CarAttack : MonoBehaviour
 
     IEnumerator DashAttack()
     {
-        
-        ani.SetTrigger("Drive");
+        SoundManager.Instance.PlaySound2D("DriveWarning");
 
         isDashing = true;
         currentDamage = dashingDamage;
         for (int i = 0; i < amountOfDashes; i++)
         {
+            ani.SetTrigger("Drive");
             yield return new WaitForSeconds(0.6f);
+            SoundManager.Instance.PlaySound2D("DriveBy");
+
             rb.linearVelocityX = -dashForce;
             yield return new WaitUntil(() => transform.position.x < BoundsLeft + 5f);
             rb.linearVelocityX = 0;
             ani.SetTrigger("Turn");
-            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
 
             yield return new WaitForSeconds(0.6f);
             rb.linearVelocityX = dashForce * 2;
 
             yield return new WaitUntil(() => transform.position.x > BoundsRight - 2.5f);
             rb.linearVelocityX = 0;
+            if (i < amountOfDashes - 1)
+            {
+                ani.SetTrigger("Turn");
+                yield return new WaitForSeconds(0.5f);
+            }
         }
 
         Debug.Log("DashAttack Finished");
@@ -165,21 +171,23 @@ public class CarAttack : MonoBehaviour
         rb.linearVelocityX = 0;
         currentDamage = 1;
         transform.rotation = Quaternion.Euler(0, 0, 0);
-        transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         isDashing = false;
 
         if (!hasHitPlayer)
         {
             ani.SetTrigger("Crash");
+            SoundManager.Instance.PlaySound2D("CarCrash");
             yield return new WaitForSeconds(crashedDuration);
         }
-        hasHitPlayer = false;
         ani.SetTrigger("Turn");
+        hasHitPlayer = false;
+        
         Invoke("ChooseAttack", attackCooldown);
     }
 
     IEnumerator TrafficAttack()
     {
+        SoundManager.Instance.PlaySound2D("TrafficAttack");
         for (int i = 0; i < amountOfAttacks - 1; i++)
         {
             yield return new WaitForSeconds(delayBetweenAttacks);

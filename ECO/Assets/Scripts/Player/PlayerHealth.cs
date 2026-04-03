@@ -25,10 +25,6 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvincible && !GameObject.FindWithTag("Player").GetComponent<PlayerCheats>().isGodMode && !isDead)
         {
-            
-             
-            
-
 
             FindFirstObjectByType<DamageVignette>().ShowDamageVignette();
             SoundManager.Instance.PlaySound2D("PlayerHurt");

@@ -8,12 +8,12 @@ public class MechanicHealth : MonoBehaviour
     [SerializeField] float hitFlashDuration = 0.3f;
 
     bool isInvincible = true;
+    public bool isDead;
     Animator ani;
     Bossbar healthbar;
     SpriteRenderer spriteRenderer;
     MechanicAttack attackScript;
     ShakeManager shakeManager;
-
     private void Start()
     {
         shakeManager = FindFirstObjectByType<ShakeManager>();
@@ -42,17 +42,19 @@ public class MechanicHealth : MonoBehaviour
         Time.timeScale = 0f;
         shakeManager.ShakeCamera(0.4f, 3f);
         StartCoroutine(ResetTime(hitFlashDuration));
-       
-        attackScript.IsHurt();
+
+
+
 
         if (currentHealth <= 0)
         {
             attackScript.StopAllCoroutines();
             attackScript.enabled = false;
-            //float duration = ani.GetCurrentAnimatorStateInfo(0).length;
-            float duration = 0.1f;
-
-            Invoke("Die", duration);
+            StartCoroutine(Die());
+        }
+        else
+        {
+            attackScript.IsHurt();
         }
 
 
@@ -75,9 +77,12 @@ public class MechanicHealth : MonoBehaviour
         Debug.Log(isInvincible);
     }
 
-    void Die()
+    IEnumerator Die()
     {
-        Destroy(gameObject);
+        isDead = true;
+        ani.SetTrigger("Die");
+        yield return new WaitForSeconds(0.3f);
+        FindFirstObjectByType<BossSummon>().GoToNextLevel();
     }
 
 }

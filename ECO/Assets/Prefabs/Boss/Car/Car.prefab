@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &4859613817297067303
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -157,7 +157,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.03701496}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -167,7 +167,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 3, y: 1.5410118}
   m_EdgeRadius: 0
 --- !u!60 &4028170054572362177
 PolygonCollider2D:
@@ -215,11 +215,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.493823, y: 1.0044403}
-      - {x: -1.4787655, y: -0.98185444}
-      - {x: 1.5164108, y: -0.996912}
-      - {x: 1.5013523, y: -0.95926666}
-      - {x: 1.4938221, y: 0.9893818}
+    - - {x: -1.5086279, y: 0.73793125}
+      - {x: -1.4935703, y: -0.78937626}
+      - {x: 1.5167236, y: -0.8048868}
+      - {x: 1.5168076, y: -0.7958193}
+      - {x: 1.5163269, y: -0.78947544}
+      - {x: 1.5164108, y: -0.7822237}
+      - {x: 1.5161686, y: -0.78026485}
+      - {x: 1.5086269, y: 0.72287273}
   m_UseDelaunayMesh: 0
 --- !u!114 &5195976945590851265
 MonoBehaviour:

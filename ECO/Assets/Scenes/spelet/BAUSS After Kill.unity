@@ -659,7 +659,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.40625
+  orthographic size: 9.0625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14152,6 +14152,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.icon
+      value: 
+      objectReference: {fileID: 5831657316834331293, guid: fe2a72bc6555f8042a462e0b483f1571, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
       propertyPath: dialogue.name
       value: Mechanic
       objectReference: {fileID: 0}
@@ -14159,6 +14163,70 @@ PrefabInstance:
       propertyPath: dialogue.sentences.Array.size
       value: 16
       objectReference: {fileID: 0}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[0].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 3410b271419518f488573d0b30a63b26, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[1].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 1045ff5d30f0cd441b606a97f4ab6122, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[2].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: c7202745e27635347965b05bcecd8221, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[3].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: c7202745e27635347965b05bcecd8221, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[4].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 18e27108b54b1d743a5dd78da4490caa, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[5].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: d02da5e539ea41a429b9bb1bae43549e, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[6].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: bd0bbae8164da19439e20eb3a6df4572, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[7].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 8dc7943463ff3ba489c8d9b45f30d1d2, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[8].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 6577d977fc0743147845e17e147991fe, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[9].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: e1912faa8f01d6442badeb21d4a86a5c, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[10].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d03d056af6bff3489eb8754695a4247, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[11].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 61cd8310443acb341bbf7b14b75901d7, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[12].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 12c0eaf307f5bed40a7777f546624702, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[13].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 90b29a2b2eedf044aa5fa98a9b38fcfc, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[14].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: 26ed80a1bc48d204891f73599a7923cb, type: 3}
+    - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
+      propertyPath: dialogue.sentences.Array.data[15].voice
+      value: 
+      objectReference: {fileID: 8300000, guid: e7a7af6f30f8e224db592d2c8e6f174a, type: 3}
     - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
       propertyPath: dialogue.sentences.Array.data[0].sentence
       value: AAughh...
@@ -14189,7 +14257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
       propertyPath: dialogue.sentences.Array.data[7].sentence
-      value: And you thought i would put MY own life in danger
+      value: And you really thought i would put MY own life in danger...
       objectReference: {fileID: 0}
     - target: {fileID: 67355647794455125, guid: 1fc6e2f174fea5d43a9d0c3f3aa3e4c4, type: 3}
       propertyPath: dialogue.sentences.Array.data[8].sentence

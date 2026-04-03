@@ -69,7 +69,7 @@ public class MechHealth : MonoBehaviour
 
     void Die()
     {
-        MusicManager.Instance.PlayMusic("Backrooms", 1);
+      
         Destroy(gameObject);
     }
     

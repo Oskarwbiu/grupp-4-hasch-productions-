@@ -21,10 +21,10 @@ public class ScientistScript : MonoBehaviour
         rb.GetComponent<Collider2D>().enabled = false;
         dialogue.EndDialogue();
         rb.gravityScale = 0;
-        transform.position += Vector3.up;
-        rb.transform.localScale = new Vector3(2, 2, 2);
+        SoundManager.Instance.PlaySound2D("CryBaby");
+        rb.transform.position += Vector3.down/2;
         rb.linearVelocityX = 10;
         areaBounds.enabled = true;
-        ani.SetBool("crawl", true);
+        ani.SetTrigger("Fall");
     }
 }
